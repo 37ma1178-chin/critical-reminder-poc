@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Force Urbania 17-Seater — 2D Top View</title>
+<style>
+  :root { --bg:#f6f5f1; --panel:#ffffff; --line:#e6e3da; --ink:#232220; --muted:#7a776f; --accent:#3a6a72; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+  #app { display:flex; flex-direction:column; height:100%; }
+  header { padding:16px 20px 12px; border-bottom:1px solid var(--line); background:var(--panel); }
+  header h1 { margin:0 0 3px; font-size:17px; font-weight:600; letter-spacing:-0.01em; }
+  header p { margin:0; font-size:12.5px; color:var(--muted); }
+  #main { flex:1; display:flex; min-height:0; flex-wrap:wrap; }
+  #viewport { flex:1 1 420px; min-height:380px; overflow:auto; background:#fff; padding:22px; display:flex; align-items:center; }
+  #drawing-frame { border:1px solid var(--line); border-radius:10px; padding:18px; width:100%; background:#fff; }
+  #panel { width:280px; flex:0 0 280px; border-left:1px solid var(--line); background:var(--panel); padding:16px; overflow-y:auto; }
+  @media (max-width:760px) { #panel{border-left:none;border-top:1px solid var(--line);width:100%;flex:0 0 auto;} }
+  .specbox { font-size:11.5px; color:var(--muted); line-height:1.6; padding:10px 12px; background:#faf9f6;
+    border:1px solid var(--line); border-radius:8px; margin-bottom:14px; }
+  .specbox b { color:var(--ink); }
+  .flag { font-size:11.5px; color:#8a5a1f; line-height:1.55; padding:10px 12px; background:#fdf5e8;
+    border:1px solid #ecd9b3; border-radius:8px; margin-bottom:14px; }
+  .legend { font-size:12px; line-height:2; }
+  .swatch { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:7px; vertical-align:-1px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>Force Urbania 4400 WB — 17 Seater, Top View</h1>
+    <p>Dimensioned scale drawing · 1 unit = 1mm</p>
+  </header>
+  <div id="main">
+    <div id="viewport"><div id="drawing-frame"></div></div>
+    <div id="panel">
+      <div class="specbox">
+        <b>Confirmed body spec:</b><br>
+        Length 7010mm · Width 2095mm<br>
+        Wheelbase 4400mm<br>
+        Front overhang 950mm · Rear overhang 1660mm
+      </div>
+      <div class="flag">
+        <b>Not confirmed from an official drawing:</b> exact seat pitch. Force Motors' site doesn't publish a dimensioned floor plan — this uses the 2 front + 4×(1+2) + 3 rear = 17 pattern reported across Urbania rental listings, with an estimated row spacing. Share the reference image and I'll match it exactly.
+      </div>
+      <div class="legend">
+        <div><span class="swatch" style="background:#f3f1ec;border:1px solid #b9b3a3"></span>Body outline</div>
+        <div><span class="swatch" style="background:#cfe1e5;border:1px solid #7fa3a9"></span>Passenger seats</div>
+        <div><span class="swatch" style="background:#3a6a72"></span>Driver + co-driver</div>
+        <div><span class="swatch" style="background:#3a3a3a"></span>Wheels</div>
+        <div><span class="swatch" style="background:#8a8479"></span>Partition</div>
+        <div><span class="swatch" style="background:#3a6a72"></span>Dimension lines</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+// ---- All values in millimetres; 1 SVG user unit = 1mm ----
+const L = 7010, W = 2095, WB = 4400, FOH = 950, ROH = 1660;
+const marginL = 550, marginR = 950, marginT = 900, marginB = 700;
+const vbW = L + marginL + marginR;
+const vbH = W + marginT + marginB;
+
+const bodyX0 = marginL, bodyX1 = marginL + L;
+const bodyY0 = marginT, bodyY1 = marginT + W;
+const frontX = bodyX1, rearX = bodyX0;
+const bodyCY = (bodyY0 + bodyY1) / 2;
+
+const frontAxleX = frontX - FOH;
+const rearAxleX = rearX + ROH;
+const trackInset = 100;
+const wheelLen = 300, wheelWid = 170;
+const wheelTopY = bodyY0 + trackInset;
+const wheelBotY = bodyY1 - trackInset;
+
+const CAB_DEPTH = 1300;
+const partitionX = frontX - CAB_DEPTH;
+const wallT = 100;
+const innerFront = partitionX - 20;
+const innerRear = rearX + wallT;
+const innerY0 = bodyY0 + 60, innerY1 = bodyY1 - 60;
+const innerWid = innerY1 - innerY0;
+const innerCY = (innerY0 + innerY1) / 2;
+
+// Seat glyph: light cushion, thin stroke, a short hairline marking the backrest edge
+function seatGlyph(cx, cy, wAlongX, wAlongZ, backSide) {
+  const r = 22;
+  let backLine = '';
+  if (backSide === 'left') {
+    backLine = `<line x1="${cx - wAlongX/2 + 4}" y1="${cy - wAlongZ/2 + 6}" x2="${cx - wAlongX/2 + 4}" y2="${cy + wAlongZ/2 - 6}" class="seatback"/>`;
+  } else {
+    backLine = `<line x1="${cx - wAlongX/2 + 4}" y1="${cy - wAlongZ/2 + 6}" x2="${cx - wAlongX/2 + 4}" y2="${cy + wAlongZ/2 - 6}" class="seatback"/>`;
+  }
+  return `
+    <rect x="${cx - wAlongX/2}" y="${cy - wAlongZ/2}" width="${wAlongX}" height="${wAlongZ}" rx="${r}" class="seat"/>
+    ${backLine}`;
+}
+
+const seatDepth = 420, seatWidth = 420, rowPitch = 600, aisle = 240;
+const rowStartX = innerFront - 520;
+let rowsSvg = '';
+const singleY = innerCY - (aisle/2 + seatWidth/2);
+const benchWAlongZ = seatWidth*2 + 30;
+const benchY = innerCY + (aisle/2 + benchWAlongZ/2);
+for (let r = 0; r < 4; r++) {
+  const x = rowStartX - r * rowPitch;
+  rowsSvg += seatGlyph(x, singleY, seatDepth, seatWidth, 'left');
+  rowsSvg += seatGlyph(x, benchY, seatDepth, benchWAlongZ, 'left');
+  rowsSvg += `<line x1="${x}" y1="${benchY - benchWAlongZ/2 + 12}" x2="${x}" y2="${benchY + benchWAlongZ/2 - 12}" class="seatdivider"/>`;
+}
+const benchDepth = 520;
+const rearBenchX = innerRear + benchDepth/2 + 40;
+rowsSvg += `<rect x="${rearBenchX - benchDepth/2}" y="${innerY0}" width="${benchDepth}" height="${innerWid}" rx="22" class="seat"/>`;
+rowsSvg += `<line x1="${rearBenchX - benchDepth/2 + 4}" y1="${innerY0 + 8}" x2="${rearBenchX - benchDepth/2 + 4}" y2="${innerY1 - 8}" class="seatback"/>`;
+rowsSvg += `<line x1="${rearBenchX - benchDepth/2}" y1="${innerY0 + innerWid/3}" x2="${rearBenchX + benchDepth/2}" y2="${innerY0 + innerWid/3}" class="seatdivider"/>`;
+rowsSvg += `<line x1="${rearBenchX - benchDepth/2}" y1="${innerY0 + 2*innerWid/3}" x2="${rearBenchX + benchDepth/2}" y2="${innerY0 + 2*innerWid/3}" class="seatdivider"/>`;
+
+const cabSeatX = partitionX + CAB_DEPTH * 0.6;
+const driverY = innerCY + (aisle/2 + seatWidth/2 + 40);
+const codriverY = innerCY - (aisle/2 + seatWidth/2 + 40);
+const cabSeatSize = 430;
+
+const FS = 175;
+const SWd = 14; // hairline stroke unit
+
+function dimH(x1, y, x2, label) {
+  return `
+    <line x1="${x1}" y1="${y-40}" x2="${x1}" y2="${y+40}" class="dimtick"/>
+    <line x1="${x2}" y1="${y-40}" x2="${x2}" y2="${y+40}" class="dimtick"/>
+    <line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" class="dim" marker-start="url(#arrowS)" marker-end="url(#arrowE)"/>
+    <rect x="${(x1+x2)/2 - label.length*FS*0.29}" y="${y-FS*0.95}" width="${label.length*FS*0.58}" height="${FS*1.05}" fill="#ffffff"/>
+    <text x="${(x1+x2)/2}" y="${y-FS*0.2}" text-anchor="middle" class="dimtext">${label}</text>`;
+}
+function dimV(x, y1, y2, label) {
+  const midY = (y1+y2)/2;
+  return `
+    <line x1="${x-40}" y1="${y1}" x2="${x+40}" y2="${y1}" class="dimtick"/>
+    <line x1="${x-40}" y1="${y2}" x2="${x+40}" y2="${y2}" class="dimtick"/>
+    <line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}" class="dim" marker-start="url(#arrowS)" marker-end="url(#arrowE)"/>
+    <rect x="${x-FS*0.55}" y="${midY-label.length*FS*0.29}" width="${FS*1.1}" height="${label.length*FS*0.58}" fill="#ffffff"/>
+    <text x="${x}" y="${midY}" text-anchor="middle" class="dimtext" transform="rotate(-90 ${x} ${midY})">${label}</text>`;
+}
+
+const svg = `
+<svg viewBox="0 0 ${vbW} ${vbH}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+  <defs>
+    <marker id="arrowS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse">
+      <path d="M9,1 L1,5 L9,9" fill="none" stroke="#3a6a72" stroke-width="1.6"/>
+    </marker>
+    <marker id="arrowE" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse">
+      <path d="M9,1 L1,5 L9,9" fill="none" stroke="#3a6a72" stroke-width="1.6"/>
+    </marker>
+  </defs>
+  <style>
+    .body { fill:#f7f5f0; stroke:#8f8879; stroke-width:${SWd}; }
+    .wheel { fill:#33322f; }
+    .seat { fill:#d7e6e9; stroke:#7fa3a9; stroke-width:${SWd*0.55}; }
+    .seatback { stroke:#5c8b93; stroke-width:${SWd*0.7}; }
+    .seatdivider { stroke:#a9c2c6; stroke-width:${SWd*0.45}; }
+    .cabseat { fill:#3a6a72; }
+    .partition { stroke:#8a8479; stroke-width:${SWd*1.1}; }
+    .wall { stroke:#c9c2b1; stroke-width:${SWd*0.6}; stroke-dasharray:${SWd*3} ${SWd*1.6}; fill:none; }
+    .dim { stroke:#3a6a72; stroke-width:${SWd*0.65}; fill:none; }
+    .dimtick { stroke:#3a6a72; stroke-width:${SWd*0.5}; }
+    .dimtext { fill:#3a6a72; font-size:${FS}px; font-weight:600; font-family:inherit; }
+    .caption { fill:#8f8b81; font-size:${FS*0.85}px; font-family:inherit; }
+    .seatlabel { fill:#fff; font-size:${FS*0.8}px; font-weight:700; text-anchor:middle; font-family:inherit; }
+  </style>
+
+  <rect x="${bodyX0}" y="${bodyY0}" width="${L}" height="${W}" rx="130" class="body"/>
+  <line x1="${frontX-55}" y1="${bodyY0+150}" x2="${frontX-55}" y2="${bodyY1-150}" stroke="#a9c8d1" stroke-width="${SWd*1.1}"/>
+  <rect x="${innerRear}" y="${innerY0}" width="${innerFront-innerRear}" height="${innerWid}" class="wall"/>
+  <line x1="${partitionX}" y1="${bodyY0+30}" x2="${partitionX}" y2="${bodyY1-30}" class="partition"/>
+
+  ${rowsSvg}
+
+  <rect x="${cabSeatX-cabSeatSize/2}" y="${driverY-cabSeatSize/2}" width="${cabSeatSize}" height="${cabSeatSize}" rx="26" class="cabseat"/>
+  <text x="${cabSeatX}" y="${driverY+FS*0.27}" class="seatlabel">D</text>
+  <rect x="${cabSeatX-cabSeatSize/2}" y="${codriverY-cabSeatSize/2}" width="${cabSeatSize}" height="${cabSeatSize}" rx="26" class="cabseat"/>
+  <text x="${cabSeatX}" y="${codriverY+FS*0.27}" class="seatlabel">C</text>
+
+  <rect x="${frontAxleX-wheelLen/2}" y="${wheelTopY-wheelWid/2}" width="${wheelLen}" height="${wheelWid}" rx="60" class="wheel"/>
+  <rect x="${frontAxleX-wheelLen/2}" y="${wheelBotY-wheelWid/2}" width="${wheelLen}" height="${wheelWid}" rx="60" class="wheel"/>
+  <rect x="${rearAxleX-wheelLen/2}" y="${wheelTopY-wheelWid/2}" width="${wheelLen}" height="${wheelWid}" rx="60" class="wheel"/>
+  <rect x="${rearAxleX-wheelLen/2}" y="${wheelBotY-wheelWid/2}" width="${wheelLen}" height="${wheelWid}" rx="60" class="wheel"/>
+
+  ${dimH(bodyX0, bodyY0-560, bodyX1, "7010mm overall length")}
+  ${dimH(rearAxleX, bodyY0-320, frontAxleX, "4400mm wheelbase")}
+  ${dimH(frontAxleX, bodyY0-110, frontX, "950")}
+  ${dimH(rearX, bodyY0-110, rearAxleX, "1660")}
+  ${dimV(bodyX1+280, bodyY0, bodyY1, "2095mm")}
+
+  <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+420}" text-anchor="middle" class="caption">Front of vehicle →</text>
+  <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+540}" text-anchor="middle" class="caption" font-size="${FS*0.78}">D = driver · C = co-driver · 4 × (1+2) middle rows · 3-seat rear bench</text>
+</svg>`;
+
+document.getElementById('drawing-frame').innerHTML = svg;
+</script>
+</body>
+</html>

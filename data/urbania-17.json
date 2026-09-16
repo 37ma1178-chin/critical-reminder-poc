@@ -1,0 +1,31 @@
+{
+  "vehicle": "Force Urbania 4400 WB, 17-seater",
+  "units": "mm",
+  "source": "Force Motors spec sheet as listed on Cardekho / ZigWheels (cross-checked, consistent). Seat pitch is NOT from an official drawing.",
+  "body": {
+    "length": 7010,
+    "width": 2095,
+    "height": 2550,
+    "wheelbase": 4400,
+    "ground_clearance": 200,
+    "front_overhang": 950,
+    "rear_overhang": 1660
+  },
+  "assumptions": {
+    "cab_depth": 1300,
+    "body_bottom_height": 400,
+    "wheel_radius": 360,
+    "wheel_track_inset_from_body_edge": 100,
+    "interior_wall_thickness": 50,
+    "note": "Everything in this block is an estimate, not manufacturer data. Replace when a real reference is available."
+  },
+  "stock_seating": {
+    "total": 17,
+    "pattern": "2 front (driver + co-driver) + 4 rows of 1+2 + 3-seat rear bench",
+    "seat_width": 420,
+    "seat_depth": 420,
+    "row_pitch": 600,
+    "aisle_width": 240,
+    "confirmed": false
+  }
+}

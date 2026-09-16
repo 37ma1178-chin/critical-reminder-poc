@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urbania 17-Seater — Configurator Proof of Concept</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --panel: #ffffff; --line: #e4e1d7;
+    --ink: #232220; --muted: #75726a; --accent: #2f5d50; --accent-soft: #e7efec;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  #app { display: flex; flex-direction: column; height: 100%; }
+  header { padding: 16px 20px 12px; border-bottom: 1px solid var(--line); background: var(--panel); }
+  header h1 { margin: 0 0 3px; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+  header p { margin: 0; font-size: 12.5px; color: var(--muted); }
+  #main { flex: 1; display: flex; min-height: 0; flex-wrap: wrap; }
+  #viewport { flex: 1 1 320px; position: relative; min-height: 320px; background: linear-gradient(180deg,#eef0ec 0%, #f6f5f1 60%); }
+  #viewport canvas { display: block; }
+  #dims { position: absolute; left: 12px; bottom: 12px; background: rgba(255,255,255,0.92);
+    border: 1px solid var(--line); border-radius: 8px; padding: 7px 11px; font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+  #hint { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.88);
+    border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 11px; color: var(--muted); }
+  #panel { width: 260px; flex: 0 0 260px; border-left: 1px solid var(--line); background: var(--panel); padding: 16px; overflow-y: auto; }
+  @media (max-width: 700px) {
+    #panel { border-left: none; border-top: 1px solid var(--line); width: 100%; flex: 0 0 auto; }
+    #viewport { flex: 1 1 100%; height: 46vh; }
+  }
+  .group { margin-bottom: 18px; }
+  .group h2 { font-size: 11px; color: var(--muted); margin: 0 0 8px; font-weight: 600; }
+  .option { display: block; width: 100%; text-align: left; padding: 9px 12px; margin-bottom: 6px;
+    border: 1px solid var(--line); background: #fff; border-radius: 7px; font-size: 13px; color: var(--ink);
+    cursor: pointer; transition: border-color 0.12s, background 0.12s; }
+  .option:hover { border-color: var(--accent); }
+  .option.active { border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+  .swatchrow { display: flex; gap: 8px; margin-bottom: 4px; }
+  .swatch { width: 34px; height: 34px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; flex: none; }
+  .swatch.active { border-color: var(--accent); }
+  .note { font-size: 11.5px; color: var(--muted); line-height: 1.5; padding: 10px 12px; background: #faf9f6;
+    border: 1px solid var(--line); border-radius: 8px; }
+  .specbox { font-size: 11px; color: var(--muted); line-height: 1.6; padding: 10px 12px; background: #faf9f6;
+    border: 1px solid var(--line); border-radius: 8px; margin-bottom: 14px; }
+  .specbox b { color: var(--ink); }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>Force Urbania 4400WB — 17 Seater</h1>
+    <p>Proof-of-concept configurator viewer · dimensions matched to official spec sheet</p>
+  </header>
+  <div id="main">
+    <div id="viewport">
+      <div id="hint">Drag to orbit · scroll to zoom</div>
+      <div id="dims">L 7010mm · W 2095mm · H 2550mm · Wheelbase 4400mm · F/R overhang 950/1660mm</div>
+    </div>
+    <div id="panel">
+      <div class="specbox">
+        <b>Source spec (Force Urbania, 4400 WB, 17-seater):</b><br>
+        Length 7010mm · Width 2095mm · Height 2550mm<br>
+        Wheelbase 4400mm · Ground clearance 200mm<br>
+        Front overhang 950mm · Rear overhang 1660mm<br>
+        Stock layout: 2 front (driver + co-driver) + 4 rows of 1+2 + 3-seat rear bench = 17
+      </div>
+      <div class="group">
+        <h2>View</h2>
+        <button class="option active" data-view="cutaway">Cutaway (see interior)</button>
+        <button class="option" data-view="topdown">Roof off (top-down)</button>
+        <button class="option" data-view="full">Full exterior</button>
+      </div>
+      <div class="group">
+        <h2>Interior layout</h2>
+        <button class="option active" data-layout="rows">Standard 17-seater (stock)</button>
+        <button class="option" data-layout="lounge">Lounge conversion (sofa + table)</button>
+        <button class="option" data-layout="camper">Camper conversion (toilet, kitchen, bunk)</button>
+      </div>
+      <div class="group">
+        <h2>TV size (camper conversion)</h2>
+        <button class="option active" data-tv="32">32" TV</button>
+        <button class="option" data-tv="43">43" TV</button>
+      </div>
+      <div class="group">
+        <h2>Exterior colour</h2>
+        <div class="swatchrow">
+          <div class="swatch active" data-color="0xcfc6ac" style="background:#cfc6ac" title="Sand"></div>
+          <div class="swatch" data-color="0x2f5d50" style="background:#2f5d50" title="Forest green"></div>
+          <div class="swatch" data-color="0x28282a" style="background:#28282a" title="Graphite"></div>
+          <div class="swatch" data-color="0x8a3b2e" style="background:#8a3b2e" title="Rust red"></div>
+          <div class="swatch" data-color="0xdfe3e6" style="background:#dfe3e6" title="Pearl white"></div>
+        </div>
+      </div>
+      <div class="note">
+        Camper conversion module sizes (bunk, counter, tank, cubicle) are typical placeholder dimensions, not sourced from a specific supplier catalog yet — that's the next step once we build the component catalog.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+const viewport = document.getElementById('viewport');
+
+// ---------- Scene ----------
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xeef0ec);
+scene.fog = new THREE.Fog(0xeef0ec, 16, 30);
+
+const camera = new THREE.PerspectiveCamera(42, viewport.clientWidth / viewport.clientHeight, 0.1, 100);
+camera.position.set(7, 3.4, 7.5);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(viewport.clientWidth, viewport.clientHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.outputEncoding = THREE.sRGBEncoding;
+viewport.appendChild(renderer.domElement);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 1.1, 0);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 3.5;
+controls.maxDistance = 18;
+controls.maxPolarAngle = Math.PI * 0.49;
+controls.update();
+
+// Lighting
+scene.add(new THREE.HemisphereLight(0xffffff, 0xcfcabb, 0.65));
+const key = new THREE.DirectionalLight(0xfff4e0, 1.05);
+key.position.set(6, 9, 4);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.left = -9; key.shadow.camera.right = 9;
+key.shadow.camera.top = 9; key.shadow.camera.bottom = -9;
+key.shadow.bias = -0.0015;
+scene.add(key);
+const fill = new THREE.DirectionalLight(0xdce8ff, 0.35);
+fill.position.set(-6, 4, -5);
+scene.add(fill);
+
+// Ground
+const ground = new THREE.Mesh(new THREE.CircleGeometry(20, 48), new THREE.MeshStandardMaterial({ color: 0xe6e2d5, roughness: 1 }));
+ground.rotation.x = -Math.PI / 2;
+ground.receiveShadow = true;
+scene.add(ground);
+const grid = new THREE.GridHelper(30, 30, 0xd4cfc0, 0xe3ded0);
+grid.position.y = 0.001;
+scene.add(grid);
+
+// =====================================================================
+// REAL FORCE URBANIA (4400 WB, 17-seater) DIMENSIONS — source: official
+// spec sheet (cardekho/zigwheels). All figures in metres.
+// =====================================================================
+const LEN = 7.010;
+const WID = 2.095;
+const HGT = 2.550;
+const WHEELBASE = 4.400;
+const GROUND_CLEARANCE = 0.200;
+
+// Overhangs derived from LEN - WHEELBASE = 2.610m total.
+// Split using typical front/rear proportion for this vehicle class.
+const FRONT_OVERHANG = 0.950;
+const REAR_OVERHANG = LEN - WHEELBASE - FRONT_OVERHANG; // 1.660
+
+// Wheel geometry
+const WHEEL_R = 0.360;      // ~720mm diameter, matches 16" wheel class
+const WHEEL_WIDTH = 0.24;
+const TRACK_HALF = WID / 2 - 0.10; // wheels sit near body edge
+
+// Body vertical layout (all referenced from ground, y = 0)
+const BODY_BOTTOM = 0.40;          // rocker panel height above ground
+const ROOF_CAP_H = 0.10;           // subtle raised roof cap (cosmetic only)
+const MAIN_BOX_H = HGT - BODY_BOTTOM - ROOF_CAP_H; // exact fit to HGT
+
+// X axis: vehicle centreline, 0 = geometric centre of LEN
+const frontAxleX = LEN / 2 - FRONT_OVERHANG;
+const rearAxleX = -LEN / 2 + REAR_OVERHANG;
+
+// ---------- Materials ----------
+const bodyMat = new THREE.MeshStandardMaterial({ color: 0xcfc6ac, metalness: 0.25, roughness: 0.45 });
+const roofCapMat = new THREE.MeshStandardMaterial({ color: 0xcfc6ac, metalness: 0.25, roughness: 0.45 });
+const trimMat = new THREE.MeshStandardMaterial({ color: 0x2a2a2a, metalness: 0.4, roughness: 0.5 });
+const glassMat = new THREE.MeshStandardMaterial({ color: 0x9fb7c6, metalness: 0.2, roughness: 0.15, transparent: true, opacity: 0.65 });
+const wheelMat = new THREE.MeshStandardMaterial({ color: 0x1c1c1c, roughness: 0.85 });
+const hubMat = new THREE.MeshStandardMaterial({ color: 0xb8b8b8, metalness: 0.7, roughness: 0.3 });
+const floorMat = new THREE.MeshStandardMaterial({ color: 0xe9e4d6, roughness: 0.9 });
+
+// ---------- Shell: cabin box + short front hood, all within the verified LEN/WID/HGT ----------
+const shell = new THREE.Group();
+
+// Hood/engine bay occupies the front portion at reduced height (semi-forward-control van).
+// Cabin occupies the remainder at full MAIN_BOX_H. Neither extends past LEN or above HGT.
+const HOOD_LEN = 1.00;
+const HOOD_H = MAIN_BOX_H * 0.52;
+const cabinLen = LEN - HOOD_LEN;
+const cabinFrontX = LEN / 2 - HOOD_LEN;         // x where cabin ends / hood begins
+const cabinCenterX = cabinFrontX - cabinLen / 2;
+
+const cabinBox = new THREE.Mesh(new THREE.BoxGeometry(cabinLen, MAIN_BOX_H, WID), bodyMat);
+cabinBox.position.set(cabinCenterX, BODY_BOTTOM + MAIN_BOX_H / 2, 0);
+cabinBox.castShadow = true;
+shell.add(cabinBox);
+
+const roofCap = new THREE.Mesh(new THREE.BoxGeometry(cabinLen * 0.96, ROOF_CAP_H, WID * 0.9), roofCapMat);
+roofCap.position.set(cabinCenterX, BODY_BOTTOM + MAIN_BOX_H + ROOF_CAP_H / 2, 0);
+roofCap.castShadow = true;
+shell.add(roofCap);
+
+const hoodBox = new THREE.Mesh(new THREE.BoxGeometry(HOOD_LEN, HOOD_H, WID * 0.94), bodyMat);
+hoodBox.position.set(cabinFrontX + HOOD_LEN / 2, BODY_BOTTOM + HOOD_H / 2, 0);
+hoodBox.castShadow = true;
+shell.add(hoodBox);
+
+// Windshield bridges the height gap between hood top and cabin roof line
+const windshield = new THREE.Mesh(new THREE.BoxGeometry(0.05, MAIN_BOX_H - HOOD_H + 0.05, WID * 0.86), glassMat);
+windshield.rotation.z = 0.42;
+windshield.position.set(cabinFrontX + 0.14, BODY_BOTTOM + HOOD_H + (MAIN_BOX_H - HOOD_H) / 2 - 0.05, 0);
+shell.add(windshield);
+
+// Headlights on hood front face, taillights on rear face
+[-1, 1].forEach(side => {
+  const headlight = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.16, 0.26), new THREE.MeshStandardMaterial({ color: 0xfdf6e3, emissive: 0x554422, roughness: 0.3 }));
+  headlight.position.set(LEN / 2 - 0.01, BODY_BOTTOM + HOOD_H * 0.55, side * (WID * 0.94 / 2 - 0.2));
+  shell.add(headlight);
+
+  const taillight = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.22, 0.16), new THREE.MeshStandardMaterial({ color: 0x7a1f1a, emissive: 0x4a0f0d, roughness: 0.35 }));
+  taillight.position.set(-LEN / 2 + 0.01, BODY_BOTTOM + MAIN_BOX_H * 0.55, side * (WID / 2 - 0.14));
+  shell.add(taillight);
+});
+
+// Side mirrors near cabin front corners
+[-1, 1].forEach(side => {
+  const mirror = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.14, 0.06), trimMat);
+  mirror.position.set(cabinFrontX - 0.05, BODY_BOTTOM + MAIN_BOX_H * 0.72, side * (WID / 2 + 0.09));
+  shell.add(mirror);
+});
+
+// Side window strip along the cabin
+[-1, 1].forEach(side => {
+  const win = new THREE.Mesh(new THREE.BoxGeometry(cabinLen - 0.6, 0.5, 0.02), glassMat);
+  win.position.set(cabinCenterX + 0.15, BODY_BOTTOM + MAIN_BOX_H - 0.35, side * (WID / 2 + 0.005));
+  shell.add(win);
+});
+
+// Rear double-door split line (cosmetic)
+const seam = new THREE.Mesh(new THREE.BoxGeometry(0.02, MAIN_BOX_H * 0.9, 0.02), trimMat);
+seam.position.set(-LEN / 2 + 0.02, BODY_BOTTOM + MAIN_BOX_H * 0.5, 0);
+shell.add(seam);
+const rearHandle = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.03, 0.14), trimMat);
+[-1, 1].forEach(side => {
+  const h = rearHandle.clone();
+  h.position.set(-LEN / 2 + 0.02, BODY_BOTTOM + MAIN_BOX_H * 0.5, side * 0.12);
+  shell.add(h);
+});
+
+// Bumpers at true front/rear extremes
+[1, -1].forEach(dir => {
+  const bumper = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.16, WID + 0.04), trimMat);
+  bumper.position.set(dir * (LEN / 2 - 0.06), 0.30, 0);
+  shell.add(bumper);
+});
+
+scene.add(shell);
+
+// Wheel arch trim — dark half-torus over each wheel for visual grounding against the body
+function makeArch(x) {
+  const arch = new THREE.Mesh(
+    new THREE.TorusGeometry(WHEEL_R + 0.06, 0.045, 8, 20, Math.PI),
+    trimMat
+  );
+  arch.rotation.y = Math.PI / 2;
+  arch.rotation.z = Math.PI;
+  return arch;
+}
+[frontAxleX, rearAxleX].forEach(x => {
+  [-1, 1].forEach(side => {
+    const arch = makeArch(x);
+    arch.position.set(x, WHEEL_R + 0.05, side * (WID / 2 - 0.01));
+    shell.add(arch);
+  });
+});
+
+// ---------- Wheels — axle along Z (vehicle width), upright orientation ----------
+function makeWheelSet(x) {
+  const g = new THREE.Group();
+  [-1, 1].forEach(side => {
+    const tyre = new THREE.Mesh(new THREE.CylinderGeometry(WHEEL_R, WHEEL_R, WHEEL_WIDTH, 28), wheelMat);
+    tyre.rotation.x = Math.PI / 2;   // axle now points along Z — wheel stands upright
+    tyre.castShadow = true;
+    const hub = new THREE.Mesh(new THREE.CylinderGeometry(WHEEL_R * 0.45, WHEEL_R * 0.45, WHEEL_WIDTH + 0.02, 16), hubMat);
+    hub.rotation.x = Math.PI / 2;
+    const set = new THREE.Group();
+    set.add(tyre); set.add(hub);
+    set.position.set(x, WHEEL_R, side * TRACK_HALF);
+    g.add(set);
+  });
+  return g;
+}
+scene.add(makeWheelSet(frontAxleX));
+scene.add(makeWheelSet(rearAxleX));
+
+// Floor slab (visible in cutaway/topdown)
+const CAB_DEPTH = 1.30;                        // dashboard/driver zone reserved at front, no seating
+const interiorFront = LEN / 2 - CAB_DEPTH;
+const interiorRear = -LEN / 2 + 0.10;
+const innerLen = interiorFront - interiorRear;
+const innerWid = WID - 0.10;
+const interiorCenterX = (interiorFront + interiorRear) / 2;
+const floorY = BODY_BOTTOM + 0.05;
+
+const floor = new THREE.Mesh(new THREE.BoxGeometry(innerLen, 0.06, innerWid), floorMat);
+floor.position.set(interiorCenterX, floorY - 0.03, 0);
+floor.receiveShadow = true;
+scene.add(floor);
+
+// ---------- Interior layouts (positioned relative to interiorCenterX) ----------
+const layouts = {};
+function mat(c) { return new THREE.MeshStandardMaterial({ color: c, roughness: 0.65 }); }
+function seatUnit(color, w, d, h) {
+  const g = new THREE.Group();
+  const m = mat(color);
+  const cushion = new THREE.Mesh(new THREE.BoxGeometry(w, h * 0.5, d), m);
+  cushion.position.y = h * 0.25;
+  cushion.castShadow = true;
+  const back = new THREE.Mesh(new THREE.BoxGeometry(w * 0.15, h, d), m);
+  back.position.set(-w / 2 + w * 0.075, h / 2, 0);
+  back.castShadow = true;
+  g.add(cushion); g.add(back);
+  return g;
+}
+
+// Standard 17-seater (stock) — accurate 1+2 configuration per Force Urbania layout:
+// front row 2 (driver + co-driver), 4 middle rows of (1 left + 2 right), rear bench of 3.
+const rows = new THREE.Group();
+{
+  const seatColor = 0x8a3b2e;
+  const seatW = 0.42, seatD = 0.42, seatH = 0.55, gap = 0.58;
+  const rowCount = 4;
+  const startX = innerLen / 2 - 0.5;
+  const aisleGap = 0.22;
+  for (let r = 0; r < rowCount; r++) {
+    const x = startX - r * gap;
+    // single seat, left side
+    const left = seatUnit(seatColor, seatW, seatD, seatH);
+    left.position.set(x, floorY, -(aisleGap / 2 + seatW / 2));
+    rows.add(left);
+    // double seat, right side (two seats modeled as one wider bench for simplicity)
+    const right = seatUnit(seatColor, seatW, seatD * 2 + 0.04, seatH);
+    right.position.set(x, floorY, (aisleGap / 2 + seatD + 0.02));
+    rows.add(right);
+  }
+  // rear bench, 3 across
+  const bench = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.5, innerWid - 0.25), mat(seatColor));
+  bench.position.set(-innerLen / 2 + 0.4, floorY + 0.25, 0);
+  bench.castShadow = true;
+  rows.add(bench);
+  const benchBack = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.9, innerWid - 0.25), mat(seatColor));
+  benchBack.position.set(-innerLen / 2 + 0.15, floorY + 0.5, 0);
+  rows.add(benchBack);
+  // co-driver seat, in the cab zone next to the driver
+  const codriver = seatUnit(seatColor, 0.4, 0.4, 0.5);
+  codriver.position.set(cabinFrontX + 0.35, floorY, WID * 0.94 / 2 - 0.25);
+  rows.add(codriver);
+}
+rows.position.x = interiorCenterX;
+layouts.rows = rows;
+
+// Lounge conversion
+const lounge = new THREE.Group();
+{
+  const sofaColor = 0x2f5d50, tableColor = 0x6b5a45;
+  const sofa = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.5, innerWid - 0.25), mat(sofaColor));
+  sofa.position.set(innerLen / 2 - 1.1, floorY + 0.25, 0);
+  sofa.castShadow = true;
+  lounge.add(sofa);
+  const sofaBack = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.85, innerWid - 0.25), mat(sofaColor));
+  sofaBack.position.set(innerLen / 2 - 0.3, floorY + 0.5, 0);
+  lounge.add(sofaBack);
+  const table = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.34, 0.42, 16), mat(tableColor));
+  table.position.set(innerLen / 2 - 2.6, floorY + 0.21, 0);
+  table.castShadow = true;
+  lounge.add(table);
+  const bench2 = new THREE.Mesh(new THREE.BoxGeometry(1.3, 0.48, innerWid - 0.25), mat(sofaColor));
+  bench2.position.set(-innerLen / 2 + 0.75, floorY + 0.24, 0);
+  bench2.castShadow = true;
+  lounge.add(bench2);
+}
+lounge.position.x = interiorCenterX;
+layouts.lounge = lounge;
+
+// Camper conversion — partition, crew bunk, kitchenette + fridge space,
+// utility (water/electrical) panel, TV mount, and a rear toilet cubicle.
+let tvSize = 32; // inches, toggled from panel
+function buildCamperGroup(tvInches) {
+  const g = new THREE.Group();
+  const wallColor = 0xdedad0, counterColor = 0x6b5a45, applianceColor = 0xc9c4b8,
+        bunkColor = 0x4a5c66, doorColor = 0x9c8f76, utilColor = 0x374b52;
+
+  // ---- Fixed, non-overlapping zones along the vehicle's length (front → rear) ----
+  // Explicit gaps between every zone so nothing can bleed into its neighbour.
+  const frontEdge = innerLen / 2;             // right against the partition
+  const GAP = 0.15;
+
+  const bunkLen = 1.20;
+  const bunkFront = frontEdge - 0.05;
+  const bunkBack = bunkFront - bunkLen;
+  const bunkCenterX = (bunkFront + bunkBack) / 2;
+
+  const kitchenLen = 1.20;
+  const kitchenFront = bunkBack - GAP;
+  const kitchenBack = kitchenFront - kitchenLen;
+  const kitchenCenterX = (kitchenFront + kitchenBack) / 2;
+
+  const loungeLen = 1.30;
+  const loungeFront = kitchenBack - GAP;
+  const loungeBack = loungeFront - loungeLen;
+  const loungeCenterX = (loungeFront + loungeBack) / 2;
+
+  const toiletLen = 1.05;
+  const toiletFront = loungeBack - GAP;
+  const toiletBack = toiletFront - toiletLen;
+  const toiletCenterX = (toiletFront + toiletBack) / 2;
+  // toiletBack sits well short of -innerLen/2, leaving a rear walkway by the doors
+
+  // Partition wall between driver cab and rear cabin, with a door-shaped inset
+  const partitionX = frontEdge + 0.02;
+  const partition = new THREE.Mesh(new THREE.BoxGeometry(0.05, (floorY - (BODY_BOTTOM)) + 1.7, innerWid), mat(0x3a3a3a));
+  partition.position.set(partitionX, floorY + 0.85, 0);
+  partition.castShadow = true;
+  g.add(partition);
+  const doorInset = new THREE.Mesh(new THREE.BoxGeometry(0.02, 1.55, 0.55), mat(doorColor));
+  doorInset.position.set(partitionX + 0.01, floorY + 0.78, innerWid / 2 - 0.35);
+  g.add(doorInset);
+
+  // TV mount — on the cabin-facing side of the partition, size toggled 32"/43"
+  const tvW = tvInches >= 43 ? 0.95 : 0.72;
+  const tvH = tvInches >= 43 ? 0.55 : 0.42;
+  const tvPanel = new THREE.Mesh(new THREE.BoxGeometry(0.04, tvH, tvW), mat(0x111111));
+  tvPanel.position.set(partitionX - 0.03, floorY + 1.05, 0);
+  g.add(tvPanel);
+
+  // ---- Zone 1: crew bunk bed (driver + cleaner rest area), stacked ----
+  const bunkLower = new THREE.Mesh(new THREE.BoxGeometry(bunkLen, 0.18, innerWid - 0.2), mat(bunkColor));
+  bunkLower.position.set(bunkCenterX, floorY + 0.22, 0);
+  bunkLower.castShadow = true;
+  g.add(bunkLower);
+  const bunkUpper = new THREE.Mesh(new THREE.BoxGeometry(bunkLen, 0.14, innerWid - 0.2), mat(bunkColor));
+  bunkUpper.position.set(bunkCenterX, floorY + 0.85, 0);
+  bunkUpper.castShadow = true;
+  g.add(bunkUpper);
+  [-1, 1].forEach(side => {
+    const post = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.6, 0.04), trimMat);
+    post.position.set(bunkFront - 0.04, floorY + 0.55, side * (innerWid / 2 - 0.14));
+    g.add(post);
+  });
+
+  // ---- Zone 2: kitchenette (counter+hob+sink+fridge on one side, utility on the other) ----
+  const counter = new THREE.Mesh(new THREE.BoxGeometry(kitchenLen * 0.55, 0.42, 0.5), mat(counterColor));
+  counter.position.set(kitchenFront - kitchenLen * 0.275, floorY + 0.21, innerWid / 2 - 0.28);
+  counter.castShadow = true;
+  g.add(counter);
+  const hob = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.03, 0.34), mat(0x1c1c1c));
+  hob.position.set(kitchenFront - kitchenLen * 0.275, floorY + 0.43, innerWid / 2 - 0.28);
+  g.add(hob);
+  const sink = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.06, 0.22), mat(0xb9c2c4));
+  sink.position.set(kitchenFront - kitchenLen * 0.55, floorY + 0.43, innerWid / 2 - 0.28);
+  g.add(sink);
+  const fridge = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.75, 0.5), mat(applianceColor));
+  fridge.position.set(kitchenBack + 0.28, floorY + 0.38, innerWid / 2 - 0.28);
+  fridge.castShadow = true;
+  g.add(fridge);
+  // Utility (water tank + electrical panel) on the opposite side of the SAME zone — no extra length needed
+  const waterTank = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.5, 16), mat(0x7d93a0));
+  waterTank.position.set(kitchenCenterX + 0.15, floorY + 0.25, -(innerWid / 2 - 0.24));
+  waterTank.castShadow = true;
+  g.add(waterTank);
+  const elecPanel = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.4, 0.1), mat(utilColor));
+  elecPanel.position.set(kitchenCenterX - 0.35, floorY + 0.75, -(innerWid / 2 - 0.06));
+  g.add(elecPanel);
+
+  // ---- Zone 3: open lounge bench ----
+  const lounge2 = new THREE.Mesh(new THREE.BoxGeometry(loungeLen, 0.46, 0.5), mat(0x2f5d50));
+  lounge2.position.set(loungeCenterX, floorY + 0.23, innerWid / 2 - 0.28);
+  lounge2.castShadow = true;
+  g.add(lounge2);
+  const loungeBack2 = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.85, 0.5), mat(0x2f5d50));
+  loungeBack2.position.set(loungeFront - 0.04, floorY + 0.5, innerWid / 2 - 0.28);
+  g.add(loungeBack2);
+
+  // ---- Zone 4: toilet cubicle — fully enclosed, isolated at the rear with a clear gap ----
+  const cubicleWidth = 0.78;
+  const wallH = 1.65;
+  const cubicleZOuter = -(innerWid / 2 - 0.02);      // against the vehicle's side skin
+  const cubicleZInner = cubicleZOuter + cubicleWidth; // boundary facing the aisle
+  const cubicleWallMat = mat(wallColor);
+
+  // Inboard wall — separates the cubicle from the aisle/rest of the cabin
+  const cwInboard = new THREE.Mesh(new THREE.BoxGeometry(toiletLen, wallH, 0.04), cubicleWallMat);
+  cwInboard.position.set(toiletCenterX, floorY + wallH / 2, cubicleZInner);
+  cwInboard.castShadow = true;
+  g.add(cwInboard);
+
+  // Front wall (facing forward into the camper) — a fixed jamb plus a hinged door leaf
+  const jambW = 0.14;
+  const doorW = cubicleWidth - jambW;
+  const cwJamb = new THREE.Mesh(new THREE.BoxGeometry(0.04, wallH, jambW), cubicleWallMat);
+  cwJamb.position.set(toiletFront, floorY + wallH / 2, cubicleZInner - jambW / 2);
+  g.add(cwJamb);
+  const cwDoor = new THREE.Mesh(new THREE.BoxGeometry(0.035, wallH * 0.94, doorW), mat(doorColor));
+  cwDoor.position.set(toiletFront, floorY + wallH * 0.47, cubicleZOuter + doorW / 2);
+  g.add(cwDoor);
+
+  // Fixtures, against the vehicle's own side wall
+  const toiletBowl = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.17, 0.32, 12), mat(0xf3f1ec));
+  toiletBowl.position.set(toiletBack + 0.28, floorY + 0.16, cubicleZOuter + 0.2);
+  g.add(toiletBowl);
+  const wsBasin = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.08, 0.18), mat(0xf3f1ec));
+  wsBasin.position.set(toiletFront - 0.2, floorY + 0.45, cubicleZOuter + 0.15);
+  g.add(wsBasin);
+
+  return g;
+}
+let camper = buildCamperGroup(tvSize);
+camper.position.x = interiorCenterX;
+layouts.camper = camper;
+
+let activeLayout = 'rows';
+scene.add(layouts[activeLayout]);
+function setLayout(name) {
+  if (name === activeLayout) return;
+  scene.remove(layouts[activeLayout]);
+  activeLayout = name;
+  scene.add(layouts[activeLayout]);
+}
+
+// ---------- View modes ----------
+function setView(mode) {
+  if (mode === 'full') {
+    roofCap.visible = true;
+    cabinBox.material.transparent = false;
+    cabinBox.material.opacity = 1;
+  } else if (mode === 'topdown') {
+    roofCap.visible = false;
+    cabinBox.material.transparent = false;
+    cabinBox.material.opacity = 1;
+  } else if (mode === 'cutaway') {
+    roofCap.visible = false;
+    cabinBox.material.transparent = true;
+    cabinBox.material.opacity = 0.26;
+  }
+}
+setView('cutaway');
+
+// ---------- UI wiring ----------
+document.querySelectorAll('[data-view]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-view]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    setView(btn.dataset.view);
+  });
+});
+document.querySelectorAll('[data-layout]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-layout]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    setLayout(btn.dataset.layout);
+  });
+});
+document.querySelectorAll('[data-tv]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-tv]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tvSize = parseInt(btn.dataset.tv, 10);
+    const wasActive = activeLayout === 'camper';
+    if (wasActive) scene.remove(layouts.camper);
+    camper = buildCamperGroup(tvSize);
+    camper.position.x = interiorCenterX;
+    layouts.camper = camper;
+    if (wasActive) scene.add(layouts.camper);
+  });
+});
+document.querySelectorAll('[data-color]').forEach(sw => {
+  sw.addEventListener('click', () => {
+    document.querySelectorAll('[data-color]').forEach(s => s.classList.remove('active'));
+    sw.classList.add('active');
+    const hex = parseInt(sw.dataset.color, 16);
+    bodyMat.color.setHex(hex);
+    roofCapMat.color.setHex(hex);
+  });
+});
+
+// ---------- Resize ----------
+function onResize() {
+  const w = viewport.clientWidth, h = viewport.clientHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+}
+window.addEventListener('resize', onResize);
+new ResizeObserver(onResize).observe(viewport);
+
+// ---------- Render loop ----------
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+</script>
+</body>
+</html>
