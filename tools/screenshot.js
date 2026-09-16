@@ -58,7 +58,9 @@ fs.mkdirSync(out, { recursive: true });
       await shoot(p, 'index-camper-cutaway');
       await p.click('[data-tv="43"]'); await p.waitForTimeout(300);
       await shoot(p, 'index-camper-tv43-cutaway');
-      await p.click('[data-view="full"]'); await p.waitForTimeout(300);
+      await p.click('[data-view="topdown"]'); await p.waitForTimeout(2500); // camera flies overhead (600 ms, but software GL is slow)
+      await shoot(p, 'index-camper-roof-off');
+      await p.click('[data-view="full"]'); await p.waitForTimeout(2500);
       await shoot(p, 'index-full-exterior');
     }
     await p.close();

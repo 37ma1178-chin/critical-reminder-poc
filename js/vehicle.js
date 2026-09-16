@@ -16,6 +16,7 @@
   'use strict';
 
   const DATA_URL = 'data/urbania-17.json';
+  const COMPONENTS_URL = 'data/components.json';
 
   function warn(msg) { console.warn('[vehicle] ' + msg); }
 
@@ -86,15 +87,81 @@
 
     const seatCount = seats.reduce((n, seat) => n + seat.count, 0);
 
-    return { frontAxleX, rearAxleX, partitionX, interior, wheels, seats, seatCount };
+    // Wheel housings: the box each wheel occupies inside the cabin, against the side wall.
+    const wh = a.wheel_housing;
+    const wheelHousings = wheels.map(w => ({
+      x0: w.x - wh.length / 2, x1: w.x + wh.length / 2, cx: w.x,
+      y0: w.side > 0 ? interior.halfWidth - wh.width : -interior.halfWidth,
+      y1: w.side > 0 ? interior.halfWidth : -interior.halfWidth + wh.width,
+      cy: w.side * (interior.halfWidth - wh.width / 2),
+      length: wh.length, width: wh.width, height: wh.height, side: w.side,
+      axle: w.x === frontAxleX ? 'front' : 'rear',
+    })).filter(h => h.x1 > interior.x0 && h.x0 < interior.x1); // only those inside the passenger cabin
+
+    return { frontAxleX, rearAxleX, partitionX, interior, wheels, wheelHousings, seats, seatCount };
+  }
+
+  // ---- Camper modules (data/components.json) ----
+  // Lays the modules named in layout_rules.order_from_partition out rear-wards from the
+  // partition in fixed, non-overlapping zones separated by layout_rules.gap_between_modules.
+  // Returns zones in the vehicle frame (mm): x0/x1 = rear/front edge of the zone.
+  function camperZones(spec, catalog) {
+    const lay = layout(spec);
+    const byId = Object.fromEntries(catalog.components.map(c => [c.id, c]));
+    const gap = catalog.layout_rules.gap_between_modules;
+    const zones = [];
+    let front = lay.interior.x1; // partition face
+    catalog.layout_rules.order_from_partition.forEach((id, i) => {
+      const c = byId[id];
+      if (!c) { warn(`layout_rules names unknown component "${id}"`); return; }
+      if (i > 0) front -= gap;
+      const x1 = front, x0 = front - c.footprint.length;
+      if (c.footprint.width > lay.interior.width) warn(`${id} is ${c.footprint.width} wide but the interior is only ${lay.interior.width}`);
+      zones.push({ id, component: c, x0, x1, cx: (x0 + x1) / 2, length: c.footprint.length, width: c.footprint.width, height: c.footprint.height });
+      front = x0;
+    });
+    const walkway = front - lay.interior.x0;
+    if (walkway < 0) warn(`camper modules overrun the interior by ${-walkway} mm`);
+    zones.forEach(z => {
+      z.overWheelHousing = lay.wheelHousings.filter(h => h.x1 > z.x0 && h.x0 < z.x1).map(h => h.axle + (h.side > 0 ? '-right' : '-left'));
+      if (z.overWheelHousing.length && !z.component.clears_wheel_housing) {
+        warn(`${z.id} zone (${z.x0}–${z.x1}) spans the ${z.overWheelHousing.join(', ')} wheel housing and does not clear it`);
+      }
+    });
+    return { zones, byId, walkway, rearWalkwayX0: lay.interior.x0, rearWalkwayX1: front };
+  }
+
+  // Sum of price_inr ranges for a list of component ids, using the given variant per id where one applies.
+  function priceRange(catalog, ids, variantById) {
+    const byId = Object.fromEntries(catalog.components.map(c => [c.id, c]));
+    let min = 0, max = 0;
+    ids.forEach(id => {
+      const c = byId[id];
+      if (!c) return;
+      let p = c.price_inr;
+      if (c.variants) {
+        const v = c.variants.find(v => v.id === String((variantById || {})[id])) || c.variants[0];
+        p = v.price_inr;
+      }
+      if (p) { min += p.min; max += p.max; }
+      if (c.mount_price_inr) { min += c.mount_price_inr.min; max += c.mount_price_inr.max; }
+    });
+    return { min, max };
+  }
+
+  async function fetchJson(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Could not load ${url}: HTTP ${res.status}`);
+    return res.json();
   }
 
   async function load(url) {
-    const res = await fetch(url || DATA_URL);
-    if (!res.ok) throw new Error(`Could not load ${url || DATA_URL}: HTTP ${res.status}`);
-    const spec = await res.json();
+    const spec = await fetchJson(url || DATA_URL);
     validate(spec);
-    return { spec, layout: layout(spec) };
+    let components = null;
+    try { components = await fetchJson(COMPONENTS_URL); }
+    catch (e) { warn(`${e.message} — camper modules unavailable`); }
+    return { spec, layout: layout(spec), components, camper: components ? camperZones(spec, components) : null };
   }
 
   // Human-readable spec lines shared by the info panels of every view.
@@ -109,5 +176,5 @@
     };
   }
 
-  global.Vehicle = { load, layout, validate, specLines, DATA_URL };
+  global.Vehicle = { load, layout, validate, specLines, camperZones, priceRange, DATA_URL, COMPONENTS_URL };
 })(window);

@@ -43,6 +43,7 @@
         <div><span class="swatch" style="background:#cfe1e5;border:1px solid #7fa3a9"></span>Passenger seats</div>
         <div><span class="swatch" style="background:#3a6a72"></span>Driver + co-driver</div>
         <div><span class="swatch" style="background:#3a3a3a"></span>Wheels</div>
+        <div><span class="swatch" style="background:#ebe7dc;border:1px dashed #a9a294"></span>Wheel housings (inside cabin)</div>
         <div><span class="swatch" style="background:#8a8479"></span>Partition</div>
         <div><span class="swatch" style="background:#3a6a72"></span>Dimension lines</div>
       </div>
@@ -127,6 +128,10 @@ LAY.seats.forEach(seat => {
   else seatsSvg += seatGlyph(seat);
 });
 
+const housingsSvg = LAY.wheelHousings.map(h =>
+  `<rect x="${px(h.x0)}" y="${py(h.y0)}" width="${h.length}" height="${h.width}" class="housing"/>`
+).join('\n  ');
+
 const wheelsSvg = LAY.wheels.map(w =>
   `<rect x="${px(w.x) - w.diameter / 2}" y="${py(w.y) - w.width / 2}" width="${w.diameter}" height="${w.width}" rx="60" class="wheel"/>`
 ).join('\n  ');
@@ -170,6 +175,7 @@ const svg = `
     .cabseat { fill:#3a6a72; }
     .partition { stroke:#8a8479; stroke-width:${SWd*1.1}; }
     .wall { stroke:#c9c2b1; stroke-width:${SWd*0.6}; stroke-dasharray:${SWd*3} ${SWd*1.6}; fill:none; }
+    .housing { fill:#ebe7dc; stroke:#a9a294; stroke-width:${SWd*0.5}; stroke-dasharray:${SWd*2} ${SWd*1.2}; }
     .dim { stroke:#3a6a72; stroke-width:${SWd*0.65}; fill:none; }
     .dimtick { stroke:#3a6a72; stroke-width:${SWd*0.5}; }
     .dimtext { fill:#3a6a72; font-size:${FS}px; font-weight:600; font-family:inherit; }
@@ -181,6 +187,8 @@ const svg = `
   <line x1="${frontX-55}" y1="${bodyY0+150}" x2="${frontX-55}" y2="${bodyY1-150}" stroke="#a9c8d1" stroke-width="${SWd*1.1}"/>
   <rect x="${innerRear}" y="${innerY0}" width="${innerFront-innerRear}" height="${innerWid}" class="wall"/>
   <line x1="${partitionX}" y1="${bodyY0+30}" x2="${partitionX}" y2="${bodyY1-30}" class="partition"/>
+
+  ${housingsSvg}
 
   ${seatsSvg}
 

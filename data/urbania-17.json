@@ -20,6 +20,12 @@
     "hood_length": 1000,
     "rear_wall_thickness": 100,
     "wheel_width": 240,
+    "wheel_housing": {
+      "length": 900,
+      "width": 250,
+      "height": 350,
+      "note": "Box each wheel needs inside the cabin: wheel diameter + suspension travel long, intrusion past the inner wall face + clearance wide, wheel top above floor + travel high. Estimate, not measured."
+    },
     "note": "Everything in this block is an estimate, not manufacturer data. Replace when a real reference is available."
   },
   "stock_seating": {

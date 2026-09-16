@@ -1,0 +1,348 @@
+{
+  "units": "mm",
+  "currency": "INR",
+  "as_of": "2026-09",
+  "note": "Catalog of camper conversion modules. `footprint` is the installed zone the module occupies in the vehicle frame: length runs front–rear (x), width runs across the vehicle (y), height from the cabin floor. `product` is the bare appliance/part. Prices are Indian-market ranges, supply + basic fitting, excluding GST unless the source included it. `confidence`: web_quoted = an Indian listing or price list found in a web search on the as_of date; estimated_from_import = overseas list price × typical Indian import landed cost (duty, freight, dealer margin, roughly 1.6–2.2×); estimated = builder-fabricated item, priced from Indian conversion-cost guides. Replace any entry with a real supplier quote when you have one and set confidence to \"quoted\".",
+  "layout_rules": {
+    "gap_between_modules": 150,
+    "order_from_partition": [
+      "crew_bunk",
+      "kitchenette",
+      "toilet_cubicle",
+      "lounge_bench"
+    ],
+    "note": "Modules are laid out rear-wards from the partition in fixed zones with this gap; nothing may overlap. Whatever is left at the rear is the walkway to the rear doors. A module may only span a wheel housing if it sets clears_wheel_housing (its floor structure is above the housing height)."
+  },
+  "components": [
+    {
+      "id": "partition",
+      "name": "Cab partition wall with door",
+      "category": "structure",
+      "footprint": {
+        "length": 50,
+        "width": 1995,
+        "height": 1900
+      },
+      "door": {
+        "width": 550,
+        "height": 1550
+      },
+      "price_inr": {
+        "min": 15000,
+        "max": 40000
+      },
+      "confidence": "estimated",
+      "price_basis": "Ply + laminate bulkhead with a hinged door, fabricated by an Indian caravan builder; part of the ₹5–10 lakh interior build-up quoted in 2026 conversion guides.",
+      "sources": [
+        "https://onroadcost.com/blog/force-urbania-caravan-best-variant-price-india"
+      ]
+    },
+    {
+      "id": "crew_bunk",
+      "name": "Crew bunk (two stacked berths)",
+      "category": "sleeping",
+      "footprint": {
+        "length": 800,
+        "width": 1900,
+        "height": 1500
+      },
+      "mattress": {
+        "length": 1850,
+        "width": 750,
+        "thickness": 100
+      },
+      "deck_heights": {
+        "lower": 400,
+        "upper": 1150
+      },
+      "orientation": "transverse — berths run across the vehicle, so the zone is only one mattress width long",
+      "price_inr": {
+        "min": 25000,
+        "max": 60000
+      },
+      "confidence": "estimated",
+      "price_basis": "Ply frame, two foam mattresses and ladder, builder-fabricated. Caravan bunks are typically 700–800 mm wide and 1800–1900 mm long.",
+      "sources": [
+        "https://carac.com.au/blogs/buying-guides/caravan-bed-sizes-dimensions-guide"
+      ],
+      "clears_wheel_housing": true,
+      "clearance_note": "Lower deck at 400 mm is above the 350 mm wheel housing."
+    },
+    {
+      "id": "kitchenette",
+      "name": "Kitchenette (counter, 2-burner hob + sink combo)",
+      "category": "kitchen",
+      "footprint": {
+        "length": 1200,
+        "width": 500,
+        "height": 900
+      },
+      "product": {
+        "name": "Dometic Smev 9222 hob/sink combination unit",
+        "length": 900,
+        "width": 370,
+        "height": 152,
+        "weight_kg": 5.8
+      },
+      "price_inr": {
+        "min": 30000,
+        "max": 120000
+      },
+      "confidence": "estimated_from_import",
+      "price_basis": "Low end: Indian SS sink + 2-burner LPG hob (₹5–12k) in a builder-made laminate counter (₹25–60k). High end: imported Smev 9222 (UK £285–365 list) landed at roughly ₹40–60k plus the counter.",
+      "sources": [
+        "https://www.rainbow-conversions.co.uk/combination-units-motorhome-caravan-smev/smev-9222-2-burner-combination-unit-with-glass-lids.html",
+        "https://www.converttocamper.co.uk/product-page/dometic-smev-9222-2-burner-hob-and-sink-combination-unit"
+      ]
+    },
+    {
+      "id": "fridge",
+      "name": "12 V compressor fridge, 45 L",
+      "category": "kitchen",
+      "footprint": {
+        "length": 380,
+        "width": 500,
+        "height": 534
+      },
+      "installed_in": "kitchenette",
+      "variants": [
+        {
+          "id": "built_in",
+          "name": "Dometic CRX 50 (built-in, 45 L)",
+          "length": 380,
+          "width": 500,
+          "height": 534,
+          "price_inr": {
+            "min": 70000,
+            "max": 100000
+          },
+          "confidence": "estimated_from_import",
+          "price_basis": "UK/EU list ≈ £550–650; no Indian price list found. Landed estimate."
+        },
+        {
+          "id": "portable",
+          "name": "Portable 45 L 12/24 V compressor fridge (Indian marketplace brands)",
+          "length": 600,
+          "width": 380,
+          "height": 450,
+          "price_inr": {
+            "min": 15000,
+            "max": 35000
+          },
+          "confidence": "web_quoted",
+          "price_basis": "Amazon.in 12 V compressor car fridges listed ₹9,190–65,990 (Sept 2026); 45 L class sits mid-range."
+        }
+      ],
+      "sources": [
+        "https://www.dometic.com/en-us/outdoor/boat/boat-refrigerators/dometic-crx-50-146543",
+        "https://www.amazon.in/car-fridge-12v-50-ltr-capacity/s?k=car+fridge+12v+50+ltr+capacity"
+      ]
+    },
+    {
+      "id": "lounge_bench",
+      "name": "Lounge bench",
+      "category": "seating",
+      "footprint": {
+        "length": 1300,
+        "width": 500,
+        "height": 460
+      },
+      "backrest_height": 850,
+      "price_inr": {
+        "min": 15000,
+        "max": 40000
+      },
+      "confidence": "estimated",
+      "price_basis": "Ply box bench with storage and upholstered cushions, builder-fabricated.",
+      "clears_wheel_housing": true,
+      "clearance_note": "Box bench is built around the wheel housing; seat at 460 mm is above it."
+    },
+    {
+      "id": "toilet_cubicle",
+      "name": "Enclosed toilet cubicle",
+      "category": "sanitary",
+      "footprint": {
+        "length": 1050,
+        "width": 780,
+        "height": 1900
+      },
+      "door": {
+        "width": 640,
+        "height": 1790
+      },
+      "wall_thickness": 40,
+      "price_inr": {
+        "min": 30000,
+        "max": 90000
+      },
+      "confidence": "web_quoted",
+      "price_basis": "Cubicle shell only (FRP or laminate ply). IndiaMART: FRP portable washroom from ₹30,000; 'motor home toilet' module for camper van ₹90,000 (Kalol, Gujarat). Toilet unit priced separately below.",
+      "sources": [
+        "https://www.robustenterprises.in/frp-portable-toilet.html",
+        "https://www.indiamart.com/proddetail/motor-home-toilet-8-camper-van-ac-bus-2851789476348.html"
+      ]
+    },
+    {
+      "id": "toilet_unit",
+      "name": "Toilet",
+      "category": "sanitary",
+      "installed_in": "toilet_cubicle",
+      "variants": [
+        {
+          "id": "portable",
+          "name": "Thetford Porta Potti Qube 365 (portable, 21 L waste)",
+          "length": 427,
+          "width": 383,
+          "height": 414,
+          "price_inr": {
+            "min": 15000,
+            "max": 25000
+          },
+          "confidence": "web_quoted",
+          "price_basis": "Listed on Amazon.in and Flipkart India; US RRP $260. Indian listings typically ₹15–25k."
+        },
+        {
+          "id": "cassette",
+          "name": "Thetford C223-S cassette toilet (fixed, external cassette hatch)",
+          "length": 580,
+          "width": 365,
+          "height": 495,
+          "price_inr": {
+            "min": 60000,
+            "max": 90000
+          },
+          "confidence": "estimated_from_import",
+          "price_basis": "US list $670; needs a cut-out hatch in the body side. No Indian price list found."
+        }
+      ],
+      "sources": [
+        "https://www.amazon.in/Thetford-Porta-Potti-Portable-Toilet/dp/B0CVQD6GRD",
+        "https://www.thetford.com/product/porta-potti-365/",
+        "https://www.thetford.com/app/uploads/Thetford_Cassette-toilet_2024_EN.pdf"
+      ]
+    },
+    {
+      "id": "water_tank",
+      "name": "Fresh water tank, 100 L, with 12 V pump",
+      "category": "utility",
+      "footprint": {
+        "length": 750,
+        "width": 400,
+        "height": 350
+      },
+      "capacity_l": 100,
+      "price_inr": {
+        "min": 6000,
+        "max": 20000
+      },
+      "confidence": "web_quoted",
+      "price_basis": "Sintex 100 L loft tank ₹1,100–2,200 (household grade) up to a vehicle-grade PE tank; plus 12 V pump, filler and plumbing ₹4–15k. A wheel-arch style camper tank of this capacity is ~750 × 400 × 350 mm.",
+      "sources": [
+        "https://www.moglix.com/sintex-loft-100l-water-tank-iws-10-01/mp/msn4k6z0q3q3kq",
+        "https://www.thecampervanshop.com/100l-universal-wheel-arch-water-tank/"
+      ]
+    },
+    {
+      "id": "electrical_panel",
+      "name": "Electrical cabinet (inverter, 100 Ah LiFePO4, DC distribution)",
+      "category": "utility",
+      "footprint": {
+        "length": 400,
+        "width": 200,
+        "height": 600
+      },
+      "mount_height": 900,
+      "parts": [
+        {
+          "name": "12 V 100 Ah LiFePO4 battery",
+          "length": 330,
+          "width": 173,
+          "height": 220,
+          "price_inr": {
+            "min": 16400,
+            "max": 27000
+          },
+          "confidence": "web_quoted",
+          "price_basis": "IndiaMART ₹16,400 (Pune); Electrent.in ₹20,414; typical ₹27,000 (July 2026)."
+        },
+        {
+          "name": "1000–1500 VA pure sine inverter/charger",
+          "length": 300,
+          "width": 200,
+          "height": 150,
+          "price_inr": {
+            "min": 9000,
+            "max": 20000
+          },
+          "confidence": "web_quoted",
+          "price_basis": "Luminous 1500 VA ECO Watt ₹12,950 (IndiaMART); 1 kW class ₹9–19.5k."
+        },
+        {
+          "name": "12-way blade fuse box + isolator + wiring",
+          "length": 200,
+          "width": 100,
+          "height": 60,
+          "price_inr": {
+            "min": 3000,
+            "max": 8000
+          },
+          "confidence": "estimated",
+          "price_basis": "Generic marine/auto distribution parts."
+        }
+      ],
+      "price_inr": {
+        "min": 30000,
+        "max": 60000
+      },
+      "confidence": "web_quoted",
+      "sources": [
+        "https://www.indiamart.com/proddetail/lifepo4-12v-100ah-battery-pack-21155097830.html",
+        "https://www.indiamart.com/proddetail/luminous-1500va-eco-watt-home-ups-inverter-25457922173.html"
+      ]
+    },
+    {
+      "id": "tv",
+      "name": "TV on partition mount",
+      "category": "entertainment",
+      "installed_on": "partition",
+      "mount_center_height": 1050,
+      "variants": [
+        {
+          "id": "32",
+          "name": "32\" LED TV",
+          "length": 80,
+          "width": 730,
+          "height": 430,
+          "price_inr": {
+            "min": 12000,
+            "max": 20000
+          },
+          "confidence": "web_quoted",
+          "price_basis": "91mobiles/Smartprix Sept 2026: budget 32\" smart TVs ₹11,999–17,899; typical panel 722–731 × 421–432 mm."
+        },
+        {
+          "id": "43",
+          "name": "43\" LED TV",
+          "length": 80,
+          "width": 960,
+          "height": 540,
+          "price_inr": {
+            "min": 22000,
+            "max": 35000
+          },
+          "confidence": "web_quoted",
+          "price_basis": "Sept 2026: Compaq 43\" ₹10,999 (low), Samsung DUE76 ₹26,990, Sony W830K ₹33,000; typical panel ≈ 953 × 536 mm."
+        }
+      ],
+      "mount_price_inr": {
+        "min": 1500,
+        "max": 4000
+      },
+      "sources": [
+        "https://www.91mobiles.com/list-of-tvs/32-inch-smart-tv-in-india",
+        "https://www.smartprix.com/tvs/43-inch-smart-tvs-list",
+        "https://www.wepc.com/tv/43-inch-tv-dimensions/"
+      ]
+    }
+  ]
+}
