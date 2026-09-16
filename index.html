@@ -372,16 +372,20 @@ LAY.wheelHousings.forEach(h => {
 // ---------- Interior layouts (positioned relative to interiorCenterX) ----------
 const layouts = {};
 function mat(c) { return new THREE.MeshStandardMaterial({ color: c, roughness: 0.65 }); }
-function seatUnit(color, w, d, h) {
+// A seat footprint `w` long (along x, including the backrest) and `d` wide: the cushion takes
+// the front `cushion` of it, the backrest stands at the rear edge.
+function seatUnit(color, w, d, h, cushion) {
   const g = new THREE.Group();
   const m = mat(color);
-  const cushion = new THREE.Mesh(new THREE.BoxGeometry(w, h * 0.5, d), m);
-  cushion.position.y = h * 0.25;
-  cushion.castShadow = true;
-  const back = new THREE.Mesh(new THREE.BoxGeometry(w * 0.15, h, d), m);
-  back.position.set(-w / 2 + w * 0.075, h / 2, 0);
+  const cushionLen = Math.min(cushion || w * 0.6, w);
+  const cushionMesh = new THREE.Mesh(new THREE.BoxGeometry(cushionLen, h * 0.5, d), m);
+  cushionMesh.position.set(w / 2 - cushionLen / 2, h * 0.25, 0);
+  cushionMesh.castShadow = true;
+  const backT = Math.min(0.15, w - cushionLen);
+  const back = new THREE.Mesh(new THREE.BoxGeometry(backT, h, d), m);
+  back.position.set(-w / 2 + backT / 2, h / 2, 0);
   back.castShadow = true;
-  g.add(cushion); g.add(back);
+  g.add(cushionMesh); g.add(back);
   return g;
 }
 
@@ -407,7 +411,7 @@ const rows = new THREE.Group();
       return;
     }
     // driver, co-driver and the 1+2 rows: one seat unit per group (a pair is one wider unit)
-    const unit = seatUnit(seatColor, depth, width, seatH);
+    const unit = seatUnit(seatColor, depth, width, seatH, m(spec.stock_seating.seat_cushion_depth));
     unit.position.set(vx(seat.cx), floorY, m(seat.cy));
     rows.add(unit);
   });
@@ -631,12 +635,25 @@ setLayout((selection && selection.layout && layouts[selection.layout]) ? selecti
 // Small HTML chips anchored to scene points, projected every frame. Only shown in the
 // roof-off (bird) view, where everything is laid out flat and can be read like a plan.
 function clearLabels() { labelLayer.innerHTML = ''; labels = []; }
+// Chips are placed in scene space; a new chip that would sit on an earlier one is nudged
+// sideways (across the vehicle) until it is clear. Width is estimated from the text.
 function addLabel(x, y, z, html, cls) {
+  const text = html.replace(/<[^>]+>/g, '|');
+  const w = Math.max(...text.split('|').map(t => t.length)) * 0.06 + 0.1;   // metres at bird-view scale
+  const h = 0.3;
+  const clear = zz => !labels.some(l => Math.abs(l.pos.x - x) < (l.w + w) / 2 && Math.abs(l.pos.z - zz) < (l.h + h) / 2);
+  let zz = z;
+  if (!clear(zz)) {
+    const dir = z <= 0 ? 1 : -1;                 // first try toward the vehicle centreline
+    for (const step of [0.32, -0.32, 0.64, -0.64, 0.96, -0.96]) {
+      if (clear(z + dir * step)) { zz = z + dir * step; break; }
+    }
+  }
   const el = document.createElement('div');
   el.className = 'lbl' + (cls ? ' ' + cls : '');
   el.innerHTML = html;
   labelLayer.appendChild(el);
-  labels.push({ pos: new THREE.Vector3(x, y, z), el });
+  labels.push({ pos: new THREE.Vector3(x, y, zz), el, w, h });
 }
 const _v = new THREE.Vector3();
 function updateLabels() {
@@ -696,13 +713,13 @@ function refreshLabels() {
       // Zone modules against a wall: label just inboard of them, over the aisle, so sub-modules stay readable
       if (c.side === 'left') return addLabel(vx((p.x0 + p.x1) / 2), floorY + m(top), m(p.y1 + 130), html);
       if (c.side === 'right') return addLabel(vx((p.x0 + p.x1) / 2), floorY + m(top), m(p.y0 - 130), html);
-      labelRect(p.x0, p.x1, p.y0, p.y1, top, html);
+      addLabel(vx((p.x0 + p.x1) / 2), floorY + m(top), m(400), html);
     });
     const on = new Set(P.placements.map(p => p.id));
     P.zones.filter(z => !on.has(z.id)).forEach(z =>
       labelRect(z.x0, z.x1, -hw, hw, 0, `<small>${z.component.short_name} bay — empty · ${z.length} mm</small>`, 'dim'));
     const lastZone = P.zones[P.zones.length - 1];
-    labelRect(LAY.interior.x0, lastZone.x0, -hw, hw, 0, `<small>Rear walkway<br>${P.walkway} mm</small>`, 'dim');
+    addLabel(vx((LAY.interior.x0 + lastZone.x0) / 2), floorY, -m(500), `<small>Rear walkway<br>${P.walkway} mm</small>`, 'dim');
   } else if (activeLayout === 'lounge') {
     addLabel(interiorCenterX, 1.2, 0, '<small>Lounge preset — placeholder sizes, not in the catalog</small>', 'dim');
   }

@@ -12,12 +12,12 @@
     "rear_overhang": 1660
   },
   "assumptions": {
-    "cab_depth": 1300,
+    "cab_depth": 2600,
     "body_bottom_height": 400,
     "wheel_radius": 360,
     "wheel_track_inset_from_body_edge": 100,
-    "interior_wall_thickness": 50,
-    "hood_length": 1000,
+    "interior_wall_thickness": 150,
+    "hood_length": 920,
     "rear_wall_thickness": 100,
     "wheel_width": 240,
     "wheel_housing": {
@@ -26,29 +26,43 @@
       "height": 350,
       "note": "Box each wheel needs inside the cabin: wheel diameter + suspension travel long, intrusion past the inner wall face + clearance wide, wheel top above floor + travel high. Estimate, not measured."
     },
+    "measured_from": "cab_depth, hood_length and interior_wall_thickness were scaled off the Force Motors 4400WB 16+D top-view render (data/reference), ±50 mm; they are still estimates, not manufacturer drawings.",
     "note": "Everything in this block is an estimate, not manufacturer data. Replace when a real reference is available."
   },
   "stock_seating": {
     "total": 17,
-    "pattern": "2 front (driver + co-driver) + 4 rows of 1+2 + 3-seat rear bench",
+    "pattern": "2 front (driver + co-driver) + row 1: 2 right only (sliding door on the left) + rows 2–4: 1 left + 2 right, left seats set back + 4-seat rear bench",
     "front_seats": 2,
     "middle_rows": 4,
     "seats_per_row_left": 1,
     "seats_per_row_right": 2,
-    "rear_bench_seats": 3,
+    "rows_without_left_seat": [
+      1
+    ],
+    "left_row_offset": 250,
+    "rear_bench_seats": 4,
     "seat_width": 420,
-    "seat_depth": 420,
+    "seat_depth": 730,
+    "seat_cushion_depth": 450,
     "seat_height": 550,
-    "paired_seat_gap": 30,
-    "row_pitch": 600,
-    "aisle_width": 240,
-    "first_row_setback": 500,
-    "rear_bench_depth": 520,
+    "paired_seat_gap": 80,
+    "row_pitch": 780,
+    "aisle_width": 350,
+    "aisle_center_offset": -215,
+    "first_row_setback": 545,
+    "rear_bench_depth": 760,
     "rear_bench_setback": 40,
-    "cab_seat_size": 430,
-    "cab_seat_center_from_front": 520,
-    "cab_seat_lateral_offset": 370,
-    "confirmed": false,
-    "note": "Counts and pitch are the pattern reported across Urbania listings, not an official drawing. Positions (setbacks, offsets) are estimates so the views have somewhere to draw; replace from the Force Motors top-view reference when available."
+    "cab_seat_depth": 710,
+    "cab_seat_width": 480,
+    "cab_seat_center_from_front": 2250,
+    "cab_seat_lateral_offset": 550,
+    "confirmed": true,
+    "confirmation": {
+      "source": "Force Motors Urbania 4400WB '16+D' top-view layout render and side profile, supplied by the user 2026-09-16 (data/reference/)",
+      "method": "Seat blobs and floor measured in pixels (tools: see data/reference/topview-measurement-annotated.png); x scaled by overall length 7010 mm (5.46 mm/px), y by width 2095 mm (5.66 mm/px). Vehicle right side is the top of the image.",
+      "tolerance_mm": 50,
+      "what_is_confirmed": "Seat count and pattern are confirmed exactly. Positions and sizes are measured off a marketing render to about ±50 mm, not from a dimensioned drawing.",
+      "field_semantics": "seat_depth is the seat footprint along x including the backrest; row positions are seat-footprint centres; first_row_setback is from the cab boundary to the row-1 centre; aisle_center_offset is the aisle centreline from the vehicle centreline (negative = left); left_row_offset moves the left singles rearward of the right pairs; the rear bench spans from the left singles' outer edge to the right pairs' outer edge."
+    }
   }
 }

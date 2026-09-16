@@ -26,7 +26,8 @@
     const sumL = b.front_overhang + b.wheelbase + b.rear_overhang;
     if (sumL !== b.length) warn(`front_overhang + wheelbase + rear_overhang = ${sumL}, but body.length = ${b.length}`);
     const s = spec.stock_seating;
-    const counted = s.front_seats + s.middle_rows * (s.seats_per_row_left + s.seats_per_row_right) + s.rear_bench_seats;
+    const skipped = (s.rows_without_left_seat || []).length;
+    const counted = s.front_seats + s.middle_rows * (s.seats_per_row_left + s.seats_per_row_right) - skipped * s.seats_per_row_left + s.rear_bench_seats;
     if (counted !== s.total) warn(`stock_seating adds up to ${counted} seats, but total = ${s.total}`);
   }
 
@@ -62,27 +63,31 @@
 
     // Cab: driver (right, RHD) and co-driver (left)
     const cabX = L - s.cab_seat_center_from_front;
-    seats.push({ kind: 'driver', cx: cabX, cy: +s.cab_seat_lateral_offset, depth: s.cab_seat_size, width: s.cab_seat_size, count: 1 });
-    seats.push({ kind: 'codriver', cx: cabX, cy: -s.cab_seat_lateral_offset, depth: s.cab_seat_size, width: s.cab_seat_size, count: 1 });
+    seats.push({ kind: 'driver', cx: cabX, cy: +s.cab_seat_lateral_offset, depth: s.cab_seat_depth, width: s.cab_seat_width, count: 1 });
+    seats.push({ kind: 'codriver', cx: cabX, cy: -s.cab_seat_lateral_offset, depth: s.cab_seat_depth, width: s.cab_seat_width, count: 1 });
 
-    // Middle rows: a group on the left of the aisle, a group on the right
+    // Middle rows: a group on each side of the aisle. The aisle can be off-centre
+    // (aisle_center_offset), a row can have no left seat (sliding door), and the left
+    // seats can sit further back than the right ones (left_row_offset).
+    const aisleC = s.aisle_center_offset || 0;
+    const skip = new Set(s.rows_without_left_seat || []);
+    const wLeft = groupWidth(s.seats_per_row_left), wRight = groupWidth(s.seats_per_row_right);
     for (let r = 0; r < s.middle_rows; r++) {
       const cx = interior.x1 - s.first_row_setback - r * s.row_pitch;
-      if (s.seats_per_row_left > 0) {
-        const w = groupWidth(s.seats_per_row_left);
-        seats.push({ kind: 'row', side: 'left', row: r, cx, cy: -(s.aisle_width / 2 + w / 2), depth: s.seat_depth, width: w, count: s.seats_per_row_left });
+      if (s.seats_per_row_left > 0 && !skip.has(r + 1)) {
+        seats.push({ kind: 'row', side: 'left', row: r, cx: cx - (s.left_row_offset || 0), cy: aisleC - (s.aisle_width / 2 + wLeft / 2), depth: s.seat_depth, width: wLeft, count: s.seats_per_row_left });
       }
       if (s.seats_per_row_right > 0) {
-        const w = groupWidth(s.seats_per_row_right);
-        seats.push({ kind: 'row', side: 'right', row: r, cx, cy: +(s.aisle_width / 2 + w / 2), depth: s.seat_depth, width: w, count: s.seats_per_row_right });
+        seats.push({ kind: 'row', side: 'right', row: r, cx, cy: aisleC + (s.aisle_width / 2 + wRight / 2), depth: s.seat_depth, width: wRight, count: s.seats_per_row_right });
       }
     }
 
-    // Rear bench spans the full interior width, set back from the rear wall
+    // Rear bench spans from the left seats' outer edge to the right seats' outer edge, set back from the rear wall
+    const yLeftOuter = aisleC - s.aisle_width / 2 - wLeft, yRightOuter = aisleC + s.aisle_width / 2 + wRight;
     seats.push({
       kind: 'bench',
-      cx: interior.x0 + s.rear_bench_setback + s.rear_bench_depth / 2, cy: 0,
-      depth: s.rear_bench_depth, width: interior.width, count: s.rear_bench_seats,
+      cx: interior.x0 + s.rear_bench_setback + s.rear_bench_depth / 2, cy: (yLeftOuter + yRightOuter) / 2,
+      depth: s.rear_bench_depth, width: yRightOuter - yLeftOuter, count: s.rear_bench_seats,
     });
 
     const seatCount = seats.reduce((n, seat) => n + seat.count, 0);

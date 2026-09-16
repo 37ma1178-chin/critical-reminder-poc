@@ -2,13 +2,13 @@
   "units": "mm",
   "currency": "INR",
   "as_of": "2026-09",
-  "note": "Catalog of camper conversion modules. `footprint` is the installed zone the module occupies in the vehicle frame: length runs front–rear (x), width runs across the vehicle (y), height from the cabin floor. `product` is the bare appliance/part. Prices are Indian-market ranges, supply + basic fitting, excluding GST unless the source included it. `confidence`: web_quoted = an Indian listing or price list found in a web search on the as_of date; estimated_from_import = overseas list price × typical Indian import landed cost (duty, freight, dealer margin, roughly 1.6–2.2×); estimated = builder-fabricated item, priced from Indian conversion-cost guides. Replace any entry with a real supplier quote when you have one and set confidence to \"quoted\".",
+  "note": "Catalog of camper conversion modules. `footprint` is the installed zone the module occupies in the vehicle frame: length runs front–rear (x), width runs across the vehicle (y), height from the cabin floor. `product` is the bare appliance/part. Prices are Indian-market ranges, supply + basic fitting, excluding GST unless the source included it. `confidence`: web_quoted = an Indian listing or price list found in a web search on the as_of date; estimated_from_import = overseas list price × typical Indian import landed cost (duty, freight, dealer margin, roughly 1.6–2.2×); estimated = builder-fabricated item, priced from Indian conversion-cost guides. Replace any entry with a real supplier quote when you have one and set confidence to \"quoted\". Footprints were shortened on 2026-09-16 to fit the 4310 mm passenger cabin measured off the Force Motors render.",
   "layout_rules": {
-    "gap_between_modules": 150,
+    "gap_between_modules": 100,
     "order_from_partition": [
       "crew_bunk",
-      "kitchenette",
       "toilet_cubicle",
+      "kitchenette",
       "lounge_bench"
     ],
     "note": "Zone modules are laid out rear-wards from the partition in fixed zones with this gap; nothing may overlap. Whatever is left at the rear is the walkway to the rear doors. Zones are fixed: turning a module off leaves its bay empty, it does not shift the others. A module may only span a wheel housing if it sets clears_wheel_housing. `side` says which wall a zone module sits against (left / right / full width). Sub-modules carry a `placement` inside a zone or on the partition; `requires` names the module they need."
@@ -20,7 +20,7 @@
       "category": "structure",
       "footprint": {
         "length": 50,
-        "width": 1995,
+        "width": 1795,
         "height": 1900
       },
       "door": {
@@ -45,11 +45,11 @@
       "category": "sleeping",
       "footprint": {
         "length": 800,
-        "width": 1900,
+        "width": 1780,
         "height": 1500
       },
       "mattress": {
-        "length": 1850,
+        "length": 1700,
         "width": 750,
         "thickness": 100
       },
@@ -63,7 +63,7 @@
         "max": 60000
       },
       "confidence": "estimated",
-      "price_basis": "Ply frame, two foam mattresses and ladder, builder-fabricated. Caravan bunks are typically 700–800 mm wide and 1800–1900 mm long.",
+      "price_basis": "Ply frame, two foam mattresses and ladder, builder-fabricated. Caravan bunks are typically 700–800 mm wide and 1800–1900 mm long. Transverse berth length is limited by the ~1.8 m interior width measured off the reference render.",
       "sources": [
         "https://carac.com.au/blogs/buying-guides/caravan-bed-sizes-dimensions-guide"
       ],
@@ -77,7 +77,7 @@
       "name": "Kitchenette (counter, 2-burner hob + sink combo)",
       "category": "kitchen",
       "footprint": {
-        "length": 1200,
+        "length": 1000,
         "width": 500,
         "height": 900
       },
@@ -99,7 +99,9 @@
         "https://www.converttocamper.co.uk/product-page/dometic-smev-9222-2-burner-hob-and-sink-combination-unit"
       ],
       "side": "right",
-      "short_name": "Kitchenette"
+      "short_name": "Kitchenette",
+      "clears_wheel_housing": true,
+      "clearance_note": "Counter base is built around the rear wheel housing (350 mm high); worktop at 900 mm."
     },
     {
       "id": "fridge",
@@ -158,7 +160,7 @@
       "name": "Lounge bench",
       "category": "seating",
       "footprint": {
-        "length": 1300,
+        "length": 900,
         "width": 500,
         "height": 460
       },
@@ -179,7 +181,7 @@
       "name": "Enclosed toilet cubicle",
       "category": "sanitary",
       "footprint": {
-        "length": 1050,
+        "length": 900,
         "width": 780,
         "height": 1900
       },

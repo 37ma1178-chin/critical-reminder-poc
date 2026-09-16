@@ -208,7 +208,10 @@ function dimV(x, y1, y2, label) {
     <text x="${x}" y="${midY}" text-anchor="middle" class="dimtext" transform="rotate(-90 ${x} ${midY})">${label}</text>`;
 }
 
-const rowsDesc = `${seating.middle_rows} × (${seating.seats_per_row_left}+${seating.seats_per_row_right}) middle rows · ${seating.rear_bench_seats}-seat rear bench`;
+const skipRows = seating.rows_without_left_seat || [];
+const rowsDesc = `${seating.middle_rows} rows of ${seating.seats_per_row_left}+${seating.seats_per_row_right}` +
+  (skipRows.length ? ` (row ${skipRows.join(', ')}: right side only, sliding door)` : '') +
+  ` · ${seating.rear_bench_seats}-seat rear bench`;
 
 const svg = `
 <svg viewBox="0 0 ${vbW} ${vbH}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
