@@ -13,7 +13,10 @@
   html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
   #app { display: flex; flex-direction: column; height: 100%; }
-  header { padding: 16px 20px 12px; border-bottom: 1px solid var(--line); background: var(--panel); }
+  header { padding: 16px 20px 12px; border-bottom: 1px solid var(--line); background: var(--panel); display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+  nav { margin-left: auto; font-size: 12.5px; }
+  nav a { color: var(--accent); text-decoration: none; margin-left: 14px; }
+  nav a.here { color: var(--ink); font-weight: 600; }
   header h1 { margin: 0 0 3px; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
   header p { margin: 0; font-size: 12.5px; color: var(--muted); }
   #main { flex: 1; display: flex; min-height: 0; overflow: hidden; }
@@ -71,8 +74,11 @@
 <body>
 <div id="app">
   <header>
-    <h1>Force Urbania 4400WB — 17 Seater</h1>
-    <p>Proof-of-concept configurator viewer · every dimension comes from <code>data/urbania-17.json</code></p>
+    <div>
+      <h1>Force Urbania 4400WB — 17 Seater</h1>
+      <p>Proof-of-concept configurator viewer · every dimension comes from <code>data/urbania-17.json</code></p>
+    </div>
+    <nav><a href="index.html" class="here">3D</a><a href="topview.html" id="nav-top">Top view</a><a href="sideview.html" id="nav-side">Side profile</a></nav>
   </header>
   <div id="main">
     <div id="viewport">
@@ -354,7 +360,7 @@ const interiorRear = vx(LAY.interior.x0);      // inside face of the rear doors
 const innerLen = m(LAY.interior.length);
 const innerWid = m(LAY.interior.width);
 const interiorCenterX = vx(LAY.interior.cx);
-const floorY = BODY_BOTTOM + 0.05;             // floor slab thickness — modelling detail
+const floorY = m(spec.assumptions.floor_height); // cabin floor above ground (assumption)
 
 const floor = new THREE.Mesh(new THREE.BoxGeometry(innerLen, 0.06, innerWid), floorMat);
 floor.position.set(interiorCenterX, floorY - 0.03, 0);

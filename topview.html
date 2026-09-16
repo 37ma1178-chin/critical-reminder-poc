@@ -10,7 +10,10 @@
   html, body { margin:0; height:100%; background:var(--bg); color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
   #app { display:flex; flex-direction:column; height:100%; }
-  header { padding:16px 20px 12px; border-bottom:1px solid var(--line); background:var(--panel); }
+  header { padding:16px 20px 12px; border-bottom:1px solid var(--line); background:var(--panel); display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; }
+  nav { margin-left:auto; font-size:12.5px; }
+  nav a { color:var(--accent); text-decoration:none; margin-left:14px; }
+  nav a.here { color:var(--ink); font-weight:600; }
   header h1 { margin:0 0 3px; font-size:17px; font-weight:600; letter-spacing:-0.01em; }
   header p { margin:0; font-size:12.5px; color:var(--muted); }
   #main { flex:1; display:flex; min-height:0; flex-wrap:wrap; }
@@ -40,8 +43,11 @@
 <body>
 <div id="app">
   <header>
-    <h1>Force Urbania 4400 WB — 17 Seater, Top View</h1>
-    <p>Dimensioned scale drawing · 1 unit = 1mm · every dimension comes from <code>data/urbania-17.json</code></p>
+    <div>
+      <h1>Force Urbania 4400 WB — 17 Seater, Top View</h1>
+      <p>Dimensioned scale drawing · 1 unit = 1mm · every dimension comes from <code>data/urbania-17.json</code></p>
+    </div>
+    <nav><a href="index.html" id="nav-3d">3D</a><a href="topview.html" class="here">Top view</a><a href="sideview.html" id="nav-side">Side profile</a></nav>
   </header>
   <div id="main">
     <div id="viewport"><div id="drawing-frame"></div></div>
@@ -291,6 +297,8 @@ document.querySelectorAll('[data-layout]').forEach(btn => {
 const box = document.getElementById('modules-box');
 box.hidden = mode !== 'camper';
 document.getElementById('flag').hidden = mode === 'camper';
+document.getElementById('nav-3d').href = 'index.html' + Vehicle.selectionQuery(selection);
+document.getElementById('nav-side').href = 'sideview.html' + Vehicle.selectionQuery(selection);
 if (P) {
   const list = document.getElementById('modules');
   P.placements.forEach(p => {

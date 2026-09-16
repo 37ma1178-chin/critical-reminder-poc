@@ -10,6 +10,7 @@ Proof-of-concept for a vehicle interior configurator. Single vehicle for now: Fo
 - **Module selection lives in the URL query** so both pages show the same configuration: `?layout=camper&modules=a,b,c&tv=43&fridge=built_in&toilet_unit=portable&view=topdown` (`Vehicle.readSelection` / `writeSelection` / `selectionQuery`; `view` is the 3D camera preset). Zones are fixed: a module that is off leaves its bay empty. A sub-module with `requires` is dropped when its parent is off.
 - `index.html` — 3D viewer (Three.js r128 via jsdelivr UMD). Cutaway / roof-off / full exterior views, stock 17-seat layout, lounge (still a placeholder preset), camper conversion with a per-module checklist (price range + confidence badge, variant selects, running total). Converts mm → m; scene x = vehicle x − length/2, scene z = vehicle y. **Roof off is the bird view, the detailed one:** the camera fits the vehicle from overhead, tops that hide things (cubicle lid, upper bunk) go see-through, and every seat, module, wheel housing, empty bay and the walkway gets an HTML label chip with its name and size (`refreshLabels`, projected each frame). Label names come from `short_name` in the catalog.
 - `topview.html` — dimensioned 2D top-view SVG, 1 unit = 1 mm. Front points right, driver side is down the page. Stock seating or, with `layout=camper`, the selected camper modules as labelled rectangles (dashed = empty bay) with a read-only module list and a link back to the configurator.
+- `sideview.html` — dimensioned 2D side-profile SVG (left side, sliding door), 1 unit = 1 mm, front points right. The outline, glazing, cladding, doors and wheels come from `Vehicle.sideProfile(spec)`, which uses the brochure numbers plus `assumptions.profile` (proportions scaled off the side render, ±100 mm; the render itself is not to scale, so brochure figures always win). Shows the stock seats or the selected camper modules through the body, plus wheel housings and the floor line. All three pages share a nav that carries the URL selection.
 - `tools/screenshot.js` — Playwright script that screenshots every view and dumps the top-view SVG for exact diffing. See the header comment for usage.
 
 ## Rules
@@ -32,5 +33,9 @@ Proof-of-concept for a vehicle interior configurator. Single vehicle for now: Fo
 4. ✅ Modules are individually toggleable with per-module prices; placement moved into the catalog (`side`, `placement`, `requires`) and `Vehicle.camperPlacements`; the top view draws the same selection; selection is shared through the URL query.
 4b. ✅ Bird view detailing: roof-off view labels everything (seats, modules with size and price, housings, bays, walkway), see-through tops, finer module geometry (hob burners, sink, fridge door, toilet bowl, ladder, cushions), `view=` in the URL.
 
-## Next tasks, in order
-5. Add an exterior side-profile 2D view alongside the top view.
+5. ✅ `sideview.html` added; profile proportions in `assumptions.profile`; floor height (550) and rocker height (340) are now explicit assumptions used by the 3D view too.
+
+## Next tasks
+- Get interior dimensions (floor height, stand-up height, interior width) from a Force Motors dealer drawing to replace the last estimates.
+- Move the lounge preset's sofa/table into `data/components.json`.
+- Optional: build the 3D shell from `Vehicle.sideProfile` so the exterior matches the side view.

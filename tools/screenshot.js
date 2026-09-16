@@ -63,6 +63,11 @@ fs.mkdirSync(out, { recursive: true });
     } },
     { url: 'topview.html?layout=camper', shots: async p => { await shoot(p, 'topview-camper'); } },
     { url: 'topview.html' + PARTIAL, shots: async p => { await shoot(p, 'topview-camper-partial'); } },
+    { url: 'sideview.html', shots: async p => {
+      fs.writeFileSync(path.join(out, 'sideview.svg.txt'), await p.evaluate(() => document.getElementById('drawing-frame').innerHTML));
+      await shoot(p, 'sideview');
+    } },
+    { url: 'sideview.html?layout=camper', shots: async p => { await shoot(p, 'sideview-camper'); } },
   ];
   for (const cap of captures) {
     const page = cap.url.split('?')[0];

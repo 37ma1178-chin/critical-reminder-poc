@@ -112,6 +112,54 @@
     return { frontAxleX, rearAxleX, partitionX, interior, cab, wheels, tyreDiameter, wheelHousings, seats, seatCount };
   }
 
+  // ---- Exterior side profile (vehicle frame: x from the rear bumper, z above ground), all mm ----
+  // Everything comes from body (brochure) and assumptions.profile (proportions scaled off the
+  // side render). Returns polylines/rects any view can draw; arcs are approximated by points.
+  function sideProfile(spec) {
+    const b = spec.body, a = spec.assumptions, pr = a.profile;
+    const L = b.length, H = b.height;
+    const fx = fromFront => L - fromFront;
+    const lay = layout(spec);
+    const tyreR = lay.tyreDiameter / 2;
+    const arcPts = (cx, cz, r, a0, a1, n) => Array.from({ length: n + 1 }, (_, i) => {
+      const t = a0 + (a1 - a0) * i / n; return [cx + r * Math.cos(t), cz + r * Math.sin(t)];
+    });
+    const bottom = a.body_bottom_height;
+    // Outline, clockwise from the rear bottom corner: rear face, roof, windshield, hood, nose, front face, underside with wheel arches
+    const rr = pr.rear_roof_corner_radius;
+    let outline = [[0, bottom], [0, H - rr], ...arcPts(rr, H - rr, rr, Math.PI, Math.PI / 2, 6).slice(1)];
+    outline.push([fx(pr.roof_start_from_front), H]);
+    outline.push([fx(pr.windshield_top_from_front), pr.windshield_top_height]);
+    outline.push([fx(pr.windshield_base_from_front), pr.windshield_base_height]);
+    outline.push([fx(pr.nose_length), pr.hood_height]);
+    outline.push([L, pr.bumper_top_height]);
+    outline.push([L, bottom]);
+    // underside from front to rear with an arch over each axle
+    const archR = tyreR + pr.wheel_arch_clearance;
+    [lay.frontAxleX, lay.rearAxleX].forEach(ax => {
+      outline.push([ax + archR, bottom]);
+      outline.push(...arcPts(ax, bottom, archR, 0, Math.PI, 8).slice(1, -1).map(([x, z]) => [x, Math.max(z, bottom)]));
+      outline.push([ax - archR, bottom]);
+    });
+    outline.push([0, bottom]);
+
+    // Windshield glass as seen from the side: a band inset from the windshield line, ending at the A-pillar
+    const wb = [fx(pr.windshield_base_from_front), pr.windshield_base_height], wt = [fx(pr.windshield_top_from_front), pr.windshield_top_height];
+    const windshield = [
+      [wb[0] - 90, wb[1] + 60], [wt[0] - 90, wt[1] - 70], [wt[0] - 400, wt[1] - 70], [wb[0] - 400, wb[1] + 60],
+    ];
+    const cabDoor = { x0: fx(pr.cab_door.to_front), x1: fx(pr.cab_door.from_front) };
+    const slidingDoor = { x0: fx(pr.sliding_door.to_front), x1: fx(pr.sliding_door.from_front), side: pr.sliding_door.side };
+    const windows = [
+      { id: 'cab_door', x0: cabDoor.x0 + 60, x1: cabDoor.x1 - 120, z0: pr.window_sill_height, z1: pr.window_top_height - 60 },
+      { id: 'sliding_door', x0: slidingDoor.x0 + 50, x1: slidingDoor.x1 - 50, z0: pr.window_sill_height, z1: pr.window_top_height },
+      ...pr.side_windows_from_front.map(([f0, f1], i) => ({ id: 'side_' + (i + 1), x0: fx(f1), x1: fx(f0), z0: pr.window_sill_height, z1: pr.window_top_height })),
+    ];
+    const cladding = { x0: 0, x1: L, z0: pr.cladding_bottom_height, z1: pr.cladding_top_height };
+    const wheels = [lay.frontAxleX, lay.rearAxleX].map(x => ({ x, z: tyreR, r: tyreR, hubR: tyreR * 0.48 }));
+    return { outline, windshield, cabDoor, slidingDoor, windows, cladding, wheels, floor: a.floor_height, groundClearance: b.ground_clearance, tyreR };
+  }
+
   // ---- Camper modules (data/components.json) ----
   // Lays the modules named in layout_rules.order_from_partition out rear-wards from the
   // partition in fixed, non-overlapping zones separated by layout_rules.gap_between_modules.
@@ -202,6 +250,11 @@
   }
   function writeSelection(sel) {
     history.replaceState(null, '', selectionQuery(sel) + location.hash);
+    // keep the cross-page nav links carrying the same configuration
+    document.querySelectorAll('nav a[href]').forEach(a => {
+      const page = a.getAttribute('href').split('?')[0];
+      if (!a.classList.contains('here')) a.setAttribute('href', page + selectionQuery(sel));
+    });
   }
 
   // ---- Placements: one rectangle per selected module, in the vehicle frame (mm) ----
@@ -285,6 +338,6 @@
     };
   }
 
-  global.Vehicle = { load, layout, validate, specLines, camperZones, camperPlacements, priceRange, componentPrice, variantOf,
+  global.Vehicle = { load, layout, validate, specLines, sideProfile, camperZones, camperPlacements, priceRange, componentPrice, variantOf,
     defaultSelection, readSelection, selectionQuery, writeSelection, DATA_URL, COMPONENTS_URL };
 })(window);

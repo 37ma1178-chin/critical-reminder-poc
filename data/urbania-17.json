@@ -40,17 +40,54 @@
   },
   "assumptions": {
     "cab_depth": 2600,
-    "body_bottom_height": 400,
+    "body_bottom_height": 340,
     "interior_wall_thickness": 150,
-    "hood_length": 920,
+    "hood_length": 955,
     "rear_wall_thickness": 100,
     "wheel_housing": {
       "length": 900,
       "width": 250,
-      "height": 350,
-      "note": "Box each wheel needs inside the cabin: wheel diameter + suspension travel long, intrusion past the inner wall face + clearance wide, wheel top above floor + travel high. Estimate, not measured."
+      "height": 300,
+      "note": "Box each wheel needs inside the cabin: tyre diameter + suspension travel long, intrusion past the inner wall face + clearance wide, tyre top (712 above ground) minus the floor height plus travel high. Estimate, not measured."
     },
-    "measured_from": "cab_depth, hood_length and interior_wall_thickness were scaled off the Force Motors 4400WB 16+D top-view render (data/reference), ±50 mm; they are still estimates, not manufacturer drawings.",
+    "floor_height": 550,
+    "profile": {
+      "note": "Exterior side-profile proportions scaled off the Force Motors side render (data/reference/force-urbania-4400wb-side.jpg), roughly ±100 mm. Heights are above ground; x positions are from the front bumper. The render is not dimensionally exact (wheelbase-to-length ratio ~6% off the brochure), so brochure numbers win wherever they exist and only the shape comes from here.",
+      "bumper_top_height": 710,
+      "hood_height": 1505,
+      "nose_length": 500,
+      "windshield_base_from_front": 955,
+      "windshield_base_height": 1500,
+      "windshield_top_from_front": 1835,
+      "windshield_top_height": 2310,
+      "roof_start_from_front": 2230,
+      "rear_roof_corner_radius": 300,
+      "window_sill_height": 1360,
+      "window_top_height": 2245,
+      "cladding_bottom_height": 595,
+      "cladding_top_height": 825,
+      "cab_door": {
+        "from_front": 1080,
+        "to_front": 2350
+      },
+      "sliding_door": {
+        "from_front": 2400,
+        "to_front": 3450,
+        "side": "left"
+      },
+      "side_windows_from_front": [
+        [
+          3500,
+          5010
+        ],
+        [
+          5050,
+          6560
+        ]
+      ],
+      "wheel_arch_clearance": 90
+    },
+    "measured_from": "cab_depth, hood_length and interior_wall_thickness were scaled off the Force Motors 4400WB 16+D top-view render (data/reference), ±50 mm; they are still estimates, not manufacturer drawings. body_bottom_height (rocker), hood_length (windshield base) and the profile block were scaled off the side render. floor_height is a typical value for this van class, not measured.",
     "note": "Everything in this block is an estimate, not manufacturer data. Replace when a real reference is available. Wheel size is derived from the brochure tyre code and wheel positions from the track, so they are no longer assumptions. The brochure gives no interior dimensions; cab depth, wall thickness and floor area stay estimates."
   },
   "stock_seating": {

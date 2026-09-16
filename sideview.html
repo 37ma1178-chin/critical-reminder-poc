@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Force Urbania 17-Seater — 2D Side Profile</title>
+<style>
+  :root { --bg:#f6f5f1; --panel:#ffffff; --line:#e6e3da; --ink:#232220; --muted:#7a776f; --accent:#3a6a72; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+  #app { display:flex; flex-direction:column; height:100%; }
+  header { padding:16px 20px 12px; border-bottom:1px solid var(--line); background:var(--panel); display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; }
+  header h1 { margin:0 0 3px; font-size:17px; font-weight:600; letter-spacing:-0.01em; }
+  header p { margin:0; font-size:12.5px; color:var(--muted); }
+  nav { margin-left:auto; font-size:12.5px; }
+  nav a { color:var(--accent); text-decoration:none; margin-left:14px; }
+  nav a.here { color:var(--ink); font-weight:600; }
+  #main { flex:1; display:flex; min-height:0; flex-wrap:wrap; }
+  #viewport { flex:1 1 420px; min-height:380px; overflow:auto; background:#fff; padding:22px; display:flex; align-items:center; }
+  #drawing-frame { border:1px solid var(--line); border-radius:10px; padding:18px; width:100%; background:#fff; }
+  #panel { width:280px; flex:0 0 280px; border-left:1px solid var(--line); background:var(--panel); padding:16px; overflow-y:auto; }
+  @media (max-width:760px) { #panel{border-left:none;border-top:1px solid var(--line);width:100%;flex:0 0 auto;} }
+  .specbox { font-size:11.5px; color:var(--muted); line-height:1.6; padding:10px 12px; background:#faf9f6;
+    border:1px solid var(--line); border-radius:8px; margin-bottom:14px; }
+  .specbox b { color:var(--ink); }
+  .flag { font-size:11.5px; color:#8a5a1f; line-height:1.55; padding:10px 12px; background:#fdf5e8;
+    border:1px solid #ecd9b3; border-radius:8px; margin-bottom:14px; }
+  .legend { font-size:12px; line-height:2; }
+  .swatch { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:7px; vertical-align:-1px; }
+  .group { margin-bottom:14px; }
+  .group h2, .h { font-size:11px; color:var(--muted); margin:0 0 8px; font-weight:600; }
+  .option { display:block; width:100%; text-align:left; padding:8px 12px; margin-bottom:6px; border:1px solid var(--line); background:#fff;
+    border-radius:7px; font-size:13px; color:var(--ink); cursor:pointer; }
+  .option.active { border-color:var(--accent); background:#e6eef0; font-weight:600; }
+  .modules { font-size:12px; line-height:1.5; }
+  .modules div { display:flex; justify-content:space-between; gap:8px; padding:4px 0; border-bottom:1px solid var(--line); }
+  .modules div span:last-child { color:var(--muted); white-space:nowrap; }
+  .total { font-size:12.5px; margin-top:8px; }
+  .link { display:block; margin-top:8px; font-size:12px; color:var(--accent); }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div>
+      <h1>Force Urbania 4400 WB — 17 Seater, Side Profile</h1>
+      <p>Dimensioned scale drawing · 1 unit = 1mm · left side of the vehicle (sliding door) · front points right</p>
+    </div>
+    <nav><a href="index.html" id="nav-3d">3D</a><a href="topview.html" id="nav-top">Top view</a><a href="sideview.html" class="here">Side profile</a></nav>
+  </header>
+  <div id="main">
+    <div id="viewport"><div id="drawing-frame"></div></div>
+    <div id="panel">
+      <div class="specbox" id="specbox">Loading data/urbania-17.json…</div>
+      <div class="group">
+        <h2>Interior shown</h2>
+        <button class="option active" data-layout="rows">Stock 17-seater</button>
+        <button class="option" data-layout="camper">Camper modules</button>
+      </div>
+      <div class="flag">
+        <b>Profile is proportional, not surveyed:</b> length, height, wheelbase, track, tyre size and ground clearance are brochure figures. The hood, windshield, window band, cladding, door positions and rocker height were scaled off the Force Motors side render (about ±100 mm); floor height is a typical value for this van class.
+      </div>
+      <div id="modules-box" hidden>
+        <h2 class="h">Modules in this configuration</h2>
+        <div id="modules" class="modules"></div>
+        <div class="total" id="total"></div>
+        <a class="link" id="config-link" href="index.html">Change modules in the 3D configurator →</a>
+      </div>
+      <div class="legend">
+        <div><span class="swatch" style="background:#f7f5f0;border:1px solid #8f8879"></span>Body</div>
+        <div><span class="swatch" style="background:#b9cdd6"></span>Glazing</div>
+        <div><span class="swatch" style="background:#33322f"></span>Cladding · tyres</div>
+        <div><span class="swatch" style="background:#d7e6e9;border:1px solid #7fa3a9"></span>Seats (through the body)</div>
+        <div><span class="swatch" style="background:#e3ebe8;border:1px solid #5f8a80"></span>Camper modules (through the body)</div>
+        <div><span class="swatch" style="background:#ebe7dc;border:1px dashed #a9a294"></span>Wheel housings · floor line</div>
+        <div><span class="swatch" style="background:#3a6a72"></span>Dimension lines</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/vehicle.js"></script>
+<script>
+// ---- All values in millimetres; 1 SVG user unit = 1mm ----
+// Vehicle frame: x = 0 at the rear bumper (front points right), z = height above ground.
+// Everything comes from data/urbania-17.json via js/vehicle.js (Vehicle.sideProfile / layout /
+// camperPlacements); this file only maps the frame onto the page and adds dimension lines.
+Vehicle.load().then(draw).catch(err => {
+  console.error(err);
+  document.getElementById('specbox').textContent = 'Failed to load vehicle data: ' + err.message + ' (serve over http, not file://)';
+});
+
+function draw(V) {
+const spec = V.spec, LAY = V.layout, PR = Vehicle.sideProfile(spec);
+const b = spec.body, a = spec.assumptions;
+const L = b.length, H = b.height;
+const selection = V.components ? Vehicle.readSelection(V.components) : { layout: null, modules: [], variants: {} };
+const mode = selection.layout === 'camper' && V.components ? 'camper' : 'rows';
+const inr = n => '₹' + (n >= 100000 ? (n / 100000).toFixed(n % 100000 ? 1 : 0) + ' L' : Math.round(n / 1000) + 'k');
+
+const lines = Vehicle.specLines(spec);
+document.getElementById('specbox').innerHTML =
+  `<b>Brochure spec:</b><br>Length ${b.length}mm · Height ${b.height}mm<br>Wheelbase ${b.wheelbase}mm · Ground clearance ${b.ground_clearance}mm<br>Tyres ${b.tyre.size} (Ø${LAY.tyreDiameter}mm)<br>${lines.overhang} (listings)` +
+  `<br><i>Estimated:</i> floor ${a.floor_height}mm above ground · rocker ${a.body_bottom_height}mm · sliding door opening ${a.profile.sliding_door.to_front - a.profile.sliding_door.from_front}mm`;
+
+// Page layout (drawing margins only)
+const marginL = 550, marginR = 950, marginT = 700, marginB = 900;
+const vbW = L + marginL + marginR, vbH = H + marginT + marginB;
+const px = x => marginL + x;
+const pz = z => marginT + (H - z);
+const groundY = pz(0);
+const FS = 175, SWd = 14;
+
+const poly = pts => pts.map(([x, z]) => `${px(x)},${pz(z)}`).join(' ');
+
+// ---- Interior, drawn through the body: seats or camper modules, wheel housings, floor line ----
+let interiorSvg = '';
+const floorZ = a.floor_height;
+LAY.wheelHousings.forEach(h => {
+  interiorSvg += `<rect x="${px(h.x0)}" y="${pz(floorZ + h.height)}" width="${h.length}" height="${h.height}" class="housing"/>`;
+});
+let P = null;
+if (mode === 'rows') {
+  const s = spec.stock_seating;
+  LAY.seats.forEach(seat => {
+    const cushion = seat.kind === 'bench' ? seat.depth * 0.6 : (seat.kind === 'row' ? s.seat_cushion_depth : seat.depth * 0.6);
+    const x0 = seat.cx - seat.depth / 2, x1 = seat.cx + seat.depth / 2;
+    const seatZ = floorZ + s.seat_height * 0.5, topZ = floorZ + s.seat_height * (seat.kind === 'bench' ? 1.6 : 1.55);
+    // cushion (front part of the footprint) + backrest (rear edge), as seen from the side
+    interiorSvg += `<rect x="${px(x1 - cushion)}" y="${pz(seatZ)}" width="${cushion}" height="${seatZ - floorZ}" rx="30" class="seat"/>`;
+    interiorSvg += `<rect x="${px(x0)}" y="${pz(topZ)}" width="${Math.min(150, seat.depth - cushion)}" height="${topZ - floorZ}" rx="30" class="seat"/>`;
+  });
+} else {
+  P = Vehicle.camperPlacements(spec, V.components, selection);
+  P.placements.forEach(p => {
+    interiorSvg += `<rect x="${px(p.x0)}" y="${pz(floorZ + p.z0 + p.height)}" width="${p.x1 - p.x0}" height="${p.height}" rx="14" class="mod mod-${p.id}"/>`;
+  });
+  P.placements.forEach(p => {
+    const short = (p.variant && p.variant.short_name) || p.component.short_name || p.id;
+    // zone modules are labelled just under the top of their box, sub-modules at their own centre
+    const isSub = p.zone && p.zone !== p.id;
+    const cx = px((p.x0 + p.x1) / 2), cz = isSub ? pz(floorZ + p.z0 + p.height / 2) : pz(floorZ + p.z0 + p.height) + FS * 0.9;
+    if (p.x1 - p.x0 > 300 && p.height > 250) interiorSvg += `<text x="${cx}" y="${cz + FS * 0.25}" class="modlabel${isSub ? ' sub' : ''}" text-anchor="middle">${short}</text>`;
+  });
+}
+
+function dimH(x1, y, x2, label) {
+  return `
+    <line x1="${x1}" y1="${y-40}" x2="${x1}" y2="${y+40}" class="dimtick"/>
+    <line x1="${x2}" y1="${y-40}" x2="${x2}" y2="${y+40}" class="dimtick"/>
+    <line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" class="dim" marker-start="url(#arrowS)" marker-end="url(#arrowE)"/>
+    <rect x="${(x1+x2)/2 - label.length*FS*0.29}" y="${y-FS*0.95}" width="${label.length*FS*0.58}" height="${FS*1.05}" fill="#ffffff"/>
+    <text x="${(x1+x2)/2}" y="${y-FS*0.2}" text-anchor="middle" class="dimtext">${label}</text>`;
+}
+function dimV(x, y1, y2, label) {
+  const midY = (y1+y2)/2;
+  return `
+    <line x1="${x-40}" y1="${y1}" x2="${x+40}" y2="${y1}" class="dimtick"/>
+    <line x1="${x-40}" y1="${y2}" x2="${x+40}" y2="${y2}" class="dimtick"/>
+    <line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}" class="dim" marker-start="url(#arrowS)" marker-end="url(#arrowE)"/>
+    <rect x="${x-FS*0.55}" y="${midY-label.length*FS*0.29}" width="${FS*1.1}" height="${label.length*FS*0.58}" fill="#ffffff"/>
+    <text x="${x}" y="${midY}" text-anchor="middle" class="dimtext" transform="rotate(-90 ${x} ${midY})">${label}</text>`;
+}
+
+const svg = `
+<svg viewBox="0 0 ${vbW} ${vbH}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+  <defs>
+    <marker id="arrowS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse">
+      <path d="M9,1 L1,5 L9,9" fill="none" stroke="#3a6a72" stroke-width="1.6"/>
+    </marker>
+    <marker id="arrowE" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse">
+      <path d="M9,1 L1,5 L9,9" fill="none" stroke="#3a6a72" stroke-width="1.6"/>
+    </marker>
+    <clipPath id="bodyclip"><polygon points="${poly(PR.outline)}"/></clipPath>
+  </defs>
+  <style>
+    .ground { stroke:#b9b3a3; stroke-width:${SWd*0.8}; }
+    .body { fill:#f7f5f0; stroke:#8f8879; stroke-width:${SWd}; stroke-linejoin:round; }
+    .glass { fill:#b9cdd6; stroke:#7fa3a9; stroke-width:${SWd*0.5}; }
+    .cladding { fill:#33322f; }
+    .seam { stroke:#a9a294; stroke-width:${SWd*0.6}; fill:none; }
+    .rail { stroke:#8f8879; stroke-width:${SWd*0.9}; }
+    .tyre { fill:#33322f; }
+    .hub { fill:#d9d6cf; stroke:#8f8879; stroke-width:${SWd*0.5}; }
+    .housing { fill:#ebe7dc; stroke:#a9a294; stroke-width:${SWd*0.5}; stroke-dasharray:${SWd*2} ${SWd*1.2}; }
+    .floor { stroke:#a9a294; stroke-width:${SWd*0.6}; stroke-dasharray:${SWd*3} ${SWd*1.6}; }
+    .seat { fill:#d7e6e9; stroke:#7fa3a9; stroke-width:${SWd*0.5}; opacity:0.85; }
+    .mod { fill:#e3ebe8; stroke:#5f8a80; stroke-width:${SWd*0.6}; opacity:0.88; }
+    .mod-partition { fill:#8a8479; stroke:#6b665c; }
+    .mod-tv { fill:#3a3a3a; stroke:#3a3a3a; }
+    .mod-toilet_cubicle { fill:#f1ede3; stroke:#a9a294; }
+    .mod-toilet_unit, .mod-fridge { fill:#ffffff; stroke:#8f8879; }
+    .mod-water_tank { fill:#cfe1e5; stroke:#7fa3a9; }
+    .mod-electrical_panel { fill:#374b52; stroke:#374b52; }
+    .mod-lounge_bench { fill:#cfe3d9; stroke:#3f7a68; }
+    .mod-crew_bunk { fill:#d9e0e5; stroke:#4a5c66; }
+    .mod-kitchenette { fill:#e6dccb; stroke:#6b5a45; }
+    .modlabel { fill:#3a4a45; font-size:${FS*0.72}px; font-weight:600; font-family:inherit; }
+    .modlabel.sub { font-size:${FS*0.62}px; font-weight:500; fill:#5b6b66; }
+    .dim { stroke:#3a6a72; stroke-width:${SWd*0.65}; fill:none; }
+    .dimtick { stroke:#3a6a72; stroke-width:${SWd*0.5}; }
+    .dimtext { fill:#3a6a72; font-size:${FS}px; font-weight:600; font-family:inherit; }
+    .caption { fill:#8f8b81; font-size:${FS*0.85}px; font-family:inherit; }
+  </style>
+
+  <line x1="${px(-400)}" y1="${groundY}" x2="${px(L + 400)}" y2="${groundY}" class="ground"/>
+
+  <polygon points="${poly(PR.outline)}" class="body"/>
+  <rect x="${px(PR.cladding.x0) + 40}" y="${pz(PR.cladding.z1)}" width="${PR.cladding.x1 - PR.cladding.x0 - 80}" height="${PR.cladding.z1 - PR.cladding.z0}" class="cladding" clip-path="url(#bodyclip)"/>
+
+  <polygon points="${poly(PR.windshield)}" class="glass"/>
+  ${PR.windows.map(w => `<rect x="${px(w.x0)}" y="${pz(w.z1)}" width="${w.x1 - w.x0}" height="${w.z1 - w.z0}" rx="60" class="glass"/>`).join('\n  ')}
+
+  <g clip-path="url(#bodyclip)">
+    <line x1="${px(LAY.interior.x0)}" y1="${pz(floorZ)}" x2="${px(LAY.interior.x1)}" y2="${pz(floorZ)}" class="floor"/>
+    ${interiorSvg}
+  </g>
+
+  <g clip-path="url(#bodyclip)">
+    <rect x="${px(PR.cabDoor.x0)}" y="${pz(a.profile.window_top_height + 20)}" width="${PR.cabDoor.x1 - PR.cabDoor.x0}" height="${a.profile.window_top_height + 20 - a.body_bottom_height - 20}" rx="60" class="seam"/>
+    <rect x="${px(PR.slidingDoor.x0)}" y="${pz(a.profile.window_top_height + 20)}" width="${PR.slidingDoor.x1 - PR.slidingDoor.x0}" height="${a.profile.window_top_height + 20 - a.body_bottom_height - 20}" rx="60" class="seam"/>
+    <line x1="${px(PR.slidingDoor.x0 - 1200)}" y1="${pz(a.profile.window_sill_height - 80)}" x2="${px(PR.slidingDoor.x0 - 60)}" y2="${pz(a.profile.window_sill_height - 80)}" class="rail"/>
+  </g>
+
+  ${PR.wheels.map(w => `<circle cx="${px(w.x)}" cy="${pz(w.z)}" r="${w.r}" class="tyre"/><circle cx="${px(w.x)}" cy="${pz(w.z)}" r="${w.hubR}" class="hub"/>`).join('\n  ')}
+
+  ${dimH(px(0), groundY + 560, px(L), `${b.length}mm overall length`)}
+  ${dimH(px(LAY.rearAxleX), groundY + 320, px(LAY.frontAxleX), `${b.wheelbase}mm wheelbase`)}
+  ${dimH(px(LAY.frontAxleX), groundY + 110, px(L), `${b.front_overhang}`)}
+  ${dimH(px(0), groundY + 110, px(LAY.rearAxleX), `${b.rear_overhang}`)}
+  ${dimH(px(PR.slidingDoor.x0), pz(H) - 260, px(PR.slidingDoor.x1), `door ${PR.slidingDoor.x1 - PR.slidingDoor.x0}`)}
+  ${dimV(px(L) + 280, pz(H), groundY, `${b.height}mm`)}
+  ${dimV(px(L) + 620, pz(floorZ), groundY, `floor ${floorZ}`)}
+  ${dimV(px(-280), pz(b.ground_clearance), groundY, `${b.ground_clearance}`)}
+
+  <text x="${px(L / 2)}" y="${groundY + 800}" text-anchor="middle" class="caption">Front of vehicle →  ·  ${mode === 'camper' ? 'camper modules from data/components.json shown through the body' : 'stock seats shown through the body'}  ·  ground clearance ${b.ground_clearance} mm at left</text>
+</svg>`;
+
+document.getElementById('drawing-frame').innerHTML = svg;
+
+// ---- Panel: layout toggle, module list, links ----
+document.querySelectorAll('[data-layout]').forEach(btn => {
+  btn.classList.toggle('active', btn.dataset.layout === mode);
+  btn.addEventListener('click', () => {
+    const next = Object.assign({}, selection, { layout: btn.dataset.layout === 'camper' ? 'camper' : null });
+    location.search = Vehicle.selectionQuery(next);
+  });
+});
+const q = Vehicle.selectionQuery(selection);
+document.getElementById('nav-3d').href = 'index.html' + q;
+document.getElementById('nav-top').href = 'topview.html' + q;
+const box = document.getElementById('modules-box');
+box.hidden = mode !== 'camper';
+if (P) {
+  const list = document.getElementById('modules');
+  P.placements.forEach(p => {
+    const price = Vehicle.componentPrice(p.component, selection.variants[p.id]);
+    const row = document.createElement('div');
+    row.innerHTML = `<span>${p.variant ? p.variant.name : p.component.name}</span><span>${inr(price.min)} – ${inr(price.max)}</span>`;
+    list.appendChild(row);
+  });
+  document.getElementById('total').innerHTML = `Estimated module cost: <b>${inr(P.price.min)} – ${inr(P.price.max)}</b>`;
+  document.getElementById('config-link').href = 'index.html' + q;
+}
+} // draw
+</script>
+</body>
+</html>
