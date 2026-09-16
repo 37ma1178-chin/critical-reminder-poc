@@ -134,7 +134,8 @@ const m = mm => mm / 1000;            // JSON is in mm, the scene is in metres
 const lines = Vehicle.specLines(spec);
 document.getElementById('dims').textContent = lines.oneLine;
 document.getElementById('specbox').innerHTML =
-  `<b>Source spec (${spec.vehicle}):</b><br>${lines.size}<br>${lines.chassis}<br>${lines.overhang}<br>${lines.seating}`;
+  `<b>Brochure spec (${spec.vehicle}):</b><br>${lines.size}<br>${lines.chassis}<br>${lines.overhang}<br>${lines.seating}` +
+  `<br><i>Estimated interior:</i> passenger cabin ${LAY.interior.length} × ${LAY.interior.width} mm ≈ ${LAY.interior.area_m2} m², cab ${LAY.cab.length} mm ≈ ${LAY.cab.area_m2} m² (scaled off the layout render, not in the brochure)`;
 
 const viewport = document.getElementById('viewport');
 const seeThrough = []; // meshes that hide what is under them (cubicle lid, upper bunk): see-through in the bird view
@@ -198,9 +199,9 @@ const LEN = m(spec.body.length);
 const WID = m(spec.body.width);
 const HGT = m(spec.body.height);
 
-// Wheel geometry (assumptions block)
-const WHEEL_R = m(spec.assumptions.wheel_radius);
-const WHEEL_WIDTH = m(spec.assumptions.wheel_width);
+// Wheel geometry: derived in the shared layout from the brochure tyre code (235/65 R16 C)
+const WHEEL_R = m(LAY.tyreDiameter) / 2;
+const WHEEL_WIDTH = m(spec.body.tyre.width);
 
 // Body vertical layout (all referenced from ground, y = 0)
 const BODY_BOTTOM = m(spec.assumptions.body_bottom_height); // rocker panel height above ground

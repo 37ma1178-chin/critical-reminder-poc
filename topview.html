@@ -93,7 +93,8 @@ const inr = n => '₹' + (n >= 100000 ? (n / 100000).toFixed(n % 100000 ? 1 : 0)
 // Info panel
 const lines = Vehicle.specLines(spec);
 document.getElementById('specbox').innerHTML =
-  `<b>Confirmed body spec:</b><br>Length ${b.length}mm · Width ${b.width}mm<br>Wheelbase ${b.wheelbase}mm<br>${lines.overhang}`;
+  `<b>Brochure spec:</b><br>Length ${b.length}mm · Width ${b.width}mm<br>Wheelbase ${b.wheelbase}mm · Track ${b.front_track}mm · Tyres ${b.tyre.size}<br>${lines.overhang} (listings)` +
+  `<br><i>Estimated interior:</i> ${LAY.interior.length} × ${LAY.interior.width} mm ≈ ${LAY.interior.area_m2} m² behind the cab`;
 document.getElementById('flag').innerHTML = seating.confirmed
   ? `<b>Seat layout confirmed</b> against the Force Motors reference drawing.`
   : `<b>Not confirmed from an official drawing:</b> exact seat pitch. Force Motors' site doesn't publish a dimensioned floor plan — this uses the ${seating.pattern} = ${seating.total} pattern reported across Urbania rental listings, with an estimated row spacing (${seating.row_pitch}mm). Share the reference image and I'll match it exactly.`;

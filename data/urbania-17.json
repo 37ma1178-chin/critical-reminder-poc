@@ -1,25 +1,49 @@
 {
-  "vehicle": "Force Urbania 4400 WB, 17-seater",
+  "vehicle": "Force Urbania DX 4400 WB, 16+D (17-seater)",
   "units": "mm",
-  "source": "Force Motors spec sheet as listed on Cardekho / ZigWheels (cross-checked, consistent). Seat pitch is NOT from an official drawing.",
+  "source": "Force Motors Urbania DX brochure, technical specifications page (code URBANIADX/27072025/25000; data/reference/force-urbania-dx-brochure-2026.pdf, page 6). Overhangs are not in the brochure and come from the Cardekho / ZigWheels listings.",
   "body": {
     "length": 7010,
     "width": 2095,
     "height": 2550,
     "wheelbase": 4400,
-    "ground_clearance": 200,
+    "ground_clearance": 170,
+    "front_track": 1750,
+    "rear_track": 1750,
+    "tyre": {
+      "size": "235/65 R16 C",
+      "width": 235,
+      "aspect": 65,
+      "rim_in": 16
+    },
+    "gvw_kg": 4685,
     "front_overhang": 950,
-    "rear_overhang": 1660
+    "rear_overhang": 1660,
+    "source_notes": {
+      "brochure": [
+        "length",
+        "width",
+        "height",
+        "wheelbase",
+        "ground_clearance",
+        "front_track",
+        "rear_track",
+        "tyre",
+        "gvw_kg"
+      ],
+      "listings_only": [
+        "front_overhang",
+        "rear_overhang"
+      ],
+      "ground_clearance": "Brochure says 170 mm minimum; earlier listings said 200."
+    }
   },
   "assumptions": {
     "cab_depth": 2600,
     "body_bottom_height": 400,
-    "wheel_radius": 360,
-    "wheel_track_inset_from_body_edge": 100,
     "interior_wall_thickness": 150,
     "hood_length": 920,
     "rear_wall_thickness": 100,
-    "wheel_width": 240,
     "wheel_housing": {
       "length": 900,
       "width": 250,
@@ -27,7 +51,7 @@
       "note": "Box each wheel needs inside the cabin: wheel diameter + suspension travel long, intrusion past the inner wall face + clearance wide, wheel top above floor + travel high. Estimate, not measured."
     },
     "measured_from": "cab_depth, hood_length and interior_wall_thickness were scaled off the Force Motors 4400WB 16+D top-view render (data/reference), ±50 mm; they are still estimates, not manufacturer drawings.",
-    "note": "Everything in this block is an estimate, not manufacturer data. Replace when a real reference is available."
+    "note": "Everything in this block is an estimate, not manufacturer data. Replace when a real reference is available. Wheel size is derived from the brochure tyre code and wheel positions from the track, so they are no longer assumptions. The brochure gives no interior dimensions; cab depth, wall thickness and floor area stay estimates."
   },
   "stock_seating": {
     "total": 17,
@@ -63,6 +87,38 @@
       "tolerance_mm": 50,
       "what_is_confirmed": "Seat count and pattern are confirmed exactly. Positions and sizes are measured off a marketing render to about ±50 mm, not from a dimensioned drawing.",
       "field_semantics": "seat_depth is the seat footprint along x including the backrest; row positions are seat-footprint centres; first_row_setback is from the cab boundary to the row-1 centre; aisle_center_offset is the aisle centreline from the vehicle centreline (negative = left); left_row_offset moves the left singles rearward of the right pairs; the rear bench spans from the left singles' outer edge to the right pairs' outer edge."
+    }
+  },
+  "variants": {
+    "note": "Urbania DX wheelbase variants from the brochure; this project models the 4400 WB 16+D.",
+    "4400": {
+      "wheelbase": 4400,
+      "length": 7010,
+      "gvw_kg": 4685,
+      "seating_excl_driver": [
+        12,
+        13,
+        16
+      ]
+    },
+    "3615": {
+      "wheelbase": 3615,
+      "length": 6225,
+      "gvw_kg": 4260,
+      "seating_excl_driver": [
+        9,
+        12,
+        13
+      ]
+    },
+    "3350": {
+      "wheelbase": 3350,
+      "length": 5440,
+      "gvw_kg": 3750,
+      "seating_excl_driver": [
+        9,
+        10
+      ]
     }
   }
 }

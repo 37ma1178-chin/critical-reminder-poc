@@ -48,11 +48,17 @@
     interior.length = interior.x1 - interior.x0;
     interior.width = interior.halfWidth * 2;
     interior.cx = (interior.x0 + interior.x1) / 2;
+    interior.area_m2 = Math.round(interior.length * interior.width / 1e4) / 100;   // passenger cabin floor, behind the cab
+    const cab = { x0: partitionX, x1: L - a.hood_length, width: interior.width };
+    cab.length = cab.x1 - cab.x0;
+    cab.area_m2 = Math.round(cab.length * cab.width / 1e4) / 100;
 
-    const wheelY = W / 2 - a.wheel_track_inset_from_body_edge;
+    // Wheels: size from the tyre code (rim + 2 × sidewall), position from the track (centre to centre)
+    const t = b.tyre;
+    const tyreDiameter = Math.round(t.rim_in * 25.4 + 2 * t.width * t.aspect / 100);
     const wheels = [];
-    [frontAxleX, rearAxleX].forEach(x => [-1, 1].forEach(side => wheels.push({
-      x, y: side * wheelY, diameter: a.wheel_radius * 2, width: a.wheel_width, side,
+    [[frontAxleX, b.front_track], [rearAxleX, b.rear_track]].forEach(([x, track]) => [-1, 1].forEach(side => wheels.push({
+      x, y: side * track / 2, diameter: tyreDiameter, width: t.width, side,
     })));
 
     // ---- Stock seating ----
@@ -103,7 +109,7 @@
       axle: w.x === frontAxleX ? 'front' : 'rear',
     })).filter(h => h.x1 > interior.x0 && h.x0 < interior.x1); // only those inside the passenger cabin
 
-    return { frontAxleX, rearAxleX, partitionX, interior, wheels, wheelHousings, seats, seatCount };
+    return { frontAxleX, rearAxleX, partitionX, interior, cab, wheels, tyreDiameter, wheelHousings, seats, seatCount };
   }
 
   // ---- Camper modules (data/components.json) ----
@@ -272,7 +278,7 @@
     const b = spec.body, s = spec.stock_seating;
     return {
       size: `Length ${b.length}mm · Width ${b.width}mm · Height ${b.height}mm`,
-      chassis: `Wheelbase ${b.wheelbase}mm · Ground clearance ${b.ground_clearance}mm`,
+      chassis: `Wheelbase ${b.wheelbase}mm · Track ${b.front_track}mm · Ground clearance ${b.ground_clearance}mm · Tyres ${b.tyre.size} · GVW ${b.gvw_kg} kg`,
       overhang: `Front overhang ${b.front_overhang}mm · Rear overhang ${b.rear_overhang}mm`,
       seating: `Stock layout: ${s.pattern} = ${s.total}`,
       oneLine: `L ${b.length}mm · W ${b.width}mm · H ${b.height}mm · Wheelbase ${b.wheelbase}mm · F/R overhang ${b.front_overhang}/${b.rear_overhang}mm`,
