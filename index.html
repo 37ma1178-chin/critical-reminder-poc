@@ -49,21 +49,15 @@
 <div id="app">
   <header>
     <h1>Force Urbania 4400WB — 17 Seater</h1>
-    <p>Proof-of-concept configurator viewer · dimensions matched to official spec sheet</p>
+    <p>Proof-of-concept configurator viewer · every dimension comes from <code>data/urbania-17.json</code></p>
   </header>
   <div id="main">
     <div id="viewport">
       <div id="hint">Drag to orbit · scroll to zoom</div>
-      <div id="dims">L 7010mm · W 2095mm · H 2550mm · Wheelbase 4400mm · F/R overhang 950/1660mm</div>
+      <div id="dims">Loading data/urbania-17.json…</div>
     </div>
     <div id="panel">
-      <div class="specbox">
-        <b>Source spec (Force Urbania, 4400 WB, 17-seater):</b><br>
-        Length 7010mm · Width 2095mm · Height 2550mm<br>
-        Wheelbase 4400mm · Ground clearance 200mm<br>
-        Front overhang 950mm · Rear overhang 1660mm<br>
-        Stock layout: 2 front (driver + co-driver) + 4 rows of 1+2 + 3-seat rear bench = 17
-      </div>
+      <div class="specbox" id="specbox">Loading data/urbania-17.json…</div>
       <div class="group">
         <h2>View</h2>
         <button class="option active" data-view="cutaway">Cutaway (see interior)</button>
@@ -92,7 +86,7 @@
         </div>
       </div>
       <div class="note">
-        Camper conversion module sizes (bunk, counter, tank, cubicle) are typical placeholder dimensions, not sourced from a specific supplier catalog yet — that's the next step once we build the component catalog.
+        Lounge and camper conversion module sizes (bunk, counter, tank, cubicle) are still placeholder numbers in this file, not sourced from a supplier catalog. They move to <code>data/components.json</code> in task 3.
       </div>
     </div>
   </div>
@@ -100,7 +94,25 @@
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="js/vehicle.js"></script>
 <script>
+// All dimensions come from data/urbania-17.json via js/vehicle.js (millimetres).
+// This file only converts to metres and draws. Nothing here should hardcode a vehicle dimension.
+Vehicle.load().then(main).catch(err => {
+  console.error(err);
+  document.getElementById('dims').textContent = 'Failed to load vehicle data: ' + err.message + ' (serve over http, not file://)';
+});
+
+function main(V) {
+const spec = V.spec, LAY = V.layout;
+const m = mm => mm / 1000;            // JSON is in mm, the scene is in metres
+
+// Info panels
+const lines = Vehicle.specLines(spec);
+document.getElementById('dims').textContent = lines.oneLine;
+document.getElementById('specbox').innerHTML =
+  `<b>Source spec (${spec.vehicle}):</b><br>${lines.size}<br>${lines.chassis}<br>${lines.overhang}<br>${lines.seating}`;
+
 const viewport = document.getElementById('viewport');
 
 // ---------- Scene ----------
@@ -152,33 +164,27 @@ grid.position.y = 0.001;
 scene.add(grid);
 
 // =====================================================================
-// REAL FORCE URBANIA (4400 WB, 17-seater) DIMENSIONS — source: official
-// spec sheet (cardekho/zigwheels). All figures in metres.
+// Vehicle dimensions — from data/urbania-17.json (body = confirmed spec,
+// assumptions = estimates flagged in the file). Converted to metres here.
 // =====================================================================
-const LEN = 7.010;
-const WID = 2.095;
-const HGT = 2.550;
-const WHEELBASE = 4.400;
-const GROUND_CLEARANCE = 0.200;
+const LEN = m(spec.body.length);
+const WID = m(spec.body.width);
+const HGT = m(spec.body.height);
 
-// Overhangs derived from LEN - WHEELBASE = 2.610m total.
-// Split using typical front/rear proportion for this vehicle class.
-const FRONT_OVERHANG = 0.950;
-const REAR_OVERHANG = LEN - WHEELBASE - FRONT_OVERHANG; // 1.660
-
-// Wheel geometry
-const WHEEL_R = 0.360;      // ~720mm diameter, matches 16" wheel class
-const WHEEL_WIDTH = 0.24;
-const TRACK_HALF = WID / 2 - 0.10; // wheels sit near body edge
+// Wheel geometry (assumptions block)
+const WHEEL_R = m(spec.assumptions.wheel_radius);
+const WHEEL_WIDTH = m(spec.assumptions.wheel_width);
 
 // Body vertical layout (all referenced from ground, y = 0)
-const BODY_BOTTOM = 0.40;          // rocker panel height above ground
-const ROOF_CAP_H = 0.10;           // subtle raised roof cap (cosmetic only)
+const BODY_BOTTOM = m(spec.assumptions.body_bottom_height); // rocker panel height above ground
+const ROOF_CAP_H = 0.10;           // subtle raised roof cap — modelling detail only, not a vehicle dimension
 const MAIN_BOX_H = HGT - BODY_BOTTOM - ROOF_CAP_H; // exact fit to HGT
 
-// X axis: vehicle centreline, 0 = geometric centre of LEN
-const frontAxleX = LEN / 2 - FRONT_OVERHANG;
-const rearAxleX = -LEN / 2 + REAR_OVERHANG;
+// Scene X axis: vehicle centreline, 0 = geometric centre of LEN, +x = front.
+// The shared layout uses x = 0 at the rear bumper, so shift by half the length.
+const vx = xmm => m(xmm) - LEN / 2;
+const frontAxleX = vx(LAY.frontAxleX);
+const rearAxleX = vx(LAY.rearAxleX);
 
 // ---------- Materials ----------
 const bodyMat = new THREE.MeshStandardMaterial({ color: 0xcfc6ac, metalness: 0.25, roughness: 0.45 });
@@ -194,7 +200,7 @@ const shell = new THREE.Group();
 
 // Hood/engine bay occupies the front portion at reduced height (semi-forward-control van).
 // Cabin occupies the remainder at full MAIN_BOX_H. Neither extends past LEN or above HGT.
-const HOOD_LEN = 1.00;
+const HOOD_LEN = m(spec.assumptions.hood_length);
 const HOOD_H = MAIN_BOX_H * 0.52;
 const cabinLen = LEN - HOOD_LEN;
 const cabinFrontX = LEN / 2 - HOOD_LEN;         // x where cabin ends / hood begins
@@ -285,32 +291,26 @@ function makeArch(x) {
 });
 
 // ---------- Wheels — axle along Z (vehicle width), upright orientation ----------
-function makeWheelSet(x) {
-  const g = new THREE.Group();
-  [-1, 1].forEach(side => {
-    const tyre = new THREE.Mesh(new THREE.CylinderGeometry(WHEEL_R, WHEEL_R, WHEEL_WIDTH, 28), wheelMat);
-    tyre.rotation.x = Math.PI / 2;   // axle now points along Z — wheel stands upright
-    tyre.castShadow = true;
-    const hub = new THREE.Mesh(new THREE.CylinderGeometry(WHEEL_R * 0.45, WHEEL_R * 0.45, WHEEL_WIDTH + 0.02, 16), hubMat);
-    hub.rotation.x = Math.PI / 2;
-    const set = new THREE.Group();
-    set.add(tyre); set.add(hub);
-    set.position.set(x, WHEEL_R, side * TRACK_HALF);
-    g.add(set);
-  });
-  return g;
-}
-scene.add(makeWheelSet(frontAxleX));
-scene.add(makeWheelSet(rearAxleX));
+// One wheel per entry in the shared layout (scene z = vehicle y, both positive to the right)
+LAY.wheels.forEach(w => {
+  const tyre = new THREE.Mesh(new THREE.CylinderGeometry(WHEEL_R, WHEEL_R, WHEEL_WIDTH, 28), wheelMat);
+  tyre.rotation.x = Math.PI / 2;   // axle points along Z — wheel stands upright
+  tyre.castShadow = true;
+  const hub = new THREE.Mesh(new THREE.CylinderGeometry(WHEEL_R * 0.45, WHEEL_R * 0.45, WHEEL_WIDTH + 0.02, 16), hubMat);
+  hub.rotation.x = Math.PI / 2;
+  const set = new THREE.Group();
+  set.add(tyre); set.add(hub);
+  set.position.set(vx(w.x), WHEEL_R, m(w.y));
+  scene.add(set);
+});
 
-// Floor slab (visible in cutaway/topdown)
-const CAB_DEPTH = 1.30;                        // dashboard/driver zone reserved at front, no seating
-const interiorFront = LEN / 2 - CAB_DEPTH;
-const interiorRear = -LEN / 2 + 0.10;
-const innerLen = interiorFront - interiorRear;
-const innerWid = WID - 0.10;
-const interiorCenterX = (interiorFront + interiorRear) / 2;
-const floorY = BODY_BOTTOM + 0.05;
+// Floor slab (visible in cutaway/topdown) — interior box from the shared layout
+const interiorFront = vx(LAY.interior.x1);     // partition: dashboard/driver zone in front of it, no seating
+const interiorRear = vx(LAY.interior.x0);      // inside face of the rear doors
+const innerLen = m(LAY.interior.length);
+const innerWid = m(LAY.interior.width);
+const interiorCenterX = vx(LAY.interior.cx);
+const floorY = BODY_BOTTOM + 0.05;             // floor slab thickness — modelling detail
 
 const floor = new THREE.Mesh(new THREE.BoxGeometry(innerLen, 0.06, innerWid), floorMat);
 floor.position.set(interiorCenterX, floorY - 0.03, 0);
@@ -333,40 +333,33 @@ function seatUnit(color, w, d, h) {
   return g;
 }
 
-// Standard 17-seater (stock) — accurate 1+2 configuration per Force Urbania layout:
-// front row 2 (driver + co-driver), 4 middle rows of (1 left + 2 right), rear bench of 3.
+// Standard 17-seater (stock) — every seat rectangle comes from the shared layout
+// (js/vehicle.js), which is the same list the 2D top view draws. Positions are
+// absolute scene coordinates, so this group is not offset.
 const rows = new THREE.Group();
 {
   const seatColor = 0x8a3b2e;
-  const seatW = 0.42, seatD = 0.42, seatH = 0.55, gap = 0.58;
-  const rowCount = 4;
-  const startX = innerLen / 2 - 0.5;
-  const aisleGap = 0.22;
-  for (let r = 0; r < rowCount; r++) {
-    const x = startX - r * gap;
-    // single seat, left side
-    const left = seatUnit(seatColor, seatW, seatD, seatH);
-    left.position.set(x, floorY, -(aisleGap / 2 + seatW / 2));
-    rows.add(left);
-    // double seat, right side (two seats modeled as one wider bench for simplicity)
-    const right = seatUnit(seatColor, seatW, seatD * 2 + 0.04, seatH);
-    right.position.set(x, floorY, (aisleGap / 2 + seatD + 0.02));
-    rows.add(right);
-  }
-  // rear bench, 3 across
-  const bench = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.5, innerWid - 0.25), mat(seatColor));
-  bench.position.set(-innerLen / 2 + 0.4, floorY + 0.25, 0);
-  bench.castShadow = true;
-  rows.add(bench);
-  const benchBack = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.9, innerWid - 0.25), mat(seatColor));
-  benchBack.position.set(-innerLen / 2 + 0.15, floorY + 0.5, 0);
-  rows.add(benchBack);
-  // co-driver seat, in the cab zone next to the driver
-  const codriver = seatUnit(seatColor, 0.4, 0.4, 0.5);
-  codriver.position.set(cabinFrontX + 0.35, floorY, WID * 0.94 / 2 - 0.25);
-  rows.add(codriver);
+  const seatH = m(spec.stock_seating.seat_height);
+  LAY.seats.forEach(seat => {
+    const depth = m(seat.depth), width = m(seat.width);
+    if (seat.kind === 'bench') {
+      // rear bench: cushion plus a full-height backrest against the rear wall
+      const backT = 0.1;
+      const bench = new THREE.Mesh(new THREE.BoxGeometry(depth - backT, 0.5, width), mat(seatColor));
+      bench.position.set(vx(seat.cx) + backT / 2, floorY + 0.25, m(seat.cy));
+      bench.castShadow = true;
+      rows.add(bench);
+      const benchBack = new THREE.Mesh(new THREE.BoxGeometry(backT, 0.9, width), mat(seatColor));
+      benchBack.position.set(vx(seat.cx) - depth / 2 + backT / 2, floorY + 0.5, m(seat.cy));
+      rows.add(benchBack);
+      return;
+    }
+    // driver, co-driver and the 1+2 rows: one seat unit per group (a pair is one wider unit)
+    const unit = seatUnit(seatColor, depth, width, seatH);
+    unit.position.set(vx(seat.cx), floorY, m(seat.cy));
+    rows.add(unit);
+  });
 }
-rows.position.x = interiorCenterX;
 layouts.rows = rows;
 
 // Lounge conversion
@@ -610,6 +603,7 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
+} // main
 </script>
 </body>
 </html>

@@ -17,15 +17,32 @@
     "wheel_radius": 360,
     "wheel_track_inset_from_body_edge": 100,
     "interior_wall_thickness": 50,
+    "hood_length": 1000,
+    "rear_wall_thickness": 100,
+    "wheel_width": 240,
     "note": "Everything in this block is an estimate, not manufacturer data. Replace when a real reference is available."
   },
   "stock_seating": {
     "total": 17,
     "pattern": "2 front (driver + co-driver) + 4 rows of 1+2 + 3-seat rear bench",
+    "front_seats": 2,
+    "middle_rows": 4,
+    "seats_per_row_left": 1,
+    "seats_per_row_right": 2,
+    "rear_bench_seats": 3,
     "seat_width": 420,
     "seat_depth": 420,
+    "seat_height": 550,
+    "paired_seat_gap": 30,
     "row_pitch": 600,
     "aisle_width": 240,
-    "confirmed": false
+    "first_row_setback": 500,
+    "rear_bench_depth": 520,
+    "rear_bench_setback": 40,
+    "cab_seat_size": 430,
+    "cab_seat_center_from_front": 520,
+    "cab_seat_lateral_offset": 370,
+    "confirmed": false,
+    "note": "Counts and pitch are the pattern reported across Urbania listings, not an official drawing. Positions (setbacks, offsets) are estimates so the views have somewhere to draw; replace from the Force Motors top-view reference when available."
   }
 }

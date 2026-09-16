@@ -31,20 +31,13 @@
 <div id="app">
   <header>
     <h1>Force Urbania 4400 WB — 17 Seater, Top View</h1>
-    <p>Dimensioned scale drawing · 1 unit = 1mm</p>
+    <p>Dimensioned scale drawing · 1 unit = 1mm · every dimension comes from <code>data/urbania-17.json</code></p>
   </header>
   <div id="main">
     <div id="viewport"><div id="drawing-frame"></div></div>
     <div id="panel">
-      <div class="specbox">
-        <b>Confirmed body spec:</b><br>
-        Length 7010mm · Width 2095mm<br>
-        Wheelbase 4400mm<br>
-        Front overhang 950mm · Rear overhang 1660mm
-      </div>
-      <div class="flag">
-        <b>Not confirmed from an official drawing:</b> exact seat pitch. Force Motors' site doesn't publish a dimensioned floor plan — this uses the 2 front + 4×(1+2) + 3 rear = 17 pattern reported across Urbania rental listings, with an estimated row spacing. Share the reference image and I'll match it exactly.
-      </div>
+      <div class="specbox" id="specbox">Loading data/urbania-17.json…</div>
+      <div class="flag" id="flag"></div>
       <div class="legend">
         <div><span class="swatch" style="background:#f3f1ec;border:1px solid #b9b3a3"></span>Body outline</div>
         <div><span class="swatch" style="background:#cfe1e5;border:1px solid #7fa3a9"></span>Passenger seats</div>
@@ -56,74 +49,87 @@
     </div>
   </div>
 </div>
+<script src="js/vehicle.js"></script>
 <script>
 // ---- All values in millimetres; 1 SVG user unit = 1mm ----
-const L = 7010, W = 2095, WB = 4400, FOH = 950, ROH = 1660;
+// Every vehicle dimension and seat position comes from data/urbania-17.json via
+// js/vehicle.js — the same derived layout the 3D viewer draws. This file only
+// maps the vehicle frame onto the page and adds dimension lines.
+Vehicle.load().then(draw).catch(err => {
+  console.error(err);
+  document.getElementById('specbox').textContent = 'Failed to load vehicle data: ' + err.message + ' (serve over http, not file://)';
+});
+
+function draw(V) {
+const spec = V.spec, LAY = V.layout;
+const b = spec.body, seating = spec.stock_seating;
+const L = b.length, W = b.width;
+
+// Info panel
+const lines = Vehicle.specLines(spec);
+document.getElementById('specbox').innerHTML =
+  `<b>Confirmed body spec:</b><br>Length ${b.length}mm · Width ${b.width}mm<br>Wheelbase ${b.wheelbase}mm<br>${lines.overhang}`;
+document.getElementById('flag').innerHTML = seating.confirmed
+  ? `<b>Seat layout confirmed</b> against the Force Motors reference drawing.`
+  : `<b>Not confirmed from an official drawing:</b> exact seat pitch. Force Motors' site doesn't publish a dimensioned floor plan — this uses the ${seating.pattern} = ${seating.total} pattern reported across Urbania rental listings, with an estimated row spacing (${seating.row_pitch}mm). Share the reference image and I'll match it exactly.`;
+
+// Page layout (drawing margins only — not vehicle dimensions)
 const marginL = 550, marginR = 950, marginT = 900, marginB = 700;
 const vbW = L + marginL + marginR;
 const vbH = W + marginT + marginB;
 
+// Vehicle frame → SVG: x = 0 at the rear bumper (front points right on the page),
+// y = 0 on the centreline, positive toward the right side of the vehicle (down the page).
 const bodyX0 = marginL, bodyX1 = marginL + L;
 const bodyY0 = marginT, bodyY1 = marginT + W;
-const frontX = bodyX1, rearX = bodyX0;
 const bodyCY = (bodyY0 + bodyY1) / 2;
+const px = x => bodyX0 + x;
+const py = y => bodyCY + y;
 
-const frontAxleX = frontX - FOH;
-const rearAxleX = rearX + ROH;
-const trackInset = 100;
-const wheelLen = 300, wheelWid = 170;
-const wheelTopY = bodyY0 + trackInset;
-const wheelBotY = bodyY1 - trackInset;
+const frontX = bodyX1, rearX = bodyX0;
+const frontAxleX = px(LAY.frontAxleX);
+const rearAxleX = px(LAY.rearAxleX);
+const partitionX = px(LAY.partitionX);
 
-const CAB_DEPTH = 1300;
-const partitionX = frontX - CAB_DEPTH;
-const wallT = 100;
-const innerFront = partitionX - 20;
-const innerRear = rearX + wallT;
-const innerY0 = bodyY0 + 60, innerY1 = bodyY1 - 60;
+const innerFront = px(LAY.interior.x1);
+const innerRear = px(LAY.interior.x0);
+const innerY0 = py(-LAY.interior.halfWidth), innerY1 = py(LAY.interior.halfWidth);
 const innerWid = innerY1 - innerY0;
-const innerCY = (innerY0 + innerY1) / 2;
-
-// Seat glyph: light cushion, thin stroke, a short hairline marking the backrest edge
-function seatGlyph(cx, cy, wAlongX, wAlongZ, backSide) {
-  const r = 22;
-  let backLine = '';
-  if (backSide === 'left') {
-    backLine = `<line x1="${cx - wAlongX/2 + 4}" y1="${cy - wAlongZ/2 + 6}" x2="${cx - wAlongX/2 + 4}" y2="${cy + wAlongZ/2 - 6}" class="seatback"/>`;
-  } else {
-    backLine = `<line x1="${cx - wAlongX/2 + 4}" y1="${cy - wAlongZ/2 + 6}" x2="${cx - wAlongX/2 + 4}" y2="${cy + wAlongZ/2 - 6}" class="seatback"/>`;
-  }
-  return `
-    <rect x="${cx - wAlongX/2}" y="${cy - wAlongZ/2}" width="${wAlongX}" height="${wAlongZ}" rx="${r}" class="seat"/>
-    ${backLine}`;
-}
-
-const seatDepth = 420, seatWidth = 420, rowPitch = 600, aisle = 240;
-const rowStartX = innerFront - 520;
-let rowsSvg = '';
-const singleY = innerCY - (aisle/2 + seatWidth/2);
-const benchWAlongZ = seatWidth*2 + 30;
-const benchY = innerCY + (aisle/2 + benchWAlongZ/2);
-for (let r = 0; r < 4; r++) {
-  const x = rowStartX - r * rowPitch;
-  rowsSvg += seatGlyph(x, singleY, seatDepth, seatWidth, 'left');
-  rowsSvg += seatGlyph(x, benchY, seatDepth, benchWAlongZ, 'left');
-  rowsSvg += `<line x1="${x}" y1="${benchY - benchWAlongZ/2 + 12}" x2="${x}" y2="${benchY + benchWAlongZ/2 - 12}" class="seatdivider"/>`;
-}
-const benchDepth = 520;
-const rearBenchX = innerRear + benchDepth/2 + 40;
-rowsSvg += `<rect x="${rearBenchX - benchDepth/2}" y="${innerY0}" width="${benchDepth}" height="${innerWid}" rx="22" class="seat"/>`;
-rowsSvg += `<line x1="${rearBenchX - benchDepth/2 + 4}" y1="${innerY0 + 8}" x2="${rearBenchX - benchDepth/2 + 4}" y2="${innerY1 - 8}" class="seatback"/>`;
-rowsSvg += `<line x1="${rearBenchX - benchDepth/2}" y1="${innerY0 + innerWid/3}" x2="${rearBenchX + benchDepth/2}" y2="${innerY0 + innerWid/3}" class="seatdivider"/>`;
-rowsSvg += `<line x1="${rearBenchX - benchDepth/2}" y1="${innerY0 + 2*innerWid/3}" x2="${rearBenchX + benchDepth/2}" y2="${innerY0 + 2*innerWid/3}" class="seatdivider"/>`;
-
-const cabSeatX = partitionX + CAB_DEPTH * 0.6;
-const driverY = innerCY + (aisle/2 + seatWidth/2 + 40);
-const codriverY = innerCY - (aisle/2 + seatWidth/2 + 40);
-const cabSeatSize = 430;
 
 const FS = 175;
 const SWd = 14; // hairline stroke unit
+
+// Seat glyph: light cushion, thin stroke, a hairline marking the backrest edge
+// (the rear edge of the seat — every seat faces the front) and dividers between paired seats.
+function seatGlyph(seat) {
+  const cx = px(seat.cx), cy = py(seat.cy), wAlongX = seat.depth, wAlongY = seat.width;
+  const x0 = cx - wAlongX / 2, y0 = cy - wAlongY / 2;
+  let g = `
+    <rect x="${x0}" y="${y0}" width="${wAlongX}" height="${wAlongY}" rx="22" class="seat"/>
+    <line x1="${x0 + 4}" y1="${y0 + 6}" x2="${x0 + 4}" y2="${y0 + wAlongY - 6}" class="seatback"/>`;
+  for (let i = 1; i < seat.count; i++) {
+    const yy = y0 + (wAlongY / seat.count) * i;
+    g += `<line x1="${x0 + 12}" y1="${yy}" x2="${x0 + wAlongX - 12}" y2="${yy}" class="seatdivider"/>`;
+  }
+  return g;
+}
+function cabSeatGlyph(seat, label) {
+  const cx = px(seat.cx), cy = py(seat.cy);
+  return `
+    <rect x="${cx - seat.depth / 2}" y="${cy - seat.width / 2}" width="${seat.depth}" height="${seat.width}" rx="26" class="cabseat"/>
+    <text x="${cx}" y="${cy + FS * 0.27}" class="seatlabel">${label}</text>`;
+}
+
+let seatsSvg = '';
+LAY.seats.forEach(seat => {
+  if (seat.kind === 'driver') seatsSvg += cabSeatGlyph(seat, 'D');
+  else if (seat.kind === 'codriver') seatsSvg += cabSeatGlyph(seat, 'C');
+  else seatsSvg += seatGlyph(seat);
+});
+
+const wheelsSvg = LAY.wheels.map(w =>
+  `<rect x="${px(w.x) - w.diameter / 2}" y="${py(w.y) - w.width / 2}" width="${w.diameter}" height="${w.width}" rx="60" class="wheel"/>`
+).join('\n  ');
 
 function dimH(x1, y, x2, label) {
   return `
@@ -142,6 +148,8 @@ function dimV(x, y1, y2, label) {
     <rect x="${x-FS*0.55}" y="${midY-label.length*FS*0.29}" width="${FS*1.1}" height="${label.length*FS*0.58}" fill="#ffffff"/>
     <text x="${x}" y="${midY}" text-anchor="middle" class="dimtext" transform="rotate(-90 ${x} ${midY})">${label}</text>`;
 }
+
+const rowsDesc = `${seating.middle_rows} × (${seating.seats_per_row_left}+${seating.seats_per_row_right}) middle rows · ${seating.rear_bench_seats}-seat rear bench`;
 
 const svg = `
 <svg viewBox="0 0 ${vbW} ${vbH}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
@@ -174,29 +182,22 @@ const svg = `
   <rect x="${innerRear}" y="${innerY0}" width="${innerFront-innerRear}" height="${innerWid}" class="wall"/>
   <line x1="${partitionX}" y1="${bodyY0+30}" x2="${partitionX}" y2="${bodyY1-30}" class="partition"/>
 
-  ${rowsSvg}
+  ${seatsSvg}
 
-  <rect x="${cabSeatX-cabSeatSize/2}" y="${driverY-cabSeatSize/2}" width="${cabSeatSize}" height="${cabSeatSize}" rx="26" class="cabseat"/>
-  <text x="${cabSeatX}" y="${driverY+FS*0.27}" class="seatlabel">D</text>
-  <rect x="${cabSeatX-cabSeatSize/2}" y="${codriverY-cabSeatSize/2}" width="${cabSeatSize}" height="${cabSeatSize}" rx="26" class="cabseat"/>
-  <text x="${cabSeatX}" y="${codriverY+FS*0.27}" class="seatlabel">C</text>
+  ${wheelsSvg}
 
-  <rect x="${frontAxleX-wheelLen/2}" y="${wheelTopY-wheelWid/2}" width="${wheelLen}" height="${wheelWid}" rx="60" class="wheel"/>
-  <rect x="${frontAxleX-wheelLen/2}" y="${wheelBotY-wheelWid/2}" width="${wheelLen}" height="${wheelWid}" rx="60" class="wheel"/>
-  <rect x="${rearAxleX-wheelLen/2}" y="${wheelTopY-wheelWid/2}" width="${wheelLen}" height="${wheelWid}" rx="60" class="wheel"/>
-  <rect x="${rearAxleX-wheelLen/2}" y="${wheelBotY-wheelWid/2}" width="${wheelLen}" height="${wheelWid}" rx="60" class="wheel"/>
-
-  ${dimH(bodyX0, bodyY0-560, bodyX1, "7010mm overall length")}
-  ${dimH(rearAxleX, bodyY0-320, frontAxleX, "4400mm wheelbase")}
-  ${dimH(frontAxleX, bodyY0-110, frontX, "950")}
-  ${dimH(rearX, bodyY0-110, rearAxleX, "1660")}
-  ${dimV(bodyX1+280, bodyY0, bodyY1, "2095mm")}
+  ${dimH(bodyX0, bodyY0-560, bodyX1, `${b.length}mm overall length`)}
+  ${dimH(rearAxleX, bodyY0-320, frontAxleX, `${b.wheelbase}mm wheelbase`)}
+  ${dimH(frontAxleX, bodyY0-110, frontX, `${b.front_overhang}`)}
+  ${dimH(rearX, bodyY0-110, rearAxleX, `${b.rear_overhang}`)}
+  ${dimV(bodyX1+280, bodyY0, bodyY1, `${b.width}mm`)}
 
   <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+420}" text-anchor="middle" class="caption">Front of vehicle →</text>
-  <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+540}" text-anchor="middle" class="caption" font-size="${FS*0.78}">D = driver · C = co-driver · 4 × (1+2) middle rows · 3-seat rear bench</text>
+  <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+540}" text-anchor="middle" class="caption" font-size="${FS*0.78}">D = driver · C = co-driver · ${rowsDesc}</text>
 </svg>`;
 
 document.getElementById('drawing-frame').innerHTML = svg;
+} // draw
 </script>
 </body>
 </html>
