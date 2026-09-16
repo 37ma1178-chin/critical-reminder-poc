@@ -36,7 +36,8 @@
       "sources": [
         "https://onroadcost.com/blog/force-urbania-caravan-best-variant-price-india"
       ],
-      "side": "full"
+      "side": "full",
+      "short_name": "Partition"
     },
     {
       "id": "crew_bunk",
@@ -68,7 +69,8 @@
       ],
       "clears_wheel_housing": true,
       "clearance_note": "Lower deck at 400 mm is above the 350 mm wheel housing.",
-      "side": "full"
+      "side": "full",
+      "short_name": "Crew bunk"
     },
     {
       "id": "kitchenette",
@@ -96,7 +98,8 @@
         "https://www.rainbow-conversions.co.uk/combination-units-motorhome-caravan-smev/smev-9222-2-burner-combination-unit-with-glass-lids.html",
         "https://www.converttocamper.co.uk/product-page/dometic-smev-9222-2-burner-hob-and-sink-combination-unit"
       ],
-      "side": "right"
+      "side": "right",
+      "short_name": "Kitchenette"
     },
     {
       "id": "fridge",
@@ -119,7 +122,8 @@
             "max": 100000
           },
           "confidence": "estimated_from_import",
-          "price_basis": "UK/EU list ≈ £550–650; no Indian price list found. Landed estimate."
+          "price_basis": "UK/EU list ≈ £550–650; no Indian price list found. Landed estimate.",
+          "short_name": "Dometic CRX 50"
         },
         {
           "id": "portable",
@@ -132,7 +136,8 @@
             "max": 35000
           },
           "confidence": "web_quoted",
-          "price_basis": "Amazon.in 12 V compressor car fridges listed ₹9,190–65,990 (Sept 2026); 45 L class sits mid-range."
+          "price_basis": "Amazon.in 12 V compressor car fridges listed ₹9,190–65,990 (Sept 2026); 45 L class sits mid-range.",
+          "short_name": "Portable 45 L fridge"
         }
       ],
       "sources": [
@@ -145,7 +150,8 @@
         "align": "rear",
         "note": "Under the counter at the rear end of the kitchen zone, door facing the aisle."
       },
-      "requires": "kitchenette"
+      "requires": "kitchenette",
+      "short_name": "Fridge"
     },
     {
       "id": "lounge_bench",
@@ -165,7 +171,8 @@
       "price_basis": "Ply box bench with storage and upholstered cushions, builder-fabricated.",
       "clears_wheel_housing": true,
       "clearance_note": "Box bench is built around the wheel housing; seat at 460 mm is above it.",
-      "side": "right"
+      "side": "right",
+      "short_name": "Lounge bench"
     },
     {
       "id": "toilet_cubicle",
@@ -191,7 +198,8 @@
         "https://www.robustenterprises.in/frp-portable-toilet.html",
         "https://www.indiamart.com/proddetail/motor-home-toilet-8-camper-van-ac-bus-2851789476348.html"
       ],
-      "side": "left"
+      "side": "left",
+      "short_name": "Toilet cubicle"
     },
     {
       "id": "toilet_unit",
@@ -209,7 +217,8 @@
             "max": 25000
           },
           "confidence": "web_quoted",
-          "price_basis": "Listed on Amazon.in and Flipkart India; US RRP $260. Indian listings typically ₹15–25k."
+          "price_basis": "Listed on Amazon.in and Flipkart India; US RRP $260. Indian listings typically ₹15–25k.",
+          "short_name": "Porta Potti 365"
         },
         {
           "id": "cassette",
@@ -222,7 +231,8 @@
             "max": 90000
           },
           "confidence": "estimated_from_import",
-          "price_basis": "US list $670; needs a cut-out hatch in the body side. No Indian price list found."
+          "price_basis": "US list $670; needs a cut-out hatch in the body side. No Indian price list found.",
+          "short_name": "C223 cassette WC"
         }
       ],
       "sources": [
@@ -237,7 +247,8 @@
         "inset": 90,
         "note": "Inside the cubicle against the rear cubicle wall (inset = wall thickness + clearance)."
       },
-      "requires": "toilet_cubicle"
+      "requires": "toilet_cubicle",
+      "short_name": "Toilet"
     },
     {
       "id": "water_tank",
@@ -264,7 +275,8 @@
         "side": "left",
         "align": "center",
         "note": "On the floor against the left wall, opposite the counter."
-      }
+      },
+      "short_name": "Water tank 100 L"
     },
     {
       "id": "electrical_panel",
@@ -328,7 +340,8 @@
         "side": "left",
         "align": "center",
         "note": "Wall-mounted above the water tank at mount_height."
-      }
+      },
+      "short_name": "Electrical cabinet"
     },
     {
       "id": "tv",
@@ -347,7 +360,8 @@
             "max": 20000
           },
           "confidence": "web_quoted",
-          "price_basis": "91mobiles/Smartprix Sept 2026: budget 32\" smart TVs ₹11,999–17,899; typical panel 722–731 × 421–432 mm."
+          "price_basis": "91mobiles/Smartprix Sept 2026: budget 32\" smart TVs ₹11,999–17,899; typical panel 722–731 × 421–432 mm.",
+          "short_name": "32\" TV"
         },
         {
           "id": "43",
@@ -360,7 +374,8 @@
             "max": 35000
           },
           "confidence": "web_quoted",
-          "price_basis": "Sept 2026: Compaq 43\" ₹10,999 (low), Samsung DUE76 ₹26,990, Sony W830K ₹33,000; typical panel ≈ 953 × 536 mm."
+          "price_basis": "Sept 2026: Compaq 43\" ₹10,999 (low), Samsung DUE76 ₹26,990, Sony W830K ₹33,000; typical panel ≈ 953 × 536 mm.",
+          "short_name": "43\" TV"
         }
       ],
       "mount_price_inr": {
@@ -376,7 +391,8 @@
         "on": "partition",
         "note": "Cabin-facing side of the partition, centred, at mount_center_height."
       },
-      "requires": "partition"
+      "requires": "partition",
+      "short_name": "TV"
     }
   ]
 }

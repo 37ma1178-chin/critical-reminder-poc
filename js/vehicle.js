@@ -177,11 +177,13 @@
       return !c.requires || on.has(c.requires);
     });
     sel.layout = q.get('layout') || null;
+    sel.view = q.get('view') || null;     // 3D camera preset (cutaway / topdown / full), used by index.html
     return sel;
   }
   function selectionQuery(sel, extra) {
     const q = new URLSearchParams();
     if (sel.layout) q.set('layout', sel.layout);
+    if (sel.view) q.set('view', sel.view);
     q.set('modules', sel.modules.join(','));
     Object.entries(sel.variants).forEach(([id, v]) => q.set(id, v));
     Object.entries(extra || {}).forEach(([k, v]) => q.set(k, v));

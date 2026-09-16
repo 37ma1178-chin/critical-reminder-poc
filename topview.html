@@ -164,14 +164,19 @@ if (mode === 'camper') {
     camperSvg += `<rect x="${px(z.x0)}" y="${py(-LAY.interior.halfWidth)}" width="${z.length}" height="${LAY.interior.width}" class="bay"/>
       <text x="${px(z.cx)}" y="${py(0)}" class="baylabel" text-anchor="middle">${z.component.name} (off)</text>`;
   });
+  // Rectangles first, labels after, so a sub-module never covers its zone's label
   P.placements.forEach(p => {
-    const w = p.x1 - p.x0, h = p.y1 - p.y0, cx = px((p.x0 + p.x1) / 2), cy = py((p.y0 + p.y1) / 2);
-    const short = { partition: 'Partition', tv: 'TV', crew_bunk: 'Bunk', kitchenette: 'Kitchen', fridge: 'Fridge', water_tank: 'Water', electrical_panel: 'Elec', lounge_bench: 'Lounge', toilet_cubicle: 'Toilet', toilet_unit: 'WC' }[p.id] || p.id;
-    camperSvg += `<rect x="${px(p.x0)}" y="${py(p.y0)}" width="${w}" height="${h}" rx="14" class="mod mod-${p.id}"/>`;
-    // Zone modules are labelled at their front end so labels never sit on the sub-modules
-    // placed at the rear of the zone (fridge, toilet unit); sub-modules are labelled centred.
-    if (p.zone === p.id) camperSvg += `<text x="${px(p.x1) - 70}" y="${cy + FS * 0.25}" class="modlabel" text-anchor="end">${short}</text>`;
-    else if (w > 300 && h > 200) camperSvg += `<text x="${cx}" y="${cy + FS * 0.25}" class="modlabel" text-anchor="middle">${short}</text>`;
+    camperSvg += `<rect x="${px(p.x0)}" y="${py(p.y0)}" width="${p.x1 - p.x0}" height="${p.y1 - p.y0}" rx="14" class="mod mod-${p.id}"/>`;
+  });
+  P.placements.forEach(p => {
+    const cx = px((p.x0 + p.x1) / 2), cy = py((p.y0 + p.y1) / 2);
+    const short = (p.variant && p.variant.short_name) || p.component.short_name || p.id;
+    // Two label lines per zone so labels never sit on each other: the zone module's name on the
+    // upper line, floor-standing sub-modules (fridge, toilet unit, tank) on the lower line, and
+    // wall-mounted sub-modules (electrical cabinet) on the upper line.
+    const isSub = p.zone && p.zone !== p.id;
+    if (!isSub && p.id !== 'partition' && p.id !== 'tv') camperSvg += `<text x="${cx}" y="${cy - FS * 0.35}" class="modlabel" text-anchor="middle">${short}</text>`;
+    else if (isSub) camperSvg += `<text x="${cx}" y="${cy + (p.z0 > 0 ? -FS * 0.35 : FS * 0.95)}" class="modlabel sub" text-anchor="middle">${short}</text>`;
   });
   // rear walkway
   camperSvg += `<text x="${px(P.zones[P.zones.length - 1].x0 - P.walkway / 2)}" y="${py(0)}" class="baylabel" text-anchor="middle" transform="rotate(-90 ${px(P.zones[P.zones.length - 1].x0 - P.walkway / 2)} ${py(0)})">walkway ${P.walkway}</text>`;
@@ -237,7 +242,8 @@ const svg = `
     .mod-lounge_bench { fill:#cfe3d9; stroke:#3f7a68; }
     .mod-crew_bunk { fill:#d9e0e5; stroke:#4a5c66; }
     .mod-kitchenette { fill:#e6dccb; stroke:#6b5a45; }
-    .modlabel { fill:#3a4a45; font-size:${FS*0.75}px; font-weight:600; font-family:inherit; }
+    .modlabel { fill:#3a4a45; font-size:${FS*0.72}px; font-weight:600; font-family:inherit; }
+    .modlabel.sub { font-size:${FS*0.62}px; font-weight:500; fill:#5b6b66; }
     .dim { stroke:#3a6a72; stroke-width:${SWd*0.65}; fill:none; }
     .dimtick { stroke:#3a6a72; stroke-width:${SWd*0.5}; }
     .dimtext { fill:#3a6a72; font-size:${FS}px; font-weight:600; font-family:inherit; }

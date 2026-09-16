@@ -23,6 +23,15 @@
     border: 1px solid var(--line); border-radius: 8px; padding: 7px 11px; font-size: 11.5px; color: var(--muted); line-height: 1.5; }
   #hint { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.88);
     border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 11px; color: var(--muted); }
+  #labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  #labels[hidden] { display: none; }
+  .lbl { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; font-size: 9.5px; line-height: 1.2;
+    background: rgba(255,255,255,0.9); border: 1px solid var(--line); border-radius: 5px; padding: 2px 6px; color: var(--ink);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06); text-align: center; }
+  .lbl b { display: block; font-size: 10px; }
+  .lbl small { color: var(--muted); }
+  .lbl.dim { background: rgba(255,255,255,0.75); border-style: dashed; color: var(--muted); }
+  .lbl.tiny { padding: 1px 4px; font-size: 10px; }
   #panel { width: 260px; flex: 0 0 260px; min-height: 0; border-left: 1px solid var(--line); background: var(--panel); padding: 16px; overflow-y: auto; }
   @media (max-width: 700px) {
     #main { flex-direction: column; }
@@ -67,7 +76,8 @@
   </header>
   <div id="main">
     <div id="viewport">
-      <div id="hint">Drag to orbit · scroll to zoom</div>
+      <div id="hint" >Drag to orbit · scroll to zoom</div>
+      <div id="labels" hidden></div>
       <div id="dims">Loading data/urbania-17.json…</div>
     </div>
     <div id="panel">
@@ -127,6 +137,10 @@ document.getElementById('specbox').innerHTML =
   `<b>Source spec (${spec.vehicle}):</b><br>${lines.size}<br>${lines.chassis}<br>${lines.overhang}<br>${lines.seating}`;
 
 const viewport = document.getElementById('viewport');
+const seeThrough = []; // meshes that hide what is under them (cubicle lid, upper bunk): see-through in the bird view
+let activeView = null;  // 'cutaway' | 'topdown' | 'full'
+const labelLayer = document.getElementById('labels');
+let labels = [];        // bird-view label chips, projected every frame
 
 // ---------- Scene ----------
 const scene = new THREE.Scene();
@@ -435,8 +449,16 @@ function buildCamperGroup() {
   const P = Vehicle.camperPlacements(spec, V.components, selection);
   const wallColor = 0xd6d1c4, counterColor = 0x6b5a45, applianceColor = 0xc9c4b8,
         bunkColor = 0x4a5c66, doorColor = 0x9c8f76, utilColor = 0x374b52;
+  seeThrough.length = 0;
   const box = (w, h, d, x, y, z, color) => {
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(color));
+    mesh.position.set(x, y, z);
+    mesh.castShadow = true;
+    g.add(mesh);
+    return mesh;
+  };
+  const cyl = (r, h, x, y, z, color, segs) => {
+    const mesh = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, segs || 20), mat(color));
     mesh.position.set(x, y, z);
     mesh.castShadow = true;
     g.add(mesh);
@@ -465,32 +487,49 @@ function buildCamperGroup() {
         const matL = m(c.mattress.length), matW = m(c.mattress.width), matT = m(c.mattress.thickness);
         ['lower', 'upper'].forEach(tier => {
           const deckY = floorY + m(c.deck_heights[tier]);
-          box(r.len, 0.04, r.wid, r.cx, deckY - 0.02, r.cz, 0x5a4636);
-          box(matW, matT, matL, r.cx, deckY + matT / 2, r.cz, bunkColor);
+          const deck = box(r.len, 0.04, r.wid, r.cx, deckY - 0.02, r.cz, 0x5a4636);
+          const mattress = box(matW, matT, matL, r.cx, deckY + matT / 2, r.cz, bunkColor);
+          box(matW * 0.5, matT * 0.6, 0.35, r.cx, deckY + matT + matT * 0.3, r.cz - matL / 2 + 0.25, 0xe8e4da); // pillow
+          if (tier === 'upper') seeThrough.push(deck, mattress);
         });
         const postH = m(c.deck_heights.upper) + 0.2;
         [r.z0 + 0.02, r.z1 - 0.02].forEach(z => box(0.04, postH, 0.04, r.x0 + 0.02, floorY + postH / 2, z, 0x2a2a2a));
+        // ladder on the aisle end of the bunk
+        for (let i = 1; i <= 4; i++) box(0.03, 0.03, 0.3, r.x1 - 0.06, floorY + i * m(c.deck_heights.upper) / 5, r.z1 - 0.2, 0x2a2a2a);
         break;
       }
       case 'kitchenette': {
         box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, counterColor);
         const hs = c.product;
         const hsX = r.x1 - m(hs.length) / 2 - 0.05;
-        box(m(hs.length), 0.02, m(hs.width), hsX, r.y0 + r.h + 0.01, r.cz, 0xb9c2c4);         // hob/sink combo top
-        box(m(hs.length) * 0.4, 0.015, m(hs.width) * 0.8, hsX + m(hs.length) * 0.25, r.y0 + r.h + 0.03, r.cz, 0x1c1c1c); // hob
+        const topY = r.y0 + r.h;
+        box(m(hs.length), 0.02, m(hs.width), hsX, topY + 0.01, r.cz, 0xb9c2c4);                // hob/sink combo top
+        const hobX = hsX + m(hs.length) * 0.25;
+        box(m(hs.length) * 0.42, 0.015, m(hs.width) * 0.85, hobX, topY + 0.03, r.cz, 0x1c1c1c); // 2-burner hob
+        [-0.09, 0.09].forEach(dx => cyl(0.05, 0.01, hobX + dx, topY + 0.045, r.cz, 0x555555, 16));
+        const sinkX = hsX - m(hs.length) * 0.25;
+        box(m(hs.length) * 0.36, 0.06, m(hs.width) * 0.7, sinkX, topY - 0.02, r.cz, 0xdfe3e6);  // sink bowl
+        cyl(0.012, 0.18, sinkX, topY + 0.09, r.cz - m(hs.width) * 0.3, 0x9a9a9a, 8);            // tap
         break;
       }
-      case 'fridge':
+      case 'fridge': {
         box(r.len, r.h, r.wid + 0.01, r.cx, r.y0 + r.h / 2, r.cz, applianceColor);
+        const doorZ = c.placement.side === 'right' ? r.z0 - 0.006 : r.z1 + 0.006;  // door faces the aisle
+        box(r.len * 0.9, r.h * 0.9, 0.01, r.cx, r.y0 + r.h / 2, doorZ, 0xb5b0a4);
+        box(0.02, r.h * 0.5, 0.02, r.cx + r.len * 0.35, r.y0 + r.h / 2, doorZ + (c.placement.side === 'right' ? -0.015 : 0.015), 0x555555); // handle
         break;
+      }
       case 'water_tank':
         box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, 0x7d93a0);
+        cyl(0.05, 0.02, r.cx + r.len * 0.3, r.y0 + r.h + 0.01, r.cz, 0x5d7380, 12);              // filler cap
         break;
       case 'electrical_panel':
         box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, utilColor);
+        box(r.len * 0.6, r.h * 0.25, 0.01, r.cx, r.y0 + r.h * 0.7, r.cz + (c.placement.side === 'left' ? r.wid / 2 + 0.006 : -r.wid / 2 - 0.006), 0x9fc4d0); // display
         break;
       case 'lounge_bench':
-        box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, 0x2f5d50);
+        box(r.len, r.h - 0.08, r.wid, r.cx, r.y0 + (r.h - 0.08) / 2, r.cz, 0x2f5d50);            // box base
+        [0.25, 0.75].forEach(f => box(r.len * 0.46, 0.08, r.wid - 0.04, r.x0 + r.len * f, r.y0 + r.h - 0.04, r.cz, 0x3f7a68)); // two cushions
         box(0.08, m(c.backrest_height), r.wid, r.x1 - 0.04, r.y0 + m(c.backrest_height) / 2, r.cz, 0x2f5d50);
         break;
       case 'toilet_cubicle': {
@@ -502,12 +541,13 @@ function buildCamperGroup() {
         const jambW = r.wid - m(c.door.width), doorW = m(c.door.width), doorH = m(c.door.height);
         box(t, r.h, jambW, r.x1 - t / 2, r.y0 + r.h / 2, zInner - dir * jambW / 2, wallColor);  // front jamb
         box(t * 0.8, doorH, doorW, r.x1 - t / 2, r.y0 + doorH / 2, zOuter + dir * doorW / 2, doorColor); // door leaf
-        box(r.len, t, r.wid, r.cx, r.y0 + r.h - t / 2, r.cz, wallColor);                       // lid
+        seeThrough.push(box(r.len, t, r.wid, r.cx, r.y0 + r.h - t / 2, r.cz, wallColor));      // lid
         box(0.30, 0.08, 0.25, r.x1 - t - 0.2, floorY + 0.85, zOuter + dir * 0.15, 0xf3f1ec);   // basin
         break;
       }
       case 'toilet_unit':
-        box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, 0xf3f1ec);
+        box(r.len, r.h * 0.55, r.wid, r.cx, r.y0 + r.h * 0.275, r.cz, 0xf3f1ec);               // tank / base
+        cyl(Math.min(r.len, r.wid) * 0.42, r.h * 0.45, r.cx, r.y0 + r.h * 0.775, r.cz, 0xffffff, 18); // bowl + seat
         break;
       default:
         box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, 0xaaaaaa);
@@ -557,6 +597,7 @@ function rebuildCamper() {
   layouts.camper = buildCamperGroup();
   if (wasActive) scene.add(layouts.camper);
   renderModules();
+  applyBirdMode();
   Vehicle.writeSelection(selection);
 }
 document.getElementById('modules').addEventListener('change', e => {
@@ -581,9 +622,91 @@ function setLayout(name) {
   scene.add(layouts[activeLayout]);
   document.getElementById('modules-group').hidden = name !== 'camper';
   document.querySelectorAll('[data-layout]').forEach(b => b.classList.toggle('active', b.dataset.layout === name));
+  applyBirdMode();
   if (selection) { selection.layout = name === 'rows' ? null : name; Vehicle.writeSelection(selection); }
 }
 setLayout((selection && selection.layout && layouts[selection.layout]) ? selection.layout : 'rows');
+
+// ---------- Bird-view labels ----------
+// Small HTML chips anchored to scene points, projected every frame. Only shown in the
+// roof-off (bird) view, where everything is laid out flat and can be read like a plan.
+function clearLabels() { labelLayer.innerHTML = ''; labels = []; }
+function addLabel(x, y, z, html, cls) {
+  const el = document.createElement('div');
+  el.className = 'lbl' + (cls ? ' ' + cls : '');
+  el.innerHTML = html;
+  labelLayer.appendChild(el);
+  labels.push({ pos: new THREE.Vector3(x, y, z), el });
+}
+const _v = new THREE.Vector3();
+function updateLabels() {
+  if (labelLayer.hidden) return;
+  const w = viewport.clientWidth, h = viewport.clientHeight;
+  labels.forEach(l => {
+    _v.copy(l.pos).project(camera);
+    l.el.style.left = ((_v.x + 1) / 2 * w) + 'px';
+    l.el.style.top = ((1 - _v.y) / 2 * h) + 'px';
+    l.el.style.display = (_v.z < 1 && Math.abs(_v.x) < 1.1 && Math.abs(_v.y) < 1.1) ? '' : 'none';
+  });
+}
+// Vehicle-frame rectangle (mm) → label at its centre, on top of the object
+function labelRect(x0, x1, y0, y1, zTop, html, cls) {
+  addLabel(vx((x0 + x1) / 2), floorY + m(zTop) + 0.05, m((y0 + y1) / 2), html, cls);
+}
+function refreshLabels() {
+  clearLabels();
+  const hw = LAY.interior.halfWidth, W2 = spec.body.width / 2;
+  // Always: front/rear markers, dimensions, wheel housings inside the cabin
+  addLabel(LEN / 2 + 0.3, 1, 0, '<b>Front</b>', 'dim');
+  addLabel(-LEN / 2 - 0.35, 1, 0, '<b>Rear doors</b>', 'dim');
+  addLabel(0, HGT, WID / 2 + 0.4, `<small>Length ${spec.body.length} · Width ${spec.body.width} · Wheelbase ${spec.body.wheelbase} mm</small>`, 'dim');
+  LAY.wheelHousings.filter(h => h.axle === 'rear').forEach(h =>
+    labelRect(h.x0, h.x1, h.y0, h.y1, h.height, `<small>Wheel housing ${h.length}×${h.width}</small>`, 'tiny'));
+
+  const cabSeats = LAY.seats.filter(s => s.kind === 'driver' || s.kind === 'codriver');
+  const seatLabel = (seat, html, cls) => labelRect(seat.cx - seat.depth / 2, seat.cx + seat.depth / 2, seat.cy - seat.width / 2, seat.cy + seat.width / 2, spec.stock_seating.seat_height, html, cls);
+
+  if (activeLayout === 'rows') {
+    LAY.seats.forEach(seat => {
+      if (seat.kind === 'driver' || seat.kind === 'codriver') return seatLabel(seat, `<b>${seat.kind === 'driver' ? 'Driver' : 'Co-driver'}</b><small>${seat.depth}×${seat.width}</small>`);
+      if (seat.kind === 'bench') return seatLabel(seat, `<b>Rear bench · ${seat.count} seats</b><small>${seat.depth}×${seat.width} mm</small>`);
+      seatLabel(seat, `<b>R${seat.row + 1} ${seat.side === 'left' ? 'L' : 'R'} · ${seat.count}</b><small>${seat.depth}×${seat.width}</small>`, 'tiny');
+    });
+    addLabel(vx(LAY.interior.x1 - spec.stock_seating.first_row_setback - spec.stock_seating.row_pitch * 1.5), 1.2, 0,
+      `<small>Aisle ${spec.stock_seating.aisle_width} mm · row pitch ${spec.stock_seating.row_pitch} mm</small>`, 'dim tiny');
+    addLabel(vx(LAY.interior.x1), 1.4, m(W2 + 300), `<small>Partition · cab ${spec.assumptions.cab_depth} mm →</small>`, 'dim tiny');
+  } else if (activeLayout === 'camper' && layouts.camper.userData.placements) {
+    const P = layouts.camper.userData.placements;
+    cabSeats.forEach(seat => seatLabel(seat, `<b>${seat.kind === 'driver' ? 'Driver' : 'Co-driver'}</b>`, 'tiny'));
+    P.placements.forEach(p => {
+      const c = p.component, v = p.variant;
+      const name = (v && v.short_name) || c.short_name || c.name;
+      const price = Vehicle.componentPrice(c, selection.variants[p.id]);
+      const size = `${p.x1 - p.x0}×${p.y1 - p.y0}×${p.height}`;
+      const isSub = p.zone && p.zone !== p.id;
+      const html = `<b>${name}</b><small>${size} mm${isSub ? '' : ' · ' + inr(price.min) + '–' + inr(price.max)}</small>`;
+      const cy = (p.y0 + p.y1) / 2, top = p.z0 + p.height;
+      if (p.id === 'partition') return addLabel(vx(p.x1), floorY + m(top), m(W2 + 300), html);      // just outside the body, driver side
+      if (p.id === 'tv') return addLabel(vx(p.x1), floorY + m(top), -m(W2 + 300), html);           // just outside the body, other side
+      if (isSub && p.z0 > 0) {                                                                    // wall-mounted sub-module (electrical cabinet): outside the body on its wall's side
+        const side = c.placement.side === 'left' ? -1 : 1;
+        return addLabel(vx((p.x0 + p.x1) / 2), floorY + m(top), side * m(W2 + 300), html, 'tiny');
+      }
+      if (isSub) return labelRect(p.x0, p.x1, p.y0, p.y1, top, html, 'tiny');                      // floor-standing sub-module: on itself
+      // Zone modules against a wall: label just inboard of them, over the aisle, so sub-modules stay readable
+      if (c.side === 'left') return addLabel(vx((p.x0 + p.x1) / 2), floorY + m(top), m(p.y1 + 130), html);
+      if (c.side === 'right') return addLabel(vx((p.x0 + p.x1) / 2), floorY + m(top), m(p.y0 - 130), html);
+      labelRect(p.x0, p.x1, p.y0, p.y1, top, html);
+    });
+    const on = new Set(P.placements.map(p => p.id));
+    P.zones.filter(z => !on.has(z.id)).forEach(z =>
+      labelRect(z.x0, z.x1, -hw, hw, 0, `<small>${z.component.short_name} bay — empty · ${z.length} mm</small>`, 'dim'));
+    const lastZone = P.zones[P.zones.length - 1];
+    labelRect(LAY.interior.x0, lastZone.x0, -hw, hw, 0, `<small>Rear walkway<br>${P.walkway} mm</small>`, 'dim');
+  } else if (activeLayout === 'lounge') {
+    addLabel(interiorCenterX, 1.2, 0, '<small>Lounge preset — placeholder sizes, not in the catalog</small>', 'dim');
+  }
+}
 
 // ---------- View modes ----------
 const DEFAULT_CAM = camera.position.clone();
@@ -593,29 +716,39 @@ const FLY_MS = 600;
 function flyTo(pos, target) {
   cameraTween = { from: camera.position.clone(), to: pos.clone(), fromT: controls.target.clone(), toT: target.clone(), start: performance.now() };
 }
+function applyBirdMode() {
+  const bird = activeView === 'topdown';
+  seeThrough.forEach(mesh => { mesh.material.transparent = bird; mesh.material.opacity = bird ? 0.22 : 1; });
+  labelLayer.hidden = !bird;
+  if (bird) refreshLabels();
+}
 function setView(mode) {
+  activeView = mode;
   const opaque = mode !== 'cutaway';
   bodyMat.transparent = !opaque;
   bodyMat.opacity = opaque ? 1 : 0.26;
   roofCap.visible = mode === 'full';
   roofSlab.visible = mode !== 'topdown';
+  applyBirdMode();
+  document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === mode));
+  if (selection) { selection.view = mode === 'cutaway' ? null : mode; Vehicle.writeSelection(selection); }
   if (mode === 'topdown') {
     // Overhead, framed to the vehicle length. A small +z offset (not a pure vertical) keeps the
     // look-at well defined and orients the view like topview.html: front to the right, driver side down.
-    flyTo(new THREE.Vector3(0, LEN * 1.7, 0.08), new THREE.Vector3(0, BODY_BOTTOM, 0));
+    // Height that fits the vehicle length (plus margin for the end labels) at roof level.
+    const roofY = BODY_BOTTOM + MAIN_BOX_H;
+    const halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
+    const h = roofY + (LEN * 1.22) / (2 * Math.tan(halfFov) * camera.aspect);
+    flyTo(new THREE.Vector3(0, h, 0.08), new THREE.Vector3(0, BODY_BOTTOM, 0));
   } else {
     flyTo(DEFAULT_CAM, DEFAULT_TARGET);
   }
 }
-setView('cutaway');
+setView((selection && selection.view && ['cutaway', 'topdown', 'full'].includes(selection.view)) ? selection.view : 'cutaway');
 
 // ---------- UI wiring ----------
 document.querySelectorAll('[data-view]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('[data-view]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    setView(btn.dataset.view);
-  });
+  btn.addEventListener('click', () => setView(btn.dataset.view));
 });
 document.querySelectorAll('[data-layout]').forEach(btn => {
   btn.addEventListener('click', () => setLayout(btn.dataset.layout));
@@ -652,6 +785,7 @@ function animate() {
   }
   controls.update();
   renderer.render(scene, camera);
+  updateLabels();
 }
 animate();
 } // main

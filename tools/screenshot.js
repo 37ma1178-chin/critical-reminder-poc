@@ -39,6 +39,9 @@ fs.mkdirSync(out, { recursive: true });
   const captures = [
     { url: 'index.html', shots: async p => {
       await shoot(p, 'index-stock-cutaway');
+      await p.click('[data-view="topdown"]'); await p.waitForTimeout(2500);
+      await shoot(p, 'index-stock-roof-off');
+      await p.click('[data-view="cutaway"]'); await p.waitForTimeout(2500);
       await p.click('[data-layout="lounge"]'); await p.waitForTimeout(300);
       await shoot(p, 'index-lounge-cutaway');
       await p.click('[data-layout="camper"]'); await p.waitForTimeout(300);
