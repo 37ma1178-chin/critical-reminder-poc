@@ -16,17 +16,18 @@
   header { padding: 16px 20px 12px; border-bottom: 1px solid var(--line); background: var(--panel); }
   header h1 { margin: 0 0 3px; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
   header p { margin: 0; font-size: 12.5px; color: var(--muted); }
-  #main { flex: 1; display: flex; min-height: 0; flex-wrap: wrap; }
-  #viewport { flex: 1 1 320px; position: relative; min-height: 320px; background: linear-gradient(180deg,#eef0ec 0%, #f6f5f1 60%); }
+  #main { flex: 1; display: flex; min-height: 0; overflow: hidden; }
+  #viewport { flex: 1 1 auto; min-width: 0; min-height: 0; position: relative; background: linear-gradient(180deg,#eef0ec 0%, #f6f5f1 60%); }
   #viewport canvas { display: block; }
   #dims { position: absolute; left: 12px; bottom: 12px; background: rgba(255,255,255,0.92);
     border: 1px solid var(--line); border-radius: 8px; padding: 7px 11px; font-size: 11.5px; color: var(--muted); line-height: 1.5; }
   #hint { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.88);
     border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 11px; color: var(--muted); }
-  #panel { width: 260px; flex: 0 0 260px; border-left: 1px solid var(--line); background: var(--panel); padding: 16px; overflow-y: auto; }
+  #panel { width: 260px; flex: 0 0 260px; min-height: 0; border-left: 1px solid var(--line); background: var(--panel); padding: 16px; overflow-y: auto; }
   @media (max-width: 700px) {
-    #panel { border-left: none; border-top: 1px solid var(--line); width: 100%; flex: 0 0 auto; }
-    #viewport { flex: 1 1 100%; height: 46vh; }
+    #main { flex-direction: column; }
+    #panel { border-left: none; border-top: 1px solid var(--line); width: 100%; flex: 1 1 auto; }
+    #viewport { flex: 0 0 46vh; }
   }
   .group { margin-bottom: 18px; }
   .group h2 { font-size: 11px; color: var(--muted); margin: 0 0 8px; font-weight: 600; }
@@ -43,6 +44,19 @@
   .specbox { font-size: 11px; color: var(--muted); line-height: 1.6; padding: 10px 12px; background: #faf9f6;
     border: 1px solid var(--line); border-radius: 8px; margin-bottom: 14px; }
   .specbox b { color: var(--ink); }
+  .module { display: flex; align-items: flex-start; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 12.5px; }
+  .module:last-child { border-bottom: none; }
+  .module input[type=checkbox] { margin: 3px 0 0; flex: none; }
+  .module .body { flex: 1; min-width: 0; }
+  .module .name { display: block; }
+  .module .price { color: var(--muted); font-size: 11.5px; }
+  .module .badge { display: inline-block; font-size: 9.5px; padding: 1px 5px; border-radius: 4px; background: #eee9dc; color: #6b5a45; margin-left: 4px; vertical-align: 1px; }
+  .module .badge.web_quoted { background: var(--accent-soft); color: var(--accent); }
+  .module select { margin-top: 4px; font-size: 11.5px; max-width: 100%; border: 1px solid var(--line); border-radius: 5px; padding: 2px 4px; background: #fff; color: var(--ink); }
+  .module.disabled { opacity: 0.45; }
+  .total { margin-top: 10px; font-size: 12.5px; }
+  .total b { color: var(--ink); }
+  .link { display: block; margin-top: 8px; font-size: 12px; color: var(--accent); }
 </style>
 </head>
 <body>
@@ -70,10 +84,11 @@
         <button class="option" data-layout="lounge">Lounge conversion (sofa + table)</button>
         <button class="option" data-layout="camper">Camper conversion (toilet, kitchen, bunk)</button>
       </div>
-      <div class="group">
-        <h2>TV size (camper conversion)</h2>
-        <button class="option active" data-tv="32">32" TV</button>
-        <button class="option" data-tv="43">43" TV</button>
+      <div class="group" id="modules-group" hidden>
+        <h2>Camper modules</h2>
+        <div id="modules"></div>
+        <div class="total" id="total"></div>
+        <a class="link" id="topview-link" href="topview.html">Open this configuration in the top view →</a>
       </div>
       <div class="group">
         <h2>Exterior colour</h2>
@@ -85,7 +100,7 @@
           <div class="swatch" data-color="0xdfe3e6" style="background:#dfe3e6" title="Pearl white"></div>
         </div>
       </div>
-      <div class="note" id="note">Loading data/components.json…</div>
+      <div class="note">Camper modules are sized and placed from <code>data/components.json</code>. The lounge preset's sofa and table are still placeholder sizes.</div>
     </div>
   </div>
 </div>
@@ -408,25 +423,18 @@ const lounge = new THREE.Group();
 lounge.position.x = interiorCenterX;
 layouts.lounge = lounge;
 
-// Camper conversion — every module comes from data/components.json (via the shared
-// camper zones in js/vehicle.js): partition, crew bunk, kitchenette + fridge, lounge
-// bench, utilities (water tank + electrical cabinet), TV on the partition, and a fully
-// enclosed toilet cubicle. Zones are fixed and non-overlapping with explicit gaps.
-let tvSize = 32; // inches, toggled from panel
-const CAMPER_IDS = ['partition', 'crew_bunk', 'kitchenette', 'fridge', 'lounge_bench', 'toilet_cubicle', 'toilet_unit', 'water_tank', 'electrical_panel', 'tv'];
-function variantOf(component, id) {
-  return (component.variants || []).find(v => v.id === String(id)) || (component.variants || [])[0];
-}
-function buildCamperGroup(tvInches) {
+// Camper conversion — every module comes from data/components.json. The shared module
+// (js/vehicle.js) decides where each selected module goes (camperPlacements); this page only
+// gives each placement its 3D shape. Zones are fixed and non-overlapping with explicit gaps.
+let selection = V.components ? Vehicle.readSelection(V.components) : null;
+const inr = n => '₹' + (n >= 100000 ? (n / 100000).toFixed(n % 100000 ? 1 : 0) + ' L' : Math.round(n / 1000) + 'k');
+
+function buildCamperGroup() {
   const g = new THREE.Group();
-  if (!V.camper) return g;
-  const byId = V.camper.byId;
-  const zone = id => V.camper.zones.find(z => z.id === id);
-  const wallColor = 0xdedad0, counterColor = 0x6b5a45, applianceColor = 0xc9c4b8,
+  if (!V.components) return g;
+  const P = Vehicle.camperPlacements(spec, V.components, selection);
+  const wallColor = 0xd6d1c4, counterColor = 0x6b5a45, applianceColor = 0xc9c4b8,
         bunkColor = 0x4a5c66, doorColor = 0x9c8f76, utilColor = 0x374b52;
-  const halfW = m(LAY.interior.halfWidth);
-  // Right side (+z) holds kitchen/lounge/toilet, left side (-z) holds the utilities.
-  const rightWall = +halfW, leftWall = -halfW;
   const box = (w, h, d, x, y, z, color) => {
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(color));
     mesh.position.set(x, y, z);
@@ -434,90 +442,148 @@ function buildCamperGroup(tvInches) {
     g.add(mesh);
     return mesh;
   };
-
-  // ---- Partition wall between cab and cabin, with a door, at the front of the interior ----
-  const part = byId.partition;
-  const partT = m(part.footprint.length), partH = m(part.footprint.height);
-  const partitionX = vx(LAY.interior.x1) + partT / 2;  // sits just inside the cab side of the interior line
-  box(partT, partH, m(part.footprint.width), partitionX, floorY + partH / 2, 0, 0x3a3a3a);
-  const doorW = m(part.door.width), doorH = m(part.door.height);
-  box(0.02, doorH, doorW, partitionX - partT / 2 - 0.01, floorY + doorH / 2, halfW - doorW / 2 - 0.15, doorColor);
-
-  // ---- TV on the cabin side of the partition ----
-  const tv = variantOf(byId.tv, tvInches);
-  box(m(tv.length) / 2, m(tv.height), m(tv.width), partitionX - partT / 2 - m(tv.length) / 4, floorY + m(byId.tv.mount_center_height), 0, 0x111111);
-
-  // ---- Crew bunk: two transverse berths ----
-  const zb = zone('crew_bunk'), bunk = byId.crew_bunk;
-  const bunkW = m(bunk.footprint.width), matL = m(bunk.mattress.length), matW = m(bunk.mattress.width), matT = m(bunk.mattress.thickness);
-  ['lower', 'upper'].forEach(tier => {
-    const deckY = floorY + m(bunk.deck_heights[tier]);
-    box(m(zb.length), 0.04, bunkW, vx(zb.cx), deckY - 0.02, 0, 0x5a4636);            // deck
-    box(matW, matT, matL, vx(zb.cx), deckY + matT / 2, 0, bunkColor);                // mattress
-  });
-  [-1, 1].forEach(side => {
-    box(0.04, m(bunk.deck_heights.upper) + 0.2, 0.04, vx(zb.x0) + 0.02, floorY + (m(bunk.deck_heights.upper) + 0.2) / 2, side * (bunkW / 2 - 0.02), 0x2a2a2a);
+  // Scene-space helpers for a placement rectangle (vehicle frame mm → scene metres)
+  const R = p => ({
+    len: m(p.x1 - p.x0), wid: m(p.y1 - p.y0), h: m(p.height),
+    cx: vx((p.x0 + p.x1) / 2), cz: m((p.y0 + p.y1) / 2), y0: floorY + m(p.z0),
+    x0: vx(p.x0), x1: vx(p.x1), z0: m(p.y0), z1: m(p.y1),
   });
 
-  // ---- Kitchenette: counter along the right wall with the hob/sink combo on top, fridge under the rear end ----
-  const zk = zone('kitchenette'), kit = byId.kitchenette;
-  const kD = m(kit.footprint.width), kH = m(kit.footprint.height);
-  const kZ = rightWall - kD / 2;
-  box(m(zk.length), kH, kD, vx(zk.cx), floorY + kH / 2, kZ, counterColor);
-  const hs = kit.product;
-  box(m(hs.length), 0.02, m(hs.width), vx(zk.x1) - m(hs.length) / 2 - 0.05, floorY + kH + 0.01, kZ, 0xb9c2c4); // Smev 9222 top
-  box(m(hs.length) * 0.4, 0.015, m(hs.width) * 0.8, vx(zk.x1) - m(hs.length) * 0.25 - 0.05, floorY + kH + 0.03, kZ, 0x1c1c1c); // hob
-  const fr = variantOf(byId.fridge, 'built_in');
-  box(m(fr.length), m(fr.height), m(fr.width) + 0.01, vx(zk.x0) + m(fr.length) / 2 + 0.02, floorY + m(fr.height) / 2, kZ, applianceColor);
-
-  // ---- Utilities on the left wall, in the kitchen zone: water tank on the floor, electrical cabinet above ----
-  const wt = byId.water_tank;
-  box(m(wt.footprint.length), m(wt.footprint.height), m(wt.footprint.width), vx(zk.cx), floorY + m(wt.footprint.height) / 2, leftWall + m(wt.footprint.width) / 2, 0x7d93a0);
-  const ep = byId.electrical_panel;
-  box(m(ep.footprint.length), m(ep.footprint.height), m(ep.footprint.width), vx(zk.cx), floorY + m(ep.mount_height) + m(ep.footprint.height) / 2, leftWall + m(ep.footprint.width) / 2, utilColor);
-
-  // ---- Lounge bench along the right wall ----
-  const zl = zone('lounge_bench'), lb = byId.lounge_bench;
-  const lD = m(lb.footprint.width);
-  box(m(zl.length), m(lb.footprint.height), lD, vx(zl.cx), floorY + m(lb.footprint.height) / 2, rightWall - lD / 2, 0x2f5d50);
-  box(0.08, m(lb.backrest_height), lD, vx(zl.x1) - 0.04, floorY + m(lb.backrest_height) / 2, rightWall - lD / 2, 0x2f5d50);
-
-  // ---- Toilet cubicle: fully enclosed on all four sides (vehicle side wall + three panels + door) ----
-  const zt = zone('toilet_cubicle'), tc = byId.toilet_cubicle;
-  const tW = m(tc.footprint.width), tH = m(tc.footprint.height), tT = m(tc.wall_thickness);
-  const zOuter = leftWall;                // against the vehicle's left side skin
-  const zInner = zOuter + tW;             // boundary facing the aisle
-  const cubicleMat = wallColor;
-  box(m(zt.length), tH, tT, vx(zt.cx), floorY + tH / 2, zInner - tT / 2, cubicleMat);            // inboard wall
-  box(tT, tH, tW, vx(zt.x0) + tT / 2, floorY + tH / 2, zOuter + tW / 2, cubicleMat);             // rear wall
-  const jambW = tW - m(tc.door.width);
-  box(tT, tH, jambW, vx(zt.x1) - tT / 2, floorY + tH / 2, zInner - jambW / 2, cubicleMat);        // front jamb
-  box(tT * 0.8, m(tc.door.height), m(tc.door.width), vx(zt.x1) - tT / 2, floorY + m(tc.door.height) / 2, zOuter + m(tc.door.width) / 2, doorColor); // door leaf
-  box(m(zt.length), tT, tW, vx(zt.cx), floorY + tH - tT / 2, zOuter + tW / 2, cubicleMat);        // lid
-  const tu = variantOf(byId.toilet_unit, 'portable');
-  box(m(tu.length), m(tu.height), m(tu.width), vx(zt.x0) + tT + m(tu.length) / 2 + 0.05, floorY + m(tu.height) / 2, zOuter + m(tu.width) / 2 + 0.05, 0xf3f1ec);
-  box(0.30, 0.08, 0.25, vx(zt.x1) - tT - 0.2, floorY + 0.85, zOuter + 0.15, 0xf3f1ec);           // basin
-
+  P.placements.forEach(p => {
+    const r = R(p), c = p.component;
+    switch (p.id) {
+      case 'partition': {
+        box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, 0x3a3a3a);
+        const dw = m(c.door.width), dh = m(c.door.height);
+        box(0.02, dh, dw, r.x0 - 0.01, r.y0 + dh / 2, r.z1 - dw / 2 - 0.15, doorColor);
+        break;
+      }
+      case 'tv':
+        box(r.len / 2, r.h, r.wid, r.x1 - r.len / 4, r.y0 + r.h / 2, r.cz, 0x111111);
+        break;
+      case 'crew_bunk': {
+        const matL = m(c.mattress.length), matW = m(c.mattress.width), matT = m(c.mattress.thickness);
+        ['lower', 'upper'].forEach(tier => {
+          const deckY = floorY + m(c.deck_heights[tier]);
+          box(r.len, 0.04, r.wid, r.cx, deckY - 0.02, r.cz, 0x5a4636);
+          box(matW, matT, matL, r.cx, deckY + matT / 2, r.cz, bunkColor);
+        });
+        const postH = m(c.deck_heights.upper) + 0.2;
+        [r.z0 + 0.02, r.z1 - 0.02].forEach(z => box(0.04, postH, 0.04, r.x0 + 0.02, floorY + postH / 2, z, 0x2a2a2a));
+        break;
+      }
+      case 'kitchenette': {
+        box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, counterColor);
+        const hs = c.product;
+        const hsX = r.x1 - m(hs.length) / 2 - 0.05;
+        box(m(hs.length), 0.02, m(hs.width), hsX, r.y0 + r.h + 0.01, r.cz, 0xb9c2c4);         // hob/sink combo top
+        box(m(hs.length) * 0.4, 0.015, m(hs.width) * 0.8, hsX + m(hs.length) * 0.25, r.y0 + r.h + 0.03, r.cz, 0x1c1c1c); // hob
+        break;
+      }
+      case 'fridge':
+        box(r.len, r.h, r.wid + 0.01, r.cx, r.y0 + r.h / 2, r.cz, applianceColor);
+        break;
+      case 'water_tank':
+        box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, 0x7d93a0);
+        break;
+      case 'electrical_panel':
+        box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, utilColor);
+        break;
+      case 'lounge_bench':
+        box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, 0x2f5d50);
+        box(0.08, m(c.backrest_height), r.wid, r.x1 - 0.04, r.y0 + m(c.backrest_height) / 2, r.cz, 0x2f5d50);
+        break;
+      case 'toilet_cubicle': {
+        // Enclosed on all sides: the vehicle wall (outer), inboard wall, rear wall, front jamb + door, lid.
+        const t = m(c.wall_thickness), onLeft = c.side === 'left';
+        const zOuter = onLeft ? r.z0 : r.z1, zInner = onLeft ? r.z1 : r.z0, dir = onLeft ? 1 : -1;
+        box(r.len, r.h, t, r.cx, r.y0 + r.h / 2, zInner - dir * t / 2, wallColor);              // inboard wall
+        box(t, r.h, r.wid, r.x0 + t / 2, r.y0 + r.h / 2, r.cz, wallColor);                     // rear wall
+        const jambW = r.wid - m(c.door.width), doorW = m(c.door.width), doorH = m(c.door.height);
+        box(t, r.h, jambW, r.x1 - t / 2, r.y0 + r.h / 2, zInner - dir * jambW / 2, wallColor);  // front jamb
+        box(t * 0.8, doorH, doorW, r.x1 - t / 2, r.y0 + doorH / 2, zOuter + dir * doorW / 2, doorColor); // door leaf
+        box(r.len, t, r.wid, r.cx, r.y0 + r.h - t / 2, r.cz, wallColor);                       // lid
+        box(0.30, 0.08, 0.25, r.x1 - t - 0.2, floorY + 0.85, zOuter + dir * 0.15, 0xf3f1ec);   // basin
+        break;
+      }
+      case 'toilet_unit':
+        box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, 0xf3f1ec);
+        break;
+      default:
+        box(r.len, r.h, r.wid, r.cx, r.y0 + r.h / 2, r.cz, 0xaaaaaa);
+    }
+  });
+  g.userData.placements = P;
   return g;
 }
-function camperNote(tvInches) {
-  if (!V.components) return 'data/components.json not loaded.';
-  const p = Vehicle.priceRange(V.components, CAMPER_IDS, { tv: tvInches, fridge: 'built_in', toilet_unit: 'portable' });
-  const inr = n => '₹' + Math.round(n / 1000) + 'k';
-  return `Camper modules are sized from <code>data/components.json</code>. Estimated module cost for this preset: <b>${inr(p.min)} – ${inr(p.max)}</b> (Indian-market ranges; see the catalog for the basis of each). Rear walkway left by the doors: ${V.camper.walkway} mm.`;
-}
-document.getElementById('note').innerHTML = camperNote(tvSize);
-let camper = buildCamperGroup(tvSize);
-layouts.camper = camper;
 
-let activeLayout = 'rows';
-scene.add(layouts[activeLayout]);
+// ---- Module checklist ----
+function renderModules() {
+  const host = document.getElementById('modules');
+  if (!V.components) { host.textContent = 'data/components.json not loaded.'; return; }
+  const on = new Set(selection.modules);
+  host.innerHTML = '';
+  V.components.components.forEach(c => {
+    const blocked = c.requires && !on.has(c.requires);
+    const checked = on.has(c.id) && !blocked;
+    const price = Vehicle.componentPrice(c, selection.variants[c.id]);
+    const conf = (Vehicle.variantOf(c, selection.variants[c.id]) || c).confidence || c.confidence || '';
+    const row = document.createElement('label');
+    row.className = 'module' + (blocked ? ' disabled' : '');
+    row.innerHTML = `<input type="checkbox" data-module="${c.id}" ${checked ? 'checked' : ''} ${blocked ? 'disabled' : ''}>
+      <span class="body"><span class="name">${c.name}${c.side ? '' : ''}</span>
+      <span class="price">${inr(price.min)} – ${inr(price.max)}<span class="badge ${conf}">${conf.replace(/_/g, ' ')}</span>${blocked ? ` · needs ${c.requires.replace(/_/g, ' ')}` : ''}</span></span>`;
+    if (c.variants) {
+      const sel = document.createElement('select');
+      sel.dataset.variant = c.id;
+      c.variants.forEach(v => {
+        const o = document.createElement('option');
+        o.value = v.id; o.textContent = v.name; o.selected = v.id === selection.variants[c.id];
+        sel.appendChild(o);
+      });
+      row.querySelector('.body').appendChild(sel);
+    }
+    host.appendChild(row);
+  });
+  const P = layouts.camper.userData.placements;
+  document.getElementById('total').innerHTML = P
+    ? `Estimated module cost: <b>${inr(P.price.min)} – ${inr(P.price.max)}</b><br><span style="color:var(--muted)">Indian-market ranges, see the catalog for each basis. Rear walkway ${P.walkway} mm. Bays are fixed: a module that is off leaves its bay empty.</span>`
+    : '';
+  document.getElementById('topview-link').href = 'topview.html' + Vehicle.selectionQuery(Object.assign({}, selection, { layout: 'camper' }));
+}
+function rebuildCamper() {
+  const wasActive = activeLayout === 'camper';
+  if (wasActive) scene.remove(layouts.camper);
+  layouts.camper = buildCamperGroup();
+  if (wasActive) scene.add(layouts.camper);
+  renderModules();
+  Vehicle.writeSelection(selection);
+}
+document.getElementById('modules').addEventListener('change', e => {
+  const t = e.target;
+  if (t.dataset.module) {
+    const on = new Set(selection.modules);
+    t.checked ? on.add(t.dataset.module) : on.delete(t.dataset.module);
+    selection.modules = V.components.components.map(c => c.id).filter(id => on.has(id));
+  } else if (t.dataset.variant) {
+    selection.variants[t.dataset.variant] = t.value;
+  }
+  rebuildCamper();
+});
+layouts.camper = buildCamperGroup();
+renderModules();
+
+let activeLayout = null;
 function setLayout(name) {
   if (name === activeLayout) return;
-  scene.remove(layouts[activeLayout]);
+  if (activeLayout) scene.remove(layouts[activeLayout]);
   activeLayout = name;
   scene.add(layouts[activeLayout]);
+  document.getElementById('modules-group').hidden = name !== 'camper';
+  document.querySelectorAll('[data-layout]').forEach(b => b.classList.toggle('active', b.dataset.layout === name));
+  if (selection) { selection.layout = name === 'rows' ? null : name; Vehicle.writeSelection(selection); }
 }
+setLayout((selection && selection.layout && layouts[selection.layout]) ? selection.layout : 'rows');
 
 // ---------- View modes ----------
 const DEFAULT_CAM = camera.position.clone();
@@ -552,24 +618,7 @@ document.querySelectorAll('[data-view]').forEach(btn => {
   });
 });
 document.querySelectorAll('[data-layout]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('[data-layout]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    setLayout(btn.dataset.layout);
-  });
-});
-document.querySelectorAll('[data-tv]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('[data-tv]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    tvSize = parseInt(btn.dataset.tv, 10);
-    const wasActive = activeLayout === 'camper';
-    if (wasActive) scene.remove(layouts.camper);
-    camper = buildCamperGroup(tvSize);
-    layouts.camper = camper;
-    document.getElementById('note').innerHTML = camperNote(tvSize);
-    if (wasActive) scene.add(layouts.camper);
-  });
+  btn.addEventListener('click', () => setLayout(btn.dataset.layout));
 });
 document.querySelectorAll('[data-color]').forEach(sw => {
   sw.addEventListener('click', () => {

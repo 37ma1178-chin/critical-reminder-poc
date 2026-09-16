@@ -131,6 +131,20 @@
     return { zones, byId, walkway, rearWalkwayX0: lay.interior.x0, rearWalkwayX1: front };
   }
 
+  function variantOf(component, id) {
+    if (!component.variants) return null;
+    return component.variants.find(v => v.id === String(id)) || component.variants[0];
+  }
+
+  // Price range of one component (with its chosen variant and mount, if any).
+  function componentPrice(component, variantId) {
+    const v = variantOf(component, variantId);
+    const p = v ? v.price_inr : component.price_inr;
+    const out = { min: p ? p.min : 0, max: p ? p.max : 0 };
+    if (component.mount_price_inr) { out.min += component.mount_price_inr.min; out.max += component.mount_price_inr.max; }
+    return out;
+  }
+
   // Sum of price_inr ranges for a list of component ids, using the given variant per id where one applies.
   function priceRange(catalog, ids, variantById) {
     const byId = Object.fromEntries(catalog.components.map(c => [c.id, c]));
@@ -138,15 +152,97 @@
     ids.forEach(id => {
       const c = byId[id];
       if (!c) return;
-      let p = c.price_inr;
-      if (c.variants) {
-        const v = c.variants.find(v => v.id === String((variantById || {})[id])) || c.variants[0];
-        p = v.price_inr;
-      }
-      if (p) { min += p.min; max += p.max; }
-      if (c.mount_price_inr) { min += c.mount_price_inr.min; max += c.mount_price_inr.max; }
+      const p = componentPrice(c, (variantById || {})[id]);
+      min += p.min; max += p.max;
     });
     return { min, max };
+  }
+
+  // ---- Module selection, shared between pages through the URL query ----
+  // ?layout=camper&modules=crew_bunk,kitchenette,...&tv=43&fridge=built_in&toilet_unit=portable
+  function defaultSelection(catalog) {
+    const variants = {};
+    catalog.components.forEach(c => { if (c.variants) variants[c.id] = c.variants[0].id; });
+    return { modules: catalog.components.map(c => c.id), variants };
+  }
+  function readSelection(catalog, search) {
+    const q = new URLSearchParams(search === undefined ? location.search : search);
+    const sel = defaultSelection(catalog);
+    if (q.has('modules')) sel.modules = q.get('modules').split(',').filter(id => catalog.components.some(c => c.id === id));
+    catalog.components.forEach(c => { if (c.variants && q.has(c.id)) sel.variants[c.id] = q.get(c.id); });
+    // A sub-module cannot be on without the module it requires
+    const on = new Set(sel.modules);
+    sel.modules = sel.modules.filter(id => {
+      const c = catalog.components.find(c => c.id === id);
+      return !c.requires || on.has(c.requires);
+    });
+    sel.layout = q.get('layout') || null;
+    return sel;
+  }
+  function selectionQuery(sel, extra) {
+    const q = new URLSearchParams();
+    if (sel.layout) q.set('layout', sel.layout);
+    q.set('modules', sel.modules.join(','));
+    Object.entries(sel.variants).forEach(([id, v]) => q.set(id, v));
+    Object.entries(extra || {}).forEach(([k, v]) => q.set(k, v));
+    return '?' + q.toString().replace(/%2C/g, ',');
+  }
+  function writeSelection(sel) {
+    history.replaceState(null, '', selectionQuery(sel) + location.hash);
+  }
+
+  // ---- Placements: one rectangle per selected module, in the vehicle frame (mm) ----
+  // Every drawing of a camper module in any view starts from this list, so the views agree.
+  //   { id, component, variant, x0, x1, y0, y1, z0, height, zone }   z0 = bottom above the cabin floor
+  function camperPlacements(spec, catalog, selection) {
+    const lay = layout(spec);
+    const cz = camperZones(spec, catalog);
+    const sel = selection || defaultSelection(catalog);
+    const on = new Set(sel.modules);
+    const byId = cz.byId;
+    const hw = lay.interior.halfWidth;
+    const zoneOf = id => cz.zones.find(z => z.id === id);
+    const sideSpan = (side, width) => side === 'left' ? [-hw, -hw + width] : side === 'right' ? [hw - width, hw] : [-width / 2, width / 2];
+    const placements = [];
+
+    // Zone modules
+    cz.zones.forEach(z => {
+      if (!on.has(z.id)) return;
+      const [y0, y1] = sideSpan(z.component.side || 'full', z.width);
+      placements.push({ id: z.id, component: z.component, variant: null, x0: z.x0, x1: z.x1, y0, y1, z0: 0, height: z.height, zone: z.id });
+    });
+
+    // Partition: right at the front of the interior, full width
+    const part = byId.partition;
+    if (part && on.has('partition')) {
+      placements.push({ id: 'partition', component: part, variant: null, x0: lay.interior.x1, x1: lay.interior.x1 + part.footprint.length, y0: -hw, y1: hw, z0: 0, height: part.footprint.height, zone: null });
+    }
+
+    // Sub-modules placed inside a zone or on the partition
+    catalog.components.forEach(c => {
+      if (!c.placement || !on.has(c.id)) return;
+      if (c.requires && !on.has(c.requires)) return;
+      const v = variantOf(c, sel.variants[c.id]);
+      const size = v || c.footprint;
+      if (c.placement.on === 'partition') {
+        const px = lay.interior.x1;
+        placements.push({ id: c.id, component: c, variant: v, x0: px - size.length, x1: px, y0: -size.width / 2, y1: size.width / 2, z0: c.mount_center_height - size.height / 2, height: size.height, zone: null });
+        return;
+      }
+      const z = zoneOf(c.placement.in_zone);
+      if (!z) return;
+      const inset = c.placement.inset || 0;
+      let x0, x1;
+      if (c.placement.align === 'rear') { x0 = z.x0 + inset; x1 = x0 + size.length; }
+      else if (c.placement.align === 'front') { x1 = z.x1 - inset; x0 = x1 - size.length; }
+      else { x0 = z.cx - size.length / 2; x1 = z.cx + size.length / 2; }
+      const [y0, y1] = sideSpan(c.placement.side, size.width);
+      const yInset = c.placement.side === 'left' ? inset : c.placement.side === 'right' ? -inset : 0;
+      placements.push({ id: c.id, component: c, variant: v, x0, x1, y0: y0 + yInset, y1: y1 + yInset, z0: c.mount_height || 0, height: size.height, zone: z.id });
+    });
+
+    const price = priceRange(catalog, sel.modules.filter(id => placements.some(p => p.id === id)), sel.variants);
+    return { placements, zones: cz.zones, walkway: cz.walkway, price, selection: sel };
   }
 
   async function fetchJson(url) {
@@ -176,5 +272,6 @@
     };
   }
 
-  global.Vehicle = { load, layout, validate, specLines, camperZones, priceRange, DATA_URL, COMPONENTS_URL };
+  global.Vehicle = { load, layout, validate, specLines, camperZones, camperPlacements, priceRange, componentPrice, variantOf,
+    defaultSelection, readSelection, selectionQuery, writeSelection, DATA_URL, COMPONENTS_URL };
 })(window);

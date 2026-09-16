@@ -10,6 +10,7 @@ npx serve .          # or: npx http-server . -p 8080
 ```
 
 Then open `/index.html` (3D viewer) and `/topview.html` (dimensioned top view).
+The camper module selection is kept in the URL query (`?layout=camper&modules=…`), so a link from one page opens the same configuration in the other.
 The pages fetch `data/urbania-17.json`, so they need a static server; `file://` will not work.
 
 ## Screenshots

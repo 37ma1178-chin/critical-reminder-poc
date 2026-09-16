@@ -11,7 +11,7 @@
       "toilet_cubicle",
       "lounge_bench"
     ],
-    "note": "Modules are laid out rear-wards from the partition in fixed zones with this gap; nothing may overlap. Whatever is left at the rear is the walkway to the rear doors. A module may only span a wheel housing if it sets clears_wheel_housing (its floor structure is above the housing height)."
+    "note": "Zone modules are laid out rear-wards from the partition in fixed zones with this gap; nothing may overlap. Whatever is left at the rear is the walkway to the rear doors. Zones are fixed: turning a module off leaves its bay empty, it does not shift the others. A module may only span a wheel housing if it sets clears_wheel_housing. `side` says which wall a zone module sits against (left / right / full width). Sub-modules carry a `placement` inside a zone or on the partition; `requires` names the module they need."
   },
   "components": [
     {
@@ -35,7 +35,8 @@
       "price_basis": "Ply + laminate bulkhead with a hinged door, fabricated by an Indian caravan builder; part of the ₹5–10 lakh interior build-up quoted in 2026 conversion guides.",
       "sources": [
         "https://onroadcost.com/blog/force-urbania-caravan-best-variant-price-india"
-      ]
+      ],
+      "side": "full"
     },
     {
       "id": "crew_bunk",
@@ -66,7 +67,8 @@
         "https://carac.com.au/blogs/buying-guides/caravan-bed-sizes-dimensions-guide"
       ],
       "clears_wheel_housing": true,
-      "clearance_note": "Lower deck at 400 mm is above the 350 mm wheel housing."
+      "clearance_note": "Lower deck at 400 mm is above the 350 mm wheel housing.",
+      "side": "full"
     },
     {
       "id": "kitchenette",
@@ -93,7 +95,8 @@
       "sources": [
         "https://www.rainbow-conversions.co.uk/combination-units-motorhome-caravan-smev/smev-9222-2-burner-combination-unit-with-glass-lids.html",
         "https://www.converttocamper.co.uk/product-page/dometic-smev-9222-2-burner-hob-and-sink-combination-unit"
-      ]
+      ],
+      "side": "right"
     },
     {
       "id": "fridge",
@@ -104,7 +107,6 @@
         "width": 500,
         "height": 534
       },
-      "installed_in": "kitchenette",
       "variants": [
         {
           "id": "built_in",
@@ -136,7 +138,14 @@
       "sources": [
         "https://www.dometic.com/en-us/outdoor/boat/boat-refrigerators/dometic-crx-50-146543",
         "https://www.amazon.in/car-fridge-12v-50-ltr-capacity/s?k=car+fridge+12v+50+ltr+capacity"
-      ]
+      ],
+      "placement": {
+        "in_zone": "kitchenette",
+        "side": "right",
+        "align": "rear",
+        "note": "Under the counter at the rear end of the kitchen zone, door facing the aisle."
+      },
+      "requires": "kitchenette"
     },
     {
       "id": "lounge_bench",
@@ -155,7 +164,8 @@
       "confidence": "estimated",
       "price_basis": "Ply box bench with storage and upholstered cushions, builder-fabricated.",
       "clears_wheel_housing": true,
-      "clearance_note": "Box bench is built around the wheel housing; seat at 460 mm is above it."
+      "clearance_note": "Box bench is built around the wheel housing; seat at 460 mm is above it.",
+      "side": "right"
     },
     {
       "id": "toilet_cubicle",
@@ -180,13 +190,13 @@
       "sources": [
         "https://www.robustenterprises.in/frp-portable-toilet.html",
         "https://www.indiamart.com/proddetail/motor-home-toilet-8-camper-van-ac-bus-2851789476348.html"
-      ]
+      ],
+      "side": "left"
     },
     {
       "id": "toilet_unit",
       "name": "Toilet",
       "category": "sanitary",
-      "installed_in": "toilet_cubicle",
       "variants": [
         {
           "id": "portable",
@@ -219,7 +229,15 @@
         "https://www.amazon.in/Thetford-Porta-Potti-Portable-Toilet/dp/B0CVQD6GRD",
         "https://www.thetford.com/product/porta-potti-365/",
         "https://www.thetford.com/app/uploads/Thetford_Cassette-toilet_2024_EN.pdf"
-      ]
+      ],
+      "placement": {
+        "in_zone": "toilet_cubicle",
+        "side": "left",
+        "align": "rear",
+        "inset": 90,
+        "note": "Inside the cubicle against the rear cubicle wall (inset = wall thickness + clearance)."
+      },
+      "requires": "toilet_cubicle"
     },
     {
       "id": "water_tank",
@@ -240,7 +258,13 @@
       "sources": [
         "https://www.moglix.com/sintex-loft-100l-water-tank-iws-10-01/mp/msn4k6z0q3q3kq",
         "https://www.thecampervanshop.com/100l-universal-wheel-arch-water-tank/"
-      ]
+      ],
+      "placement": {
+        "in_zone": "kitchenette",
+        "side": "left",
+        "align": "center",
+        "note": "On the floor against the left wall, opposite the counter."
+      }
     },
     {
       "id": "electrical_panel",
@@ -298,13 +322,18 @@
       "sources": [
         "https://www.indiamart.com/proddetail/lifepo4-12v-100ah-battery-pack-21155097830.html",
         "https://www.indiamart.com/proddetail/luminous-1500va-eco-watt-home-ups-inverter-25457922173.html"
-      ]
+      ],
+      "placement": {
+        "in_zone": "kitchenette",
+        "side": "left",
+        "align": "center",
+        "note": "Wall-mounted above the water tank at mount_height."
+      }
     },
     {
       "id": "tv",
       "name": "TV on partition mount",
       "category": "entertainment",
-      "installed_on": "partition",
       "mount_center_height": 1050,
       "variants": [
         {
@@ -342,7 +371,12 @@
         "https://www.91mobiles.com/list-of-tvs/32-inch-smart-tv-in-india",
         "https://www.smartprix.com/tvs/43-inch-smart-tvs-list",
         "https://www.wepc.com/tv/43-inch-tv-dimensions/"
-      ]
+      ],
+      "placement": {
+        "on": "partition",
+        "note": "Cabin-facing side of the partition, centred, at mount_center_height."
+      },
+      "requires": "partition"
     }
   ]
 }

@@ -35,34 +35,46 @@ fs.mkdirSync(out, { recursive: true });
   const errors = [];
   const shoot = (p, name) => p.screenshot({ path: path.join(out, name + '.png') });
 
-  for (const page of ['index.html', 'topview.html']) {
-    const p = await ctx.newPage();
-    p.on('pageerror', e => errors.push(`${page}: ${e.message}`));
-    p.on('console', m => {
-      if (m.type() !== 'error' && m.type() !== 'warning') return;
-      if (/GL Driver Message/.test(m.text())) return; // software-GL performance chatter, not a page problem
-      errors.push(`${page} console.${m.type()}: ${m.text()}`);
-    });
-    p.on('requestfailed', r => errors.push(`${page} request failed: ${r.url()} ${(r.failure() || {}).errorText}`));
-    const resp = await p.goto(`${BASE}/${page}`, { waitUntil: 'networkidle' });
-    if (!resp || resp.status() !== 200) errors.push(`${page}: HTTP ${resp && resp.status()}`);
-    await p.waitForTimeout(1500);
-    if (page === 'topview.html') {
-      fs.writeFileSync(path.join(out, 'topview.svg.txt'), await p.evaluate(() => document.getElementById('drawing-frame').innerHTML));
-      await shoot(p, 'topview');
-    } else {
+  const PARTIAL = '?layout=camper&modules=partition,kitchenette,fridge,toilet_cubicle,toilet_unit,tv,lounge_bench&tv=43';
+  const captures = [
+    { url: 'index.html', shots: async p => {
       await shoot(p, 'index-stock-cutaway');
       await p.click('[data-layout="lounge"]'); await p.waitForTimeout(300);
       await shoot(p, 'index-lounge-cutaway');
       await p.click('[data-layout="camper"]'); await p.waitForTimeout(300);
       await shoot(p, 'index-camper-cutaway');
-      await p.click('[data-tv="43"]'); await p.waitForTimeout(300);
+      await p.selectOption('select[data-variant="tv"]', '43'); await p.waitForTimeout(300);
       await shoot(p, 'index-camper-tv43-cutaway');
       await p.click('[data-view="topdown"]'); await p.waitForTimeout(2500); // camera flies overhead (600 ms, but software GL is slow)
       await shoot(p, 'index-camper-roof-off');
       await p.click('[data-view="full"]'); await p.waitForTimeout(2500);
       await shoot(p, 'index-full-exterior');
-    }
+    } },
+    { url: 'index.html' + PARTIAL, shots: async p => {
+      await p.click('[data-view="topdown"]'); await p.waitForTimeout(2500);
+      await shoot(p, 'index-camper-partial-roof-off');
+    } },
+    { url: 'topview.html', shots: async p => {
+      fs.writeFileSync(path.join(out, 'topview.svg.txt'), await p.evaluate(() => document.getElementById('drawing-frame').innerHTML));
+      await shoot(p, 'topview');
+    } },
+    { url: 'topview.html?layout=camper', shots: async p => { await shoot(p, 'topview-camper'); } },
+    { url: 'topview.html' + PARTIAL, shots: async p => { await shoot(p, 'topview-camper-partial'); } },
+  ];
+  for (const cap of captures) {
+    const page = cap.url.split('?')[0];
+    const p = await ctx.newPage();
+    p.on('pageerror', e => errors.push(`${cap.url}: ${e.message}`));
+    p.on('console', m => {
+      if (m.type() !== 'error' && m.type() !== 'warning') return;
+      if (/GL Driver Message/.test(m.text())) return; // software-GL performance chatter, not a page problem
+      errors.push(`${cap.url} console.${m.type()}: ${m.text()}`);
+    });
+    p.on('requestfailed', r => errors.push(`${cap.url} request failed: ${r.url()} ${(r.failure() || {}).errorText}`));
+    const resp = await p.goto(`${BASE}/${cap.url}`, { waitUntil: 'networkidle' });
+    if (!resp || resp.status() !== 200) errors.push(`${page}: HTTP ${resp && resp.status()}`);
+    await p.waitForTimeout(1500);
+    await cap.shots(p);
     await p.close();
   }
   fs.writeFileSync(path.join(out, 'errors.txt'), errors.join('\n'));

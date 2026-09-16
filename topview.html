@@ -24,6 +24,16 @@
   .flag { font-size:11.5px; color:#8a5a1f; line-height:1.55; padding:10px 12px; background:#fdf5e8;
     border:1px solid #ecd9b3; border-radius:8px; margin-bottom:14px; }
   .legend { font-size:12px; line-height:2; }
+  .group { margin-bottom:14px; }
+  .group h2, .h { font-size:11px; color:var(--muted); margin:0 0 8px; font-weight:600; }
+  .option { display:block; width:100%; text-align:left; padding:8px 12px; margin-bottom:6px; border:1px solid var(--line); background:#fff;
+    border-radius:7px; font-size:13px; color:var(--ink); cursor:pointer; }
+  .option.active { border-color:var(--accent); background:#e6eef0; font-weight:600; }
+  .modules { font-size:12px; line-height:1.5; }
+  .modules div { display:flex; justify-content:space-between; gap:8px; padding:4px 0; border-bottom:1px solid var(--line); }
+  .modules div span:last-child { color:var(--muted); white-space:nowrap; }
+  .total { font-size:12.5px; margin-top:8px; }
+  .link { display:block; margin-top:8px; font-size:12px; color:var(--accent); }
   .swatch { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:7px; vertical-align:-1px; }
 </style>
 </head>
@@ -37,7 +47,18 @@
     <div id="viewport"><div id="drawing-frame"></div></div>
     <div id="panel">
       <div class="specbox" id="specbox">Loading data/urbania-17.json…</div>
+      <div class="group">
+        <h2>Layout</h2>
+        <button class="option active" data-layout="rows">Stock 17-seater</button>
+        <button class="option" data-layout="camper">Camper modules</button>
+      </div>
       <div class="flag" id="flag"></div>
+      <div id="modules-box" hidden>
+        <h2 class="h">Modules in this configuration</h2>
+        <div id="modules" class="modules"></div>
+        <div class="total" id="total"></div>
+        <a class="link" id="config-link" href="index.html">Change modules in the 3D configurator →</a>
+      </div>
       <div class="legend">
         <div><span class="swatch" style="background:#f3f1ec;border:1px solid #b9b3a3"></span>Body outline</div>
         <div><span class="swatch" style="background:#cfe1e5;border:1px solid #7fa3a9"></span>Passenger seats</div>
@@ -65,6 +86,9 @@ function draw(V) {
 const spec = V.spec, LAY = V.layout;
 const b = spec.body, seating = spec.stock_seating;
 const L = b.length, W = b.width;
+const selection = V.components ? Vehicle.readSelection(V.components) : { layout: null, modules: [], variants: {} };
+const mode = selection.layout === 'camper' && V.components ? 'camper' : 'rows';
+const inr = n => '₹' + (n >= 100000 ? (n / 100000).toFixed(n % 100000 ? 1 : 0) + ' L' : Math.round(n / 1000) + 'k');
 
 // Info panel
 const lines = Vehicle.specLines(spec);
@@ -125,8 +149,33 @@ let seatsSvg = '';
 LAY.seats.forEach(seat => {
   if (seat.kind === 'driver') seatsSvg += cabSeatGlyph(seat, 'D');
   else if (seat.kind === 'codriver') seatsSvg += cabSeatGlyph(seat, 'C');
-  else seatsSvg += seatGlyph(seat);
+  else if (mode === 'rows') seatsSvg += seatGlyph(seat);
 });
+
+// Camper modules: the same placements the 3D viewer draws, as labelled rectangles.
+// Empty bays (a zone whose module is off) are shown as a dashed outline.
+let camperSvg = '';
+let P = null;
+if (mode === 'camper') {
+  P = Vehicle.camperPlacements(spec, V.components, selection);
+  const on = new Set(P.placements.map(p => p.id));
+  P.zones.forEach(z => {
+    if (on.has(z.id)) return;
+    camperSvg += `<rect x="${px(z.x0)}" y="${py(-LAY.interior.halfWidth)}" width="${z.length}" height="${LAY.interior.width}" class="bay"/>
+      <text x="${px(z.cx)}" y="${py(0)}" class="baylabel" text-anchor="middle">${z.component.name} (off)</text>`;
+  });
+  P.placements.forEach(p => {
+    const w = p.x1 - p.x0, h = p.y1 - p.y0, cx = px((p.x0 + p.x1) / 2), cy = py((p.y0 + p.y1) / 2);
+    const short = { partition: 'Partition', tv: 'TV', crew_bunk: 'Bunk', kitchenette: 'Kitchen', fridge: 'Fridge', water_tank: 'Water', electrical_panel: 'Elec', lounge_bench: 'Lounge', toilet_cubicle: 'Toilet', toilet_unit: 'WC' }[p.id] || p.id;
+    camperSvg += `<rect x="${px(p.x0)}" y="${py(p.y0)}" width="${w}" height="${h}" rx="14" class="mod mod-${p.id}"/>`;
+    // Zone modules are labelled at their front end so labels never sit on the sub-modules
+    // placed at the rear of the zone (fridge, toilet unit); sub-modules are labelled centred.
+    if (p.zone === p.id) camperSvg += `<text x="${px(p.x1) - 70}" y="${cy + FS * 0.25}" class="modlabel" text-anchor="end">${short}</text>`;
+    else if (w > 300 && h > 200) camperSvg += `<text x="${cx}" y="${cy + FS * 0.25}" class="modlabel" text-anchor="middle">${short}</text>`;
+  });
+  // rear walkway
+  camperSvg += `<text x="${px(P.zones[P.zones.length - 1].x0 - P.walkway / 2)}" y="${py(0)}" class="baylabel" text-anchor="middle" transform="rotate(-90 ${px(P.zones[P.zones.length - 1].x0 - P.walkway / 2)} ${py(0)})">walkway ${P.walkway}</text>`;
+}
 
 const housingsSvg = LAY.wheelHousings.map(h =>
   `<rect x="${px(h.x0)}" y="${py(h.y0)}" width="${h.length}" height="${h.width}" class="housing"/>`
@@ -176,6 +225,19 @@ const svg = `
     .partition { stroke:#8a8479; stroke-width:${SWd*1.1}; }
     .wall { stroke:#c9c2b1; stroke-width:${SWd*0.6}; stroke-dasharray:${SWd*3} ${SWd*1.6}; fill:none; }
     .housing { fill:#ebe7dc; stroke:#a9a294; stroke-width:${SWd*0.5}; stroke-dasharray:${SWd*2} ${SWd*1.2}; }
+    .bay { fill:none; stroke:#c9c2b1; stroke-width:${SWd*0.5}; stroke-dasharray:${SWd*2} ${SWd*1.2}; }
+    .baylabel { fill:#a9a294; font-size:${FS*0.7}px; font-family:inherit; }
+    .mod { fill:#e3ebe8; stroke:#5f8a80; stroke-width:${SWd*0.6}; }
+    .mod-partition { fill:#8a8479; stroke:#6b665c; }
+    .mod-tv { fill:#3a3a3a; stroke:#3a3a3a; }
+    .mod-toilet_cubicle { fill:#f1ede3; stroke:#a9a294; }
+    .mod-toilet_unit, .mod-fridge { fill:#ffffff; stroke:#8f8879; }
+    .mod-water_tank { fill:#cfe1e5; stroke:#7fa3a9; }
+    .mod-electrical_panel { fill:#374b52; stroke:#374b52; }
+    .mod-lounge_bench { fill:#cfe3d9; stroke:#3f7a68; }
+    .mod-crew_bunk { fill:#d9e0e5; stroke:#4a5c66; }
+    .mod-kitchenette { fill:#e6dccb; stroke:#6b5a45; }
+    .modlabel { fill:#3a4a45; font-size:${FS*0.75}px; font-weight:600; font-family:inherit; }
     .dim { stroke:#3a6a72; stroke-width:${SWd*0.65}; fill:none; }
     .dimtick { stroke:#3a6a72; stroke-width:${SWd*0.5}; }
     .dimtext { fill:#3a6a72; font-size:${FS}px; font-weight:600; font-family:inherit; }
@@ -190,6 +252,8 @@ const svg = `
 
   ${housingsSvg}
 
+  ${camperSvg}
+
   ${seatsSvg}
 
   ${wheelsSvg}
@@ -201,10 +265,33 @@ const svg = `
   ${dimV(bodyX1+280, bodyY0, bodyY1, `${b.width}mm`)}
 
   <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+420}" text-anchor="middle" class="caption">Front of vehicle →</text>
-  <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+540}" text-anchor="middle" class="caption" font-size="${FS*0.78}">D = driver · C = co-driver · ${rowsDesc}</text>
+  <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+540}" text-anchor="middle" class="caption" font-size="${FS*0.78}">${mode === 'camper' ? 'D = driver · C = co-driver · camper modules from data/components.json, dashed = empty bay' : `D = driver · C = co-driver · ${rowsDesc}`}</text>
 </svg>`;
 
 document.getElementById('drawing-frame').innerHTML = svg;
+
+// ---- Panel: layout toggle, module list, links ----
+document.querySelectorAll('[data-layout]').forEach(btn => {
+  btn.classList.toggle('active', btn.dataset.layout === mode);
+  btn.addEventListener('click', () => {
+    const next = Object.assign({}, selection, { layout: btn.dataset.layout === 'camper' ? 'camper' : null });
+    location.search = Vehicle.selectionQuery(next);
+  });
+});
+const box = document.getElementById('modules-box');
+box.hidden = mode !== 'camper';
+document.getElementById('flag').hidden = mode === 'camper';
+if (P) {
+  const list = document.getElementById('modules');
+  P.placements.forEach(p => {
+    const price = Vehicle.componentPrice(p.component, selection.variants[p.id]);
+    const row = document.createElement('div');
+    row.innerHTML = `<span>${p.variant ? p.variant.name : p.component.name}</span><span>${inr(price.min)} – ${inr(price.max)}</span>`;
+    list.appendChild(row);
+  });
+  document.getElementById('total').innerHTML = `Estimated module cost: <b>${inr(P.price.min)} – ${inr(P.price.max)}</b>`;
+  document.getElementById('config-link').href = 'index.html' + Vehicle.selectionQuery(selection);
+}
 } // draw
 </script>
 </body>
