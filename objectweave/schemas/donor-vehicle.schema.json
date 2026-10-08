@@ -1,0 +1,25 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave Donor Vehicle Variant",
+  "type":"object",
+  "required":["id","manufacturer","model","variant","physicalState","supportStatus","evidence"],
+  "properties":{
+    "id":{"type":"string"},
+    "manufacturer":{"type":"string"},
+    "family":{"type":["string","null"]},
+    "model":{"type":"string"},
+    "variant":{"type":"string"},
+    "modelYearFrom":{"type":["integer","null"]},
+    "modelYearTo":{"type":["integer","null"]},
+    "wheelbaseMm":{"type":["number","null"]},
+    "factorySeating":{"type":["integer","null"]},
+    "physicalState":{"enum":["CHASSIS_COWL","OEM_COMPLETE","REGISTERED_EXISTING","STRIPPED_CONVERSION_SHELL","COMPLETED_RV"]},
+    "supportStatus":{"enum":["DESIGN_SUPPORTED","CONCEPT_ONLY","MEASUREMENT_REQUIRED","UNSUPPORTED"]},
+    "dimensions":{"type":"object"},
+    "massRatings":{"type":"object"},
+    "openings":{"type":"array","items":{"type":"object"}},
+    "structuralZones":{"type":"array","items":{"type":"object"}},
+    "evidence":{"type":"array","items":{"type":"object"}}
+  },
+  "additionalProperties":false
+}
