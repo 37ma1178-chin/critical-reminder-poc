@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave RV HVAC System",
+  "type":"object",
+  "required":["schemaVersion","id","units","routes","drains","validation"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},"id":{"type":"string"},
+    "units":{"type":"array","items":{"$ref":"#/$defs/unit"}},"routes":{"type":"array","items":{"$ref":"service-system.schema.json#/$defs/route"}},
+    "drains":{"type":"array","items":{"$ref":"#/$defs/route"}},"validation":{"$ref":"service-system.schema.json#/$defs/validation"}
+  },
+  "$defs":{
+    "unit":{"type":"object","required":["id","kind","physicalEnvelope","operatingEnvelope","serviceEnvelope","evidence"],"properties":{
+      "id":{"type":"string"},"kind":{"enum":["AC_INDOOR","AC_OUTDOOR","HEAT_PUMP","OTHER"]},
+      "physicalEnvelope":{"$ref":"service-system.schema.json#/$defs/envelope"},"operatingEnvelope":{"$ref":"service-system.schema.json#/$defs/envelope"},
+      "serviceEnvelope":{"$ref":"service-system.schema.json#/$defs/envelope"},"accessZoneId":{"type":["string","null"]},
+      "engineering":{"type":"object","additionalProperties":true},"evidence":{"type":"array","items":{"$ref":"service-system.schema.json#/$defs/evidence"}}
+    }}
+  }
+}
