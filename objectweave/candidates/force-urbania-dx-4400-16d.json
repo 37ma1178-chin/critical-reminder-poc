@@ -1,0 +1,21 @@
+{
+ "id":"force-urbania-dx-4400-16d-prototype",
+ "manufacturer":"Force Motors",
+ "family":"Urbania",
+ "model":"Urbania DX",
+ "variant":"4400 WB 16+D",
+ "physicalState":"OEM_COMPLETE",
+ "supportStatus":"CONCEPT_ONLY",
+ "factorySeating":17,
+ "wheelbaseMm":4400,
+ "dimensions":{"overallLengthMm":7010,"overallWidthMm":2095,"overallHeightMm":2550,"groundClearanceMm":170},
+ "massRatings":{"gvwKg":4685},
+ "evidenceSummary":{
+   "officialCandidate":["overallLengthMm","overallWidthMm","overallHeightMm","wheelbaseMm","groundClearanceMm","gvwKg"],
+   "secondaryReviewRequired":["frontOverhangMm","rearOverhangMm"],
+   "estimatedOnly":["cabDepthMm","interiorWallThicknessMm","floorHeightMm","wheelHousingGeometry","profileGeometry"],
+   "measuredFromUserReference":["stockSeatingPatternAndApproximatePlacement"]
+ },
+ "migration":{"source":"data/urbania-17.json","autoVerified":false},
+ "notes":"Candidate normalized record only. Official brochure fields still require source review before promotion to authoritative canonical data."
+}
