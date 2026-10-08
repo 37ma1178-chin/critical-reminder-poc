@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave RV Water System",
+  "type":"object",
+  "required":["schemaVersion","id","fresh","grey","black","fixtures","routes","validation"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},"id":{"type":"string"},
+    "fresh":{"$ref":"#/$defs/tankSystem"},"grey":{"$ref":"#/$defs/tankSystem"},"black":{"$ref":"#/$defs/tankSystem"},
+    "fixtures":{"type":"array","items":{"$ref":"#/$defs/device"}},"routes":{"type":"array","items":{"$ref":"service-system.schema.json#/$defs/route"}},
+    "validation":{"$ref":"service-system.schema.json#/$defs/validation"}
+  },
+  "$defs":{
+    "tankSystem":{"type":"object","required":["tank","serviceAccess","evidence"],"properties":{
+      "tank":{"$ref":"#/$defs/device"},"pump":{"type":["object","null"],"additionalProperties":true},"filter":{"type":["object","null"],"additionalProperties":true},
+      "serviceAccess":{"type":"object","required":["zoneId","required"],"properties":{"zoneId":{"type":["string","null"]},"required":{"type":"boolean"}}},
+      "evidence":{"type":"array","items":{"$ref":"service-system.schema.json#/$defs/evidence"}}
+    }},
+    "device":{"type":"object","required":["id","kind","physicalEnvelope","serviceEnvelope","visibility"],"properties":{
+      "id":{"type":"string"},"kind":{"type":"string"},"physicalEnvelope":{"$ref":"service-system.schema.json#/$defs/envelope"},"operatingEnvelope":{"$ref":"service-system.schema.json#/$defs/envelope"},
+      "serviceEnvelope":{"$ref":"service-system.schema.json#/$defs/envelope"},"visibility":{"enum":["VISIBLE","CONCEALED_WITH_ACCESS","CONCEALED_NO_ACCESS"]},
+      "accessZoneId":{"type":["string","null"]},"engineering":{"type":"object","additionalProperties":true},"evidence":{"type":"array","items":{"$ref":"service-system.schema.json#/$defs/evidence"}}
+    }}
+  }
+}
