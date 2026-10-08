@@ -1,0 +1,13 @@
+{
+  "schemaVersion":"0.2.0",
+  "id":"layout-urbania-example-01",
+  "projectId":"project-example-urbania",
+  "donorVehicleId":"dt-force-urbania-4400-16d-v0",
+  "templateId":null,
+  "requirements":{"occupancy":4,"useIntent":"PRIVATE","budget":{"totalInr":null},"features":{"bed":true,"wc":true,"shower":true,"battery":true}},
+  "placements":[],
+  "serviceReservations":[],
+  "validation":{"status":"VERIFICATION_REQUIRED","findingCodes":["LAYOUT-BUDGET-001","LAYOUT-GEOMETRY-001"]},
+  "score":null,
+  "status":"CANDIDATE"
+}
