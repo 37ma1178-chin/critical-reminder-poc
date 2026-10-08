@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ObjectWeave RV Component Compatibility",
+  "type": "object",
+  "required": ["schemaVersion", "id", "componentId", "status", "constraints"],
+  "properties": {
+    "schemaVersion": {"const": "0.2.0"},
+    "id": {"type": "string"},
+    "componentId": {"type": "string"},
+    "donorVehicleIds": {"type": "array", "items": {"type": "string"}},
+    "physicalStates": {"type": "array", "items": {"enum": ["CHASSIS_COWL","OEM_COMPLETE","REGISTERED_EXISTING","STRIPPED_CONVERSION_SHELL","COMPLETED_RV"]}},
+    "status": {"enum": ["COMPATIBLE","CONDITIONAL","INCOMPATIBLE","VERIFICATION_REQUIRED","UNKNOWN"]},
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "maxMassKg": {"type": ["number","null"]},
+        "voltageV": {"type": ["number","null"]},
+        "maxPowerW": {"type": ["number","null"]},
+        "mounting": {"type": ["string","null"]},
+        "indoorOutdoor": {"enum": ["INDOOR","OUTDOOR","EITHER","UNKNOWN"]},
+        "requiresPlumbing": {"type": ["boolean","null"]},
+        "requiresDrain": {"type": ["boolean","null"]},
+        "requiresVentilation": {"type": ["boolean","null"]},
+        "requiresThermalClearance": {"type": ["boolean","null"]},
+        "requiresServiceAccess": {"type": ["boolean","null"]},
+        "minimumClearanceMm": {"type": ["number","null"]},
+        "budgetCeilingInr": {"type": ["number","null"]}
+      }
+    },
+    "evidence": {"type": "array", "items": {"type": "object"}},
+    "notes": {"type": ["string","null"]}
+  }
+}
