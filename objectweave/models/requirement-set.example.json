@@ -1,0 +1,15 @@
+{
+  "schemaVersion":"0.2.0",
+  "id":"req-example-private-family",
+  "useIntent":"PRIVATE",
+  "acquisitionPath":"COMPLETE_VEHICLE",
+  "occupancy":4,
+  "driverIncluded":true,
+  "budget":{"totalInr":null},
+  "features":{
+    "seating":true,"recliners":false,"sofaBed":true,"bed":true,"fridge":true,"microwave":false,
+    "cooking":true,"basin":true,"wc":true,"shower":true,"wetArea":true,"tv":true,"ac":true,
+    "freshWater":true,"greyWater":true,"blackWater":true,"battery":true,"solar":true,"inverter":true
+  },
+  "notes":"Example only. Budget deliberately unknown; no component quantities or dimensions are inferred."
+}
