@@ -1,0 +1,31 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave RV Electrical System",
+  "type":"object",
+  "required":["schemaVersion","id","sources","storage","conversion","distribution","loads","routes","protection","validation"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},"id":{"type":"string"},
+    "sources":{"type":"array","items":{"$ref":"#/$defs/source"}},
+    "storage":{"type":"array","items":{"$ref":"#/$defs/device"}},
+    "conversion":{"type":"array","items":{"$ref":"#/$defs/device"}},
+    "distribution":{"type":"array","items":{"$ref":"#/$defs/device"}},
+    "loads":{"type":"array","items":{"$ref":"#/$defs/load"}},
+    "routes":{"type":"array","items":{"$ref":"#/$defs/route"}},
+    "protection":{"type":"array","items":{"$ref":"#/$defs/protection"}},
+    "validation":{"$ref":"#/$defs/validation"}
+  },
+  "$defs":{
+    "device":{"type":"object","required":["id","kind","engineering","physicalEnvelope","serviceEnvelope","evidence"],"properties":{
+      "id":{"type":"string"},"kind":{"type":"string"},"skuId":{"type":["string","null"]},
+      "engineering":{"type":"object","additionalProperties":true},"physicalEnvelope":{"$ref":"#/$defs/envelope"},"serviceEnvelope":{"$ref":"#/$defs/envelope"},
+      "accessZoneId":{"type":["string","null"]},"evidence":{"type":"array","items":{"$ref":"#/$defs/evidence"}}
+    }},
+    "source":{"allOf":[{"$ref":"#/$defs/device"},{"type":"object","properties":{"sourceKind":{"enum":["SHORE_INLET","ALTERNATOR","SOLAR_PV","OTHER"]}}}]},
+    "load":{"allOf":[{"$ref":"#/$defs/device"},{"type":"object","required":["loadType","nominalPowerW"],"properties":{"loadType":{"type":"string"},"nominalPowerW":{"type":["number","null"]}}}]},
+    "protection":{"allOf":[{"$ref":"#/$defs/device"},{"type":"object","required":["protectionKind"],"properties":{"protectionKind":{"type":"string"}}}]},
+    "route":{"$ref":"service-system.schema.json#/$defs/route"},
+    "envelope":{"$ref":"service-system.schema.json#/$defs/envelope"},
+    "evidence":{"$ref":"service-system.schema.json#/$defs/evidence"},
+    "validation":{"$ref":"service-system.schema.json#/$defs/validation"}
+  }
+}
