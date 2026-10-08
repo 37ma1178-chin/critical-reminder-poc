@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave Structural Zone",
+  "type":"object",
+  "required":["schemaVersion","id","kind","envelope","constraintLevel","evidence"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},"id":{"type":"string"},
+    "kind":{"enum":["CHASSIS","FRAME_RAIL","CROSS_MEMBER","WHEELHOUSE","ENGINE_BAY","FUEL_SYSTEM","OEM_OPENING","AIRBAG_ZONE","DOOR_ZONE","ROOF_STRUCTURE","UNKNOWN_STRUCTURE"]},
+    "envelope":{"type":"object","required":["xMm","yMm","zMm"],"properties":{"xMm":{"type":["number","null"]},"yMm":{"type":["number","null"]},"zMm":{"type":["number","null"]}}},
+    "constraintLevel":{"enum":["NO_DRILL","NO_CUT","NO_LOAD_WITHOUT_ENGINEERING","PROTECTED","UNKNOWN"]},
+    "allowedOperations":{"type":"array","items":{"enum":["NONE","FASTEN","CLAMP","ROUTE","PENETRATE_WITH_ENGINEERING","REMOVE_OEM_PART"]}},
+    "evidence":{"type":"array","items":{"type":"object","required":["truthClass","confidence"],"properties":{
+      "truthClass":{"enum":["AUTHORITATIVE_FACT","VERIFIED_MEASUREMENT","DERIVED","COMMUNITY_MEASURED","ESTIMATED","UNKNOWN"]},"confidence":{"enum":["HIGH","MEDIUM","LOW","UNKNOWN"]},"sourceUri":{"type":["string","null"]},"notes":{"type":["string","null"]}
+    }}}
+  }
+}
