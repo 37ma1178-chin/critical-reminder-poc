@@ -1,0 +1,18 @@
+{
+  "schemaVersion":"0.2.0",
+  "vehicleId":"dt-force-urbania-4400-16d-v0",
+  "coordinateSystem":{
+    "origin":"rear bumper centerline at ground reference",
+    "axes":{"x":"rear to front","y":"centerline positive right","z":"ground upward"}
+  },
+  "zones":[
+    {"id":"structural-frame-unknown","kind":"STRUCTURAL","envelope":{"xMm":0,"yMm":0,"zMm":0},"transform":{"positionMm":[0,0,0],"rotationDeg":[0,0,0]},"criticality":"BLOCKING","evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","sourceUri":null,"notes":"Exact structural geometry not yet verified."}]},
+    {"id":"underfloor-service-unknown","kind":"UNDERFLOOR","envelope":{"xMm":0,"yMm":0,"zMm":0},"transform":{"positionMm":[0,0,0],"rotationDeg":[0,0,0]},"criticality":"PROTECTED","evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","sourceUri":null,"notes":"Floor/underfloor geometry not yet verified."}]}
+  ],
+  "objects":[
+    {"id":"urbania-body-candidate","kind":"DONOR_BODY","role":"VEHICLE","envelope":{"xMm":7010,"yMm":2095,"zMm":2550},"transform":{"positionMm":[3505,0,1275],"rotationDeg":[0,0,0]},"fixedSku":false,"evidence":[{"truthClass":"AUTHORITATIVE_FACT","confidence":"HIGH","sourceUri":"data/urbania-17.json","notes":"Candidate dimensions carried from existing source; canonical promotion remains blocked by other estimated geometry."}]}
+  ],
+  "openings":[],
+  "status":"VERIFICATION_REQUIRED",
+  "note":"This spatial candidate intentionally contains only geometry that can be carried from the existing candidate. It is not a complete structural model."
+}
