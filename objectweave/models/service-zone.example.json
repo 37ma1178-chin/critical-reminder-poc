@@ -1,0 +1,13 @@
+{
+  "schemaVersion":"0.2.0",
+  "id":"service-zone-underfloor-center-v0",
+  "vehicleId":"dt-force-urbania-4400-16d-v0",
+  "kind":"UNDERFLOOR_SERVICE",
+  "visibility":"CONCEALED_WITH_ACCESS",
+  "envelope":{"xMm":null,"yMm":null,"zMm":null},
+  "accessRequired":true,
+  "accessMethod":null,
+  "systems":["ELECTRICAL","WATER","HVAC"],
+  "evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","sourceUri":null,"notes":"Zone cannot be dimensioned until canonical floor/underfloor geometry is verified."}],
+  "status":"VERIFICATION_REQUIRED"
+}
