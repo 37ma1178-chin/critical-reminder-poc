@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave RV Requirement Set",
+  "type":"object",
+  "required":["schemaVersion","id","useIntent","acquisitionPath","occupancy","budget","features"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},"id":{"type":"string"},
+    "useIntent":{"enum":["PRIVATE","COMMERCIAL","UNKNOWN"]},
+    "acquisitionPath":{"enum":["CHASSIS_COWL","COMPLETE_VEHICLE","STRIPPED_SHELL","UNKNOWN"]},
+    "occupancy":{"type":"integer","minimum":1},"driverIncluded":{"type":"boolean"},
+    "budget":{"type":"object","required":["totalInr"],"properties":{"totalInr":{"type":["number","null"]}}},
+    "features":{"type":"object","properties":{
+      "seating":{"type":"boolean"},"recliners":{"type":"boolean"},"sofaBed":{"type":"boolean"},"bed":{"type":"boolean"},"fridge":{"type":"boolean"},"microwave":{"type":"boolean"},"cooking":{"type":"boolean"},"basin":{"type":"boolean"},"wc":{"type":"boolean"},"shower":{"type":"boolean"},"wetArea":{"type":"boolean"},"tv":{"type":"boolean"},"ac":{"type":"boolean"},"freshWater":{"type":"boolean"},"greyWater":{"type":"boolean"},"blackWater":{"type":"boolean"},"battery":{"type":"boolean"},"solar":{"type":"boolean"},"inverter":{"type":"boolean"}
+    }},
+    "notes":{"type":["string","null"]},
+    "evidence":{"type":"array","items":{"type":"object","required":["truthClass","confidence"],"properties":{"truthClass":{"enum":["AUTHORITATIVE_FACT","VERIFIED_MEASUREMENT","DERIVED","COMMUNITY_MEASURED","ESTIMATED","UNKNOWN"]},"confidence":{"enum":["HIGH","MEDIUM","LOW","UNKNOWN"]}}}}
+  }
+}
