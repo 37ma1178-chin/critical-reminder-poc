@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "0.2.0",
+  "status": "CATALOGUE_SKELETON",
+  "autoVerified": false,
+  "rules": [
+    "No product dimension, mass, power, capacity or price may be invented.",
+    "A FIXED_SKU with unknown engineering dimensions cannot be promoted to placement PASS.",
+    "Renderer scale never changes engineering dimensions.",
+    "Price is a dated observation, not a timeless product attribute."
+  ],
+  "components": [
+    {"id":"cat-tv","type":"FIXED_SKU","category":"TV","manufacturer":null,"model":null,"dimensionsMm":null,"massKg":null,"electrical":null,"mounting":null,"serviceEnvelopeMm":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-fridge","type":"FIXED_SKU","category":"REFRIGERATOR","manufacturer":null,"model":null,"dimensionsMm":null,"massKg":null,"electrical":null,"ventilation":null,"serviceEnvelopeMm":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-microwave","type":"FIXED_SKU","category":"MICROWAVE","manufacturer":null,"model":null,"dimensionsMm":null,"massKg":null,"electrical":null,"ventilation":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-ac","type":"FIXED_SKU","category":"AIR_CONDITIONER","manufacturer":null,"model":null,"dimensionsMm":null,"massKg":null,"electrical":null,"thermal":null,"drain":null,"serviceEnvelopeMm":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-battery","type":"FIXED_SKU","category":"BATTERY","manufacturer":null,"model":null,"dimensionsMm":null,"massKg":null,"electrical":null,"thermal":null,"serviceEnvelopeMm":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-inverter","type":"FIXED_SKU","category":"INVERTER","manufacturer":null,"model":null,"dimensionsMm":null,"massKg":null,"electrical":null,"thermal":null,"serviceEnvelopeMm":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-solar-panel","type":"FIXED_SKU","category":"SOLAR_PANEL","manufacturer":null,"model":null,"dimensionsMm":null,"massKg":null,"electrical":null,"mounting":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-fresh-tank","type":"FIXED_SKU","category":"FRESH_WATER_TANK","manufacturer":null,"model":null,"dimensionsMm":null,"capacityL":null,"massKgEmpty":null,"plumbing":null,"serviceEnvelopeMm":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-grey-tank","type":"FIXED_SKU","category":"GREY_WATER_TANK","manufacturer":null,"model":null,"dimensionsMm":null,"capacityL":null,"massKgEmpty":null,"plumbing":null,"serviceEnvelopeMm":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-black-tank","type":"FIXED_SKU","category":"BLACK_WATER_TANK","manufacturer":null,"model":null,"dimensionsMm":null,"capacityL":null,"massKgEmpty":null,"plumbing":null,"ventilation":null,"serviceEnvelopeMm":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-water-pump","type":"FIXED_SKU","category":"WATER_PUMP","manufacturer":null,"model":null,"dimensionsMm":null,"massKg":null,"electrical":null,"plumbing":null,"serviceEnvelopeMm":null,"truthClass":"UNKNOWN"},
+    {"id":"cat-wc","type":"FIXED_SKU","category":"WC","manufacturer":null,"model":null,"dimensionsMm":null,"massKg":null,"plumbing":null,"serviceEnvelopeMm":null,"truthClass":"UNKNOWN"},
+    {"id":"fab-seat","type":"PARAMETRIC_FABRICATED","category":"SEAT","manufacturingRange":null,"massModel":null,"mounting":null,"truthClass":"UNKNOWN"},
+    {"id":"fab-recliner","type":"PARAMETRIC_FABRICATED","category":"RECLINER","manufacturingRange":null,"massModel":null,"operatingEnvelope":null,"truthClass":"UNKNOWN"},
+    {"id":"fab-sofa-bed","type":"PARAMETRIC_FABRICATED","category":"SOFA_BED","manufacturingRange":null,"massModel":null,"operatingEnvelope":null,"truthClass":"UNKNOWN"},
+    {"id":"fab-bed","type":"PARAMETRIC_FABRICATED","category":"BED","manufacturingRange":null,"massModel":null,"truthClass":"UNKNOWN"},
+    {"id":"fab-cabinet","type":"PARAMETRIC_FABRICATED","category":"CABINET","manufacturingRange":null,"massModel":null,"serviceAccess":null,"truthClass":"UNKNOWN"},
+    {"id":"fab-wet-area","type":"PARAMETRIC_FABRICATED","category":"WET_AREA","manufacturingRange":null,"plumbing":null,"waterproofing":null,"truthClass":"UNKNOWN"},
+    {"id":"sys-electrical","type":"SYSTEM_ASSEMBLY","category":"ELECTRICAL_SYSTEM","children":[],"truthClass":"UNKNOWN"},
+    {"id":"sys-water","type":"SYSTEM_ASSEMBLY","category":"WATER_SYSTEM","children":[],"truthClass":"UNKNOWN"},
+    {"id":"sys-hvac","type":"SYSTEM_ASSEMBLY","category":"HVAC_SYSTEM","children":[],"truthClass":"UNKNOWN"}
+  ]
+}
