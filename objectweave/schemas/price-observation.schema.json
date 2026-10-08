@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ObjectWeave RV Price Observation",
+  "type": "object",
+  "required": ["schemaVersion","id","componentId","currency","amount","asOf","source","truthClass"],
+  "properties": {
+    "schemaVersion": {"const":"0.2.0"},
+    "id": {"type":"string"},
+    "componentId": {"type":"string"},
+    "currency": {"const":"INR"},
+    "amount": {"type":["number","null"],"minimum":0},
+    "asOf": {"type":["string","null"],"format":"date"},
+    "marketCondition": {"enum":["MRP","RETAIL","SALE","QUOTED","ESTIMATED","UNKNOWN"]},
+    "source": {"type":"object","required":["sourceType"],"properties":{"sourceType":{"type":"string"},"sourceUri":{"type":["string","null"]},"sourceTitle":{"type":["string","null"]},"retrievedAt":{"type":["string","null"],"format":"date-time"}}},
+    "truthClass": {"enum":["AUTHORITATIVE_FACT","VERIFIED_MEASUREMENT","DERIVED","COMMUNITY_MEASURED","ESTIMATED","UNKNOWN"]},
+    "confidence": {"enum":["HIGH","MEDIUM","LOW","UNKNOWN"]},
+    "notes": {"type":["string","null"]}
+  }
+}
