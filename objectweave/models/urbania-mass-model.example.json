@@ -1,0 +1,26 @@
+{
+  "schemaVersion":"0.2.0",
+  "id":"mass-force-urbania-4400-16d-v0",
+  "donorVehicleId":"force-urbania-dx-4400-16d-prototype",
+  "wheelbaseMm":4400,
+  "coordinateConvention":"MASS_SOLVER_ONLY: x=0 front axle, x=4400 rear axle. Adapter required from canonical vehicle coordinates.",
+  "ratings":{
+    "gvwKg":4685,
+    "frontAxleRatingKg":null,
+    "rearAxleRatingKg":null,
+    "evidence":[{"field":"gvwKg","truthClass":"AUTHORITATIVE_FACT","confidence":"UNKNOWN","source":"candidate donor record; authoritative source review still required"}]
+  },
+  "baseVehicle":{"massKg":null,"cgXmm":null,"frontAxleKg":null,"rearAxleKg":null,"evidence":[]},
+  "items":[],
+  "fluids":[],
+  "occupants":[],
+  "results":{"totalMassKg":null,"payloadRemainingKg":null,"cgXmm":null,"frontAxleKg":null,"rearAxleKg":null,"frontAxleRemainingKg":null,"rearAxleRemainingKg":null},
+  "status":"VERIFICATION_REQUIRED",
+  "findings":[
+    {"code":"BASE_MASS_UNKNOWN","severity":"VERIFICATION_REQUIRED"},
+    {"code":"BASE_CG_UNKNOWN","severity":"VERIFICATION_REQUIRED"},
+    {"code":"FRONT_AXLE_RATING_UNKNOWN","severity":"VERIFICATION_REQUIRED"},
+    {"code":"REAR_AXLE_RATING_UNKNOWN","severity":"VERIFICATION_REQUIRED"}
+  ],
+  "notes":"No kerb/base mass, axle ratings, axle scale readings, conversion mass or occupant assumptions have been invented. GVW 4685 kg is carried from the normalized candidate and still requires authoritative source review before canonical promotion."
+}
