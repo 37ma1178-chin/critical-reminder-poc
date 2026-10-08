@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aamlabs.in/objectweave/rv/v0.2/domain.schema.json",
+  "title":"ObjectWeave RV India v0.2 Domain Foundation",
+  "type":"object",
+  "$defs":{
+    "truthClass":{"enum":["AUTHORITATIVE_FACT","VERIFIED_MEASUREMENT","DERIVED","COMMUNITY_MEASURED","ESTIMATED","UNKNOWN"]},
+    "confidence":{"enum":["HIGH","MEDIUM","LOW","UNKNOWN"]},
+    "evidence":{"type":"object","required":["truthClass","confidence"],"properties":{
+      "truthClass":{"$ref":"#/$defs/truthClass"},"confidence":{"$ref":"#/$defs/confidence"},
+      "sourceType":{"type":"string"},"sourceUri":{"type":["string","null"]},"sourceTitle":{"type":["string","null"]},
+      "retrievedAt":{"type":["string","null"],"format":"date-time"},"effectiveFrom":{"type":["string","null"],"format":"date"},
+      "effectiveUntil":{"type":["string","null"],"format":"date"},"toleranceMm":{"type":["number","null"]},"notes":{"type":["string","null"]}
+    },"additionalProperties":false},
+    "measurement":{"type":"object","required":["value","unit","evidence"],"properties":{"value":{"type":"number"},"unit":{"type":"string"},"evidence":{"$ref":"#/$defs/evidence"}},"additionalProperties":false},
+    "vehicleState":{"enum":["CHASSIS_COWL","OEM_COMPLETE","REGISTERED_EXISTING","STRIPPED_CONVERSION_SHELL","COMPLETED_RV"]},
+    "regulatoryStatus":{"enum":["VERIFIED","CONDITIONAL","PROFESSIONAL_VERIFICATION_REQUIRED","UNKNOWN","UNSUPPORTED","NON_COMPLIANT"]},
+    "validationStatus":{"enum":["PASS","CONDITIONAL","WARNING","FAIL","VERIFICATION_REQUIRED","NOT_RUN"]},
+    "projectStage":{"enum":["DRAFT","CONCEPT","LAYOUT_CANDIDATE","LAYOUT_APPROVED","ENGINEERING","SERVICES_ROUTED","VALIDATION_PENDING","VALIDATED","DESIGN_FROZEN","FABRICATION_PACKAGE","UNDER_CONSTRUCTION","AS_BUILT"]}
+  },
+  "properties":{"schemaVersion":{"const":"0.2.0"},"entities":{"type":"array","items":{"type":"string"}}},
+  "required":["schemaVersion","entities"],"additionalProperties":false
+}
