@@ -1,0 +1,43 @@
+{
+  "schemaVersion":"0.2.0",
+  "projectModel":"dt-force-urbania-4400-16d-v0",
+  "status":"CONCEPT_ONLY",
+  "vehicleFactsAreNotVerified":true,
+  "electrical":{
+    "id":"elec-urbania-v0",
+    "sources":[
+      {"id":"shore-inlet-1","kind":"SHORE_INLET","engineering":{"voltageV":null,"currentA":null},"physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"accessZoneId":null,"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","sourceUri":null,"notes":"No vehicle-specific installation selected."}]},
+      {"id":"alternator-charge-1","kind":"ALTERNATOR","engineering":{"vehicleInterface":null,"chargeCurrentA":null},"physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"accessZoneId":null,"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","sourceUri":null,"notes":"Requires selected conversion architecture and vehicle electrical verification."}]},
+      {"id":"solar-pv-1","kind":"SOLAR_PV","engineering":{"panelCount":null,"arrayW":null},"physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"accessZoneId":null,"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","sourceUri":null,"notes":"Roof layout not yet selected."}]}
+    ],
+    "storage":[{"id":"battery-bank-1","kind":"BATTERY_BMS","engineering":{"chemistry":null,"nominalVoltageV":null,"capacityAh":null,"energyWh":null,"massKg":null},"physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"accessZoneId":null,"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","notes":"No battery SKU selected; zero envelope is a placeholder and is not physical geometry."}]}],
+    "conversion":[{"id":"inverter-1","kind":"INVERTER_CHARGER","engineering":{"continuousPowerW":null,"surgePowerW":null,"inputVoltageV":null,"outputVoltageV":null},"physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"accessZoneId":null,"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","notes":"No inverter SKU selected."}]},
+      {"id":"solar-mppt-1","kind":"SOLAR_MPPT","engineering":{"inputVoltageV":null,"outputCurrentA":null},"physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"accessZoneId":null,"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","notes":"No MPPT SKU selected."}]}],
+    "distribution":[{"id":"dc-distribution-1","kind":"DC_DISTRIBUTION","engineering":{},"physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"accessZoneId":null,"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","notes":"Distribution architecture pending."}]},
+      {"id":"ac-distribution-1","kind":"AC_DISTRIBUTION","engineering":{},"physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"accessZoneId":null,"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","notes":"Distribution architecture pending."}]}],
+    "loads":[],
+    "routes":[],
+    "protection":[],
+    "validation":{"status":"VERIFICATION_REQUIRED","findings":[
+      {"code":"ELEC-SPEC-001","severity":"BLOCKER","status":"VERIFICATION_REQUIRED","message":"Electrical design cannot be validated until actual component SKUs, ratings, protection architecture and routing are selected."}
+    ]}
+  },
+  "water":{
+    "id":"water-urbania-v0",
+    "fresh":{"tank":{"id":"fresh-tank-1","kind":"FRESH_TANK","physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"visibility":"CONCEALED_WITH_ACCESS","accessZoneId":null,"engineering":{"capacityL":null,"material":null},"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","notes":"No tank selected; capacity and envelope intentionally unknown."}]},"pump":null,"filter":null,"serviceAccess":{"zoneId":null,"required":true},"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN"}]},
+    "grey":{"tank":{"id":"grey-tank-1","kind":"GREY_TANK","physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"visibility":"CONCEALED_WITH_ACCESS","accessZoneId":null,"engineering":{"capacityL":null,"material":null},"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","notes":"No tank selected."}]},"pump":null,"filter":null,"serviceAccess":{"zoneId":null,"required":true},"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN"}]},
+    "black":{"tank":{"id":"black-tank-1","kind":"BLACK_TANK","physicalEnvelope":{"xMm":0,"yMm":0,"zMm":0},"serviceEnvelope":{"xMm":0,"yMm":0,"zMm":0},"visibility":"CONCEALED_WITH_ACCESS","accessZoneId":null,"engineering":{"capacityL":null,"material":null},"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN","notes":"No tank selected."}]},"pump":null,"filter":null,"serviceAccess":{"zoneId":null,"required":true},"evidence":[{"truthClass":"UNKNOWN","confidence":"UNKNOWN"}]},
+    "fixtures":[],
+    "routes":[],
+    "validation":{"status":"VERIFICATION_REQUIRED","findings":[
+      {"code":"WATER-SPEC-001","severity":"BLOCKER","status":"VERIFICATION_REQUIRED","message":"Fresh, grey and black capacities, tank envelopes, fixture set and routing are not yet selected."},
+      {"code":"WATER-SEPARATION-001","severity":"BLOCKER","status":"VERIFICATION_REQUIRED","message":"Grey and black waste paths must remain explicitly separated in the canonical model."}
+    ]}
+  },
+  "hvac":{
+    "id":"hvac-urbania-v0","units":[],"routes":[],"drains":[],
+    "validation":{"status":"VERIFICATION_REQUIRED","findings":[{"code":"HVAC-SPEC-001","severity":"WARNING","status":"VERIFICATION_REQUIRED","message":"HVAC equipment, service envelopes, condensate drainage and duct routing are not yet selected."}]}
+  },
+  "serviceZones":[],
+  "note":"This candidate reserves the architecture only. Zero envelopes mean unknown, not zero physical size; canonical promotion is forbidden until real component geometry is supplied."
+}
