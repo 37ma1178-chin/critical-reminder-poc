@@ -1,0 +1,9 @@
+{
+  "schemaVersion":"0.2.0",
+  "entities":[
+    "Jurisdiction","Authority","LegalSource","RegulatoryRule","RuleVersion","RuleApplicability","RegulatoryConstraint","VehicleClassification","UseClassification","ModificationType","ModificationManifest","OfficialForm","Procedure","ProcedureStep","RequiredDocument","RegulatoryConflict","RegulatoryDecision","RegulatorySnapshot",
+    "Manufacturer","VehicleFamily","VehicleGeneration","DonorVehicleVariant","VehiclePhysicalState","VehicleSpecification","VehicleMeasurement","VehicleOpening","VehicleStructuralZone","VehiclePriceObservation","VehicleEvidence","DigitalTwin","DigitalTwinVersion","GeometryObject","SpatialZone",
+    "ComponentCategory","ComponentSKU","ComponentCompatibility","PriceObservation","FabricatedObjectDefinition","FabricatedObjectInstance","ServiceNode","ServiceRoute","ElectricalSystem","WaterSystem","HVACSystem",
+    "Project","ProjectIntent","ProjectBudget","ProjectRevision","Checkpoint","DesignTemplate","TemplateVersion","LayoutCandidate","ValidationRun","ValidationFinding","BOM","BOMItem","FabricationPackage","AsBuiltTwin","ConstructionDeviation","MaintenanceRecord","ModificationProject"
+  ]
+}
