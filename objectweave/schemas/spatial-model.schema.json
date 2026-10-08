@@ -1,0 +1,36 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave RV Spatial Model",
+  "type":"object",
+  "required":["schemaVersion","vehicleId","coordinateSystem","zones","objects","openings"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},"vehicleId":{"type":"string"},
+    "coordinateSystem":{"type":"object","required":["origin","axes"],"properties":{
+      "origin":{"type":"string"},"axes":{"type":"object","required":["x","y","z"],"properties":{"x":{"type":"string"},"y":{"type":"string"},"z":{"type":"string"}}}
+    }},
+    "zones":{"type":"array","items":{"$ref":"#/$defs/zone"}},
+    "objects":{"type":"array","items":{"$ref":"#/$defs/object"}},
+    "openings":{"type":"array","items":{"$ref":"#/$defs/opening"}}
+  },
+  "$defs":{
+    "box":{"type":"object","required":["xMm","yMm","zMm"],"properties":{"xMm":{"type":"number","minimum":0},"yMm":{"type":"number","minimum":0},"zMm":{"type":"number","minimum":0}}},
+    "transform":{"type":"object","required":["positionMm"],"properties":{"positionMm":{"type":"array","minItems":3,"maxItems":3,"items":{"type":"number"}},"rotationDeg":{"type":"array","minItems":3,"maxItems":3,"items":{"type":"number"}}}},
+    "zone":{"type":"object","required":["id","kind","envelope","criticality"],"properties":{
+      "id":{"type":"string"},"kind":{"enum":["OCCUPIED","STRUCTURAL","SERVICE","LUGGAGE","ROOF","UNDERFLOOR","WHEELHOUSE","CAB","ENGINEERING"]},
+      "envelope":{"$ref":"#/$defs/box"},"transform":{"$ref":"#/$defs/transform"},
+      "criticality":{"enum":["BLOCKING","PROTECTED","NORMAL"]},
+      "evidence":{"type":"array","items":{"$ref":"#/$defs/evidence"}}
+    }},
+    "object":{"type":"object","required":["id","kind","envelope","transform","role"],"properties":{
+      "id":{"type":"string"},"kind":{"type":"string"},"role":{"enum":["VEHICLE","FURNITURE","COMPONENT","SERVICE_NODE","SERVICE_ROUTE","OPENING"]},
+      "envelope":{"$ref":"#/$defs/box"},"operatingEnvelope":{"$ref":"#/$defs/box"},"serviceEnvelope":{"$ref":"#/$defs/box"},
+      "transform":{"$ref":"#/$defs/transform"},"zoneIds":{"type":"array","items":{"type":"string"}},
+      "fixedSku":{"type":"boolean"},"evidence":{"type":"array","items":{"$ref":"#/$defs/evidence"}}
+    }},
+    "opening":{"type":"object","required":["id","kind","location"],"properties":{"id":{"type":"string"},"kind":{"type":"string"},"location":{"$ref":"#/$defs/transform"},"envelope":{"$ref":"#/$defs/box"}}},
+    "evidence":{"type":"object","required":["truthClass","confidence"],"properties":{
+      "truthClass":{"enum":["AUTHORITATIVE_FACT","VERIFIED_MEASUREMENT","DERIVED","COMMUNITY_MEASURED","ESTIMATED","UNKNOWN"]},
+      "confidence":{"enum":["HIGH","MEDIUM","LOW","UNKNOWN"]},"sourceUri":{"type":["string","null"]},"notes":{"type":["string","null"]}
+    }}
+  }
+}
