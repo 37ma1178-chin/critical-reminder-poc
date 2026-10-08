@@ -1,0 +1,8 @@
+{
+ "schemaVersion":"0.2.0",
+ "examples":[
+  {"id":"tv-32-example","type":"FIXED_SKU","category":"TV","dimensionsMm":{"length":null,"width":null,"height":null},"massKg":null,"serviceEnvelopeMm":null,"evidence":[]},
+  {"id":"seat-recliner-custom-example","type":"PARAMETRIC_FABRICATED","category":"RECLINER","manufacturingRange":{"lengthMm":{"min":null,"max":null},"widthMm":{"min":null,"max":null},"heightMm":{"min":null,"max":null}},"massKg":null,"evidence":[]},
+  {"id":"battery-inverter-system-example","type":"SYSTEM_ASSEMBLY","category":"ELECTRICAL","children":[],"serviceEnvelopeMm":null,"connections":[],"evidence":[]}
+ ]
+}
