@@ -30,3 +30,13 @@
 28. Price refresh creates a new dated observation rather than overwriting historical observations.
 29. Unknown component mass/power/capacity/clearance cannot be inferred into PASS solely by AI/import.
 30. Component service/removal and operating envelopes participate in collision/layout validation before a layout is frozen.
+31. Unknown base vehicle mass or longitudinal CG blocks mass-engineering PASS.
+32. Unknown front or rear axle rating blocks mass-engineering PASS even when total mass is below GVW.
+33. Any installed component with unknown mass or longitudinal CG blocks mass-engineering PASS.
+34. Calculated total mass above GVW produces FAIL.
+35. Calculated front axle load above its rating produces FAIL.
+36. Calculated rear axle load above its rating produces FAIL.
+37. Fluid loads are physical mass items at tank coordinates and affect total mass, CG and axle loads.
+38. Occupants and luggage are explicit mass items and affect total mass, CG and axle loads.
+39. Canonical vehicle coordinates are converted through an explicit adapter before use by the axle solver; coordinate systems are never silently mixed.
+40. A layout cannot become FROZEN unless its required mass/load cases pass the applicable mass and axle gates.
