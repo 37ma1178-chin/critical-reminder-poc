@@ -1,0 +1,28 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave Layout Candidate",
+  "type":"object",
+  "required":["schemaVersion","id","projectId","donorVehicleId","requirements","placements","serviceReservations","validation"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},"id":{"type":"string"},"projectId":{"type":"string"},"donorVehicleId":{"type":"string"},
+    "templateId":{"type":["string","null"]},"requirements":{"$ref":"#/$defs/requirements"},
+    "placements":{"type":"array","items":{"$ref":"#/$defs/placement"}},
+    "serviceReservations":{"type":"array","items":{"$ref":"#/$defs/reservation"}},
+    "validation":{"type":"object","required":["status","findingCodes"],"properties":{"status":{"enum":["PASS","CONDITIONAL","WARNING","FAIL","VERIFICATION_REQUIRED","NOT_RUN"]},"findingCodes":{"type":"array","items":{"type":"string"}}}},
+    "score":{"type":["number","null"]},"status":{"enum":["CANDIDATE","SELECTED","REJECTED","FROZEN"]}
+  },
+  "$defs":{
+    "requirements":{"type":"object","required":["occupancy","useIntent","budget"],"properties":{
+      "occupancy":{"type":"integer","minimum":1},"useIntent":{"enum":["PRIVATE","COMMERCIAL","UNKNOWN"]},"budget":{"type":"object","required":["totalInr"],"properties":{"totalInr":{"type":["number","null"]}}},
+      "features":{"type":"object","additionalProperties":{"type":"boolean"}},"seatCount":{"type":["integer","null"]},"sleepingBerths":{"type":["integer","null"]}
+    }},
+    "placement":{"type":"object","required":["id","componentId","transform","envelope","role","fixedGeometry"],"properties":{
+      "id":{"type":"string"},"componentId":{"type":"string"},"transform":{"type":"object","required":["positionMm","rotationDeg"],"properties":{"positionMm":{"type":"array","minItems":3,"maxItems":3,"items":{"type":"number"}},"rotationDeg":{"type":"array","minItems":3,"maxItems":3,"items":{"type":"number"}}}},
+      "envelope":{"type":"object","required":["xMm","yMm","zMm"],"properties":{"xMm":{"type":"number"},"yMm":{"type":"number"},"zMm":{"type":"number"}}},
+      "operatingEnvelope":{"type":["object","null"]},"serviceEnvelope":{"type":["object","null"]},"role":{"type":"string"},"fixedGeometry":{"type":"boolean"},
+      "accessZoneId":{"type":["string","null"]},"evidence":{"type":"array","items":{"$ref":"#/$defs/evidence"}}
+    }},
+    "reservation":{"type":"object","required":["id","systemType","envelope"],"properties":{"id":{"type":"string"},"systemType":{"enum":["ELECTRICAL","WATER","HVAC"]},"envelope":{"type":"object","required":["xMm","yMm","zMm"],"properties":{"xMm":{"type":"number"},"yMm":{"type":"number"},"zMm":{"type":"number"}}},"status":{"enum":["RESERVED","UNKNOWN","VALIDATED"]}}},
+    "evidence":{"type":"object","required":["truthClass","confidence"],"properties":{"truthClass":{"enum":["AUTHORITATIVE_FACT","VERIFIED_MEASUREMENT","DERIVED","COMMUNITY_MEASURED","ESTIMATED","UNKNOWN"]},"confidence":{"enum":["HIGH","MEDIUM","LOW","UNKNOWN"]},"notes":{"type":["string","null"]}}}
+  }
+}
