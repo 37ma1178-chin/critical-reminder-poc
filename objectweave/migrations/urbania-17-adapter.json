@@ -1,0 +1,8 @@
+{
+ "adapterVersion":"0.1.0",
+ "source":"data/urbania-17.json",
+ "targetDonorId":"force-urbania-dx-4400-16d-prototype",
+ "preserveProvenance":true,
+ "autoVerify":false,
+ "notes":"Migration keeps official, secondary, measured, derived and estimated source classes separate."
+}
