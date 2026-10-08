@@ -1,0 +1,17 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "title":"ObjectWeave Project",
+ "type":"object",
+ "required":["id","schemaVersion","stage","revision","canonicalModelVersion","createdAt","updatedAt"],
+ "properties":{
+  "id":{"type":"string"},"schemaVersion":{"const":"0.2.0"},
+  "stage":{"enum":["DRAFT","CONCEPT","LAYOUT_CANDIDATE","LAYOUT_APPROVED","ENGINEERING","SERVICES_ROUTED","VALIDATION_PENDING","VALIDATED","DESIGN_FROZEN","FABRICATION_PACKAGE","UNDER_CONSTRUCTION","AS_BUILT"]},
+  "revision":{"type":"integer","minimum":1},"canonicalModelVersion":{"type":"string"},
+  "donorVehicleId":{"type":["string","null"]},"jurisdictionId":{"type":["string","null"]},
+  "intent":{"type":"object"},"budget":{"type":"object"},
+  "requirements":{"type":"array","items":{"type":"object"}},
+  "checkpoints":{"type":"array","items":{"type":"object"}},
+  "createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}
+ },
+ "additionalProperties":false
+}
