@@ -1,0 +1,20 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave RV Mass Model",
+  "type":"object",
+  "required":["schemaVersion","id","donorVehicleId","ratings","baseVehicle","items","fluids","occupants","results","status"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},
+    "id":{"type":"string"},
+    "donorVehicleId":{"type":"string"},
+    "ratings":{"type":"object","properties":{"gvwKg":{"type":["number","null"]},"frontAxleRatingKg":{"type":["number","null"]},"rearAxleRatingKg":{"type":["number","null"]},"evidence":{"type":"array","items":{"type":"object"}}}},
+    "baseVehicle":{"type":"object","required":["massKg","cgXmm"],"properties":{"massKg":{"type":["number","null"]},"cgXmm":{"type":["number","null"]},"frontAxleKg":{"type":["number","null"]},"rearAxleKg":{"type":["number","null"]},"evidence":{"type":"array","items":{"type":"object"}}}},
+    "items":{"type":"array","items":{"$ref":"#/$defs/massItem"}},
+    "fluids":{"type":"array","items":{"$ref":"#/$defs/massItem"}},
+    "occupants":{"type":"array","items":{"$ref":"#/$defs/massItem"}},
+    "results":{"type":"object","properties":{"totalMassKg":{"type":["number","null"]},"payloadRemainingKg":{"type":["number","null"]},"cgXmm":{"type":["number","null"]},"frontAxleKg":{"type":["number","null"]},"rearAxleKg":{"type":["number","null"]},"frontAxleRemainingKg":{"type":["number","null"]},"rearAxleRemainingKg":{"type":["number","null"]}}},
+    "status":{"enum":["PASS","CONDITIONAL","WARNING","FAIL","VERIFICATION_REQUIRED","NOT_RUN"]},
+    "findings":{"type":"array","items":{"type":"object"}}
+  },
+  "$defs":{"massItem":{"type":"object","required":["id","kind","massKg","cgXmm","truthClass"],"properties":{"id":{"type":"string"},"kind":{"enum":["COMPONENT","FABRICATED_OBJECT","SYSTEM","FLUID","OCCUPANT","LUGGAGE","OTHER"]},"massKg":{"type":["number","null"]},"cgXmm":{"type":["number","null"]},"cgYmm":{"type":["number","null"]},"cgZmm":{"type":["number","null"]},"truthClass":{"enum":["AUTHORITATIVE_FACT","VERIFIED_MEASUREMENT","DERIVED","COMMUNITY_MEASURED","ESTIMATED","UNKNOWN"]},"evidence":{"type":"array","items":{"type":"object"}}}}}
+}
