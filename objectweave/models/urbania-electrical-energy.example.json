@@ -1,0 +1,22 @@
+{
+  "schemaVersion":"0.2.0",
+  "id":"energy-force-urbania-4400-16d-v0",
+  "electricalSystemId":"electrical-force-urbania-4400-16d-v0",
+  "scenario":{"name":"USER_REQUIREMENTS_PENDING","autonomyHours":null,"notes":"No arbitrary autonomy target has been assumed."},
+  "loads":[
+    {"id":"load-fridge","powerW":null,"hoursPerDay":null,"dutyCycle":null,"quantity":1,"surgePowerW":null,"acDc":"UNKNOWN","truthClass":"UNKNOWN"},
+    {"id":"load-microwave","powerW":null,"hoursPerDay":null,"dutyCycle":null,"quantity":1,"surgePowerW":null,"acDc":"UNKNOWN","truthClass":"UNKNOWN"},
+    {"id":"load-tv","powerW":null,"hoursPerDay":null,"dutyCycle":null,"quantity":1,"surgePowerW":null,"acDc":"UNKNOWN","truthClass":"UNKNOWN"},
+    {"id":"load-ac","powerW":null,"hoursPerDay":null,"dutyCycle":null,"quantity":1,"surgePowerW":null,"acDc":"UNKNOWN","truthClass":"UNKNOWN"},
+    {"id":"load-water-pump","powerW":null,"hoursPerDay":null,"dutyCycle":null,"quantity":1,"surgePowerW":null,"acDc":"UNKNOWN","truthClass":"UNKNOWN"},
+    {"id":"load-lighting","powerW":null,"hoursPerDay":null,"dutyCycle":null,"quantity":1,"surgePowerW":null,"acDc":"UNKNOWN","truthClass":"UNKNOWN"},
+    {"id":"load-device-charging","powerW":null,"hoursPerDay":null,"dutyCycle":null,"quantity":1,"surgePowerW":null,"acDc":"UNKNOWN","truthClass":"UNKNOWN"}
+  ],
+  "storage":{"nominalVoltageV":null,"nominalCapacityAh":null,"nominalCapacityWh":null,"usableFraction":null,"maxContinuousDischargeW":null,"maxDischargeA":null},
+  "sources":{"solar":{"arrayRatedW":null,"peakSunHours":null,"systemEfficiency":null},"alternator":{"chargePowerW":null,"hoursPerDay":null},"shore":{"chargePowerW":null}},
+  "conversion":{"inverterContinuousW":null,"inverterSurgeW":null,"inverterEfficiency":null,"chargerEfficiency":null},
+  "results":{"dailyLoadWh":null,"peakContinuousLoadW":null,"peakSurgeLoadW":null,"requiredUsableStorageWh":null,"requiredNominalStorageWh":null,"estimatedSolarWhPerDay":null,"estimatedAlternatorWhPerDay":null,"dailyEnergyBalanceWh":null},
+  "status":"VERIFICATION_REQUIRED",
+  "findings":[{"code":"USER_LOAD_PROFILE_REQUIRED","severity":"VERIFICATION_REQUIRED"},{"code":"FIXED_SKU_ELECTRICAL_DATA_REQUIRED","severity":"VERIFICATION_REQUIRED"}],
+  "notes":"Foundation candidate only. No battery capacity, solar wattage, inverter rating, appliance power or runtime has been invented."
+}
