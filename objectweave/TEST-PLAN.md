@@ -40,3 +40,18 @@
 38. Occupants and luggage are explicit mass items and affect total mass, CG and axle loads.
 39. Canonical vehicle coordinates are converted through an explicit adapter before use by the axle solver; coordinate systems are never silently mixed.
 40. A layout cannot become FROZEN unless its required mass/load cases pass the applicable mass and axle gates.
+41. Unknown appliance/load power, runtime or duty cycle blocks electrical-energy PASS.
+42. Daily energy demand is derived from explicit load power, runtime, duty cycle and quantity; it is never inferred from RV size alone.
+43. Unknown requested autonomy or battery usable fraction blocks storage-sizing PASS.
+44. Required nominal battery energy is derived from usable energy requirement and verified usable fraction.
+45. Known inverter continuous demand above its continuous rating produces FAIL.
+46. Known inverter surge demand above its surge rating produces FAIL.
+47. Installed battery nominal energy below the calculated scenario requirement produces FAIL.
+48. Solar production remains a scenario estimate using explicit array rating, peak-sun-hours and efficiency assumptions; it is never treated as guaranteed.
+49. Alternator charging energy uses explicit charge power and driving/charging time; it is never assumed unlimited.
+50. A negative known daily generation-versus-load balance produces a warning and requires an explicit charging/storage strategy.
+51. Battery/BMS discharge capability, voltage compatibility, thermal/service constraints, mass and physical placement remain separate required engineering gates.
+52. Solar panel selection cannot exceed verified usable roof geometry after fixed panel dimensions, roof equipment and clearances are applied.
+53. Electrical component dimensions and mass remain linked to the same fixed SKU records used by spatial and mass validation.
+54. Unknown electrical SKU data cannot be promoted to PASS by template recommendation, AI inference or rendering.
+55. A layout cannot become FROZEN when its required electrical-energy scenario has FAIL or VERIFICATION_REQUIRED findings.
