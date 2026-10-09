@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave RV Electrical Energy Model",
+  "type":"object",
+  "required":["schemaVersion","id","electricalSystemId","scenario","loads","storage","sources","conversion","results","status"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},"id":{"type":"string"},"electricalSystemId":{"type":"string"},
+    "scenario":{"type":"object","required":["name","autonomyHours"],"properties":{"name":{"type":"string"},"autonomyHours":{"type":["number","null"],"minimum":0},"notes":{"type":["string","null"]}}},
+    "loads":{"type":"array","items":{"type":"object","required":["id","powerW","hoursPerDay","dutyCycle","quantity","truthClass"],"properties":{"id":{"type":"string"},"powerW":{"type":["number","null"]},"hoursPerDay":{"type":["number","null"],"minimum":0,"maximum":24},"dutyCycle":{"type":["number","null"],"minimum":0,"maximum":1},"quantity":{"type":"integer","minimum":1},"surgePowerW":{"type":["number","null"]},"acDc":{"enum":["AC","DC","UNKNOWN"]},"truthClass":{"enum":["AUTHORITATIVE_FACT","VERIFIED_MEASUREMENT","DERIVED","COMMUNITY_MEASURED","ESTIMATED","UNKNOWN"]}}}},
+    "storage":{"type":"object","properties":{"nominalVoltageV":{"type":["number","null"]},"nominalCapacityAh":{"type":["number","null"]},"nominalCapacityWh":{"type":["number","null"]},"usableFraction":{"type":["number","null"],"minimum":0,"maximum":1},"maxContinuousDischargeW":{"type":["number","null"]},"maxDischargeA":{"type":["number","null"]}}},
+    "sources":{"type":"object","properties":{"solar":{"type":"object","properties":{"arrayRatedW":{"type":["number","null"]},"peakSunHours":{"type":["number","null"]},"systemEfficiency":{"type":["number","null"],"minimum":0,"maximum":1}}},"alternator":{"type":"object","properties":{"chargePowerW":{"type":["number","null"]},"hoursPerDay":{"type":["number","null"]}}},"shore":{"type":"object","properties":{"chargePowerW":{"type":["number","null"]}}}}},
+    "conversion":{"type":"object","properties":{"inverterContinuousW":{"type":["number","null"]},"inverterSurgeW":{"type":["number","null"]},"inverterEfficiency":{"type":["number","null"],"minimum":0,"maximum":1},"chargerEfficiency":{"type":["number","null"],"minimum":0,"maximum":1}}},
+    "results":{"type":"object","properties":{"dailyLoadWh":{"type":["number","null"]},"peakContinuousLoadW":{"type":["number","null"]},"peakSurgeLoadW":{"type":["number","null"]},"requiredUsableStorageWh":{"type":["number","null"]},"requiredNominalStorageWh":{"type":["number","null"]},"estimatedSolarWhPerDay":{"type":["number","null"]},"estimatedAlternatorWhPerDay":{"type":["number","null"]},"dailyEnergyBalanceWh":{"type":["number","null"]}}},
+    "status":{"enum":["PASS","CONDITIONAL","WARNING","FAIL","VERIFICATION_REQUIRED","NOT_RUN"]},
+    "findings":{"type":"array","items":{"type":"object"}}
+  }
+}
