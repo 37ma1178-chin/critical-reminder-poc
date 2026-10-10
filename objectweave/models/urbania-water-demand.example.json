@@ -1,0 +1,17 @@
+{
+  "schemaVersion":"0.2.0","id":"water-demand-force-urbania-4400-16d-v0","waterSystemId":"water-force-urbania-4400-16d-v0",
+  "scenario":{"occupants":null,"autonomyDays":null,"reserveFraction":null},
+  "uses":[
+    {"id":"use-drinking","kind":"DRINKING","litresPerUse":null,"usesPerPersonPerDay":null,"greyFraction":0,"blackFraction":0,"truthClass":"UNKNOWN"},
+    {"id":"use-cooking","kind":"COOKING","litresPerUse":null,"usesPerPersonPerDay":null,"greyFraction":null,"blackFraction":0,"truthClass":"UNKNOWN"},
+    {"id":"use-basin","kind":"BASIN","litresPerUse":null,"usesPerPersonPerDay":null,"greyFraction":null,"blackFraction":0,"truthClass":"UNKNOWN"},
+    {"id":"use-shower","kind":"SHOWER","litresPerUse":null,"usesPerPersonPerDay":null,"greyFraction":null,"blackFraction":0,"truthClass":"UNKNOWN"},
+    {"id":"use-wc","kind":"WC_FLUSH","litresPerUse":null,"usesPerPersonPerDay":null,"greyFraction":0,"blackFraction":null,"truthClass":"UNKNOWN"},
+    {"id":"use-dishes","kind":"DISHWASHING","litresPerUse":null,"usesPerPersonPerDay":null,"greyFraction":null,"blackFraction":0,"truthClass":"UNKNOWN"}
+  ],
+  "tanks":{"fresh":{"componentId":"cat-fresh-tank","capacityL":null,"usableFraction":null,"cgXmm":null,"cgYmm":null,"cgZmm":null,"serviceAccess":null,"vented":null},"grey":{"componentId":"cat-grey-tank","capacityL":null,"usableFraction":null,"cgXmm":null,"cgYmm":null,"cgZmm":null,"serviceAccess":null,"vented":null},"black":{"componentId":"cat-black-tank","capacityL":null,"usableFraction":null,"cgXmm":null,"cgYmm":null,"cgZmm":null,"serviceAccess":null,"vented":null}},
+  "pump":{"flowLpm":null,"pressureBar":null,"electricalLoadId":"load-water-pump"},"routes":[],
+  "results":{"dailyFreshDemandL":null,"requiredFreshCapacityL":null,"dailyGreyGenerationL":null,"requiredGreyCapacityL":null,"dailyBlackGenerationL":null,"requiredBlackCapacityL":null,"freshFullMassKg":null,"greyFullMassKg":null,"blackFullMassKg":null},
+  "status":"VERIFICATION_REQUIRED","findings":[{"code":"USER_WATER_PROFILE_REQUIRED","severity":"VERIFICATION_REQUIRED"},{"code":"TANK_SKU_AND_GEOMETRY_REQUIRED","severity":"VERIFICATION_REQUIRED"}],
+  "notes":"No per-person water consumption, tank capacity, pump specification or drain geometry has been invented. Tank fill mass must feed the mass/axle model once tank coordinates are known."
+}
