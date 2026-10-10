@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave RV Water Demand Model",
+  "type":"object",
+  "required":["schemaVersion","id","waterSystemId","scenario","uses","tanks","pump","routes","results","status"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},"id":{"type":"string"},"waterSystemId":{"type":"string"},
+    "scenario":{"type":"object","required":["occupants","autonomyDays"],"properties":{"occupants":{"type":["integer","null"],"minimum":1},"autonomyDays":{"type":["number","null"],"minimum":0},"reserveFraction":{"type":["number","null"],"minimum":0,"maximum":1}}},
+    "uses":{"type":"array","items":{"type":"object","required":["id","kind","litresPerUse","usesPerPersonPerDay","greyFraction","blackFraction","truthClass"],"properties":{"id":{"type":"string"},"kind":{"enum":["DRINKING","COOKING","BASIN","SHOWER","WC_FLUSH","DISHWASHING","OTHER"]},"litresPerUse":{"type":["number","null"],"minimum":0},"usesPerPersonPerDay":{"type":["number","null"],"minimum":0},"greyFraction":{"type":["number","null"],"minimum":0,"maximum":1},"blackFraction":{"type":["number","null"],"minimum":0,"maximum":1},"truthClass":{"enum":["AUTHORITATIVE_FACT","VERIFIED_MEASUREMENT","DERIVED","COMMUNITY_MEASURED","ESTIMATED","UNKNOWN"]}}}},
+    "tanks":{"type":"object","properties":{"fresh":{"$ref":"#/$defs/tank"},"grey":{"$ref":"#/$defs/tank"},"black":{"$ref":"#/$defs/tank"}}},
+    "pump":{"type":"object","properties":{"flowLpm":{"type":["number","null"]},"pressureBar":{"type":["number","null"]},"electricalLoadId":{"type":["string","null"]}}},
+    "routes":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"kind":{"enum":["FRESH_PRESSURE","GREY_DRAIN","BLACK_DRAIN","VENT","FILL","OVERFLOW"]},"diameterMm":{"type":["number","null"]},"lengthMm":{"type":["number","null"]},"startZmm":{"type":["number","null"]},"endZmm":{"type":["number","null"]},"minimumSlopePercent":{"type":["number","null"]},"serviceAccess":{"type":["boolean","null"]}}}},
+    "results":{"type":"object","properties":{"dailyFreshDemandL":{"type":["number","null"]},"requiredFreshCapacityL":{"type":["number","null"]},"dailyGreyGenerationL":{"type":["number","null"]},"requiredGreyCapacityL":{"type":["number","null"]},"dailyBlackGenerationL":{"type":["number","null"]},"requiredBlackCapacityL":{"type":["number","null"]},"freshFullMassKg":{"type":["number","null"]},"greyFullMassKg":{"type":["number","null"]},"blackFullMassKg":{"type":["number","null"]}}},
+    "status":{"enum":["PASS","CONDITIONAL","WARNING","FAIL","VERIFICATION_REQUIRED","NOT_RUN"]},"findings":{"type":"array","items":{"type":"object"}}
+  },
+  "$defs":{"tank":{"type":"object","properties":{"componentId":{"type":["string","null"]},"capacityL":{"type":["number","null"]},"usableFraction":{"type":["number","null"],"minimum":0,"maximum":1},"cgXmm":{"type":["number","null"]},"cgYmm":{"type":["number","null"]},"cgZmm":{"type":["number","null"]},"serviceAccess":{"type":["boolean","null"]},"vented":{"type":["boolean","null"]}}}}
+}
