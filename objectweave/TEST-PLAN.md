@@ -71,3 +71,19 @@
 69. Wet-area/WC placement cannot PASS on visual fit alone when waterproofing, drainage, fixture clearance or service access is unresolved.
 70. Unknown plumbing/tank data cannot be promoted to PASS by templates, AI inference or rendering.
 71. A layout cannot become FROZEN when its required water/plumbing scenario has FAIL or VERIFICATION_REQUIRED findings.
+72. Unknown outdoor/indoor design temperatures, humidity targets or solar scenario blocks HVAC thermal PASS.
+73. Unknown envelope area, U-value or solar gain blocks final cooling-load PASS.
+74. Cooling load is derived from canonical envelope geometry and explicit thermal properties, not vehicle length or generic RV tonnage rules.
+75. Occupant, appliance and lighting sensible/latent gains are explicit inputs and cannot be silently omitted.
+76. Outside-air ventilation requirement is distinct from recirculating AC capacity; insufficient verified outside air produces FAIL.
+77. Unknown infiltration blocks final thermal PASS.
+78. Selected HVAC unit capacity, input power and airflow must be verified fixed-SKU engineering data.
+79. Installed verified cooling capacity below the calculated applicable load produces FAIL.
+80. Every condensate-producing HVAC unit requires a real condensate drain route.
+81. HVAC physical, operating, heat-rejection and service envelopes participate in spatial validation.
+82. Roof HVAC/vents cannot overlap solar panels, protected roof structure or required service clearances.
+83. HVAC electrical input participates in electrical-energy and inverter validation.
+84. HVAC equipment mass and location participate in GVW/axle/CG validation.
+85. The foundation sensible-air approximation cannot be represented as a full psychrometric/dynamic simulation result.
+86. Unknown humidity/latent ventilation requirements cannot be promoted to PASS by AI inference or rendering.
+87. A layout cannot become FROZEN when its required HVAC/thermal scenario has FAIL or VERIFICATION_REQUIRED findings.
