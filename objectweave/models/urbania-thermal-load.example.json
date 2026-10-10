@@ -1,0 +1,17 @@
+{
+  "schemaVersion":"0.2.0","id":"thermal-force-urbania-4400-16d-v0","hvacSystemId":"hvac-force-urbania-4400-16d-v0",
+  "scenario":{"outdoorDryBulbC":null,"outdoorRelativeHumidity":null,"targetIndoorC":null,"targetRelativeHumidity":null,"solarScenario":"UNKNOWN","occupants":null},
+  "zones":[{"id":"habitable-zone","volumeM3":null,"setpointC":null,"servedByUnitIds":[]}],
+  "envelopeLoads":[
+    {"id":"roof","kind":"ROOF","areaM2":null,"uValueWm2K":null,"solarGainW":null,"truthClass":"UNKNOWN"},
+    {"id":"walls","kind":"WALL","areaM2":null,"uValueWm2K":null,"solarGainW":null,"truthClass":"UNKNOWN"},
+    {"id":"floor","kind":"FLOOR","areaM2":null,"uValueWm2K":null,"solarGainW":null,"truthClass":"UNKNOWN"},
+    {"id":"glazing","kind":"GLAZING","areaM2":null,"uValueWm2K":null,"solarGainW":null,"truthClass":"UNKNOWN"}
+  ],
+  "internalLoads":[{"id":"occupants","sensibleW":null,"latentW":null,"sourceKind":"OCCUPANT","electricalLoadId":null},{"id":"appliances","sensibleW":null,"latentW":null,"sourceKind":"APPLIANCE","electricalLoadId":null}],
+  "ventilation":{"outsideAirM3h":null,"infiltrationM3h":null,"exhaustM3h":null,"requiredOutsideAirM3h":null},
+  "equipment":[],
+  "results":{"conductiveLoadW":null,"solarLoadW":null,"internalSensibleW":null,"internalLatentW":null,"ventilationLoadW":null,"totalCoolingLoadW":null,"installedCoolingCapacityW":null},
+  "status":"VERIFICATION_REQUIRED","findings":[{"code":"THERMAL_ENVELOPE_REQUIRED","severity":"VERIFICATION_REQUIRED"},{"code":"CLIMATE_SCENARIO_REQUIRED","severity":"VERIFICATION_REQUIRED"},{"code":"HVAC_SKU_REQUIRED","severity":"VERIFICATION_REQUIRED"}],
+  "notes":"No Ahmedabad/India climate design temperature, insulation U-value, solar gain, occupant heat gain, infiltration, ventilation rate or AC capacity has been invented."
+}
