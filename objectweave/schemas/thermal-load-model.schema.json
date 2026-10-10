@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"ObjectWeave RV Thermal Load Model",
+  "type":"object",
+  "required":["schemaVersion","id","hvacSystemId","scenario","zones","envelopeLoads","internalLoads","ventilation","equipment","results","status"],
+  "properties":{
+    "schemaVersion":{"const":"0.2.0"},"id":{"type":"string"},"hvacSystemId":{"type":"string"},
+    "scenario":{"type":"object","properties":{"outdoorDryBulbC":{"type":["number","null"]},"outdoorRelativeHumidity":{"type":["number","null"],"minimum":0,"maximum":1},"targetIndoorC":{"type":["number","null"]},"targetRelativeHumidity":{"type":["number","null"],"minimum":0,"maximum":1},"solarScenario":{"enum":["NIGHT","SHADED","PART_SUN","FULL_SUN","UNKNOWN"]},"occupants":{"type":["integer","null"],"minimum":0}}},
+    "zones":{"type":"array","items":{"type":"object","required":["id","volumeM3"],"properties":{"id":{"type":"string"},"volumeM3":{"type":["number","null"]},"setpointC":{"type":["number","null"]},"servedByUnitIds":{"type":"array","items":{"type":"string"}}}}},
+    "envelopeLoads":{"type":"array","items":{"type":"object","required":["id","areaM2","uValueWm2K","solarGainW"],"properties":{"id":{"type":"string"},"kind":{"enum":["ROOF","WALL","FLOOR","GLAZING","DOOR","OTHER"]},"areaM2":{"type":["number","null"]},"uValueWm2K":{"type":["number","null"]},"solarGainW":{"type":["number","null"]},"truthClass":{"enum":["AUTHORITATIVE_FACT","VERIFIED_MEASUREMENT","DERIVED","COMMUNITY_MEASURED","ESTIMATED","UNKNOWN"]}}}},
+    "internalLoads":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"sensibleW":{"type":["number","null"]},"latentW":{"type":["number","null"]},"sourceKind":{"enum":["OCCUPANT","APPLIANCE","LIGHTING","OTHER"]},"electricalLoadId":{"type":["string","null"]}}}},
+    "ventilation":{"type":"object","properties":{"outsideAirM3h":{"type":["number","null"]},"infiltrationM3h":{"type":["number","null"]},"exhaustM3h":{"type":["number","null"]},"requiredOutsideAirM3h":{"type":["number","null"]}}},
+    "equipment":{"type":"array","items":{"type":"object","properties":{"unitId":{"type":"string"},"componentId":{"type":["string","null"]},"coolingCapacityW":{"type":["number","null"]},"heatingCapacityW":{"type":["number","null"]},"inputPowerW":{"type":["number","null"]},"airflowM3h":{"type":["number","null"]},"condensateDrainRouteId":{"type":["string","null"]},"serviceAccess":{"type":["boolean","null"]},"ventilationClearanceVerified":{"type":["boolean","null"]}}}},
+    "results":{"type":"object","properties":{"conductiveLoadW":{"type":["number","null"]},"solarLoadW":{"type":["number","null"]},"internalSensibleW":{"type":["number","null"]},"internalLatentW":{"type":["number","null"]},"ventilationLoadW":{"type":["number","null"]},"totalCoolingLoadW":{"type":["number","null"]},"installedCoolingCapacityW":{"type":["number","null"]}}},
+    "status":{"enum":["PASS","CONDITIONAL","WARNING","FAIL","VERIFICATION_REQUIRED","NOT_RUN"]},"findings":{"type":"array","items":{"type":"object"}}
+  }
+}
