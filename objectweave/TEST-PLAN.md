@@ -55,3 +55,19 @@
 53. Electrical component dimensions and mass remain linked to the same fixed SKU records used by spatial and mass validation.
 54. Unknown electrical SKU data cannot be promoted to PASS by template recommendation, AI inference or rendering.
 55. A layout cannot become FROZEN when its required electrical-energy scenario has FAIL or VERIFICATION_REQUIRED findings.
+56. Unknown occupant count, water autonomy, reserve policy, per-use volume or use frequency blocks water-sizing PASS.
+57. Fresh-water demand is derived from explicit use volumes, frequencies and occupants rather than RV size alone.
+58. Grey and black generation are derived from explicit waste fractions; incompatible fractions fail validation.
+59. Selected fresh, grey and black usable tank capacities must satisfy the applicable scenario requirements.
+60. Unknown tank capacity or usable fraction blocks PASS rather than generating an assumed tank size.
+61. Fresh, grey and black tanks require verified service/removal access.
+62. Black-water tank venting must be verified before plumbing PASS.
+63. Gravity drain routes require known diameter, length/elevations and applicable minimum slope; insufficient calculated slope produces FAIL.
+64. Fill, overflow, vent, fresh-pressure, grey-drain and black-drain routes remain distinct service-route types.
+65. Pump flow and pressure requirements must be explicit and selected pump electrical demand links to the electrical-energy model.
+66. Tank contents become physical mass items at actual tank coordinates and participate in GVW/axle load cases.
+67. Empty-tank mass PASS cannot substitute for required full/partial tank travel and worst-credible load cases.
+68. Tank and pump fixed-SKU geometry participates in spatial collision and service-access validation.
+69. Wet-area/WC placement cannot PASS on visual fit alone when waterproofing, drainage, fixture clearance or service access is unresolved.
+70. Unknown plumbing/tank data cannot be promoted to PASS by templates, AI inference or rendering.
+71. A layout cannot become FROZEN when its required water/plumbing scenario has FAIL or VERIFICATION_REQUIRED findings.
