@@ -1,0 +1,20 @@
+{
+ "id": "force_traveller_3350_widerbody_camper",
+ "name": "Force Traveller N Wider Body 3350WB",
+ "kind": "van",
+ "L": 5.615,
+ "W": 2.245,
+ "H": 2.72,
+ "WB": 3.35,
+ "FOH": 0.9,
+ "ROH": 1.365,
+ "tyre": "215/75 R15, 4+1 = single rear (OEM page)",
+ "tyre_d": 0.704,
+ "floor": 0.58,
+ "cab": 1.7,
+ "living_len": 3.595,
+ "living_w": 2.165,
+ "living_h": 2.08,
+ "src": "5615x2245x2720, WB 3350, GC 200, GVW 4125: forcemotors.com/vehicles/traveller-wider-body-3350wb/ (OEM, re-read 19 Nov 2026). Overhang/floor/cab estimated",
+ "layout": "fixed rear transverse double bed 2165x1250 mm over a storage garage; kitchenette 1100 mm with 2-burner cooktop and sink; dinette 1500x1300 mm (2 facing benches + removable table, converts to a 2nd bed); tall wardrobe; overhead lockers; water tank 173 L, 1 x 100 Ah LiFePO4 battery + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+}

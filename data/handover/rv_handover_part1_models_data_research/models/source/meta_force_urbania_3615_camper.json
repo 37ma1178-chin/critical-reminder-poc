@@ -1,0 +1,20 @@
+{
+ "id": "force_urbania_3615_camper",
+ "name": "Force Urbania 3615WB",
+ "kind": "van",
+ "L": 6.225,
+ "W": 2.095,
+ "H": 2.55,
+ "WB": 3.615,
+ "FOH": 1.0,
+ "ROH": 1.61,
+ "tyre": "235/65 R16 (ESTIMATED, not in seed)",
+ "tyre_d": 0.712,
+ "floor": 0.56,
+ "cab": 1.8,
+ "living_len": 4.305,
+ "living_w": 2.015,
+ "living_h": 1.93,
+ "src": "6225x2095x2550, WB 3615, GVW 4135: Force Motors Urbania pages (OEM, via parent research); same as donors.json force-urbania-3615. Front overhang 1000, GC 190, floor 560, cab 1800 estimated",
+ "layout": "fixed rear transverse double bed 2015x1400 mm over a storage garage; kitchenette 1300 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); tall wardrobe; overhead lockers; water tank 173 L, 1 x 100 Ah LiFePO4 battery + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+}

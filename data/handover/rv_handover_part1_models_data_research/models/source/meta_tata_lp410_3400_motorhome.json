@@ -1,0 +1,20 @@
+{
+ "id": "tata_lp410_3400_motorhome",
+ "name": "Tata LP 410 face-cowl chassis 3400WB, coach-built motorhome",
+ "kind": "bus",
+ "L": 6.615,
+ "W": 2.14,
+ "H": 2.8,
+ "WB": 3.4,
+ "FOH": 1.275,
+ "ROH": 1.94,
+ "tyre": "7.50 R16 class (ESTIMATED), dual rear",
+ "tyre_d": 0.8,
+ "floor": 0.9,
+ "cab": 2.1,
+ "living_len": 4.405,
+ "living_w": 2.06,
+ "living_h": 1.84,
+ "src": "L 6615, W 2140, WB 3400, FOH 1275, ROH 1940, GC 210: donors.json tata-lp410-3400 (reputable_secondary). Body height 2800 ESTIMATED (proposedBody). Floor 900, cab 2100 estimated",
+ "layout": "fixed rear transverse double bed 2060x1400 mm over a storage garage; wet room with cassette toilet, shower tray and washbasin; kitchenette 1300 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); tall wardrobe; overhead lockers; water tank 173 L, 1 x 100 Ah LiFePO4 battery + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+}

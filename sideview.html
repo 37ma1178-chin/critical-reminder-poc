@@ -38,29 +38,33 @@
   .modules div span:last-child { color:var(--muted); white-space:nowrap; }
   .total { font-size:12.5px; margin-top:8px; }
   .link { display:block; margin-top:8px; font-size:12px; color:var(--accent); }
+  .picker { width:100%; padding:7px 8px; border:1px solid var(--line); border-radius:7px; background:#fff; font-size:13px; color:var(--ink); }
+  .est { color:#8a5a1f; }
 </style>
 </head>
 <body>
 <div id="app">
   <header>
     <div>
-      <h1>Force Urbania 4400 WB — 17 Seater, Side Profile</h1>
-      <p>Dimensioned scale drawing · 1 unit = 1mm · left side of the vehicle (sliding door) · front points right</p>
+      <h1 id="title">Side profile</h1>
+      <p>Dimensioned scale drawing · 1 unit = 1mm · left (kerb, door) side · front points right · <code id="datafile">data/vehicles/</code> · <span class="est">est.</span> = estimate</p>
     </div>
     <nav><a href="index.html" id="nav-3d">3D</a><a href="topview.html" id="nav-top">Top view</a><a href="sideview.html" class="here">Side profile</a></nav>
   </header>
   <div id="main">
     <div id="viewport"><div id="drawing-frame"></div></div>
     <div id="panel">
-      <div class="specbox" id="specbox">Loading data/urbania-17.json…</div>
+      <div class="group">
+        <h2>Vehicle</h2>
+        <select id="vehicle-picker" class="picker" aria-label="Vehicle"></select>
+      </div>
+      <div class="specbox" id="specbox">Loading…</div>
       <div class="group">
         <h2>Interior shown</h2>
-        <button class="option active" data-layout="rows">Stock 17-seater</button>
+        <button class="option active" data-layout="rows">Stock seating</button>
         <button class="option" data-layout="camper">Camper modules</button>
       </div>
-      <div class="flag">
-        <b>Profile is proportional, not surveyed:</b> length, height, wheelbase, track, tyre size and ground clearance are brochure figures. The hood, windshield, window band, cladding, door positions and rocker height were scaled off the Force Motors side render (about ±100 mm); floor height is a typical value for this van class.
-      </div>
+      <div class="flag" id="profile-flag"></div>
       <div id="modules-box" hidden>
         <h2 class="h">Modules in this configuration</h2>
         <div id="modules" class="modules"></div>
@@ -83,9 +87,9 @@
 <script>
 // ---- All values in millimetres; 1 SVG user unit = 1mm ----
 // Vehicle frame: x = 0 at the rear bumper (front points right), z = height above ground.
-// Everything comes from data/urbania-17.json via js/vehicle.js (Vehicle.sideProfile / layout /
+// Everything comes from data/vehicles/<id>.json via js/vehicle.js (Vehicle.sideProfile / layout /
 // camperPlacements); this file only maps the frame onto the page and adds dimension lines.
-Vehicle.load().then(draw).catch(err => {
+Vehicle.load(Vehicle.vehicleFromUrl()).then(draw).catch(err => {
   console.error(err);
   document.getElementById('specbox').textContent = 'Failed to load vehicle data: ' + err.message + ' (serve over http, not file://)';
 });
@@ -98,10 +102,19 @@ const selection = V.components ? Vehicle.readSelection(V.components) : { layout:
 const mode = selection.layout === 'camper' && V.components ? 'camper' : 'rows';
 const inr = n => '₹' + (n >= 100000 ? (n / 100000).toFixed(n % 100000 ? 1 : 0) + ' L' : Math.round(n / 1000) + 'k');
 
+const isEst = path => Vehicle.confidence(spec, path) === 'ESTIMATED';
+const fromRender = !!a.profile.cab_door;   // only the Urbania has an OEM side render behind its profile
+document.title = `${spec.vehicle} — Side Profile`;
+document.getElementById('title').textContent = `${spec.vehicle} — Side profile`;
+document.getElementById('datafile').textContent = `data/vehicles/${spec.id}.json`;
+Vehicle.mountPicker(document.getElementById('vehicle-picker'), spec.id, selection);
 const lines = Vehicle.specLines(spec);
 document.getElementById('specbox').innerHTML =
-  `<b>Brochure spec:</b><br>Length ${b.length}mm · Height ${b.height}mm<br>Wheelbase ${b.wheelbase}mm · Ground clearance ${b.ground_clearance}mm<br>Tyres ${b.tyre.size} (Ø${LAY.tyreDiameter}mm)<br>${lines.overhang} (listings)` +
-  `<br><i>Estimated:</i> floor ${a.floor_height}mm above ground · rocker ${a.body_bottom_height}mm · sliding door opening ${a.profile.sliding_door.to_front - a.profile.sliding_door.from_front}mm`;
+  `<b>${spec.vehicle}</b><br>${lines.size}<br>${lines.chassis}<br>Tyre Ø${LAY.tyreDiameter}mm${isEst('body.tyre.diameter') ? ' (est.)' : ''}<br>${lines.overhang}` +
+  `<br><i>Estimated:</i> floor ${a.floor_height}mm above ground · body bottom ${a.body_bottom_height}mm · entry door opening ${a.profile.sliding_door.to_front - a.profile.sliding_door.from_front}mm`;
+document.getElementById('profile-flag').innerHTML = fromRender
+  ? `<b>Profile is proportional, not surveyed:</b> length, height, wheelbase, track, tyre size and ground clearance are brochure figures. The hood, windshield, window band, cladding, door positions and body-bottom height were scaled off the Force Motors side render (about ±100 mm); floor height is a planning estimate (±100 mm).`
+  : `<b>Profile shape is an estimate:</b> only length, height, wheelbase, ground clearance and tyre size come from the OEM (see the file for each figure's status). Nose, windscreen, window band, entry door and body-bottom height follow the rule the handover GLB was built with, not a drawing of this vehicle. Cab doors are not drawn: their position is not published.`;
 
 // Page layout (drawing margins only)
 const marginL = 550, marginR = 950, marginT = 700, marginB = 900;
@@ -217,7 +230,7 @@ const svg = `
   </g>
 
   <g clip-path="url(#bodyclip)">
-    <rect x="${px(PR.cabDoor.x0)}" y="${pz(a.profile.window_top_height + 20)}" width="${PR.cabDoor.x1 - PR.cabDoor.x0}" height="${a.profile.window_top_height + 20 - a.body_bottom_height - 20}" rx="60" class="seam"/>
+    ${PR.cabDoor ? `<rect x="${px(PR.cabDoor.x0)}" y="${pz(a.profile.window_top_height + 20)}" width="${PR.cabDoor.x1 - PR.cabDoor.x0}" height="${a.profile.window_top_height + 20 - a.body_bottom_height - 20}" rx="60" class="seam"/>` : ''}
     <rect x="${px(PR.slidingDoor.x0)}" y="${pz(a.profile.window_top_height + 20)}" width="${PR.slidingDoor.x1 - PR.slidingDoor.x0}" height="${a.profile.window_top_height + 20 - a.body_bottom_height - 20}" rx="60" class="seam"/>
     <line x1="${px(PR.slidingDoor.x0 - 1200)}" y1="${pz(a.profile.window_sill_height - 80)}" x2="${px(PR.slidingDoor.x0 - 60)}" y2="${pz(a.profile.window_sill_height - 80)}" class="rail"/>
   </g>
@@ -226,14 +239,14 @@ const svg = `
 
   ${dimH(px(0), groundY + 560, px(L), `${b.length}mm overall length`)}
   ${dimH(px(LAY.rearAxleX), groundY + 320, px(LAY.frontAxleX), `${b.wheelbase}mm wheelbase`)}
-  ${dimH(px(LAY.frontAxleX), groundY + 110, px(L), `${b.front_overhang}`)}
-  ${dimH(px(0), groundY + 110, px(LAY.rearAxleX), `${b.rear_overhang}`)}
+  ${dimH(px(LAY.frontAxleX), groundY + 110, px(L), `${b.front_overhang}${isEst('body.front_overhang') ? ' est.' : ''}`)}
+  ${dimH(px(0), groundY + 110, px(LAY.rearAxleX), `${b.rear_overhang}${isEst('body.rear_overhang') ? ' est.' : ''}`)}
   ${dimH(px(PR.slidingDoor.x0), pz(H) - 260, px(PR.slidingDoor.x1), `door ${PR.slidingDoor.x1 - PR.slidingDoor.x0}`)}
   ${dimV(px(L) + 280, pz(H), groundY, `${b.height}mm`)}
-  ${dimV(px(L) + 620, pz(floorZ), groundY, `floor ${floorZ}`)}
+  ${dimV(px(L) + 620, pz(floorZ), groundY, `floor ${floorZ}${isEst('interior.floor_height') ? ' est.' : ''}`)}
   ${dimV(px(-280), pz(b.ground_clearance), groundY, `${b.ground_clearance}`)}
 
-  <text x="${px(L / 2)}" y="${groundY + 800}" text-anchor="middle" class="caption">Front of vehicle →  ·  ${mode === 'camper' ? 'camper modules from data/components.json shown through the body' : 'stock seats shown through the body'}  ·  ground clearance ${b.ground_clearance} mm at left</text>
+  <text x="${px(L / 2)}" y="${groundY + 800}" text-anchor="middle" class="caption">Front of vehicle →  ·  ${mode === 'camper' ? 'camper modules from data/components.json shown through the body' : spec.stock_seating ? 'stock seats shown through the body' : 'no stock seat layout for this variant'}  ·  ground clearance ${b.ground_clearance} mm at left</text>
 </svg>`;
 
 document.getElementById('drawing-frame').innerHTML = svg;
@@ -247,7 +260,9 @@ document.querySelectorAll('[data-layout]').forEach(btn => {
   });
 });
 const q = Vehicle.selectionQuery(selection);
-document.getElementById('nav-3d').href = 'index.html' + q;
+const nav3d = document.getElementById('nav-3d');
+nav3d.href = 'index.html' + q;
+if (spec.id !== Vehicle.DEFAULT_ID) { nav3d.textContent = '3D (Urbania 4400 only)'; nav3d.title = 'The 3D viewer has not been moved to the multi-vehicle data yet'; }
 document.getElementById('nav-top').href = 'topview.html' + q;
 const box = document.getElementById('modules-box');
 box.hidden = mode !== 'camper';

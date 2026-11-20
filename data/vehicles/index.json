@@ -1,0 +1,159 @@
+{
+  "default": "force_urbania_4400wb",
+  "vehicles": [
+    {
+      "id": "force_traveller26_4020wb",
+      "display_name": "Force Motors Traveller 26 (legacy BS-IV) 4020 WB",
+      "kind": "van",
+      "body_family": "force_traveller_26_legacy",
+      "wheelbase": 4020,
+      "length": 6770,
+      "width": 2225,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    },
+    {
+      "id": "force_traveller_3050wb",
+      "display_name": "Force Motors Traveller N 3050 WB",
+      "kind": "van",
+      "body_family": "force_traveller_n_standard",
+      "wheelbase": 3050,
+      "length": 5100,
+      "width": 1925,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    },
+    {
+      "id": "force_traveller_3350wb",
+      "display_name": "Force Motors Traveller N 3350 WB",
+      "kind": "van",
+      "body_family": "force_traveller_n_standard",
+      "wheelbase": 3350,
+      "length": 5585,
+      "width": 1925,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    },
+    {
+      "id": "force_traveller_3700wb",
+      "display_name": "Force Motors Traveller N 3700 WB",
+      "kind": "van",
+      "body_family": "force_traveller_n_standard",
+      "wheelbase": 3700,
+      "length": 6235,
+      "width": 1925,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    },
+    {
+      "id": "force_traveller_4020wb",
+      "display_name": "Force Motors Traveller N 4020 WB",
+      "kind": "van",
+      "body_family": "force_traveller_n_standard",
+      "wheelbase": 4020,
+      "length": 6935,
+      "width": 1925,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    },
+    {
+      "id": "force_traveller-widerbody_3350wb",
+      "display_name": "Force Motors Traveller N Wider Body 3350 WB",
+      "kind": "van",
+      "body_family": "force_traveller_n_wider_body",
+      "wheelbase": 3350,
+      "length": 5615,
+      "width": 2245,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    },
+    {
+      "id": "force_traveller-widerbody_4020wb",
+      "display_name": "Force Motors Traveller N Wider Body 4020 WB",
+      "kind": "van",
+      "body_family": "force_traveller_n_wider_body",
+      "wheelbase": 4020,
+      "length": 6965,
+      "width": 2245,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    },
+    {
+      "id": "force_urbania_3350wb",
+      "display_name": "Force Motors Urbania 3350 WB",
+      "kind": "van",
+      "body_family": "force_urbania",
+      "wheelbase": 3350,
+      "length": 5440,
+      "width": 2095,
+      "has_stock_seating": false,
+      "has_oem_side_render": true
+    },
+    {
+      "id": "force_urbania_3615wb",
+      "display_name": "Force Motors Urbania 3615 WB",
+      "kind": "van",
+      "body_family": "force_urbania",
+      "wheelbase": 3615,
+      "length": 6225,
+      "width": 2095,
+      "has_stock_seating": false,
+      "has_oem_side_render": true
+    },
+    {
+      "id": "force_urbania_4400wb",
+      "display_name": "Force Motors Urbania 4400 WB",
+      "kind": "van",
+      "body_family": "force_urbania",
+      "wheelbase": 4400,
+      "length": 7010,
+      "width": 2095,
+      "has_stock_seating": true,
+      "has_oem_side_render": true
+    },
+    {
+      "id": "tata_winger-highroof_3488wb",
+      "display_name": "Tata Motors Winger (high roof) 3488 WB",
+      "kind": "van",
+      "body_family": "tata_winger_high_roof",
+      "wheelbase": 3488,
+      "length": 5458,
+      "width": 1905,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    },
+    {
+      "id": "ashokleyland_viking_5334wb",
+      "display_name": "Ashok Leyland Viking (bus chassis) 5334 WB",
+      "kind": "bus_chassis",
+      "body_family": "ashok_leyland_viking_chassis",
+      "wheelbase": 5334,
+      "length": 10934,
+      "width": 2600,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    },
+    {
+      "id": "eicher_pro3010l_5260wb",
+      "display_name": "Eicher (VE Commercial Vehicles) Pro 3010 L (bus chassis) 5260 WB",
+      "kind": "bus_chassis",
+      "body_family": "eicher_pro3010l_chassis",
+      "wheelbase": 5260,
+      "length": 10159,
+      "width": 2226,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    },
+    {
+      "id": "tata_lp410_3400wb",
+      "display_name": "Tata Motors LP 410 (face-cowl bus chassis) 3400 WB",
+      "kind": "bus_chassis",
+      "body_family": "tata_lp410_chassis",
+      "wheelbase": 3400,
+      "length": 6615,
+      "width": 2140,
+      "has_stock_seating": false,
+      "has_oem_side_render": false
+    }
+  ]
+}

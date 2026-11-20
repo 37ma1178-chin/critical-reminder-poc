@@ -1,0 +1,2867 @@
+{
+  "seedVersion": "2026-10-08",
+  "note": "No variant in this seed is design-supported. Interior stations are estimated or are a proposed fabricated body. None are verified measurements.",
+  "variants": [
+    {
+      "id": "force-traveller-n-3350",
+      "manufacturer": "Force Motors",
+      "family": "Traveller",
+      "generation": "Traveller N",
+      "name": "Traveller N 3350WB passenger (12/13/14+D)",
+      "modelYears": "BS-VI Stage 2 page captured 8 Oct 2026. A single model-year was not stated.",
+      "support": "measurement_required",
+      "supportReason": "Exterior length, width, height, wheelbase, ground clearance, GVW and tyre size are on the Force product page. Interior sections, overhangs, kerb mass and axle ratings are not. The variant stays measurement-required, not design-supported.",
+      "shellKind": "oem_monocoque",
+      "powertrain": "FM 2.6 CR, 2596 cc diesel, 85 kW (114 hp), 350 Nm. Page: BS-VI Stage 2.",
+      "tyre": {
+        "value": "215/75 R15",
+        "provenance": {
+          "class": "oem",
+          "source": "Force Motors Traveller N 3350WB page",
+          "date": "2026-10-08",
+          "confidence": "medium",
+          "sourceUrl": "https://www.forcemotors.com/vehicles/traveller-3350wb/"
+        }
+      },
+      "seatingPublished": {
+        "value": "12/13/14+D",
+        "provenance": {
+          "class": "oem",
+          "source": "Force Motors Traveller N 3350WB page",
+          "date": "2026-10-08",
+          "confidence": "medium",
+          "sourceUrl": "https://www.forcemotors.com/vehicles/traveller-3350wb/",
+          "notes": "Force uses +D for plus driver. Passenger seats excluding the driver are therefore 12, 13 or 14 depending on the seating option."
+        }
+      },
+      "categoryInference": {
+        "value": "M2",
+        "provenance": {
+          "class": "derived",
+          "source": "CMVR category boundaries applied to published seats and GVW",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "method": "12/13/14+D is more than 8 seats plus the driver. GVW 3965 kg is under 5 tonnes. That combination matches the M2 boundary described in the annotated CMVR reprint. Force does not label the page M2. The category rule text itself is not gazette-verified in this database."
+        }
+      },
+      "exterior": {
+        "lengthMm": {
+          "value": 5585,
+          "provenance": {
+            "class": "oem",
+            "source": "Force Motors Traveller N 3350WB page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.forcemotors.com/vehicles/traveller-3350wb/"
+          }
+        },
+        "widthMm": {
+          "value": 1925,
+          "provenance": {
+            "class": "oem",
+            "source": "Force Motors Traveller N 3350WB page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.forcemotors.com/vehicles/traveller-3350wb/"
+          }
+        },
+        "heightMm": {
+          "value": 2615,
+          "provenance": {
+            "class": "oem",
+            "source": "Force Motors Traveller N 3350WB page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.forcemotors.com/vehicles/traveller-3350wb/"
+          }
+        },
+        "wheelbaseMm": {
+          "value": 3350,
+          "provenance": {
+            "class": "oem",
+            "source": "Force Motors Traveller N 3350WB page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.forcemotors.com/vehicles/traveller-3350wb/"
+          }
+        },
+        "groundClearanceMm": {
+          "value": 200,
+          "provenance": {
+            "class": "oem",
+            "source": "Force Motors Traveller N 3350WB page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.forcemotors.com/vehicles/traveller-3350wb/"
+          }
+        }
+      },
+      "mass": {
+        "gvwKg": {
+          "value": 3965,
+          "provenance": {
+            "class": "oem",
+            "source": "Force Motors Traveller N 3350WB page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.forcemotors.com/vehicles/traveller-3350wb/"
+          }
+        },
+        "kerbKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Kerb / unladen mass was not on the Force Traveller N 3350WB page captured 8 Oct 2026.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "payloadKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Payload was not on the Force Traveller N 3350WB page captured 8 Oct 2026.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "frontAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Front axle rating was not on the captured Force page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Rear axle rating was not on the captured Force page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "bodyStates": [
+        {
+          "id": "seated_complete",
+          "label": "Seated passenger van (OEM monocoque)",
+          "kind": "seated_complete",
+          "offered": true,
+          "price": {
+            "lowInr": 1796000,
+            "highInr": null,
+            "taxBasis": "Unspecified. The page says price starts at ₹17.96 lakh. The asterisk terms were not captured. Do not treat this as on-road or as a quotation.",
+            "geography": "India. City and exact seating option were not stated on the captured page.",
+            "provenance": {
+              "class": "oem",
+              "source": "Force Motors Traveller N 3350WB page, price-starts line",
+              "date": "2026-10-08",
+              "confidence": "low",
+              "sourceUrl": "https://www.forcemotors.com/vehicles/traveller-3350wb/",
+              "notes": "A starting price, not a complete price list."
+            }
+          },
+          "notes": "This is the complete seated vehicle. A conversion strips seats and fits a living interior. It does not build a new body shell."
+        },
+        {
+          "id": "goods_shell",
+          "label": "Delivery van 3350WB (goods, different catalogue product)",
+          "kind": "goods_shell",
+          "offered": true,
+          "price": {
+            "lowInr": 1581000,
+            "highInr": null,
+            "taxBasis": "Ex-showroom, as labelled by the aggregator. Confirm before using.",
+            "geography": "New Delhi listing. The page mentioned September offers. Read 8 Oct 2026, so the figure may be stale.",
+            "provenance": {
+              "class": "reputable_secondary",
+              "source": "CarDekho trucks listing, Traveller N Delivery Van 3350WB/Diesel row",
+              "date": "2026-10-08",
+              "confidence": "low",
+              "sourceUrl": "https://trucks.cardekho.com/en/trucks/force/traveller-n-delivery-van/3700wb-diesel",
+              "notes": "Only the 3350WB price row is used. Dimension cells on that family of pages contradicted the variant name, so no delivery-van dimensions were copied."
+            }
+          },
+          "notes": "Not a chassis-cowl. It is a goods-carrying monocoque with fewer seats to remove. Dimensions of this goods variant are unknown in this seed."
+        },
+        {
+          "id": "chassis_cowl",
+          "label": "Chassis-only (face cowl)",
+          "kind": "chassis_cowl",
+          "offered": false,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Not applicable",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "No face-cowl Traveller N 3350 price was found.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "The Traveller N passenger model in this seed is a monocoque. A bare face-cowl chassis was not established as a catalogue variant. No price is invented."
+        }
+      ],
+      "interior": {
+        "shellWallEachSideMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Metal skin plus stamped structure, subtracted from the published exterior width. Not a measurement."
+          }
+        },
+        "roofSkinMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Roof skin and bow allowance. Not a measurement."
+          }
+        },
+        "floorHeightMm": {
+          "value": 560,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±100 mm",
+            "method": "Metal floor height above ground was not published for Traveller N. Placeholder only."
+          }
+        },
+        "cabLengthFromNoseMm": {
+          "value": 1700,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±250 mm",
+            "method": "Distance from the nose to a usable bulkhead behind the driver. Not measured."
+          }
+        },
+        "roofCrownMm": {
+          "value": 80,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±40 mm",
+            "method": "Roof centre above the eaves so the section is not a rectangle."
+          }
+        },
+        "noseHalfWidthFraction": {
+          "value": 0.55,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.1",
+            "method": "Front taper so the plan is not a rectangle. Not a body drawing."
+          }
+        },
+        "rearTaperHalfWidthFraction": {
+          "value": 0.82,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.08",
+            "method": "Rear corner taper. Not a body drawing."
+          }
+        },
+        "wheelArchIntrusionMm": {
+          "value": 200,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "How far the wheel housing is assumed to enter the cabin from each side wall. Tyre size is published; the intrusion is not."
+          }
+        },
+        "wheelArchHeightAboveFloorMm": {
+          "value": 340,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "Assumed height of the wheel housing above the metal floor."
+          }
+        },
+        "wheelArchLengthMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Assumed length of the wheel housing along the vehicle."
+          }
+        },
+        "frontOverhangMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "Older Traveller 3350 Super brochure, not applied as an N-model fact",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "The N page does not publish overhangs. The BS-IV Traveller 3350 Super brochure lists front overhang 900 mm on a 5415 mm vehicle. The N is 5585 mm. This seed assumes the front overhang stayed 900 mm and assigns the extra 170 mm to the rear. That is an assumption.",
+            "notes": "Brochure: https://wikibus.blob.core.windows.net/sources4823/The%20All%20New%20Traveller%203350%20Super.pdf"
+          }
+        },
+        "rearOverhangMm": {
+          "value": 1335,
+          "provenance": {
+            "class": "derived",
+            "source": "5585 − 3350 − estimated front overhang 900",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "method": "Rear overhang follows from overall length, wheelbase and the estimated front overhang. It is not an OEM figure.",
+            "tolerance": "±150 mm"
+          }
+        }
+      },
+      "conflicts": [],
+      "notes": [
+        "An older BS-IV brochure lists overall length 5415 mm, width 1975 mm, height 2550 mm and GVW 3670 kg. Those figures are a different specification and are not used as the N-model values.",
+        "Usable interior volume is derived from these exterior figures minus estimated shell and conversion build-up, with taper and wheel arches. It is not a cuboid and not a measured volume."
+      ]
+    },
+    {
+      "id": "force-urbania-3615",
+      "manufacturer": "Force Motors",
+      "family": "Urbania",
+      "generation": "Urbania",
+      "name": "Urbania medium wheelbase 3615 mm",
+      "modelYears": "Brochure undated on the captured PDF. India site lists 3615 mm as the medium wheelbase.",
+      "support": "measurement_required",
+      "supportReason": "A Force brochure gives exterior dimensions and GVW. It was hosted on a South Africa site. Interior is not measured. Not design-supported.",
+      "shellKind": "oem_monocoque",
+      "powertrain": "Brochure table pairs the Urbania range with the FM 2.6 CR family. Confirm the India engine rating before engineering.",
+      "tyre": {
+        "value": null,
+        "provenance": {
+          "class": "unknown",
+          "source": "Tyre size was not in the brochure table captured for this seed.",
+          "date": "2026-10-08",
+          "confidence": "none"
+        }
+      },
+      "seatingPublished": {
+        "value": "13 excluding driver (medium wheelbase column)",
+        "provenance": {
+          "class": "oem",
+          "source": "Urbania brochure PDF",
+          "date": "2026-10-08",
+          "confidence": "medium",
+          "sourceUrl": "https://www.urbania.co.za/wp-content/themes/force-urbania-v2/urbania_brochure.pdf",
+          "notes": "The India site forceurbania.co.in also describes a 3615 mm medium wheelbase. Confirm the seating card sold in India."
+        }
+      },
+      "categoryInference": {
+        "value": "M2",
+        "provenance": {
+          "class": "derived",
+          "source": "13 seats excluding driver and GVW 4135 kg",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "method": "More than 8 seats plus driver, GVW under 5 tonnes, matches the M2 boundary in the annotated reprint. Not an OEM category label."
+        }
+      },
+      "exterior": {
+        "lengthMm": {
+          "value": 6225,
+          "provenance": {
+            "class": "oem",
+            "source": "Urbania brochure, medium-wheelbase column",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.urbania.co.za/wp-content/themes/force-urbania-v2/urbania_brochure.pdf",
+            "notes": "PDF hosted at urbania.co.za. The footer identifies Force Motors Limited, Pune. Confirm against the Indian variant."
+          }
+        },
+        "widthMm": {
+          "value": 2095,
+          "provenance": {
+            "class": "oem",
+            "source": "Urbania brochure, medium-wheelbase column",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.urbania.co.za/wp-content/themes/force-urbania-v2/urbania_brochure.pdf"
+          }
+        },
+        "heightMm": {
+          "value": 2550,
+          "provenance": {
+            "class": "oem",
+            "source": "Urbania brochure, medium-wheelbase column",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.urbania.co.za/wp-content/themes/force-urbania-v2/urbania_brochure.pdf"
+          }
+        },
+        "wheelbaseMm": {
+          "value": 3615,
+          "provenance": {
+            "class": "oem",
+            "source": "Urbania brochure, medium-wheelbase column",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.urbania.co.za/wp-content/themes/force-urbania-v2/urbania_brochure.pdf"
+          }
+        },
+        "groundClearanceMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Ground clearance was not in the captured brochure table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "mass": {
+        "gvwKg": {
+          "value": 4135,
+          "provenance": {
+            "class": "oem",
+            "source": "Urbania brochure, medium-wheelbase column",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.urbania.co.za/wp-content/themes/force-urbania-v2/urbania_brochure.pdf"
+          }
+        },
+        "kerbKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Kerb mass was not in the captured brochure table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "payloadKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Payload was not in the captured brochure table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "frontAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Axle ratings were not in the captured brochure table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Axle ratings were not in the captured brochure table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "bodyStates": [
+        {
+          "id": "seated_complete",
+          "label": "Seated passenger van (OEM)",
+          "kind": "seated_complete",
+          "offered": true,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Unresolved price observations. No single price is chosen.",
+            "geography": "India listings disagree and may be stale.",
+            "provenance": {
+              "class": "unknown",
+              "source": "See conflict urbania-price. No price is selected.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "Complete seated Urbania. A face-cowl chassis was not established for this monocoque."
+        },
+        {
+          "id": "chassis_cowl",
+          "label": "Chassis-only (face cowl)",
+          "kind": "chassis_cowl",
+          "offered": false,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Not applicable",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "No Urbania cowl price was found.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "Not established as a catalogue variant in this seed."
+        }
+      ],
+      "interior": {
+        "shellWallEachSideMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Metal skin plus stamped structure, subtracted from the published exterior width. Not a measurement."
+          }
+        },
+        "roofSkinMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Roof skin and bow allowance. Not a measurement."
+          }
+        },
+        "floorHeightMm": {
+          "value": 560,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±100 mm",
+            "method": "Floor height not published in the captured brochure."
+          }
+        },
+        "cabLengthFromNoseMm": {
+          "value": 1800,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±250 mm",
+            "method": "Bulkhead position not measured."
+          }
+        },
+        "roofCrownMm": {
+          "value": 80,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±40 mm",
+            "method": "Roof centre above the eaves so the section is not a rectangle."
+          }
+        },
+        "noseHalfWidthFraction": {
+          "value": 0.55,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.1",
+            "method": "Front taper so the plan is not a rectangle. Not a body drawing."
+          }
+        },
+        "rearTaperHalfWidthFraction": {
+          "value": 0.82,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.08",
+            "method": "Rear corner taper. Not a body drawing."
+          }
+        },
+        "wheelArchIntrusionMm": {
+          "value": 200,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "How far the wheel housing is assumed to enter the cabin from each side wall. Tyre size is published; the intrusion is not."
+          }
+        },
+        "wheelArchHeightAboveFloorMm": {
+          "value": 340,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "Assumed height of the wheel housing above the metal floor."
+          }
+        },
+        "wheelArchLengthMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Assumed length of the wheel housing along the vehicle."
+          }
+        },
+        "frontOverhangMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Front overhang was not in the captured Urbania brochure table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearOverhangMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Rear overhang was not in the captured Urbania brochure table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "conflicts": [
+        {
+          "id": "urbania-price",
+          "subject": "Urbania ex-showroom price",
+          "resolution": "unresolved",
+          "note": "The observations are not averaged and neither is selected as the price.",
+          "observations": [
+            {
+              "value": "3615WB 14-seater row Rs 28,88,679",
+              "provenance": {
+                "class": "reputable_secondary",
+                "source": "CarDekho Urbania brochure index",
+                "date": "2026-10-08",
+                "confidence": "low",
+                "sourceUrl": "https://www.cardekho.com/force/urbania/brochures",
+                "notes": "Page referenced April offers and brochures dated 19 Sep 2024. Read in the 8 Oct 2026 research pass. May be stale. URL captured from search."
+              }
+            },
+            {
+              "value": "Rs 28,99,000 shown for more than one wheelbase",
+              "provenance": {
+                "class": "reputable_secondary",
+                "source": "DriveSpark Urbania page",
+                "date": "2026-10-08",
+                "confidence": "low",
+                "sourceUrl": "https://www.drivespark.com/trucks/force/urbania/",
+                "notes": "The same price shown against several wheelbases looks like a listing error. Not used."
+              }
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Width 2095 mm is wider than Traveller N 1925 mm, so a living layout has more shoulder room. The interior is still estimated."
+      ]
+    },
+    {
+      "id": "tata-winger-12s",
+      "manufacturer": "Tata Motors",
+      "family": "Winger",
+      "generation": "Winger 12S BS6 Phase 2 page",
+      "name": "Winger 12S, wheelbase 3488 mm",
+      "modelYears": "Product page captured 8 Oct 2026. Model year not stated as a single year.",
+      "support": "measurement_required",
+      "supportReason": "Tata publishes exterior dimensions, wheelbase, floor height and GVW. Interior width and roof shape are not published. Not design-supported.",
+      "shellKind": "oem_monocoque",
+      "powertrain": "DICOR 2.2 litre diesel. The 12S page lists 73.5 kW in one line and 74.9 kW in another. Treat power as unresolved before engineering.",
+      "tyre": {
+        "value": null,
+        "provenance": {
+          "class": "unknown",
+          "source": "Tyre size was not in the 12S specification lines captured for this seed.",
+          "date": "2026-10-08",
+          "confidence": "none"
+        }
+      },
+      "seatingPublished": {
+        "value": "12 seater",
+        "provenance": {
+          "class": "oem",
+          "source": "Tata Motors Winger 12S page",
+          "date": "2026-10-08",
+          "confidence": "medium",
+          "sourceUrl": "https://busesandvans.tatamotors.com/product/tata-winger-12s",
+          "notes": "The page says 12 seater. It does not say whether the driver is inside the 12. Category is therefore not inferred."
+        }
+      },
+      "categoryInference": {
+        "value": null,
+        "provenance": {
+          "class": "unknown",
+          "source": "Seat count may or may not include the driver, so M1 versus M2 is not inferred.",
+          "date": "2026-10-08",
+          "confidence": "none"
+        }
+      },
+      "exterior": {
+        "lengthMm": {
+          "value": 5458,
+          "provenance": {
+            "class": "oem",
+            "source": "Tata Motors Winger 12S page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://busesandvans.tatamotors.com/product/tata-winger-12s"
+          }
+        },
+        "widthMm": {
+          "value": 1905,
+          "provenance": {
+            "class": "oem",
+            "source": "Tata Motors Winger 12S page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://busesandvans.tatamotors.com/product/tata-winger-12s"
+          }
+        },
+        "heightMm": {
+          "value": 2670,
+          "provenance": {
+            "class": "oem",
+            "source": "Tata Motors Winger 12S page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://busesandvans.tatamotors.com/product/tata-winger-12s"
+          }
+        },
+        "wheelbaseMm": {
+          "value": 3488,
+          "provenance": {
+            "class": "oem",
+            "source": "Tata Motors Winger 12S page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://busesandvans.tatamotors.com/product/tata-winger-12s"
+          }
+        },
+        "groundClearanceMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Ground clearance was not in the captured 12S lines.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "mass": {
+        "gvwKg": {
+          "value": 3230,
+          "provenance": {
+            "class": "oem",
+            "source": "Tata Motors Winger 12S page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://busesandvans.tatamotors.com/product/tata-winger-12s"
+          }
+        },
+        "kerbKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Kerb mass was not on the captured 12S page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "payloadKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Payload was not on the captured 12S page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "frontAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Axle ratings were not on the captured 12S page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Axle ratings were not on the captured 12S page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "bodyStates": [
+        {
+          "id": "seated_complete",
+          "label": "Seated passenger van (OEM monocoque)",
+          "kind": "seated_complete",
+          "offered": true,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Unknown",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "No price was captured for the Winger 12S. The Winger Plus 9-seater price is a different variant and is not used.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "Do not reuse the Winger Plus ex-showroom price of Rs 20.60 lakh. That press note is a 9-seater."
+        },
+        {
+          "id": "chassis_cowl",
+          "label": "Chassis-only (face cowl)",
+          "kind": "chassis_cowl",
+          "offered": false,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Not applicable",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "No Winger 12S cowl was established.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "The 12S page describes a monocoque passenger vehicle."
+        }
+      ],
+      "interior": {
+        "shellWallEachSideMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Metal skin plus stamped structure, subtracted from the published exterior width. Not a measurement."
+          }
+        },
+        "roofSkinMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Roof skin and bow allowance. Not a measurement."
+          }
+        },
+        "floorHeightMm": {
+          "value": 495,
+          "provenance": {
+            "class": "oem",
+            "source": "Tata Motors Winger 12S page, floor height",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://busesandvans.tatamotors.com/product/tata-winger-12s",
+            "notes": "Published floor height. Interior width and roof crown are still estimated."
+          }
+        },
+        "cabLengthFromNoseMm": {
+          "value": 1650,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±250 mm",
+            "method": "Bulkhead not measured."
+          }
+        },
+        "roofCrownMm": {
+          "value": 80,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±40 mm",
+            "method": "Roof centre above the eaves so the section is not a rectangle."
+          }
+        },
+        "noseHalfWidthFraction": {
+          "value": 0.55,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.1",
+            "method": "Front taper so the plan is not a rectangle. Not a body drawing."
+          }
+        },
+        "rearTaperHalfWidthFraction": {
+          "value": 0.82,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.08",
+            "method": "Rear corner taper. Not a body drawing."
+          }
+        },
+        "wheelArchIntrusionMm": {
+          "value": 200,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "How far the wheel housing is assumed to enter the cabin from each side wall. Tyre size is published; the intrusion is not."
+          }
+        },
+        "wheelArchHeightAboveFloorMm": {
+          "value": 340,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "Assumed height of the wheel housing above the metal floor."
+          }
+        },
+        "wheelArchLengthMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Assumed length of the wheel housing along the vehicle."
+          }
+        },
+        "frontOverhangMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Overhangs were not on the captured 12S page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearOverhangMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Overhangs were not on the captured 12S page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "conflicts": [
+        {
+          "id": "winger-12s-power",
+          "subject": "Winger 12S published power",
+          "resolution": "unresolved",
+          "note": "The same Tata page shows 73.5 kW in the header line and 74.9 kW in the engine description.",
+          "observations": [
+            {
+              "value": "73.5 kW @ 3750 r/min",
+              "provenance": {
+                "class": "oem",
+                "source": "Tata Winger 12S page header",
+                "date": "2026-10-08",
+                "confidence": "low",
+                "sourceUrl": "https://busesandvans.tatamotors.com/product/tata-winger-12s"
+              }
+            },
+            {
+              "value": "74.9 kW at 3750 rpm",
+              "provenance": {
+                "class": "oem",
+                "source": "Tata Winger 12S page engine paragraph",
+                "date": "2026-10-08",
+                "confidence": "low",
+                "sourceUrl": "https://busesandvans.tatamotors.com/product/tata-winger-12s"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Floor height 495 mm is an OEM figure. Do not replace it with the Traveller floor estimate."
+      ]
+    },
+    {
+      "id": "mahindra-bolero-maxx-hd-2-0",
+      "manufacturer": "Mahindra",
+      "family": "Bolero MaXX Pik-Up",
+      "generation": "HD",
+      "name": "Bolero MaXX Pik-Up HD 2.0L",
+      "modelYears": "Brochure PDFs captured 8 Oct 2026. Model year not stated.",
+      "support": "concept",
+      "supportReason": "The pickup is evidenced as a cab-chassis with a deck. A camper shell does not exist until it is fabricated. Cargo-bed length conflicts between two brochure PDFs. Concept only.",
+      "shellKind": "fabricated_body",
+      "proposedBody": {
+        "note": "A camper box sitting on the cargo bed, not an OEM van. Outer size is a planning envelope.",
+        "lengthMm": {
+          "value": 3050,
+          "provenance": {
+            "class": "derived",
+            "source": "Lower of two unresolved brochure cargo lengths",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "method": "Aditya Motors brochure PDF says cargo length 3050 mm. Popular Mahindra brochure PDF says 3060 mm. The lower figure is used only as a conservative planning bound. It is not a selected true length.",
+            "tolerance": "Conflict span 10 mm, plus unstated brochure tolerance"
+          }
+        },
+        "widthMm": {
+          "value": 1700,
+          "provenance": {
+            "class": "derived",
+            "source": "Brochure cargo width 1800 mm minus an estimated wall pair",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "method": "1800 mm cargo width from the HD brochure, minus 50 mm a side so the box sits inside the bed. Wall build-up is applied again inside this outer box."
+          }
+        },
+        "heightMm": {
+          "value": 2100,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default for a pickup camper shell",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±200 mm",
+            "method": "External height of the fabricated box above the bed floor. Not a product."
+          }
+        }
+      },
+      "powertrain": "m2Di diesel. Brochure power and torque nodes differ by variant. Confirm the 2.0L card.",
+      "tyre": {
+        "value": "7.00 R16 class mentioned in brochure text as 7R16",
+        "provenance": {
+          "class": "reputable_secondary",
+          "source": "Bolero MaXX HD brochure narrative",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "sourceUrl": "https://adityamotors.com/assets/Brochure/PIK-UPS/MAXX-HD.pdf",
+          "notes": "Use the tyre line on the specific variant card before engineering."
+        }
+      },
+      "seatingPublished": {
+        "value": "D+2 in the cab",
+        "provenance": {
+          "class": "reputable_secondary",
+          "source": "Mahindra Bolero MaXX brochure and press material",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "sourceUrl": "https://adityamotors.com/assets/Brochure/PIK-UPS/MAXX-HD.pdf",
+          "notes": "Cab seats only. This is not a passenger van."
+        }
+      },
+      "categoryInference": {
+        "value": "N2",
+        "provenance": {
+          "class": "derived",
+          "source": "GVW 3895 kg is above 3.5 t and below 12 t",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "method": "Goods pickup. Category boundary from the annotated CMVR reprint, which is not gazette-verified here. Not an OEM label."
+        }
+      },
+      "exterior": {
+        "lengthMm": {
+          "value": 5345,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "Bolero MaXX Pik-Up HD brochure",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://adityamotors.com/assets/Brochure/PIK-UPS/MAXX-HD.pdf"
+          }
+        },
+        "widthMm": {
+          "value": 1800,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "Bolero MaXX Pik-Up HD brochure",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://adityamotors.com/assets/Brochure/PIK-UPS/MAXX-HD.pdf"
+          }
+        },
+        "heightMm": {
+          "value": 1950,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "Bolero MaXX Pik-Up HD brochure",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://adityamotors.com/assets/Brochure/PIK-UPS/MAXX-HD.pdf",
+            "notes": "This is the pickup height, not the camper shell."
+          }
+        },
+        "wheelbaseMm": {
+          "value": 3290,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "Bolero MaXX Pik-Up HD brochure",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://adityamotors.com/assets/Brochure/PIK-UPS/MAXX-HD.pdf"
+          }
+        },
+        "groundClearanceMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Ground clearance was not copied from the brochure tables.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "mass": {
+        "gvwKg": {
+          "value": 3895,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "Bolero MaXX Pik-Up HD brochure, 2.0L column",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://adityamotors.com/assets/Brochure/PIK-UPS/MAXX-HD.pdf"
+          }
+        },
+        "kerbKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Brochure payload and GVW are published. Kerb was not taken, because subtracting them would hide the conflict risk if they are not paired.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "payloadKg": {
+          "value": 2000,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "Bolero MaXX Pik-Up HD brochure, 2.0L column",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://adityamotors.com/assets/Brochure/PIK-UPS/MAXX-HD.pdf"
+          }
+        },
+        "frontAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Axle ratings were not in the captured brochure tables.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Axle ratings were not in the captured brochure tables.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "bodyStates": [
+        {
+          "id": "cab_deck",
+          "label": "Cab-chassis with factory deck (OEM goods body)",
+          "kind": "cab_chassis_deck",
+          "offered": true,
+          "price": {
+            "lowInr": 1015000,
+            "highInr": null,
+            "taxBasis": "Ex-showroom figure from an aggregator variant row. Confirm.",
+            "geography": "CarDekho multi-variant page, 2.0L LX row, read 8 Oct 2026.",
+            "provenance": {
+              "class": "reputable_secondary",
+              "source": "CarDekho Bolero Maxx Pik-Up HD 2.0L LX row",
+              "date": "2026-10-08",
+              "confidence": "low",
+              "sourceUrl": "https://trucks.cardekho.com/en/trucks/mahindra/bolero-maxx-pik-up-hd/hd-2-0-l",
+              "notes": "The same page mixes other variants, including a 1.3 LX near Rs 9.62 lakh. Only the 2.0L LX row is referenced. A Mahindra press note listed a different 2.0L VXi price. Not averaged."
+            }
+          },
+          "notes": "This is the vehicle you buy. The living shell is then fabricated on the bed. There is no seated passenger OEM body in this seed."
+        },
+        {
+          "id": "chassis_cowl",
+          "label": "Chassis-cab without deck",
+          "kind": "chassis_cowl",
+          "offered": false,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Unknown",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "A deck-less price was not sourced.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "The sourced product includes a deck. A bare cowl price is unknown."
+        }
+      ],
+      "interior": {
+        "shellWallEachSideMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Metal skin plus stamped structure, subtracted from the published exterior width. Not a measurement."
+          }
+        },
+        "roofSkinMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Roof skin and bow allowance. Not a measurement."
+          }
+        },
+        "floorHeightMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Height of the cargo bed above ground was not published. The camper floor is the bed plus build-up."
+          }
+        },
+        "cabLengthFromNoseMm": {
+          "value": 1600,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±200 mm",
+            "method": "Day-cab length allowance in the body frame. The living shell itself starts behind the cab."
+          }
+        },
+        "roofCrownMm": {
+          "value": 80,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±40 mm",
+            "method": "Roof centre above the eaves so the section is not a rectangle."
+          }
+        },
+        "noseHalfWidthFraction": {
+          "value": 0.55,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.1",
+            "method": "Front taper so the plan is not a rectangle. Not a body drawing."
+          }
+        },
+        "rearTaperHalfWidthFraction": {
+          "value": 0.82,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.08",
+            "method": "Rear corner taper. Not a body drawing."
+          }
+        },
+        "wheelArchIntrusionMm": {
+          "value": 200,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "How far the wheel housing is assumed to enter the cabin from each side wall. Tyre size is published; the intrusion is not."
+          }
+        },
+        "wheelArchHeightAboveFloorMm": {
+          "value": 340,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "Assumed height of the wheel housing above the metal floor."
+          }
+        },
+        "wheelArchLengthMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Assumed length of the wheel housing along the vehicle."
+          }
+        },
+        "frontOverhangMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Overhangs were not copied.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearOverhangMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Overhangs were not copied.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "conflicts": [
+        {
+          "id": "bolero-cargo-length",
+          "subject": "Bolero MaXX HD cargo-bed length",
+          "resolution": "unresolved",
+          "note": "Two brochure PDFs disagree by 10 mm. Neither is discarded.",
+          "observations": [
+            {
+              "value": 3050,
+              "provenance": {
+                "class": "oem",
+                "source": "Aditya Motors hosted HD brochure",
+                "date": "2026-10-08",
+                "confidence": "medium",
+                "sourceUrl": "https://adityamotors.com/assets/Brochure/PIK-UPS/MAXX-HD.pdf",
+                "notes": "Dealer-hosted Mahindra brochure PDF."
+              }
+            },
+            {
+              "value": 3060,
+              "provenance": {
+                "class": "oem",
+                "source": "Popular Mahindra hosted HD brochure",
+                "date": "2026-10-08",
+                "confidence": "medium",
+                "sourceUrl": "https://popularmahindra.com/assets/images/vehicle/pickup/11/Download%20Bolero%20MAXX%20PIK-UP%20HD%20Brochure.pdf",
+                "notes": "Dealer-hosted Mahindra brochure PDF. Cargo line printed as 3060."
+              }
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "AIS-124 Note G contemplates an N-category base. Turning this goods vehicle into a motor caravan is professional-verification territory, not a cleared path."
+      ]
+    },
+    {
+      "id": "tata-lp410-3400",
+      "manufacturer": "Tata Motors",
+      "family": "LP 410",
+      "generation": "Aggregator listings; generation and emission stage are not clean",
+      "name": "LP 410 chassis with face cowl, wheelbase 3400 mm",
+      "modelYears": "Unknown. One captured URL still says BS-III. Do not treat this as a current OEM card.",
+      "support": "concept",
+      "supportReason": "Dimensions come from bus aggregators, not an OEM page read for this seed, and the emission stage is muddy. The passenger body does not exist until a body builder makes it.",
+      "shellKind": "fabricated_body",
+      "proposedBody": {
+        "note": "Concept bus body on the published chassis length. Not an OEM body.",
+        "lengthMm": {
+          "value": 6615,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Tata LP 410 specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications",
+            "notes": "1275 + 3400 + 1940 = 6615 within this listing. Still secondary."
+          }
+        },
+        "widthMm": {
+          "value": 2140,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Tata LP 410 specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications"
+          }
+        },
+        "heightMm": {
+          "value": 2800,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave concept body height",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±300 mm",
+            "method": "No OEM body height. Placeholder under the reprinted Rule 93 height."
+          }
+        }
+      },
+      "powertrain": "Aggregator pages disagree (75 bhp versus 100 bhp, and engine descriptions differ). Not used.",
+      "tyre": {
+        "value": null,
+        "provenance": {
+          "class": "unknown",
+          "source": "Front and rear tyre lines on aggregator pages disagree. Not copied as a fact.",
+          "date": "2026-10-08",
+          "confidence": "none"
+        }
+      },
+      "seatingPublished": {
+        "value": "Driver only on the cowl listing",
+        "provenance": {
+          "class": "reputable_secondary",
+          "source": "BusesDekho LP 410 cowl configuration",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications"
+        }
+      },
+      "categoryInference": {
+        "value": "incomplete bus chassis; a finished passenger body at GVW 6520 kg would be looked at as M3",
+        "provenance": {
+          "class": "derived",
+          "source": "GVW 6520 kg is above 5 t",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "method": "Secondary GVW. Category label is not OEM."
+        }
+      },
+      "exterior": {
+        "lengthMm": {
+          "value": 6615,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Tata LP 410 specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications"
+          }
+        },
+        "widthMm": {
+          "value": 2140,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Tata LP 410 specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications"
+          }
+        },
+        "heightMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Chassis height is not the future body height.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "wheelbaseMm": {
+          "value": 3400,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Tata LP 410 specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications"
+          }
+        },
+        "groundClearanceMm": {
+          "value": 210,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Tata LP 410 specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications"
+          }
+        }
+      },
+      "mass": {
+        "gvwKg": {
+          "value": 6520,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho and TrucksBuses LP 410 pages",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://www.trucksbuses.com/buses/chassis/school-staff/tata-lp-410/specifications"
+          }
+        },
+        "kerbKg": {
+          "value": 2365,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho LP 410 kerb line",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications",
+            "notes": "May be the cowl kerb. Confirm before any payload sum."
+          }
+        },
+        "payloadKg": {
+          "value": 4155,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho LP 410 payload line",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications"
+          }
+        },
+        "frontAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not sourced from an OEM card.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not sourced from an OEM card.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "bodyStates": [
+        {
+          "id": "chassis_cowl",
+          "label": "Chassis with face cowl (driver only)",
+          "kind": "chassis_cowl",
+          "offered": true,
+          "price": {
+            "lowInr": 1370000,
+            "highInr": 1650000,
+            "taxBasis": "Indicative ex-showroom band from an aggregator. Not a quotation.",
+            "geography": "India, city not fixed. Read 8 Oct 2026.",
+            "provenance": {
+              "class": "reputable_secondary",
+              "source": "TrucksBuses Tata LP 410 price band",
+              "date": "2026-10-08",
+              "confidence": "low",
+              "sourceUrl": "https://www.trucksbuses.com/buses/chassis/school-staff/tata-lp-410/price"
+            }
+          },
+          "notes": "This is the chassis-only path. The living body is a separate fabrication."
+        },
+        {
+          "id": "seated_complete",
+          "label": "Fully built bus (Starbus or equivalent)",
+          "kind": "seated_complete",
+          "offered": true,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Unknown",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "A fully built LP 410 price was not captured.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "A seated complete bus exists as a product class. Its price is unknown here, so no cost delta is invented."
+        }
+      ],
+      "interior": {
+        "shellWallEachSideMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Metal skin plus stamped structure, subtracted from the published exterior width. Not a measurement."
+          }
+        },
+        "roofSkinMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Roof skin and bow allowance. Not a measurement."
+          }
+        },
+        "floorHeightMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave concept floor height",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Not published for a body that does not exist yet."
+          }
+        },
+        "cabLengthFromNoseMm": {
+          "value": 2100,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave concept cab length",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±300 mm",
+            "method": "Forward-control bus cab allowance."
+          }
+        },
+        "roofCrownMm": {
+          "value": 80,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±40 mm",
+            "method": "Roof centre above the eaves so the section is not a rectangle."
+          }
+        },
+        "noseHalfWidthFraction": {
+          "value": 0.55,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.1",
+            "method": "Front taper so the plan is not a rectangle. Not a body drawing."
+          }
+        },
+        "rearTaperHalfWidthFraction": {
+          "value": 0.82,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.08",
+            "method": "Rear corner taper. Not a body drawing."
+          }
+        },
+        "wheelArchIntrusionMm": {
+          "value": 200,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "How far the wheel housing is assumed to enter the cabin from each side wall. Tyre size is published; the intrusion is not."
+          }
+        },
+        "wheelArchHeightAboveFloorMm": {
+          "value": 340,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "Assumed height of the wheel housing above the metal floor."
+          }
+        },
+        "wheelArchLengthMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Assumed length of the wheel housing along the vehicle."
+          }
+        },
+        "frontOverhangMm": {
+          "value": 1275,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Tata LP 410 front overhang",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications"
+          }
+        },
+        "rearOverhangMm": {
+          "value": 1940,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Tata LP 410 rear overhang",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/tata/lp-410/specifications"
+          }
+        }
+      },
+      "conflicts": [],
+      "notes": [
+        "A BusesDekho URL for a 3400 cowl still says BS-III. The record is concept-only until an OEM BS6 card is read.",
+        "Rule 93 overhang check can be run on the secondary overhangs, and the result stays conditional."
+      ]
+    },
+    {
+      "id": "eicher-pro-3010-l",
+      "manufacturer": "Eicher",
+      "family": "Pro 3010",
+      "generation": "Pro 3010 L chassis",
+      "name": "Eicher Pro 3010 L bus chassis",
+      "modelYears": "OEM chassis page captured 8 Oct 2026.",
+      "support": "concept",
+      "supportReason": "Chassis dimensions are on the Eicher page and the overhangs add up to the stated length. GVW conflicts with an aggregator. There is no OEM living body.",
+      "shellKind": "fabricated_body",
+      "proposedBody": {
+        "note": "Concept body using the OEM chassis length and width. Height is estimated.",
+        "lengthMm": {
+          "value": 10159,
+          "provenance": {
+            "class": "oem",
+            "source": "Eicher Pro 3010 L chassis page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis"
+          }
+        },
+        "widthMm": {
+          "value": 2226,
+          "provenance": {
+            "class": "oem",
+            "source": "Eicher Pro 3010 L chassis page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis",
+            "notes": "This is the chassis overall width on the OEM page, not a finished body width."
+          }
+        },
+        "heightMm": {
+          "value": 3200,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave concept body height",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±300 mm",
+            "method": "No finished body. Placeholder."
+          }
+        }
+      },
+      "powertrain": "E494, 3770 cc, 120 kW @ 2600 rpm, 500 Nm, ET40S6 gearbox. OEM page.",
+      "tyre": {
+        "value": "235/75 R17.5 - 14PR",
+        "provenance": {
+          "class": "oem",
+          "source": "Eicher Pro 3010 L chassis page",
+          "date": "2026-10-08",
+          "confidence": "medium",
+          "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis"
+        }
+      },
+      "seatingPublished": {
+        "value": null,
+        "provenance": {
+          "class": "unknown",
+          "source": "The chassis page does not fix a seat count. A finished body would.",
+          "date": "2026-10-08",
+          "confidence": "none"
+        }
+      },
+      "categoryInference": {
+        "value": "Chassis GVW observations are both between 3.5 t and 12 t, so an N2 reading is stable across the conflict. A passenger body above 5 t would be looked at as M3.",
+        "provenance": {
+          "class": "derived",
+          "source": "OEM 10.7 t and aggregator 10625 kg",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "method": "Neither GVW figure is chosen. Both sit in the same category band."
+        }
+      },
+      "exterior": {
+        "lengthMm": {
+          "value": 10159,
+          "provenance": {
+            "class": "oem",
+            "source": "Eicher Pro 3010 L chassis page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis",
+            "method": "1918 + 5260 + 2981 = 10159, consistent on the same page."
+          }
+        },
+        "widthMm": {
+          "value": 2226,
+          "provenance": {
+            "class": "oem",
+            "source": "Eicher Pro 3010 L chassis page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis"
+          }
+        },
+        "heightMm": {
+          "value": 2470,
+          "provenance": {
+            "class": "oem",
+            "source": "Eicher Pro 3010 L chassis page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis",
+            "notes": "Chassis height, not a bus body."
+          }
+        },
+        "wheelbaseMm": {
+          "value": 5260,
+          "provenance": {
+            "class": "oem",
+            "source": "Eicher Pro 3010 L chassis page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis"
+          }
+        },
+        "groundClearanceMm": {
+          "value": 185,
+          "provenance": {
+            "class": "oem",
+            "source": "Eicher Pro 3010 L chassis page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis"
+          }
+        }
+      },
+      "mass": {
+        "gvwKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "GVW is in an unresolved conflict. No single kilogram figure is stored.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "kerbKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not on the captured OEM table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "payloadKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not on the captured OEM table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "frontAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not on the captured OEM table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not on the captured OEM table.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "bodyStates": [
+        {
+          "id": "chassis_cowl",
+          "label": "Bus chassis (OEM page; cowl style not fully specified)",
+          "kind": "chassis_cowl",
+          "offered": true,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Unknown",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "The OEM chassis page did not show a price.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "An aggregator calls a similar chassis 'without face-cowl'. The OEM page describes the chassis. Price unknown."
+        },
+        {
+          "id": "seated_complete",
+          "label": "Fully built Skyline-type bus",
+          "kind": "seated_complete",
+          "offered": true,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "A fully built bus price is a different product from the bare chassis.",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "CarDekho lists a fully built Skyline Pro 3010 L band. It is not used as the chassis price.",
+              "date": "2026-10-08",
+              "confidence": "none",
+              "notes": "Search snippet showed about Rs 28.01–35.31 lakh for a built bus. Not copied into the cost stack as a chassis price."
+            }
+          },
+          "notes": "Buying the seated bus and stripping it is a different acquisition from buying the chassis. The built-bus price was not promoted to a fact because the snippet was not opened as a full page."
+        }
+      ],
+      "interior": {
+        "shellWallEachSideMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Metal skin plus stamped structure, subtracted from the published exterior width. Not a measurement."
+          }
+        },
+        "roofSkinMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Roof skin and bow allowance. Not a measurement."
+          }
+        },
+        "floorHeightMm": {
+          "value": 950,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave concept floor",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Not an OEM living-floor height."
+          }
+        },
+        "cabLengthFromNoseMm": {
+          "value": 2300,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave concept cab",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±300 mm",
+            "method": "Forward engine bus allowance."
+          }
+        },
+        "roofCrownMm": {
+          "value": 80,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±40 mm",
+            "method": "Roof centre above the eaves so the section is not a rectangle."
+          }
+        },
+        "noseHalfWidthFraction": {
+          "value": 0.55,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.1",
+            "method": "Front taper so the plan is not a rectangle. Not a body drawing."
+          }
+        },
+        "rearTaperHalfWidthFraction": {
+          "value": 0.82,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.08",
+            "method": "Rear corner taper. Not a body drawing."
+          }
+        },
+        "wheelArchIntrusionMm": {
+          "value": 200,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "How far the wheel housing is assumed to enter the cabin from each side wall. Tyre size is published; the intrusion is not."
+          }
+        },
+        "wheelArchHeightAboveFloorMm": {
+          "value": 340,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "Assumed height of the wheel housing above the metal floor."
+          }
+        },
+        "wheelArchLengthMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Assumed length of the wheel housing along the vehicle."
+          }
+        },
+        "frontOverhangMm": {
+          "value": 1918,
+          "provenance": {
+            "class": "oem",
+            "source": "Eicher Pro 3010 L chassis page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis"
+          }
+        },
+        "rearOverhangMm": {
+          "value": 2981,
+          "provenance": {
+            "class": "oem",
+            "source": "Eicher Pro 3010 L chassis page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis"
+          }
+        }
+      },
+      "conflicts": [
+        {
+          "id": "eicher-3010-gvw",
+          "subject": "Eicher Pro 3010 L GVW",
+          "resolution": "unresolved",
+          "note": "OEM says 10.7 t. TrucksBuses says 10625 kg. Not converted and not averaged.",
+          "observations": [
+            {
+              "value": "10.7 t",
+              "provenance": {
+                "class": "oem",
+                "source": "Eicher Pro 3010 L chassis page",
+                "date": "2026-10-08",
+                "confidence": "medium",
+                "sourceUrl": "https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis"
+              }
+            },
+            {
+              "value": 10625,
+              "provenance": {
+                "class": "reputable_secondary",
+                "source": "TrucksBuses comparison",
+                "date": "2026-10-08",
+                "confidence": "low",
+                "sourceUrl": "https://www.trucksbuses.com/compare-bus/Eicher-Pro-3010-L-vs-Ashok-Leyland-Viking"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Rear overhang 2981 mm is 56.7% of the 5260 mm wheelbase, under the reprinted 60% Rule 93(2) figure. The rule text is not gazette-verified in this database."
+      ]
+    },
+    {
+      "id": "ashok-leyland-viking-5334",
+      "manufacturer": "Ashok Leyland",
+      "family": "Viking",
+      "generation": "Viking chassis page",
+      "name": "Ashok Leyland Viking, wheelbase 5334 mm",
+      "modelYears": "OEM specification page. Copyright line on the page said 2024. Captured 8 Oct 2026.",
+      "support": "concept",
+      "supportReason": "OEM and aggregator overall lengths conflict. No living body exists in the seed. Concept only until the conflict is resolved by a drawing.",
+      "shellKind": "fabricated_body",
+      "proposedBody": {
+        "note": "Concept body. Length is not a single number while the conflict stands, so the OEM length is used only as one planning observation and the conflict is shown.",
+        "lengthMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Overall length is an unresolved conflict. No single planning length is stored.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "widthMm": {
+          "value": 2600,
+          "provenance": {
+            "class": "oem",
+            "source": "Ashok Leyland Viking specification page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.ashokleyland.com/in/buses/brands/viking/specification",
+            "notes": "2600 mm equals the reprinted Rule 93 maximum width of 2.6 m. Any added item outside the rule's exclusions would exceed it. The rule text is not gazette-verified here."
+          }
+        },
+        "heightMm": {
+          "value": 3400,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave concept body height",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±300 mm",
+            "method": "No OEM body height."
+          }
+        }
+      },
+      "powertrain": "H series 6 cylinder, 5.76 L, 147 kW, 700 Nm, 6-speed. OEM page.",
+      "tyre": {
+        "value": null,
+        "provenance": {
+          "class": "unknown",
+          "source": "OEM page did not list a single tyre in the captured specification block.",
+          "date": "2026-10-08",
+          "confidence": "none"
+        }
+      },
+      "seatingPublished": {
+        "value": "Indicative seat counts from 37+D to 58+D depending on layout",
+        "provenance": {
+          "class": "oem",
+          "source": "Ashok Leyland Viking specification page",
+          "date": "2026-10-08",
+          "confidence": "medium",
+          "sourceUrl": "https://www.ashokleyland.com/in/buses/brands/viking/specification",
+          "notes": "Indicative, not a motor-caravan seating plan. A 13+ passenger body may fall under AIS-052."
+        }
+      },
+      "categoryInference": {
+        "value": "M3 if completed as a passenger vehicle",
+        "provenance": {
+          "class": "derived",
+          "source": "OEM GVW 16200 kg",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "method": "Above 5 tonnes and more than 8 passenger seats. Not an OEM category label."
+        }
+      },
+      "exterior": {
+        "lengthMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Length conflict. See conflict viking-length.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "widthMm": {
+          "value": 2600,
+          "provenance": {
+            "class": "oem",
+            "source": "Ashok Leyland Viking specification page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.ashokleyland.com/in/buses/brands/viking/specification"
+          }
+        },
+        "heightMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Finished height is not on the chassis page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "wheelbaseMm": {
+          "value": 5334,
+          "provenance": {
+            "class": "oem",
+            "source": "Ashok Leyland Viking specification page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.ashokleyland.com/in/buses/brands/viking/specification",
+            "notes": "The page also lists 5639 mm. This record is the 5334 mm option only."
+          }
+        },
+        "groundClearanceMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not in the captured OEM block.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "mass": {
+        "gvwKg": {
+          "value": 16200,
+          "provenance": {
+            "class": "oem",
+            "source": "Ashok Leyland Viking specification page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.ashokleyland.com/in/buses/brands/viking/specification"
+          }
+        },
+        "kerbKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not in the captured OEM block.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "payloadKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not in the captured OEM block.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "frontAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not in the captured OEM block.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not in the captured OEM block.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "bodyStates": [
+        {
+          "id": "chassis_cowl",
+          "label": "Chassis (OEM specification). Aggregators say without face-cowl.",
+          "kind": "chassis_cowl",
+          "offered": true,
+          "price": {
+            "lowInr": 2783000,
+            "highInr": 3380000,
+            "taxBasis": "Indicative ex-showroom band from an aggregator. Not OEM.",
+            "geography": "India. Read 8 Oct 2026.",
+            "provenance": {
+              "class": "reputable_secondary",
+              "source": "TrucksBuses Ashok Leyland Viking price band",
+              "date": "2026-10-08",
+              "confidence": "low",
+              "sourceUrl": "https://www.trucksbuses.com/buses/inter-city/ashok-leyland-viking/specifications",
+              "notes": "CarDekho comparison snippets show a different band for a fully built intercity bus. That is a different body state and is not merged into this band."
+            }
+          },
+          "notes": "Chassis path. Body fabrication is extra and is not priced as a quotation."
+        },
+        {
+          "id": "seated_complete",
+          "label": "Fully built intercity bus",
+          "kind": "seated_complete",
+          "offered": true,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Unknown in this seed",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "A fully built price snippet was seen and not promoted, because it was not read as a stable variant card.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "Seated complete buses exist. This seed does not pick a price."
+        }
+      ],
+      "interior": {
+        "shellWallEachSideMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Metal skin plus stamped structure, subtracted from the published exterior width. Not a measurement."
+          }
+        },
+        "roofSkinMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Roof skin and bow allowance. Not a measurement."
+          }
+        },
+        "floorHeightMm": {
+          "value": 1000,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave concept floor",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±200 mm",
+            "method": "Not published."
+          }
+        },
+        "cabLengthFromNoseMm": {
+          "value": 2600,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave concept cab",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±300 mm",
+            "method": "OEM front overhang is 2400 mm, so the cab is at least that deep. Living-cell start is estimated a little behind it."
+          }
+        },
+        "roofCrownMm": {
+          "value": 80,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±40 mm",
+            "method": "Roof centre above the eaves so the section is not a rectangle."
+          }
+        },
+        "noseHalfWidthFraction": {
+          "value": 0.55,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.1",
+            "method": "Front taper so the plan is not a rectangle. Not a body drawing."
+          }
+        },
+        "rearTaperHalfWidthFraction": {
+          "value": 0.82,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.08",
+            "method": "Rear corner taper. Not a body drawing."
+          }
+        },
+        "wheelArchIntrusionMm": {
+          "value": 200,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "How far the wheel housing is assumed to enter the cabin from each side wall. Tyre size is published; the intrusion is not."
+          }
+        },
+        "wheelArchHeightAboveFloorMm": {
+          "value": 340,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "Assumed height of the wheel housing above the metal floor."
+          }
+        },
+        "wheelArchLengthMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Assumed length of the wheel housing along the vehicle."
+          }
+        },
+        "frontOverhangMm": {
+          "value": 2400,
+          "provenance": {
+            "class": "oem",
+            "source": "Ashok Leyland Viking specification page",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "sourceUrl": "https://www.ashokleyland.com/in/buses/brands/viking/specification"
+          }
+        },
+        "rearOverhangMm": {
+          "value": 3200,
+          "provenance": {
+            "class": "derived",
+            "source": "OEM length 10934 − front overhang 2400 − wheelbase 5334",
+            "date": "2026-10-08",
+            "confidence": "medium",
+            "method": "Derived from the OEM trio of length, front overhang and wheelbase for the 5334 mm option. The aggregator length conflicts, so this rear overhang is only as good as the OEM length."
+          }
+        }
+      },
+      "conflicts": [
+        {
+          "id": "viking-length",
+          "subject": "Viking 5334 mm wheelbase overall length",
+          "resolution": "unresolved",
+          "note": "OEM and TrucksBuses disagree. Not averaged.",
+          "observations": [
+            {
+              "value": 10934,
+              "provenance": {
+                "class": "oem",
+                "source": "Ashok Leyland Viking specification page",
+                "date": "2026-10-08",
+                "confidence": "medium",
+                "sourceUrl": "https://www.ashokleyland.com/in/buses/brands/viking/specification",
+                "notes": "Paired on the same page with wheelbase 5334 and front overhang 2400."
+              }
+            },
+            {
+              "value": 10699,
+              "provenance": {
+                "class": "reputable_secondary",
+                "source": "TrucksBuses Viking specifications",
+                "date": "2026-10-08",
+                "confidence": "low",
+                "sourceUrl": "https://www.trucksbuses.com/buses/inter-city/ashok-leyland-viking/specifications",
+                "notes": "Listed as 10699 mm for the 5334 mm wheelbase, with a different front overhang (2265 mm) and rear overhang (3100 mm)."
+              }
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Because length conflicts, this donor cannot pass a Rule 93 length check as a single number. Both observations are under the reprinted 13.5 m two-axle M3 figure, and that statement is shown without choosing a length."
+      ]
+    },
+    {
+      "id": "mahindra-supro-van",
+      "manufacturer": "Mahindra",
+      "family": "Supro",
+      "generation": "Supro Van (aggregator; page said the model has expired)",
+      "name": "Supro Van",
+      "modelYears": "Unknown. BusesDekho marked the model expired.",
+      "support": "concept",
+      "supportReason": "Secondary dimensions only, and the listing is marked expired. Too small for a full motor-caravan brief. Kept so the solver can reject it honestly.",
+      "shellKind": "oem_monocoque",
+      "powertrain": "Aggregator: 909 cc diesel, about 47 hp. Not confirmed on an OEM page in this pass.",
+      "tyre": {
+        "value": "155 R13",
+        "provenance": {
+          "class": "reputable_secondary",
+          "source": "BusesDekho Supro Van specifications",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "sourceUrl": "https://buses.cardekho.com/buses/mahindra/supro-van/specifications"
+        }
+      },
+      "seatingPublished": {
+        "value": "9+D",
+        "provenance": {
+          "class": "reputable_secondary",
+          "source": "BusesDekho Supro Van specifications",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "sourceUrl": "https://buses.cardekho.com/buses/mahindra/supro-van/specifications"
+        }
+      },
+      "categoryInference": {
+        "value": "M2 if 9+D means nine passengers plus driver",
+        "provenance": {
+          "class": "derived",
+          "source": "Secondary seat line and GVW 2020 kg",
+          "date": "2026-10-08",
+          "confidence": "low",
+          "method": "Not an OEM label. Listing may be expired."
+        }
+      },
+      "exterior": {
+        "lengthMm": {
+          "value": 3798,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Supro Van specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/mahindra/supro-van/specifications"
+          }
+        },
+        "widthMm": {
+          "value": 1540,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Supro Van specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/mahindra/supro-van/specifications"
+          }
+        },
+        "heightMm": {
+          "value": 1922,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Supro Van specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/mahindra/supro-van/specifications"
+          }
+        },
+        "wheelbaseMm": {
+          "value": 1950,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Supro Van specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/mahindra/supro-van/specifications"
+          }
+        },
+        "groundClearanceMm": {
+          "value": 173,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Supro Van specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/mahindra/supro-van/specifications"
+          }
+        }
+      },
+      "mass": {
+        "gvwKg": {
+          "value": 2020,
+          "provenance": {
+            "class": "reputable_secondary",
+            "source": "BusesDekho Supro Van specifications",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "sourceUrl": "https://buses.cardekho.com/buses/mahindra/supro-van/specifications"
+          }
+        },
+        "kerbKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not captured.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "payloadKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not captured for this expired van listing.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "frontAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not captured.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearAxleRatingKg": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Not captured.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "bodyStates": [
+        {
+          "id": "seated_complete",
+          "label": "Seated van (fully built, listing expired)",
+          "kind": "seated_complete",
+          "offered": true,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Unknown",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "No current price captured for an expired listing.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "Included as a small-van reference, not as a recommended donor."
+        },
+        {
+          "id": "chassis_cowl",
+          "label": "Chassis-only",
+          "kind": "chassis_cowl",
+          "offered": false,
+          "price": {
+            "lowInr": null,
+            "highInr": null,
+            "taxBasis": "Not applicable",
+            "geography": "India",
+            "provenance": {
+              "class": "unknown",
+              "source": "No cowl variant sourced.",
+              "date": "2026-10-08",
+              "confidence": "none"
+            }
+          },
+          "notes": "Not established."
+        }
+      ],
+      "interior": {
+        "shellWallEachSideMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Metal skin plus stamped structure, subtracted from the published exterior width. Not a measurement."
+          }
+        },
+        "roofSkinMm": {
+          "value": 40,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±15 mm",
+            "method": "Roof skin and bow allowance. Not a measurement."
+          }
+        },
+        "floorHeightMm": {
+          "value": 400,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "Not published."
+          }
+        },
+        "cabLengthFromNoseMm": {
+          "value": 1400,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±200 mm",
+            "method": "Not measured."
+          }
+        },
+        "roofCrownMm": {
+          "value": 80,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±40 mm",
+            "method": "Roof centre above the eaves so the section is not a rectangle."
+          }
+        },
+        "noseHalfWidthFraction": {
+          "value": 0.55,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.1",
+            "method": "Front taper so the plan is not a rectangle. Not a body drawing."
+          }
+        },
+        "rearTaperHalfWidthFraction": {
+          "value": 0.82,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±0.08",
+            "method": "Rear corner taper. Not a body drawing."
+          }
+        },
+        "wheelArchIntrusionMm": {
+          "value": 200,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "How far the wheel housing is assumed to enter the cabin from each side wall. Tyre size is published; the intrusion is not."
+          }
+        },
+        "wheelArchHeightAboveFloorMm": {
+          "value": 340,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±80 mm",
+            "method": "Assumed height of the wheel housing above the metal floor."
+          }
+        },
+        "wheelArchLengthMm": {
+          "value": 900,
+          "provenance": {
+            "class": "estimated",
+            "source": "ObjectWeave planning default",
+            "date": "2026-10-08",
+            "confidence": "low",
+            "tolerance": "±150 mm",
+            "method": "Assumed length of the wheel housing along the vehicle."
+          }
+        },
+        "frontOverhangMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Overhangs were not on the captured page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        },
+        "rearOverhangMm": {
+          "value": null,
+          "provenance": {
+            "class": "unknown",
+            "source": "Overhangs were not on the captured page.",
+            "date": "2026-10-08",
+            "confidence": "none"
+          }
+        }
+      },
+      "conflicts": [],
+      "notes": [
+        "BusesDekho said this model has expired. Do not treat the dimensions as a current OEM card."
+      ]
+    }
+  ]
+}

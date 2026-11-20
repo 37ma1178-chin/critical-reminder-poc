@@ -1,0 +1,20 @@
+{
+ "id": "force_traveller_26_4020_camper",
+ "name": "Force Traveller 26 (4020WB, legacy BS-IV)",
+ "kind": "van",
+ "L": 6.77,
+ "W": 2.225,
+ "H": 2.87,
+ "WB": 4.02,
+ "FOH": 0.9,
+ "ROH": 1.85,
+ "tyre": "215/75 R15, 6+1 = dual rear (2018 brochure)",
+ "tyre_d": 0.704,
+ "floor": 0.56,
+ "cab": 1.7,
+ "living_len": 4.75,
+ "living_w": 2.145,
+ "living_h": 2.25,
+ "src": "6770x2225x2670 (2870 with AC), WB 4020, FOH 900, ROH 1850, GC 190, GVW 5750: Force Traveller 26 brochure June 2018 (BS-IV, legacy) and TrucksBuses spec page. AC height 2870 used",
+ "layout": "fixed rear transverse double bed 2145x1400 mm over a storage garage; wet room with cassette toilet, shower tray and washbasin; kitchenette 1300 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); tall wardrobe; overhead lockers; water tank 173 L, 1 x 100 Ah LiFePO4 battery + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+}

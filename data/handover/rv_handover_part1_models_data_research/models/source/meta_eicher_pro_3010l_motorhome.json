@@ -1,0 +1,20 @@
+{
+ "id": "eicher_pro_3010l_motorhome",
+ "name": "Eicher Pro 3010 L bus chassis 5260WB, coach-built motorhome",
+ "kind": "bus",
+ "L": 10.159,
+ "W": 2.226,
+ "H": 3.2,
+ "WB": 5.26,
+ "FOH": 1.918,
+ "ROH": 2.981,
+ "tyre": "235/75 R17.5 (OEM, seed), dual rear",
+ "tyre_d": 0.797,
+ "floor": 0.95,
+ "cab": 2.3,
+ "living_len": 7.749,
+ "living_w": 2.146,
+ "living_h": 2.19,
+ "src": "L 10159, W 2226, WB 5260, FOH 1918, ROH 2981, GC 185: donors.json eicher-pro-3010-l (OEM). Body height 3200 ESTIMATED (proposedBody; chassis height 2470 is OEM). Floor 950, cab 2300 estimated",
+ "layout": "fixed rear transverse double bed 2146x2000 mm over a storage garage; wet room with cassette toilet, shower tray and washbasin; kitchenette 2000 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); lounge sofa; overhead lockers; water tank 630 L, 4 x 100 Ah LiFePO4 batteries + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+}

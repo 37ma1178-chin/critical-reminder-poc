@@ -1,0 +1,20 @@
+{
+ "id": "ashok_leyland_viking_5334_motorhome",
+ "name": "Ashok Leyland Viking 5334WB bus chassis, coach-built motorhome",
+ "kind": "bus",
+ "L": 10.934,
+ "W": 2.6,
+ "H": 3.4,
+ "WB": 5.334,
+ "FOH": 2.4,
+ "ROH": 3.2,
+ "tyre": "10.00 R20 class (ESTIMATED), dual rear",
+ "tyre_d": 1.02,
+ "floor": 1.0,
+ "cab": 2.6,
+ "living_len": 8.224,
+ "living_w": 2.52,
+ "living_h": 2.34,
+ "src": "W 2600, WB 5334, FOH 2400: donors.json ashok-leyland-viking-5334 (OEM). Length 10934 = OEM spec page (conflict: TrucksBuses 10699, FOH 2265, ROH 3100 - unresolved, OEM used as planning length). ROH 3200 derived. Body height 3400 ESTIMATED. GC 230, floor 1000, cab 2600 estimated",
+ "layout": "fixed rear transverse double bed 2520x2000 mm over a storage garage; wet room with cassette toilet, shower tray and washbasin; kitchenette 2000 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); lounge sofa; overhead lockers; water tank 630 L, 4 x 100 Ah LiFePO4 batteries + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+}

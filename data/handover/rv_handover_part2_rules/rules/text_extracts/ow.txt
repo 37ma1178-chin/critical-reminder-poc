@@ -1,0 +1,452 @@
+                                    ObjectWeave RV India v0.2
+              Architecture Freeze - Architectures 1 to 20
+ Safekeeping baseline - 8 October 2026
+
+
+ Core invariant: Nothing shown to the user may exist only visually. Every visible or concealed item must correspond to dimensional
+ and semantic data in the Canonical RV Model. 2D, 3D, engineering, utilities, costing, validation and fabrication outputs must
+ describe the same RV.
+
+ This document records the agreed architecture before implementation. It does not claim that the India-wide regulatory,
+ donor-vehicle, component or pricing databases have already been populated or independently verified.
+
+
+
+
+ObjectWeave RV India v0.2 - Architecture Freeze                                                                              Page 1
+ 1. Product & Scope Architecture
+ Purpose
+ India-specific RV planning, engineering, compliance-assistance, costing, visualization and fabrication-documentation platform.
+
+ Core gates
+ Every design is evaluated independently for regulatory support, physical fit, engineering viability, financial fit and
+ buildability/serviceability.
+
+ Project paths
+ Existing vehicle; buy a complete donor; supported chassis/body-build route; or Help Me Choose. Private and commercial use
+ remain distinct.
+
+ Canonical rule
+ The Canonical RV Model is the single source of truth. 2D, 3D, templates and AI outputs cannot maintain separate physical realities.
+
+ Budget
+ Budget is an input constraint. Requirements are Must Have, Preferred or Optional. Impossible designs are rejected rather than
+ visually distorted.
+
+
+
+ 2. Regulatory & Compliance Intelligence
+ Context
+ Evaluate exact donor/variant/year, current vehicle state, proposed modification manifest, intended use, jurisdiction and date.
+
+ Hierarchy
+ Central rules, technical standards, State/UT overlays, official procedures, vehicle applicability and project compliance are separate
+ layers.
+
+ Evidence
+ Official statutory and technical evidence outranks procedural, manufacturer, secondary and community evidence. Community
+ evidence alone cannot establish legality.
+
+ Statuses
+ VERIFIED, CONDITIONAL, PROFESSIONAL VERIFICATION REQUIRED, UNKNOWN, UNSUPPORTED and NON-COMPLIANT
+ where evidence supports it.
+
+ Versioning
+ Rules, forms and procedures are versioned and superseded, never overwritten. Conflicts are surfaced. AI cannot independently
+ declare compliance.
+
+
+
+ 3. Donor Vehicle Master Database
+ Identity
+ Manufacturer > family/model > generation > exact variant > model-year/effective range > wheelbase/body configuration >
+ seating/body option > relevant powertrain.
+
+ Physical states
+ Chassis/cowl, OEM/factory body, registered complete vehicle, stripped conversion shell and completed RV are separate states.
+
+ Core data
+ Exterior geometry, wheelbase/tracks/overhangs, GVW, kerb/unladen mass, payload, axle ratings where available, seating/body and
+ relevant mechanical data.
+
+ Interior data
+ Lengths and widths at multiple heights, headroom, floor height, wheel arches, cab intrusion, openings, pillars, roof curvature,
+ luggage/service bays and structural/no-cut zones.
+
+
+
+ObjectWeave RV India v0.2 - Architecture Freeze                                                                                    Page 2
+ Provenance
+ Every consequential value is official, OEM/body-builder, verified measurement, reputable secondary, community-measured,
+ derived, estimated or unknown, with source/applicability/tolerance.
+
+ Support gate
+ Only sufficiently complete and evidenced exact variants become design-supported; incomplete records remain concept-only or
+ measurement-required.
+
+
+
+ 4. Vehicle Digital-Twin Architecture
+ Coordinates
+ One vehicle-fixed XYZ system and defined datums for all surfaces, components and service routes.
+
+ Geometry
+ Exterior shape, bare/finished interior, cab, wheel arches, openings, pillars, chassis/structure, mechanical exclusions,
+ luggage/service bays, roof/underfloor and protected zones.
+
+ Fidelity
+ Taper, curvature, steps, raised floors, wheel housings and cab geometry are preserved; a bus or Traveller is never an engineering
+ cuboid.
+
+ Build-up
+ Insulation, framing/service voids, floor, ceiling, walls and finishes explicitly reduce usable volume.
+
+ Authority
+ Engineering geometry is authoritative; cosmetic meshes cannot redefine dimensions. Project-specific verified measurements may
+ refine a project twin without overwriting the master.
+
+
+
+ 5. Canonical Geometry & Spatial Engine
+ Object model
+ Every object has transform, physical volume, mounting footprint, operating/motion envelope, service envelope, safety/clearance
+ envelope and semantic type.
+
+ Operations
+ Move, rotate, align, snap, measure, collision, containment, clearance, swept-volume and zone eligibility.
+
+ Views
+ Top, left/right, front/rear, roof, underfloor, longitudinal/cross section, cutaway and 3D are projections of the same canonical
+ geometry.
+
+ Integrity
+ Engineering units are independent of display scale. Fixed SKUs cannot be shrunk; parametric fabricated objects resize only within
+ validated ranges.
+
+ Reliability
+ Geometry edits are atomic, versioned and checkpointed.
+
+
+
+ 6. Component Intelligence Database
+ Scope
+ Real prefabricated SKUs: TVs, refrigerators, HVAC, batteries, inverter/chargers, solar, pumps, heaters, toilets, sinks, tanks, vents,
+ windows, lighting, distribution and connectivity.
+
+ Engineering fields
+ Dimensions, mass, cut-outs, mounting, clearances, operating/service envelopes, voltage, power, energy use where known,
+ plumbing, ventilation and installation requirements.
+
+ObjectWeave RV India v0.2 - Architecture Freeze                                                                                    Page 3
+ Compatibility
+ Geometry, electrical, plumbing, thermal, mounting and serviceability are separate compatibility dimensions.
+
+ Evidence/cost
+ OEM manuals/datasheets outrank reseller claims. Price observations are dated vendor/region records. Visual assets never redefine
+ engineering envelopes.
+
+
+
+ 7. Parametric Fabrication Library
+ Scope
+ Custom seats/recliners where applicable, benches, sofa-beds, beds, dinettes, tables, cabinets, wardrobes, counters, partitions,
+ bathroom modules, storage and service housings.
+
+ Parameters
+ Fixed values, editable ranges, dependencies, materials/build-ups, hardware and manufacturing constraints.
+
+ Motion/ergonomics
+ Fold, slide, recline, drawers and doors include swept volumes; objects expose seat pitch, legroom, bed size and access
+ requirements.
+
+ Rule
+ Appearance is separate from engineering geometry; resizing is allowed only inside manufacturable and ergonomic limits.
+
+
+
+ 8. Hidden Services / MEP & Utilities
+ Principle
+ Reserve concealed service volume before allocating all space to furniture.
+
+ Electrical
+ Generation/source, battery, protection, busbars, inverter/charger, AC/DC distribution, circuits, loads, solar, shore and
+ alternator/other charging form a connected graph.
+
+ Water
+ Fill, fresh tank, pump, fixtures, drains, grey tank, toilet/black-water, vents and service/drain points form a connected graph.
+
+ Routing
+ Cables, pipes and ducts consume real space and obey structural, heat, motion, bend and incompatibility rules.
+
+ Serviceability
+ Normal cabin views may hide systems, but engineering layers reveal exact locations. Maintainable equipment requires
+ access/removal space.
+
+
+
+ 9. Engineering Constraint & Safety Engine
+ Mass
+ Evaluate dry, travel and maximum-use states. Components carry mass and XYZ location; distribution/axle effects are calculated
+ where donor data permits.
+
+ Spatial
+ Check circulation, exits, furniture/recliner motion, appliance doors, headroom, human access and service clearances.
+
+ Utilities
+ Check electrical supply/demand, charging, solar area, water/tank capacity, plumbing feasibility and HVAC dependencies.
+
+ Structure/severity
+ Enforce protected zones and escalate unresolved structural questions. Findings are Critical, Major, Moderate or Minor.
+
+
+
+ObjectWeave RV India v0.2 - Architecture Freeze                                                                                    Page 4
+ Truth
+ Missing engineering evidence never becomes PASS; every failure is explainable with actual/required values and remediation.
+
+
+
+ 10. Requirements, Onboarding & Project Intent
+ Flow
+ Existing/buy/chassis/help-me-choose > jurisdiction > private/commercial > budget > occupancy/use > features > autonomy > style.
+
+ Domains
+ Travel seats, berths, trip duration, climate, comfort, bathroom, kitchen, appliances, storage, HVAC, water, electrical/solar,
+ accessibility, entertainment and special requirements.
+
+ Priorities
+ Must Have, Preferred and Optional. Adaptive questioning suppresses irrelevant questions and exposes material
+ assumptions/defaults.
+
+ Output
+ A deterministic Project Intent object consumed by regulation, donor recommendation, templates, solver and costing.
+
+
+
+ 11. Budget, Cost & Commercial Estimation
+ Cost stack
+ Donor/chassis, body construction, stripping, structure, insulation/shell, furniture/seating, electrical/solar, HVAC, plumbing/tanks/WC,
+ appliances, finishes, labour, applicable documentation/testing, logistics and contingency.
+
+ States
+ Estimated, quoted, committed and actual costs remain separate with date, geography, tax basis and source.
+
+ Optimization
+ When over budget, preserve Must Haves and offer explicit savings from Preferred/Optional choices with their engineering
+ consequences.
+
+ Uncertainty
+ Early costs are ranges/confidence bands rather than false precision; changes propagate into affected cost lines.
+
+
+
+ 12. Verified Layout Template Library
+ Definition
+ Exact donor/twin version plus visible layout, seating, furniture, appliances, batteries/inverter, tanks, electrical/plumbing/HVAC,
+ roof/underfloor, storage, mass model, BOM, cost and validation.
+
+ Maturity
+ CONCEPT, ENGINEERED, VALIDATED, PROFESSIONAL REVIEWED where applicable, FIELD-BUILT and FIELD-VERIFIED.
+
+ Adaptation
+ Parametric adaptation is allowed only within declared ranges; substitutions or major feature changes trigger affected revalidation or
+ a new layout problem.
+
+ Style
+ Engineering templates and interior style packages are separate.
+
+ Learning
+ Field/as-built evidence may create reviewed new template versions but cannot silently rewrite published templates.
+
+
+
+ 13. Layout Recommendation & Constraint Solver
+
+ObjectWeave RV India v0.2 - Architecture Freeze                                                                                       Page 5
+ Strategy
+ Match verified templates first, adapt parametrically second, combine validated modules where permitted, and generate new
+ constrained layouts only when necessary.
+
+ Constraints
+ Hard constraints include shell/protected zones, critical rules, fixed SKU dimensions, mass/safety limits and Must Haves. Soft
+ constraints include preferences and optional features.
+
+ Ranking
+ Requirement fit, buildability, serviceability, comfort, storage, weight distribution, utility feasibility, cost, spatial efficiency and
+ evidence confidence.
+
+ Infeasibility
+ Explain limiting constraints and offer alternatives without silently dropping Must Haves.
+
+ Fail-safe
+ Solver jobs are bounded/checkpointed and valid partial candidates survive later failures.
+
+
+
+ 14. Visualization & Interaction
+ 2D
+ Top, left/right elevations, front/rear, roof, underfloor, longitudinal and cross-sections are first-class views.
+
+ 3D
+ Recognizable donor exterior and dimensionally correct interior share canonical coordinates with 2D.
+
+ Layers
+ Structure, furniture, storage, electrical, solar, fresh/grey/black water, HVAC, insulation, roof, underfloor, clearances and human
+ envelopes.
+
+ Cutaway
+ Transparent/cutaway modes reveal hidden systems and connection tracing.
+
+ Customization
+ Finishes, upholstery, flooring, panels, ceiling, cabinets, lighting and trim update appearance plus relevant mass/cost.
+
+ Graceful degradation
+ Renderer failure cannot disable canonical CAD or destroy project state.
+
+
+
+ 15. Validation & Quality Gates
+ Pipeline
+ Geometry > structure > motion/ergonomics > MEP > mass/axles > electrical > water > HVAC > serviceability > compatibility >
+ budget > regulatory.
+
+ Independent status
+ Each domain reports PASS, CONDITIONAL/WARNING, FAIL or VERIFICATION REQUIRED as appropriate; no misleading single
+ green tick.
+
+ Change impact
+ Dependency tracking invalidates and reruns only affected checks.
+
+ Reproducibility
+ Reports retain rule, inputs, calculation, result, severity, timestamp, versions, evidence and assumptions.
+
+ Blocking
+ Critical failures block Validated and Design Frozen states.
+
+
+
+ObjectWeave RV India v0.2 - Architecture Freeze                                                                                            Page 6
+ 16. Evidence, Provenance & Truth
+ Classes
+ Authoritative fact, verified measurement, derived, community-measured, estimated and unknown.
+
+ Lineage
+ Source, date, applicability, method, units, tolerance, confidence, formulas/inputs, reviewer and supersession.
+
+ Conflicts
+ Contradictory evidence creates a conflict record; never average or silently choose.
+
+ AI boundary
+ AI can discover/extract/propose candidate data but cannot directly promote consequential data to canonical truth.
+
+ Propagation
+ Source corrections identify affected twins, templates, calculations and projects.
+
+
+
+ 17. Reliability, Recovery & Fail-Safe Orchestrator
+ Pattern
+ Stable checkpoint > validate input > execute > checkpoint > validate output > atomic commit. Failure preserves last valid state, then
+ bounded retry/fallback/resume/rollback.
+
+ Controls
+ Autosave, immutable revisions, undo/redo, idempotency, timeouts, retry/backoff, health checks, circuit breakers, partial-result
+ preservation, crash journal and resource guards.
+
+ Isolation
+ 3D failure leaves CAD intact; AI failure leaves deterministic engineering intact; regulatory outage leaves project accessible but fresh
+ compliance unavailable; stale price data is labeled.
+
+ Migration
+ Schema migrations require checkpoint/backup and rollback on failure.
+
+ Diagnostics
+ Human-readable error plus technical diagnostic/correlation record and recovery action.
+
+
+
+ 18. Project Lifecycle, Design Freeze & Change Control
+ Stages
+ Draft > Concept > Layout Candidate > Layout Approved > Engineering > Services Routed > Validation Pending > Validated >
+ Design Frozen > Fabrication Package > Under Construction > As-Built.
+
+ Gates
+ Stage transitions require defined checks and unresolved-item rules.
+
+ Freeze
+ Capture canonical model/twin versions, components, services/routes, calculations, cost, regulatory snapshot and validation report.
+
+ Change control
+ Post-freeze consequential edits create controlled revisions/change requests and impact analysis.
+
+ History
+ Frozen baselines are immutable, diffable and recoverable.
+
+
+
+ 19. Professional Output & Fabrication Documentation
+
+ObjectWeave RV India v0.2 - Architecture Freeze                                                                                    Page 7
+ Customer
+ Interactive/visual 2D/3D, layout comparison, finishes, features, cost estimate and requirement-fit summary.
+
+ Engineering
+ Dimensioned floor, elevations, relevant front/rear, longitudinal/cross sections, roof, underfloor, service bays and installation zones.
+
+ Systems
+ Electrical topology/routing, battery/inverter/distribution, solar, fresh/grey/black-water schematics/routes, tank/equipment schedule
+ and HVAC where modeled.
+
+ Schedules
+ BOM, SKU/component schedule, fabricated-object schedule, mass report, utility calculations, cost report and assumptions.
+
+ Compliance
+ Applicable requirements/evidence, forms/document checklist, unresolved verification items and regulatory snapshot.
+
+ Drawing control
+ Exports name project, exact donor, twin version, revision, units, issue date, validation status and unresolved warnings.
+
+
+
+ 20. As-Built Digital Twin & Lifecycle
+ Commissioning
+ Capture actual installed components, measured positions/dimensions, tank capacities, battery/inverter/solar, protection values,
+ wiring/plumbing routes, access panels, seating/storage and final mass/axle data where available.
+
+ Deviation
+ Frozen design and As-Built remain distinct. Construction deviations are explicit and trigger affected revalidation.
+
+ Maintenance
+ Serviceable components retain location, service/repair/replacement history and access information; hidden-system locator traces
+ actual routes.
+
+ Upgrades
+ Future changes are evaluated against the As-Built Twin, not the original concept.
+
+ Lifecycle
+ Future modifications become new projects based on the latest As-Built version. Technical records may transfer with the vehicle
+ while personal data remains separate.
+
+ Feedback
+ Field evidence may improve future templates only through controlled review/versioning.
+
+
+
+
+ObjectWeave RV India v0.2 - Architecture Freeze                                                                                     Page 8
+ End-to-End Product Flow
+ User intent -> jurisdiction/private-commercial -> acquisition path -> budget -> exact donor -> regulatory eligibility -> vehicle digital
+ twin -> structured requirements -> verified-template search -> parametric adaptation/constraint solving -> hidden-service packaging
+ -> engineering and cost validation -> multi-view 2D -> synchronized accurate 3D -> appearance customization -> final validation ->
+ design freeze -> fabrication package -> construction -> As-Built Digital Twin -> maintenance/upgrades/future modifications.
+
+
+ Implementation invariant
+ There is only one RV. 2D sees it. 3D sees it. Electrical and plumbing see it. Engineering, costing, regulation and fabrication
+ documentation see it. The final As-Built Twin inherits from the same canonical lineage.
+
+
+
+
+ObjectWeave RV India v0.2 - Architecture Freeze                                                                                     Page 9
+

@@ -1,15 +1,16 @@
-# Urbania configurator
+# RV configurator (India)
 
-Proof-of-concept interior configurator for the Force Urbania 4400 WB 17-seater.
+Proof-of-concept camper configurator over 14 Indian base vehicles (data in `data/vehicles/`, research handover in `data/handover/`).
 See `CLAUDE.md` for the file layout, rules and task list.
 
 ## Run
 
 ```
-npx serve .          # or: npx http-server . -p 8080
+npx serve .          # serve.json keeps the ?vehicle=… query between pages
+                     # or: npx http-server . -p 8080
 ```
 
-Then open `/index.html` (3D viewer) and `/topview.html` (dimensioned top view).
+Then open `/topview.html` or `/sideview.html` (pick a vehicle in the panel). `/index.html` (3D) still shows only the Urbania 4400.
 The camper module selection is kept in the URL query (`?layout=camper&modules=…`), so a link from one page opens the same configuration in the other.
 The pages fetch `data/urbania-17.json`, so they need a static server; `file://` will not work.
 

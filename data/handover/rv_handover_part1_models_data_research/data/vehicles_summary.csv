@@ -1,0 +1,15 @@
+id,brand,model,wheelbase_mm,length_mm,length_conf,width_mm,height_mm,height_conf,gvw_kg,gvw_conf,price_inr,price_conf,usable_len_mm,usable_w_mm,standing_h_mm,standing_h_conf,floor_mm,floor_conf,glb_file
+force_traveller_3050wb,Force Motors,Traveller N,3050,5100,CONFIRMED,1925,2615,CONFIRMED,3675,CONFIRMED,1542000,CONFIRMED,3080,1845,1995,ESTIMATED,560,ESTIMATED,models/force_traveller_3050wb.glb
+force_traveller_3350wb,Force Motors,Traveller N,3350,5585,CONFIRMED,1925,2615,CONFIRMED,3965,CONFIRMED,1796000,CONFIRMED,3565,1845,1995,ESTIMATED,560,ESTIMATED,models/force_traveller_3350wb.glb
+force_traveller_3700wb,Force Motors,Traveller N,3700,6235,CONFIRMED,1925,2640,CONFIRMED,4400,CONFIRMED,2008000,CONFIRMED,4215,1845,2020,ESTIMATED,560,ESTIMATED,models/force_traveller_3700wb.glb
+force_traveller_4020wb,Force Motors,Traveller N,4020,6935,CONFIRMED,1925,2760,CONFIRMED,4850,CONFIRMED,2071000,CONFIRMED,4915,1845,2140,ESTIMATED,560,ESTIMATED,models/force_traveller_4020wb.glb
+force_traveller-widerbody_3350wb,Force Motors,Traveller N Wider Body,3350,5615,CONFIRMED,2245,2720,CONFIRMED,4125,CONFIRMED,1817000,CONFIRMED,3595,2165,2080,ESTIMATED,580,ESTIMATED,models/force_traveller-widerbody_3350wb.glb
+force_traveller-widerbody_4020wb,Force Motors,Traveller N Wider Body,4020,6965,CONFIRMED,2245,2850,CONFIRMED,6000,CONFIRMED,2117000,CONFIRMED,4945,2165,2210,ESTIMATED,580,ESTIMATED,models/force_traveller-widerbody_4020wb.glb
+force_traveller26_4020wb,Force Motors,Traveller 26 (legacy BS-IV),4020,6770,CONFIRMED,2225,2870,CONFIRMED,5750,CONFIRMED,,UNKNOWN,4750,2145,2250,ESTIMATED,560,ESTIMATED,models/force_traveller26_4020wb.glb
+force_urbania_3350wb,Force Motors,Urbania,3350,5440,CONFIRMED,2095,2550,CONFIRMED,3625,CONFIRMED,,UNKNOWN,3520,2015,1930,ESTIMATED,560,ESTIMATED,models/force_urbania_3350wb.glb
+force_urbania_3615wb,Force Motors,Urbania,3615,6225,CONFIRMED,2095,2550,CONFIRMED,4135,CONFIRMED,,UNKNOWN,4305,2015,1930,ESTIMATED,560,ESTIMATED,models/force_urbania_3615wb.glb
+force_urbania_4400wb,Force Motors,Urbania,4400,7010,CONFIRMED,2095,2550,CONFIRMED,4610,CONFIRMED,,UNKNOWN,5090,2015,1930,ESTIMATED,560,ESTIMATED,models/force_urbania_4400wb.glb
+tata_winger-highroof_3488wb,Tata Motors,Winger (high roof),3488,5458,CONFIRMED,1905,2670,CONFIRMED,3230,CONFIRMED,,UNKNOWN,3698,1825,1900,CONFIRMED,495,CONFIRMED,models/tata_winger-highroof_3488wb.glb
+tata_lp410_3400wb,Tata Motors,LP 410 (face-cowl bus chassis),3400,6615,ESTIMATED,2140,2800,ESTIMATED,6520,ESTIMATED,,UNKNOWN,4405,2060,1840,ESTIMATED,900,ESTIMATED,models/tata_lp410_3400wb.glb
+eicher_pro3010l_5260wb,Eicher (VE Commercial Vehicles),Pro 3010 L (bus chassis),5260,10159,CONFIRMED,2226,3200,ESTIMATED,10700,CONFIRMED,,UNKNOWN,7749,2146,2190,ESTIMATED,950,ESTIMATED,models/eicher_pro3010l_5260wb.glb
+ashokleyland_viking_5334wb,Ashok Leyland,Viking (bus chassis),5334,10934,CONFIRMED,2600,3400,ESTIMATED,16200,CONFIRMED,,UNKNOWN,8224,2520,2340,ESTIMATED,1000,ESTIMATED,models/ashokleyland_viking_5334wb.glb

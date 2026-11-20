@@ -38,24 +38,33 @@
   .total { font-size:12.5px; margin-top:8px; }
   .link { display:block; margin-top:8px; font-size:12px; color:var(--accent); }
   .swatch { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:7px; vertical-align:-1px; }
+  .picker { width:100%; padding:7px 8px; border:1px solid var(--line); border-radius:7px; background:#fff; font-size:13px; color:var(--ink); }
+  .est { color:#8a5a1f; }
+  .flag.warn { color:#7a3b1f; background:#fbefe8; border-color:#e8c9b6; }
+  .flag ul { margin:4px 0 0; padding-left:16px; }
 </style>
 </head>
 <body>
 <div id="app">
   <header>
     <div>
-      <h1>Force Urbania 4400 WB — 17 Seater, Top View</h1>
-      <p>Dimensioned scale drawing · 1 unit = 1mm · every dimension comes from <code>data/urbania-17.json</code></p>
+      <h1 id="title">Top view</h1>
+      <p>Dimensioned scale drawing · 1 unit = 1mm · every dimension comes from <code id="datafile">data/vehicles/</code> · <span class="est">(est.)</span> = estimate, not an OEM figure</p>
     </div>
     <nav><a href="index.html" id="nav-3d">3D</a><a href="topview.html" class="here">Top view</a><a href="sideview.html" id="nav-side">Side profile</a></nav>
   </header>
   <div id="main">
     <div id="viewport"><div id="drawing-frame"></div></div>
     <div id="panel">
-      <div class="specbox" id="specbox">Loading data/urbania-17.json…</div>
+      <div class="group">
+        <h2>Vehicle</h2>
+        <select id="vehicle-picker" class="picker" aria-label="Vehicle"></select>
+      </div>
+      <div class="specbox" id="specbox">Loading…</div>
+      <div class="flag warn" id="data-flags" hidden></div>
       <div class="group">
         <h2>Layout</h2>
-        <button class="option active" data-layout="rows">Stock 17-seater</button>
+        <button class="option active" data-layout="rows">Stock seating</button>
         <button class="option" data-layout="camper">Camper modules</button>
       </div>
       <div class="flag" id="flag"></div>
@@ -80,10 +89,11 @@
 <script src="js/vehicle.js"></script>
 <script>
 // ---- All values in millimetres; 1 SVG user unit = 1mm ----
-// Every vehicle dimension and seat position comes from data/urbania-17.json via
+// Every vehicle dimension and seat position comes from data/vehicles/<id>.json via
 // js/vehicle.js — the same derived layout the 3D viewer draws. This file only
 // maps the vehicle frame onto the page and adds dimension lines.
-Vehicle.load().then(draw).catch(err => {
+const VEHICLE_ID = Vehicle.vehicleFromUrl();
+Vehicle.load(VEHICLE_ID).then(draw).catch(err => {
   console.error(err);
   document.getElementById('specbox').textContent = 'Failed to load vehicle data: ' + err.message + ' (serve over http, not file://)';
 });
@@ -95,15 +105,26 @@ const L = b.length, W = b.width;
 const selection = V.components ? Vehicle.readSelection(V.components) : { layout: null, modules: [], variants: {} };
 const mode = selection.layout === 'camper' && V.components ? 'camper' : 'rows';
 const inr = n => '₹' + (n >= 100000 ? (n / 100000).toFixed(n % 100000 ? 1 : 0) + ' L' : Math.round(n / 1000) + 'k');
+const isEst = path => Vehicle.confidence(spec, path) === 'ESTIMATED';
+const errText = path => { const p = Vehicle.provenance(spec, path); return p && p.expected_error ? ` ${p.expected_error.text.split(' (')[0]}` : ''; };
 
 // Info panel
+document.title = `${spec.vehicle} — Top View`;
+document.getElementById('title').textContent = `${spec.vehicle} — Top view`;
+document.getElementById('datafile').textContent = `data/vehicles/${spec.id}.json`;
+Vehicle.mountPicker(document.getElementById('vehicle-picker'), spec.id, selection);
 const lines = Vehicle.specLines(spec);
 document.getElementById('specbox').innerHTML =
-  `<b>Brochure spec:</b><br>Length ${b.length}mm · Width ${b.width}mm<br>Wheelbase ${b.wheelbase}mm · Track ${b.front_track}mm · Tyres ${b.tyre.size}<br>${lines.overhang} (listings)` +
-  `<br><i>Estimated interior:</i> ${LAY.interior.length} × ${LAY.interior.width} mm ≈ ${LAY.interior.area_m2} m² behind the cab`;
-document.getElementById('flag').innerHTML = seating.confirmed
-  ? `<b>Seat layout confirmed</b> against the Force Motors reference drawing.`
-  : `<b>Not confirmed from an official drawing:</b> exact seat pitch. Force Motors' site doesn't publish a dimensioned floor plan — this uses the ${seating.pattern} = ${seating.total} pattern reported across Urbania rental listings, with an estimated row spacing (${seating.row_pitch}mm). Share the reference image and I'll match it exactly.`;
+  `<b>${spec.vehicle}</b><br>${lines.size}<br>${lines.chassis}<br>${lines.overhang}` +
+  `<br><i>Estimated living area:</i> ${LAY.interior.length} × ${LAY.interior.width} mm ≈ ${LAY.interior.area_m2} m² behind the cab` +
+  ` <span class="est">(length${errText('interior.usable_length')}, width${errText('interior.usable_width')})</span>`;
+const flags = [];
+if (!LAY.trackKnown) flags.push('Track width is not published: wheels are drawn with their outer face on the body side (drawing convention, not a dimension).');
+if (!seating) flags.push('No stock seat layout for this variant: no OEM floor plan has been matched yet.');
+if (spec.kind === 'bus_chassis') flags.push('Bus chassis: the coach body does not exist yet. Body height, floor height and interior are concept estimates.');
+document.getElementById('flag').innerHTML = !seating ? '' : seating.confirmed
+  ? `<b>Seat layout matched</b> to the Force Motors reference render (pattern exact, positions ±50 mm).`
+  : `<b>Not confirmed from an official drawing:</b> exact seat pitch (${seating.row_pitch} mm estimated).`;
 
 // Page layout (drawing margins only — not vehicle dimensions)
 const marginL = 550, marginR = 950, marginT = 900, marginB = 700;
@@ -186,7 +207,8 @@ if (mode === 'camper') {
     else if (isSub) camperSvg += `<text x="${cx}" y="${cy + (p.z0 > 0 ? -FS * 0.35 : FS * 0.95)}" class="modlabel sub" text-anchor="middle">${short}</text>`;
   });
   // rear walkway
-  camperSvg += `<text x="${px(P.zones[P.zones.length - 1].x0 - P.walkway / 2)}" y="${py(0)}" class="baylabel" text-anchor="middle" transform="rotate(-90 ${px(P.zones[P.zones.length - 1].x0 - P.walkway / 2)} ${py(0)})">walkway ${P.walkway}</text>`;
+  if (P.walkway > 0) camperSvg += `<text x="${px(P.zones[P.zones.length - 1].x0 - P.walkway / 2)}" y="${py(0)}" class="baylabel" text-anchor="middle" transform="rotate(-90 ${px(P.zones[P.zones.length - 1].x0 - P.walkway / 2)} ${py(0)})">walkway ${P.walkway}</text>`;
+  else flags.push(`<b>Camper modules overrun the living area by ${-P.walkway} mm.</b> The fixed zone sizes in data/components.json were set for the Urbania 4400 cabin; they are drawn as-is, past the rear wall.`);
 }
 
 const housingsSvg = LAY.wheelHousings.map(h =>
@@ -215,8 +237,8 @@ function dimV(x, y1, y2, label) {
     <text x="${x}" y="${midY}" text-anchor="middle" class="dimtext" transform="rotate(-90 ${x} ${midY})">${label}</text>`;
 }
 
-const skipRows = seating.rows_without_left_seat || [];
-const rowsDesc = `${seating.middle_rows} rows of ${seating.seats_per_row_left}+${seating.seats_per_row_right}` +
+const skipRows = seating ? seating.rows_without_left_seat || [] : [];
+const rowsDesc = !seating ? 'no stock seat layout for this variant' : `${seating.middle_rows} rows of ${seating.seats_per_row_left}+${seating.seats_per_row_right}` +
   (skipRows.length ? ` (row ${skipRows.join(', ')}: right side only, sliding door)` : '') +
   ` · ${seating.rear_bench_seats}-seat rear bench`;
 
@@ -276,15 +298,18 @@ const svg = `
 
   ${dimH(bodyX0, bodyY0-560, bodyX1, `${b.length}mm overall length`)}
   ${dimH(rearAxleX, bodyY0-320, frontAxleX, `${b.wheelbase}mm wheelbase`)}
-  ${dimH(frontAxleX, bodyY0-110, frontX, `${b.front_overhang}`)}
-  ${dimH(rearX, bodyY0-110, rearAxleX, `${b.rear_overhang}`)}
+  ${dimH(frontAxleX, bodyY0-110, frontX, `${b.front_overhang}${isEst('body.front_overhang') ? ' est.' : ''}`)}
+  ${dimH(rearX, bodyY0-110, rearAxleX, `${b.rear_overhang}${isEst('body.rear_overhang') ? ' est.' : ''}`)}
   ${dimV(bodyX1+280, bodyY0, bodyY1, `${b.width}mm`)}
 
   <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+420}" text-anchor="middle" class="caption">Front of vehicle →</text>
-  <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+540}" text-anchor="middle" class="caption" font-size="${FS*0.78}">${mode === 'camper' ? 'D = driver · C = co-driver · camper modules from data/components.json, dashed = empty bay' : `D = driver · C = co-driver · ${rowsDesc}`}</text>
+  <text x="${(bodyX0+bodyX1)/2}" y="${bodyY1+640}" text-anchor="middle" class="caption" font-size="${FS*0.78}">${mode === 'camper' ? `${seating ? 'D = driver · C = co-driver · ' : ''}camper modules from data/components.json, dashed = empty bay` : `${seating ? 'D = driver · C = co-driver · ' : ''}${rowsDesc}`}</text>
 </svg>`;
 
 document.getElementById('drawing-frame').innerHTML = svg;
+const fl = document.getElementById('data-flags');
+fl.hidden = !flags.length;
+fl.innerHTML = `<b>Data limits for this variant</b><ul>${flags.map(f => `<li>${f}</li>`).join('')}</ul>`;
 
 // ---- Panel: layout toggle, module list, links ----
 document.querySelectorAll('[data-layout]').forEach(btn => {
@@ -297,7 +322,9 @@ document.querySelectorAll('[data-layout]').forEach(btn => {
 const box = document.getElementById('modules-box');
 box.hidden = mode !== 'camper';
 document.getElementById('flag').hidden = mode === 'camper';
-document.getElementById('nav-3d').href = 'index.html' + Vehicle.selectionQuery(selection);
+const nav3d = document.getElementById('nav-3d');
+nav3d.href = 'index.html' + Vehicle.selectionQuery(selection);
+if (spec.id !== Vehicle.DEFAULT_ID) { nav3d.textContent = '3D (Urbania 4400 only)'; nav3d.title = 'The 3D viewer has not been moved to the multi-vehicle data yet'; }
 document.getElementById('nav-side').href = 'sideview.html' + Vehicle.selectionQuery(selection);
 if (P) {
   const list = document.getElementById('modules');

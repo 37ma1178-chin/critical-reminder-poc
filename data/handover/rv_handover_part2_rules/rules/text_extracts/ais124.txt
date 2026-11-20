@@ -1,0 +1,1863 @@
+                                                            AIS-124
+
+
+
+
+    AUTOMOTIVE INDUSTRY STANDARD
+
+
+
+
+    Procedure for Type Approval and
+   Certification of Motor Caravans for
+compliance to Central Motor Vehicles Rules
+
+
+
+
+                             PRINTED BY
+           THE AUTOMOTIVE RESEARCH ASSOCIATION OF INDIA
+                      P.B. NO. 832, PUNE 411 004
+
+                          ON BEHALF OF
+            AUTOMOTIVE INDUSTRY STANDARDS COMMITTEE
+
+                              UNDER
+    CENTRAL MOTOR VEHICLE RULES – TECHNICAL STANDING COMMITTEE
+
+                            SET-UP BY
+             MINISTRY OF ROAD TRANSPORT and HIGHWAYS
+           (DEPARTMENT OF ROAD TRANSPORT and HIGHWAYS)
+                       GOVERNMENT OF INDIA
+
+                             July 2014
+
+
+
+
+                                 I
+                                                                            AIS-124
+
+
+                               INTRODUCTION
+
+The Government of India felt the need for a permanent agency to expedite the
+publication of standards and development of test facilities in parallel when the
+work on the preparation of the standards is going on, as the development of
+improved safety critical parts can be undertaken only after the publication of the
+standard and commissioning of test facilities. To this end, the erstwhile Ministry
+of Surface Transport (MoST) has constituted a permanent Automotive Industry
+Standards Committee (AISC) vide order No. RT-11028/11/97-MVL dated
+September 15, 1997. The standards prepared by AISC will be approved by the
+permanent CMVR Technical Standing Committee (CTSC). After approval, the
+Automotive Research Association of India (ARAI), Pune, being the secretariat of
+the AIS Committee, would publish this standard. For better dissemination of this
+information ARAI may publish this standard on their Web site.
+
+The concept of Caravan Tourism has gained immense popularity across the globe
+owing to the freedom and flexibility it provides, while holidaying vis-à-vis
+itineraries and accommodation. This would include vehicles viz. Recreational
+Vehicle (RV), Camper Vans, Motor Homes etc. Motor Caravans are a unique
+tourism product, which promotes family oriented tours even in circuits /
+destinations, which are not having adequate hotel accommodation. The specially
+built vehicles being used for the purpose of travel, leisure and accommodation
+would be termed as ‘Caravan’.
+
+There is at present a growing demand for eco, adventure, wildlife and pilgrimage
+tourism. This involves visiting and staying in remote areas, forests, deserts and
+riversides. There is already shortage of accommodation at tourist destinations,
+especially in remote areas and in certain cases at places where a permanent
+construction may neither be permissible nor feasible. In such a scenario, Caravan
+Tourism can effectively meet the growing demand, while ensuring adherence to
+quality, standards and safety norms. Caravan Tourism would attract a wide range
+of market segments including young people, families, senior citizens and
+international tourists. The Caravan tourism policy is aimed to promote and
+facilitate and incentivize development of the sector
+
+This standard covers CMVR requirements for type approval of Special Purpose
+Vehicle (SPV) - Motor Caravan. CMVR requirements for type approval of trailer
+caravans would be formulated separately.
+
+The AISC panel and the Automotive Industry Standards Committee (AISC)
+responsible for preparation of this standard are given in Annex-E and Annex-F
+respectively.
+
+                                        *****
+
+
+
+
+                                        II
+                                                                           AIS-124
+
+                                       CONTENTS
+
+Clause                                   Details                           Page No.
+ No.
+  0         Scope                                                            1/44
+   1        References                                                       1/44
+
+   2        Definitions                                                      1/44
+
+   3        CMVR Requirements                                                2/44
+   4        Guidelines for Requirements in Living Accommodation              4/44
+
+   5        Technical Information to be submitted by the Motor Caravan      20/44
+            Manufacturer
+
+   6        Extension of Type Approval                                      20/44
+
+   7        Conformity of Production (CoP)                                  21/44
+
+
+
+                                      List of Annexes
+
+Annex -A      References: List of AIS/IS referred in this standard         22/44
+Annex -B      Technical Information to be submitted by Motor Caravan
+              Manufacturer                                                 26/44
+
+Annex - C     Details of Location of Motor Caravan Identification Number
+              and Code for Month and Year of Manufacture                   40/44
+
+Annex - D     Guidelines for Registration of Motor Caravan                 42/44
+Annex - E     AISC Panel Composition                                       43/44
+Annex - F     Automotive Industry Standards Committee Composition          44/44
+
+
+
+
+                                             III
+                                                                               AIS-124
+
+      Procedure for Type Approval and Certification of Motor Caravans for
+                  compliance to Central Motor Vehicles Rules
+
+0.0    SCOPE
+
+       This standard lays down the type approval requirements applicable to motor
+       caravans of category M.
+       This standard is applicable to:
+       a) Motor caravan manufactured by vehicle manufacturer.
+       b) Motor caravan which are built by motor caravan body builder on registered
+          vehicle which is not older than 3 years.
+       This standard does not cover type approval requirements for trailer caravans.
+0.1    Any alteration or modification in already type approved vehicle to build motor
+       caravan shall be carried out in accordance with sound engineering practices and
+       in compliance with Central Motor Vehicles Act 1988 and Central Motor
+       Vehicles Rule, 1989, as amended from time to time.
+       Alterations or modifications shall not be done to the already type approved
+       vehicle, vehicle systems and components e.g. chassis, suspensions, brakes, fuel
+       system, engine etc. while building motor caravan.
+1.0    REFERENCES
+
+      The standards given in Annex - A contain provisions which through reference in
+      this text, constitute provisions of this standard.
+2.0    DEFINITIONS
+       For the purpose of this standard following definitions shall apply:
+2.1    Special purpose vehicle (SPV) means a vehicle of category M, N or T having
+       specific technical features in order to perform a function which requires special
+       arrangements and / or equipment.
+2.2   Motor caravan means a “Special Purpose Vehicle (SPV)” of category M with
+      living accommodation space which contains the following equipment as a
+      minimum:
+       (a)   Seats and table;
+       (b)   Sleeping accommodation which may be converted from the seats;
+       (c)   Cooking facilities;
+       (d)   Storage facilities.
+      This equipment shall be rigidly fixed to the living compartment. However, the
+      table may be designed to be easily removable.
+2.3   Trailer caravan means a vehicle of category T, which is designed for road use
+      and provides living accommodation.
+2.4    Motor vehicle or vehicle as defined in clause 3.1 of AIS-053:2005, as amended
+       from time to time.
+
+
+
+                                          1/44
+                                                                                  AIS-124
+
+2.5    Base vehicle means any vehicle which is used at the initial stage of a subsequent
+       type-approval process
+2.6    Complete vehicle means any vehicle which need not be completed in order to meet
+       the relevant technical requirements of this standard.
+2.7    Incomplete vehicle means any vehicle which undergoes at least one further stage of
+       completion in order to meet the relevant technical requirements of this standard.
+2.8    Completed vehicle’ means a vehicle, resulting from the process of         successive
+       type-approval, which meets the relevant technical requirements of this standard.
+2.9    Motor caravan body builder means a firm engaged in manufacturing of motor
+       caravan body.
+2.11   Motor caravan body means the portion of a vehicle with living accommodation
+       space which contains the following equipment as a minimum:
+       (a)   Seats and table;
+       (b) Sleeping accommodation which may be converted from the seats;
+       (c) Cooking facilities;
+       (d) Storage facilities.
+       This equipment shall be rigidly fixed to the living compartment. However, the table
+       may be designed to be easily removable.
+2.12   Designated seat means the seat provided in the vehicle for normal use, when the
+       vehicle is travelling on the road.
+
+2.13   Window means an aperture in the sides of the motor caravan to let in light and air.
+       The window need not necessarily be glazed.
+2.14   Emergency window means a window, intended for use as an exit by passengers in
+       an emergency only.
+2.15   Door means a sub system of a caravan body that permits boarding and alighting of
+       passengers. Door may or may not be with panel (hinged /sliding) for closing it.
+2.16   Service door means a door intended for use by passengers in the normal
+       circumstances.
+2.17   Emergency door means a door intended for use as an exit by passengers in an
+       emergency only.
+3.0    REQUIREMENTS
+ 3.1   Motor caravans shall comply with the provisions as specified in 3.0 and 4.0.
+ 3.2   CMVR REQUIREMENTS FOR MOTOR CARAVANS
+3.2.1 Motor caravan shall comply with the requirements of CMVR, as amended from time
+      to time, for type approval as given in Table 1.
+3.2.2 Motor caravan which is built on already type approved vehicle shall comply the
+      requirements of CMVR, as amended from time to time, for type approval as given in
+      Table 1 below, after taking into consideration the provisions in Table 2.
+
+
+
+
+                                          2/44
+                                                                                      AIS-124
+
+                                            Table 1
+                CMVR requirements for Type Approval of Motor Caravans
+
+    Sr.            Subject             CMV Rule                 Applicable standard,
+    No                                                      as amended from time to time.
+
+1         Axle loading                --              The permissible load on axle of
+                                                      Motor Caravan shall       comply
+                                                      provisions laid down in Central
+                                                      Motor Vehicle Rules, 1989
+2         Registration marks          50              ---
+3         Overall dimension           93              ---
+4         Size and ply rating of      95              IS: 15633-2005 or IS: 15636-2005
+          tyres
+5         Brakes                      96              IS:11852 (Part 1 to 9 ): 2001
+6         Steering gears:             98              IS: 12222-1987
+          Turning circle diameter
+          Steering efforts                            IS: 11948-1999
+7         Forward and backward        99              ---
+          motion
+8         Safety glass                100             IS: 2553-Part 2-1992.
+9         Windscreen wiper            101             AIS-019:2001 or AIS-011:2001
+10        Signalling devices,         102             ----
+          direction indicators and
+          stop lamps
+11        Position of the direction   103             ----
+          indicator
+12        Retro-reflectors            104             AIS-057:2005
+          Retro-reflective                            AIS-090:2005
+          Markings (tapes)
+13        Lamps                       105             ---
+14        Deflection of light         106             ---
+15        Use of red, white or blue   108             ---
+          light
+16        Parking amp                 109             ---
+17        Prohibition of spot         111             ---
+          lights, etc
+18        Exhaust gases               112             ---
+
+
+
+                                             3/44
+                                                                              AIS-124
+
+ Sr.            Subject           CMV Rule                 Applicable standard,
+ No                                                    as amended from time to time.
+
+19     Location of exhaust        113            ---
+       pipes
+20     Emission                   115            ---
+       Engine power
+       Diesel smoke
+21     Speedometer                117            IS: 11827-1995
+22     Horn                       119            IS 1884:1993 and AIS-014:2001
+23     Silencers (Noise emitted   120            IS 3028:1998
+       by moving vehicles)
+24     Painting of motor          121            ---.
+       vehicles
+25     Vehicle Identification     122            AIS-065:2005
+       Number
+26     Automotive lamps           124 (1) (1)    AIS-034:2004
+27     Hydraulic brake hose       124 (1) (2)    IS 7090:1995
+28     Hydraulic brake fluid      124 (1) (3)    IS 8654:1986
+29     Steering impact            124 (1) (5)    IS 11939:1996
+30     Side door impact           124(1) (6)     IS 12009:1995
+31     Fuel Tanks :               124 (1) (7)    IS:12056-1987 or
+       Non plastic fuel tanks
+       Plastic fuel tank                         IS 15547:2005
+32     Wheel rim                  124 (1) (8)    IS 9436:1980 and IS 9438:1980
+33     Exterior projection        124 (1) (11)   IS 13942:1994
+34     Bus window retention       124 (1) (12)   IS 13944:1994
+35     Wheel guards               124 (1) (13)   IS 13943:1994
+36     Wheel nuts , wheel discs   124 (1) (14)   IS 13941:1994
+       & hub caps
+37     Accelerator control        124 (1) (15)   IS 14283:1995
+       system
+38     Door locks and retention   124 (1) (16)   IS 14225:1995
+       components
+39     Hood latch system          124 (1) (17)   IS 14226:1995
+
+
+
+
+                                        4/44
+                                                                             AIS-124
+
+ Sr.            Subject           CMV Rule             Applicable standard,
+ No                                                as amended from time to time.
+
+40     Identification of          124 (1) (19)   AIS-071 (Part 1 & 2)-2009
+       controls, indicators and
+       tell-tales
+41     Installation and           124 (1) (20)   AIS-008 (Rev.1):2010 and AIS-
+       performance of lighting                   012:2004
+       and light signaling
+       devices
+42     Electromagnetic            124 (1) (21)   AIS-004 (Part 1):1999 and
+       radiation                                 AIS-004 Part 3 -2009
+43     Gradeability               124 (1) (23)   AIS-003:1999
+44     Test for fuel              124 (1) (31)   Measurement on the basis          of
+       consumption                               driving cycle used for emission
+                                                 testing as per carbon balance method
+                                                 or IS 11921:1993
+45     Field of vision            124 (1) (34)   AIS-021:2004
+
+46     The strength of            124(1) (36)    AIS-031:2004
+       superstructure of
+       passenger vehicles
+47     Flammability               124 (1) (37)   IS:15061: 2002
+48     Interior fittings          Rule 124 (1) IS 15223:2002 or AIS-047:2009
+                                  (38)
+49     Interior noise             Rule 124 (1) AIS-020.
+                                  (40)
+50     Bumper                     124 (1) (41)   AIS-006:2005
+51     Handholds                  124 (1) (42)   AIS-046:2005
+52     The arrangement and        124 (1) (45)   AIS-035:2006
+       mode of operation of
+       foot controls
+53     Defrost and/or demist      124 (1) (46)   AIS-084 (Part1):2008 and /or AIS-
+       system                                    084(Part2):2008
+54     Rear under run             124(1-A)       IS 14812:2000
+       Protective
+       Lateral                                   IS 14682:1999
+       protection (side guards)
+55     Type Approval and          124 (4)        AIS-037:2004.
+       Conformity of
+       Production
+56     Safety-belts assembly      125(1A)        IS 15139-2002
+
+                                        5/44
+                                                                         AIS-124
+
+ Sr.           Subject            CMV Rule            Applicable standard,
+ No                                               as amended from time to time.
+
+57     Safety-belt anchorages     125(1A)       IS 15140:2003
+58     Rear view mirror           125 (2)       AIS-001:2001 and AIS-002:2001
+       specification and
+       installation
+59     Seats, seat anchorages     125(5)        IS 15546-2005
+       and Head restraints (For
+       M1)
+60     Seats, seat anchorages     125(6)        AIS-023:2005
+       and Head restraints (For
+       other than M1)
+61     Warning Triangles          138 (4) (C)   AIS-022:2001
+       And Spare Wheel
+
+
+
+
+                                        6/44
+                                                                                                                                           AIS-124
+
+                                                                 Table 2
+           Provisions for consideration for CMVR approval of motor caravan built on already type approved vehicle (see clause 3.2.2)
+
+    Item                      Subject                      M1 ≤ 2500     M1 >2500         M2         M3        Guidelines for Test Applicability
+                                                              kg         kg                                                  ***
+1          Registration marks                             T              T            T          T            NA
+2          Overall dimensions                             T              T            T          T            As per CMVR. Change in
+                                                                                                              dimension
+3          Size and Ply rating of Tyres.                  G              G            G          G            Change in tyre size, speed
+                                                                                                              rating, load index.
+4          Brakes                                         G              G            G          G            Change in GVW, F/R ratio, tyre
+                                                                                                              size, gear ratio and final drive
+                                                                                                              ratio, wheel base.
+5          Turning circle diameter/Steering gear          G+N            G+N          G+N        G+N          Change in overall length, width,
+                                                                                                              front overhang, track width,
+                                                                                                              steering geometry.
+6          Steering effort/ Steering gear                  G             G            G          G            Change in tyre size, front axle
+                                                                                                              weight, GVW, track width,
+                                                                                                              steering geometry.
+7          Forward and backward motion                    G              G            G          G            NA
+8          Safety glass                                   G+ N           G+N          G+N        G+N          Change in safety glass at
+                                                                                                              component and installation
+                                                                                                              level, front windshield, side
+                                                                                                              glass and rear glass at
+                                                                                                              component level, wind shield
+                                                                                                              installation angle.
+9          Windscreen wiper                               G+ N           G+N           G+N       G+N          Change in windscreen wiper at
+                                                                                                              component and installation level,
+                                                                                                              wiper blade dimension, H point,
+                                                                                                              wiper blade installation.
+                                                                     7/44
+                                                                                                                                 AIS-124
+
+ Item                         Subject                  M1 ≤ 2500      M1 >2500       M2       M3    Guidelines for Test Applicability
+                                                          kg             kg                                       ***
+
+
+10      Signalling devices, direction indicators and   T           T             T        T        Test is only physical verification in
+        stop lights                                                                                case of change in signalling device
+                                                                                                   at component and installation
+                                                                                                   level.
+11      Position of the direction indicator            T           T             T        T        Test is only physical verification in
+                                                                                                   case of change in position of
+                                                                                                   direction indicator at component
+                                                                                                   and installation level.
+12      Retro-reflectors and tape                      T           T             T        T        Test is only physical verification.
+                                                                                                   in case of change in retro-reflector
+                                                                                                   and tape respect to size and
+                                                                                                   location
+13      Lamps                                          T           T             T        T        Test is only physical verification.
+14      Deflection of light                            T           T             T        T
+15      Use of red, white or blue light                T           T             T        T
+16      Parking lamps                                  T           T             T        T
+17      Prohibition of spot light etc                  T           T             T        T
+18      Exhaust gases                                  T           T             T        T
+19      Location of exhaust pipes                      T           T             T        T
+20      Emissions                                      Q           G+Q           G+Q      G+Q      Change      in     fuel    injection
+                                                                                                   equipment, change in overall gear
+                                                                                                   ratio. Change in intake and exhaust
+                                                                                                   system.
+
+
+
+
+                                                               8/44
+                                                                                                              AIS-124
+
+ Item                     Subject       M1 ≤ 2500   M1 >2500       M2       M3    Guidelines for Test applicability
+                                           kg          kg                                       ***
+21      Engine power                    G           G          G        G        Change in fuel injection
+                                                                                 equipment, intake and exhaust
+                                                                                 system.
+22      Diesel smoke                    H           H          H        H        Change in fuel injection
+                                                                                 equipment, intake and exhaust
+                                                                                 system.
+23      Speedometer                     G+N         G+N        G+N      G +N     Change in tyre size, speedo
+                                                                                 ratio, speedometer installation.
+24      Horns                           G+N         G+N        G+N      G+N      Change in horn at component
+                                                                                 and installation level.
+25      Silencer                        H           G+H        G+H      G+H      Test      is    only     physical
+                                                                                 verification in case of change in
+                                                                                 exhaust system routing
+26      Painting of Motor Vehicle       T           T          T        T        Test is only physical
+                                                                                 verification
+
+27      Vehicle Identification Number   N/A         N/A        N/A      N/A      NA
+28      Automotive lamps (Bulbs)        N           G+N        G+N      G+N      Change in lamp (bulb)at
+                                                                                 component and installation
+                                                                                 level
+29      Hydraulic brake hose            N           G+N        G+N      G+N      Change in brake hose.
+30      Hydraulic brake fluid           N           G+N        G+N      G+N      change in brake fluid
+31      Steering impact                 T           G+N        N/A      N/A      GVW is less than 1500 kg,
+                                                                                 change in steering wheel
+
+
+
+
+                                                9/44
+                                                                                                                            AIS-124
+
+ Item                       Subject                   M1 ≤ 2500   M1 >2500       M2       M3    Guidelines for Test applicability
+                                                         kg          kg                                       ***
+32      Side door impact                              N/A         N/A        N/A      N/A
+33      Fuel tanks (Component)                        F           F          F        F        Change in fuel tank (including
+                                                                                               fuel tank cap) at component and
+                                                                                               installation level.
+34      Wheel rims                                    G+N         G+N        G+N      G+N      Change in size, material and
+                                                                                               designation.
+35      Exterior projections                          T+A         T+ A       T+A      T+ A     Change and addition in external
+                                                                                               protruding parts
+
+36      Bus window retention                          N/A         N/A        G+N      G+N      NA
+37      Wheel guards                                  T           G          N/A      N/A      Change in wheel guard, tyre
+                                                                                               sizes
+38      Wheel nuts, wheel discs and hub caps          G+N         G+N        G+N      G+N      Change in wheel nut, disc and
+                                                                                               hub cap
+39      Accelerator control system                    G+N         G+N        G+N      G+N      Change in control pedals,
+                                                                                               H point.
+40      Door lock and retention components            G+N         G+N        G+N      G+N      Change in door lock and its
+                                                                                               child parts
+41      Hood latch                                    G           G          N/A      N/A      Change in hood latch, locking
+                                                                                               arrangements.
+
+42      Identification of controls, tell- tales and   N           G+N        G+N      G+N      Change or addition in control.
+        indicators
+43      Installation requirements of lighting and     T           T          T        T        Change in geometric visibility
+        light- signalling devices                                                              and installation.
+
+
+                                                             10/44
+                                                                                                                            AIS-124
+
+ Item                       Subject                   M1 ≤ 2500   M1 >2500       M2       M3    Guidelines for Test applicability
+                                                         kg          kg                                       ***
+
+44      Performance requirements of lighting and      N           N          N        N        Change at component level
+        light- signalling devices
+
+45      Electromagnetic radiation                     T           T          T        T        Change or addition of active
+                                                                                               electronics parts which may
+                                                                                               create confusion to driver or
+                                                                                               pedestrian.
+46      Gradeability                                  G+N         G+N        G+N      G+N      Change in overall gear ratio,
+                                                                                               change in tyre size and wheel
+                                                                                               base.
+47      fuel consumption                              N/A         N/A        N/A      N/A      NA
+
+48      Field of vision                               G+N         G+N        O        O        Change in H point, addition of
+                                                                                               device in driver forward vision.
+49      The strength of superstructure of passenger   N/A         N/A        N/A      G+N      Change in related to vehicle
+        vehicles.                                                                              structure
+50      Flammability                                  T           T          T        T        NA
+
+51      Interior fittings                             B           B          G+N+B    G+N+     Change in interior, H point.
+                                                                                      B
+52      Interior noise                                N/A         N/A        G+N      G+N      NA
+
+53      Bumper                                        G+N         G+N        N/A      N/A      Change in bumper at
+                                                                                               component level and its
+                                                                                               mounting points.
+54      Handholds                                     N/A         N/A        G+N      G+N      NA
+                                                                                               For all designated seats in
+                                                                                               living accommodation two
+                                                                                               points lap belt shall be
+                                                                                               provided.
+
+                                                             11/44
+                                                                                                                                                  AIS-124
+
+Items                          Subject                        M1 ≤ 2500       M1 >2500          M2             M3     Guidelines for Test applicability
+                                                                 kg              kg                                                 ***
+
+55          The arrangement and mode of operation of          G              G              N/A            N/A       NA
+            foot control
+56          Defrost/demist                                    T              T              N/A            N/A       Change in defrost and demist
+                                                                                                                     devices, change in volume,
+                                                                                                                     addition of seating capacity.
+57          Rear protective devices                           N/A            N/A            G+N            G+N       Change in RUPD at component
+                                                                                                                     level and its mounting points
+58          Lateral                                    N/A                   N/A            N/A            N/A       Change in LUPD at component
+            protection (side guards)                                                                                 level and its mounting points.
+59          Type approval and Conformity of Production T                     T              T              T         NA
+            for safety critical components
+60          Safety-belts assembly                      D+M                   G+D+M          G+D+M          G+D+      Change in seat belt
+                                                                                                           M
+
+61          Safety belt anchorages                            D              G+D+L          G+D+L          G+D+      Change in seat belt anchorage
+                                                                                                           L         points.
+62          Rear view mirror specification and                T              T              T              T         Change in mirror at component
+                                                                                                                     level and its mounting points.
+63          Seat, seat strength, seat anchorages              G+D            G+D            G+D            G+D       Change in seat at component
+                                                                                                                     level and mounting location.
+64          Head restraints                                   G+D            G+D            G+D            G+D       Change in head restraint at
+                                                                                                                     component level, head restraint
+                                                                                                                     adjustment points.
+65          Warning Triangles                                 G+N            G+N            G+N            G+N       Change in warning triangle at
+                                                                                                                     component level.
+
+*** These guidelines are general in nature. However individual IS, AIS and TAP document shall be referred to evaluate the test applicability,
+    extension parameters & worst case criteria.
+
+
+
+                                                                         12/44
+                                                                                                                                          AIS-124
+
+Meaning of letters:
+N/A:     This requirement is not applicable to this vehicle.
+A:       Exemption permitted where special purposes make it impossible to fully comply with the desired requirements/ performance. The
+         manufacturer shall demonstrate this to the satisfaction of the testing agency that the vehicle cannot meet the requirements.
+C:       Test is applicable for limited part of designated seating area which comes in head impact zone when vehicle is travelling on the
+         road
+D:       Application limited to seat designated for normal use when the vehicle is travelling on the road. Seats which are not designated for
+         use when the vehicle is travelling on the road shall be clearly identified to the users either by means of pictogram or a sign with an
+         appropriate text.
+F:       Modification to the routing and length of the refueling duct and re positioning of the approved tank inboard is permissible.
+
+G:       Requirements for the corresponding category of the base vehicle, based on the maximum mass,(complete/incomplete vehicle of
+         either M or N according to the respective category of base vehicle
+H:       Modification of exhaust system length after last silencer not exceeding 2 m is permissible without any further test.
+L:       Application limited to the seats designated for normal use when the vehicle is travelling on the road. At least anchorages for lap
+         belts are required in the all rear seating position of caravan area. Seats which are designated for use when the vehicle is travelling
+         on the road shall clearly identify to the users either by means of pictogram or a sign with an appropriate text.
+M:       Application limited to seats designated for normal use when the vehicle is travelling on the road. At least lap belts are required in
+         all rear seating positions. Seats which are not designated for the use when vehicle is travelling on the road shall be clearly
+         identified to users either by means of pictogram or a sign with an appropriate text.
+N:       During successive stage of vehicle completion, test shall be applicable in case of change (addition or deletion) from earlier
+         approved test specific technical parameters and safety critical components.
+Q:       Modification of exhaust system length after last silencer not exceeding 2m is permissible without any further test. CMVR approval
+         issued to the most representative base vehicle remains valid irrespective of change in the reference weight.
+T:       No exemption except those specified in the CMVR and /or applicable standard
+
+
+
+
+                                                                    13/44
+                                                                                      AIS-124
+
+3.4     Fire extinguishers
+
+3.4.1   The motor caravan shall be equipped with two fire extinguishers, one being
+        near to the driver’s seat.
+
+3.4.2 Type and the minimum number of extinguishers to be provided shall be as
+      follows:
+
+                                         Motor Caravan
+
+           M1≤2500 kg           M1>2500 kg                 M2                   M3
+
+         Minimum        two   Minimum two           Minimum        two   Minimum         two
+         fire extinguishers   fire extinguishers    fire extinguisher    fire extinguisher
+         of 2 kg each,        of     2 kg each,     of 2 kg each,        of 2 kg each,
+         totaling to 4kg      totaling to 4kg       totaling to 4kg      totaling to 4kg
+
+
+        Note: Fire extinguishers shall comply with IS: 13849 or IS: 2171 as
+              amended from time to time, as may be applicable.
+
+3.4.3   Halogenated hydrocarbon      type of       extinguisher   shall not be used as
+        extinguishant.
+
+3.5.4   The Fire extinguishers shall be secured against tampering and shall be kept
+        in lockers or behind breakable glass. The location shall be marked clearly.
+
+3.5     Electrical wiring
+
+3.5.1   All electrical wiring in motor caravan shall be properly installed, taped,
+        clipped or contained in a loom along its length
+
+3.5.2   Electrical wiring shall conform to IS: 2465-1984 as amended from time to
+        time
+
+3.5.3   Living accommodation shall not be occupied during travel mode of motor
+        caravan except in designated seating position.
+
+4.0     GUIDELINES FOR REQUIREMENTS IN LIVING ACCOMMODATION
+
+        Requirements for the equipment are in the living accommodation space
+        which is provided as per clause 2.2.
+
+4.1     Seats and Table
+        a) Are required to be an integral part of the living accommodation area, and
+           mounted independently of other items.
+        b) The table shall be capable of being mounted directly to the vehicle floor
+           and/or side wall.
+
+
+                                        14/44
+                                                                                        AIS-124
+
+
+        c) The table mounting arrangement shall be secured as a permanent feature,
+           (bolted, riveted, screwed or welded), although the table may be
+           detachable or folding type.
+        d) Permanently secured seating shall be available for use at the table.
+        e) The seats shall be secured directly to the vehicle floor and/or side wall.
+        f) The seats shall be secured as a permanent feature (bolted, riveted,
+           screwed or welded).
+
+4.2     Sleeping Accommodation
+
+        a) Shall be an integral part of the living accommodation area.
+        b) Either beds or a bed converted from seats (to form a mattress base)
+        c) Secured as a permanent feature, with base structures bolted, riveted,
+           screwed or welded to the vehicle floor and/or side wall, (unless the
+           sleeping accommodation is provided as a provision over the driver’s cab
+           compartment).
+        d) Sleeping arrangement provided over the drivers seating area or on upper
+           level can be fixed or sliding or removable in nature (bunk beds).
+
+4.3     Cooking Facilities
+        a) Cooking area can be inside or outside the vehicle as per design and
+           layout of living area.
+        b) Cooking facility provided inside the vehicle should be secured to the
+           vehicle floor and/or side wall as a permanent feature (bolted, riveted,
+           screwed, or welded).
+
+4.4     Storage Facilities
+
+        a) Storage facilities may be provided by a cupboard or locker or by drawer
+           systems.
+        b) The facility shall be an integral part of the vehicle living accommodation
+        c) The storage facility shall be a permanent feature (bolted, riveted,
+           screwed or welded).
+        d) Storage area for cooking vessels and food items to be done separately.
+
+4.5     Some or all of the following facilities may be provided in motor
+        caravan:
+
+4.5.1   Wash area
+        a) Toilet fitting: Toilets may be of permanently fixed or portable type.
+        b) Bath fitting / shower: Fixtures may be of permanent or portable type.
+        c) Wash basin may be provided inside or outside the vehicle, depending
+           on layout design.
+
+
+                                         15/44
+                                                                                 AIS-124
+
+4.5.2   Water storage facilities
+        a) Fresh water tank can be provided inside or outside the vehicle in
+           a place/location for easy maintenance.
+        b) Separate gray water tank storage to be provided. (Used water from
+           shower/ wash basin).
+        c) Separate black water storage to be provided in case of fixed toilets and
+           flexible drainage pipe to be attached while draining them in the
+           prescribed area.
+        d) Water pump may be provided for fresh water near cooking area.
+
+4.5.3 Electricals
+        a) The living area electrical requirements have to be fulfilled by using
+           a generator or battery back-up of minimum 24 hrs.
+        b) All electrical appliances to have a safety fuse systems in place.
+        c) There shall be a provision made for direct 230V input system in the
+           vehicle connecting to the battery backup system powering the living
+           areas electrical system/appliances.
+
+
+
+
+                                       16/44
+                                                   AIS-124
+
+4.6   MOTOR CARAVAN FLOOR PLANS WITH INTERNAL ARRANGEMENT
+                   (AN ILLUSTRATIVE EXAMPLE)
+
+
+
+
+                         17/44
+        AIS-124
+
+
+
+
+18/44
+        AIS-124
+
+
+
+
+19/44
+                                                                                     AIS-124
+
+
+5.0     TECHNICAL INFORMATION TO BE SUBMITTED BY MOTOR
+        CARAVAN MANUFACTURER
+
+5.1     The motor caravan manufacturer shall submit the necessary technical
+        details to the test agencies as per Annex - B of this standard.
+
+5.1.1   Motor caravan body builder who builds motor caravan on earlier type
+        approved vehicle, shall submit details of technical changes carried on the
+        earlier type approved vehicle as per Table 8, 9, 10, 12 and 12 A of AIS-007
+        (Revision 4), as amended from time to time.
+
+5.2     The motor caravan manufacturer shall submit the details of motor caravan
+        identification number as per Annex-C. It shall be punched at the readily
+        accessible position on a part which is normally not likely to be replaced
+        during use.
+
+5.3      Motor caravan body builder shall submit vehicle certificate number along
+        with date of already type approved vehicle on which motor caravan is built
+        to the testing agency.
+
+5.4     Motor caravan body builder who builds motor caravan on earlier type
+        approved vehicle, may submit photocopies of type approval certificate and
+        brief technical specifications of the said vehicle.
+
+6.0     EXTENSION OF TYEPE APPROVAL
+
+6.1     Every modification pertaining to the information declared in accordance
+        with para 5.0 shall be intimated by the motor caravan manufacturer to the
+        Testing Agency.
+
+6.2     If the changes are in parameters not related to the provisions, no further
+        action need be taken.
+
+        If the changes are in parameters related to the provisions, the Testing
+        Agency shall then consider, whether,
+
+        a) The model with the changed specifications still complies with
+           provisions or
+        b) Any further verification is required to establish compliance.
+        For considering whether any further verification is required or not,
+        guidelines given in respective standard shall be used.
+
+6.3     In case of 6.2 (b), verification for only those parameters which are affected
+        by the modifications needs to be carried out.
+
+6.4     In case of fulfillment of criterion of para 6.2 (a) or after results of further
+        verification as per para of 6.2 (b) are successful, the approval of
+        compliance shall be extended for the changes carried out.
+
+
+
+                                        20/44
+                                                                                  AIS-124
+
+
+7.0   CONFORMITY OF PRODUCTION (CoP)
+
+7.1   Whole Vehicle CoP procedures, as and when formulated and notified shall
+      be applicable.
+
+7.2   Motor caravan approved under this standard shall be so manufactured as to
+      conform to the type approved specifications.
+
+8.0   GUIDELINES FOR REGISTRATION OF MOTOR CARAVANS
+
+8.1   Motor caravan built on earlier type approved vehicle (Incomplete vehicle).
+
+      For registration purpose of such motor caravan procedure as per CMVR
+      Rule 47 sub clause “g” shall be followed.
+
+8.2   Motor caravan built on already registered vehicle (Completely built
+      vehicle).
+
+      For registration purpose of motor caravan which is built on already
+      registered vehicle, the vehicle owner shall apply to the concerned
+      registering authority within 14 days of undertaking the alteration as
+      required under Section 52 of Motor Vehicle Act 1988, for endorsement of
+      particular alteration in registration certificate mentioning place and date of
+      alteration and alteration certificate number. This shall also be ensured by
+      the motor caravan body builder.
+
+8.3   Guidelines for type approval and registration of motor caravan are given in
+      Annex- D.
+
+
+
+
+                                      21/44
+                                                                                          AIS-124
+
+                                           ANNEX-A
+                                            (See 2.0)
+                                        REFERENCES
+                        LIST OF AIS/IS REFERRED IN THIS STANDARD
+
+Sr.     Applicable standard,                               Title of AIS/IS
+         as amended from
+No
+            time to time
+1.    AIS-053                    Automotive Vehicles – Types – Terminology
+
+2.    IS: 15633-2005             Automotive vehicles —Pneumatic tyres for passenger car
+                                 vehicles — Diagonal and radial ply — specification
+
+3.    IS: 15636-2005             Automotive vehicles — Pneumatic tyres for commercial vehicles
+                                 — Diagonal and radial ply — Specification
+
+4.    IS:11852 (Part 1): 2001    Automotive vehicles - Brakes and braking systems - Part 1 :
+                                 Terminology
+
+5.    IS:11852 (Part 2) : 2001   Automotive vehicles - Brakes and braking systems - Part 2 :
+                                 General functions and features
+
+6.    IS:11852 (Part 3) : 2001   Automotive vehicles - Brakes and braking systems - Part 3 :
+                                 Performance requirements and evaluation
+
+7.    IS:11852 (Part 4) : 2001   Automotive vehicles - Brakes and braking systems -Part 4 :
+                                 Compressed air and air assisted brakes - Special requirements
+
+8.    IS:11852 (Part 5) : 2001   Automotive vehicles - Brakes and braking systems - Part 5 :
+                                 Compressed air and air assisted brakes - Pressure test connections
+
+9.    IS:11852 (Part 6) : 2001   Automotive vehicles - Brakes and braking systems - Part 6 :
+                                 Vacuum braking systems - Special requirements
+
+10.   IS:11852 (Part 7) : 2001   Automotive vehicles - Brakes and braking systems - Part 7 :
+                                 Inertia dynamometer test method for brake lining
+
+11.   IS:11852 (Part 8) : 2001   Automotive Vehicles - Brakes and braking systems - Part 8 : Test
+                                 procedures
+
+12.   IS:11852 (Part 9) : 2003   Automotive vehicles - Brakes and braking systems - Part 9 :
+                                 Requirements for vehicles equipped with anti-lock braking
+                                 systems
+
+13. IS: 12222-1987               Method of measurement of turning circle of automotive vehicle
+
+14.   IS: 11948-1999             Automotive vehicles - Steering effort - Method of evaluation
+
+15.   IS: 2553-Part 2-1992.      Safety Glass - Specification - Part 2 : For road transport
+
+
+
+
+                                              22/44
+                                                                                       AIS-124
+
+
+Sr.     Applicable standard,                            Title of AIS/IS
+No        as amended from
+             time to time
+16.   AIS-011:2001             Automotive Vehicles - Testing procedure for windscreen
+                               wiping   system for 4 wheelers other than M1 category of
+                               vehicles
+17.   AIS-019:2001             Automotive vehicles –Windscreen wiping and washing system
+                               for M1 category of vehicles
+18.   AIS-057:2005             Performance requirements for retro-reflecting devices for power-
+                               driven vehicles and their trailers
+19.   AIS-090:2005             Approval of Retro-Reflective Markings
+                               for Heavy and Long Vehicles, their Trailers and Semi-Trailers
+20.   IS: 11827-1995           Automotive Vehicle - Calibration of speedometer - Method of
+                               evaluation
+21.   AIS-018:2001             Automotive vehicles - Speed limitation devices - Specifications
+22.   IS 1884:1993             Automotive vehicles - Electric horns - Specification
+
+23.   AIS-014:2001             Automotive vehicles - Horn installation requirement
+24.   IS 3028:1998             Automotive vehicles - Noise emitted by moving vehicles -
+                               Method of measurement
+25.   AIS-065:2005             Statutory plates and inscriptions for motor vehicles, their location
+                               and method of attachment – Vehicle identification numbering
+                               system
+26.   AIS-034:2004             Automobile lamps
+27.   IS 7079:1995             Automotive vehicles -Hydraulic brake hose - Specification
+
+28.   IS 8654:1986             Automotive hydraulic brake fluid, heavy duty - specification
+
+29.   IS 11939:1996            Automotive vehicles - Steering control systems - Impact
+                               protection requirements and methods of measurement
+30.   IS 12009:1995            Automotive vehicle - Safety requirements for side door of
+                               passenger cars - Recommendations
+31.   IS:12056-1987            Recommendations for safety requirements for fuel tank assembly
+                               of automotive vehicles
+32.   IS 15547:2005            Automotive vehicles - Plastic fuel tank for four wheelers
+
+33.   IS 9436:1980             Performance requirements and methods of tests for wheels for
+                               passenger cars
+32.   IS 9438:1980             Performance requirements and methods of tests for wheels/rims
+                               for trucks
+33.   IS 13942:1994            Automotive vehicles - External projections - Performance
+                               requirements
+34.   IS 13944:1994            Automotive vehicles - Window retention and release systems for
+                               buses - Safety requirements
+35.   IS 13943:1994            Automotive vehicles - Wheel guards for passenger cars -
+                               Performance requirements
+
+
+                                           23/44
+                                                                                           AIS-124
+
+
+
+Sr.      Applicable standard,                              Title of AIS/IS
+No         as amended from
+              time to time
+36.   IS 13941:1994             Automotive vehicles - Wheel fasteners and hub caps - General
+                                requirements
+37.   IS 14283:1995             Automotive vehicles - Accelerator control systems - General
+                                requirements
+38.   IS 14225:1995             Automotive vehicles - Locking systems and door retention
+                                components - General requirements
+39.   IS 14226:1995             Automotive vehicles - Hood latch system - Method of test
+40.   Safety Standard No.12.1   Tell Tale Systems and Controls for all Motor Vehicles other than
+                                3 Wheeled Vehicles up to Engine Capacity 500cc, 2 Wheeled
+                                Vehicles and Tractor
+41.   AIS-008 (Rev.1):2010      Installation Requirements of Lighting and       Light-Signaling
+                                Devices for Motor Vehicle having more than Three Wheels,
+                                Trailer and Semi-Trailer excluding Agricultural Tractor and
+                                Special Purpose Vehicle
+42.   AIS-012:2004              Performance Requirements of Lighting and Light-Signaling
+                                Devices for Motor Vehicle having more than Three Wheels,
+                                Trailer and Semi-Trailer
+43    AIS-004 (Part 1):1999     Electromagnetic radiation from automotive vehicle - Permissible
+                                levels & methods of tests
+44    AIS-003:1999              Automotive vehicles - Starting gradeability -Method of
+                                measurement and requirements µ
+45    AIS-021:2004              Field of vision of motor vehicle drivers for
+                                M1 category
+46    AIS-031:2004              Automotive vehicles - The strength of superstructure of large
+                                passenger vehicles
+47    IS:15061: 2002            Automotive vehicles - Flammability requirements
+48    IS 15223:2002             Automotive vehicles - Interior fittings - Specification
+49    AIS-047:2009              Automotive vehicles - Interior fittings - Specifications for other than
+                                M1 category vehicles
+50    AIS-020                   Automotive vehicles - Interior noise - Method of measurement and
+                                requirements
+51    AIS-006:2005              Automotive vehicle: bumper fitment on M1 vehicles - test methods.
+52    AIS-046:2005              Automotive Vehicles - Hand-Holds for three, four and more than
+                                four wheeled motor vehicles-specification
+53    AIS-035:2006              Automotive Vehicles - The Arrangement of Foot Controls of
+                                Vehicles
+
+
+
+
+                                             24/44
+                                                                                     AIS-124
+
+
+Sr.     Applicable standard,                           Title of AIS/IS
+No        as amended from
+             time to time
+54    AIS-084 (Part1):2008     Automotive Vehicles - Performance requirements of Demisting
+                               Systems of Glazed Surfaces (Wind Screen) of Motor Vehicles
+55    AIS-084(Part2):2008      Automotive Vehicles - Performance requirements of Defrosting
+                               Systems of Glazed Surfaces (Wind Screen) of Motor Vehicles
+56    IS 14812:2000            Automotive vehicles - Rear under run protective device -
+                               General requirements (First Revision)
+
+57    IS 14682:1999            Automotive vehicles -Lateral protection (side guards) -Technical
+                               requirements (First revision)
+
+58    AIS-037:2004             Procedure for Type Approval and Establishing Conformity of
+                               Production for Safety Critical Components
+
+59    IS 15139-2002            Automotive vehicles - Safety belt anchorages - Specification
+60    IS 15140:2003            Automotive vehicles - Safety belt assembly -Specification
+61    AIS-001:2001             Automotive vehicles – Rear – View mirrors - Specification
+62    AIS-002:2001             Automotive vehicles - Rear - View mirrors - Installation
+                               requirements
+63    IS 15546-2005            Automotive vehicles -Seats, their anchorages and head restraints
+                               for category Ml -Specification
+64    AIS-022:2001             Automotive vehicles - Advance-Warning triangles and
+                               conspicuity marking tape - Specifications
+
+
+
+
+                                           25/44
+                                                         AIS-124
+
+                                  ANNEX - B
+                                (See clause 5.1)
+
+       TECHNICAL INFORMATION TO BE SUBMITTED BY MOTOR
+            CARAVANS MANUFACTURER / BODY BUILDER
+
+1.0       Details of Motor Caravan manufacturer
+1.1       Name & Address :
+1.2       Telephone No :
+1.3       Fax. No. :
+1.4       E mail address :
+1.5       Contact person :
+1.6       Name of model :
+1.7       Name of variants, if any:
+1.8       Type and General commercial
+          description (s) :
+1.8       Plant/(s)of manufacture :
+1.8.1     Name and address of engine manufacturing
+          plant In case of imported vehicles, above
+          details shall be supplied for importer also.
+1.9       Importer’s Name and address
+1.9.1     Telephone No.
+1.9.2     Fax. No.
+1.9.3     E mail address
+1.9.4     Contact person
+1.10      Details of the base CMVR
+          Compliance Certificate issued to the Chassis
+          (Certificate Number and date )
+1.11      Vehicle type:
+1.12      Type of vehicle (Rigid / others)
+1.13      Drive (4x2 or 4x4 or 6x2 or 6x4 or others)
+1.14      Vehicle Performance:
+          Max. recommended gradeability (Stand-
+1.15      start) – in degrees
+1.16      Max. design speed (km/h)
+2 .0      Vehicle Chassis Characteristics
+2.1       Chassis types approved for Body installation
+2.2       Type of Control (normal control/Full
+          forward control etc.):
+2.3       Number of Axles and wheels :
+2.4       Chassis (overall drawing) :
+
+
+
+                                      26/44
+                                                  AIS-124
+
+2.5     Frame Type :
+2.6     Cross sectional view :
+2.7     Position and arrangement of engine:
+2.8     Dimension (in mm) (Specify drawing
+        reference) :
+2.8.1   Length mm :
+2.8.2   Width mm :
+2.8.3   Height (Unladen) mm :
+2.8.4   Wheel base mm :
+2.8.5   Wheel track mm :
+        Front :
+        Rear :
+2.8.6   Body overhang mm :
+        Front end :
+        Rear end :
+2.9     Category of vehicle as per AIS-053:
+2.9.1   Base vehicle
+2.9.2   Completed vehicle
+3.0     Body :
+3.1     Type of Body :
+3.2     Dimension drawing and photograph of the
+        vehicle with representative body :
+3.3     Passenger capacity :
+3.3.1   Maximum (Including driver) :
+3.3.2   Number of designated seats
+3.3.3   Number of non designated seats
+3.3.4   Seat layout
+3.4     Number of Service doors :
+3.5     Number of emergency exits :
+4.0     Clearance
+4.1     Minimum road clearance :
+4.2     Approach angle :
+4.3     Departure Angle :
+4.4     Ramp-over Angle :
+5.0     Weights
+5.1     Vehicle kerb weight kg :
+        Front axle :
+        Rear axle :
+        Total :
+5.2     Gross vehicle weight kg :
+
+
+                                    27/44
+                                                     AIS-124
+
+5.3     Maximum permissible axle weights kg
+        Front axle:
+        Rear axle:
+5.4     Reference mass kg :
+6.0     Tyres
+6.1     No. and arrangement of wheels :
+
+6.1.1   Front :
+6.1.2   Rear :
+6.1.3   Other :
+6.2     Tyre type (Radial/cross ply) (with Tube /
+        Tube less), size designation including ply
+        rating, speed rating, Load rating or Load
+        index.Use symbols as per IS 15633 / IS
+        15636 as may be applicable.
+6.2.1   Front wheel
+6.2.2   Rear wheel
+6.2.3   Spare wheel
+6.3     Dynamic rolling radius, mm
+6.4     Inflation pressure – Unladen :
+
+6.4.1   Front :
+6.4.2   Rear :
+6.4.3   Other
+6.5     Inflation pressure –Laden :
+
+6.5.1   Front :
+
+6.5.2   Rear :
+6.5.3   Other :
+7.0     Body Panels
+7.1     Outer Panels :
+7.1.1   Material :
+7.1.2   Thickness :
+7.2     Inner Panels :
+7.2.1   Material :
+7.2.2   Thickness :
+7.3     Roof Panels :
+7.3.1   Material :
+7.3.2   Thickness :
+7.4     Floor Panels :
+7.4.1   Material :
+
+
+                                   28/44
+                                                       AIS-124
+
+7.4.2    Thickness :
+7.4.3    Type of anti-slip coating :
+8.0      Service Doors
+8.1      No. of Service Doors :
+8.2      Position of Service Doors :
+8.3      Dimension of Service Door :
+         - Front     Height :
+                     Width :
+         -Rear       Height :
+                     Width :
+         -Middle Height :
+                     Width :
+9.0      Emergency Exit
+9.1      No. of Emergency Doors :
+9.2      Position of Emergency Doors :
+9. 3     Dimension of Emergency Door :
+         - Ist      Height :
+                    Width :
+         - IInd     Height :
+                    Width :
+10.0     Window
+10.1     Window (other than Emergency exit)
+10.1.1   Dimension of Window aperture along with
+         the detailed drawing showing the dimensions
+10.1.2   Height of upper edge of window aperture
+         from gangway floor (mm)
+10.1.3   Type of window
+10.2     Emergency Windows
+10.2.1   No. of Emergency Windows :
+10.2.2   Position of Emergency Windows :
+10.2.3   Area (HxW in sq. m) :
+11.0     Steps
+11.1     Height of Ist Step :
+11.2     Height of Other Steps :
+11.3     Depth of steps :
+12.0     Floor :
+12.1     Floor Height from the ground (unladen):
+12.2     Slope of floor :
+
+
+
+
+                                    29/44
+                                                         AIS-124
+
+13.0      Seats
+13.1      Driver/Co-driver or Front Passenger
+          Seat
+13.1.1    Make
+13.1.2    Type
+13.1.3    Identification Number
+13.1.4    Seat Drawing no.
+13.2      Passenger Seats :
+13.2.1    Make
+13.2.2    Type
+13.2.3    Identification Number (S)
+13.2.4    Seat Drawing no.
+13.2.5    Seat Layout(S) :
+          Enclose the Layout Drawings
+13.2.6    Seat width :
+13.2.7    Width of available space for one seating
+          position :
+13.2.8    Height of backrest :
+13.2.9    Width of Armrest :
+13.2.10   Depth of Seat cushion (base) :
+13.2.11   Seat Pitch :
+13.2.12   Seat base height :
+13.2.13   Torso angle :
+13.2.14   Seat base thickness :
+13.2.15   Seat back thickness :
+13.2.16   Clearance space for seated passengers facing
+          partition :
+13.2.17   Free Height over seating position :
+13.2.18   Seat anchorage layout drawing (with
+          anchorage cross section and hardware used
+          details)
+14.0      Door locks and hinges
+14.1      Door lock :
+14.1.1    Name of Manufacturer :
+14.1.2    Identification mark :
+15.2      Door hinge :
+15.2.1    Name of Manufacturer :
+15.2.2    Identification mark :
+16.0      Safety glass
+16.1      Front wind shield (laminated) :
+16.1.1    Make
+
+                                     30/44
+                                                         AIS-124
+
+16.1.2   Identification :
+16.1.3   Type (flat/curved, clear/tinted) :
+16.1.4   Thickness mm :
+16.1.5   No. of pieces :
+16.1.6   Radius of curvature (If curved) :
+16.2     Side Windows:
+16.2.1   Make
+16.2.2   Identification
+16.2.3   Type (flat/curved, clear/tinted, toughened) :
+16.2.4   Thickness mm :
+16.2.5   Radius of curvature (If curved) :
+16.3     Rear Window:
+16.3.1   Make
+16.3.2   Identification
+16.3.3   Type (flat/curved, clear/tinted, toughened) :
+16.3.4   Thickness mm :
+16.3.5   Radius of curvature (If curved) :
+17.0     Rear view mirror
+17.1     Left :
+17.1.1   Name of Manufacturer :
+17.1.2   Type :
+17.1.3   Dimension & radius of curvature :
+17.1.4   Identification Mark:
+17.2     Right :
+17.2.1   Name of Manufacturer :
+17.2.2   Type :
+17.2.3   Dimension & radius of curvature :
+17.2.4   Identification Mark:
+17.3     Inside :
+17.3.1   Name of Manufacturer :
+17.3.2   Type :
+17.3.3   Dimension & radius of curvature :
+17.3.4   Identification Mark:
+17.4     Sketch showing mounting arrangement of
+         mirrors
+18.0     Wiping system
+18.1     Type :
+18.2     No. of wipers :
+18.3     Wiper motor :
+18.3.1   Name of Manufacturer :
+
+                                      31/44
+                                             AIS-124
+
+18.3.2   Type and identification :
+18.3.3   Rated voltage :
+18.3.4   Frequency of wiping :
+18.4     Wiper arm :
+18.4.1   Length :
+18.4.2   Name of Manufacturer :
+18.4.3   Identification Mark:
+18.5     Wiper blade :
+18.5.1   Length :
+18.5.2   Name of Manufacturer :
+18.5.3   Identification Mark:
+18.6     Rubber material :
+18.6.1   Type of fixing (As per IS:7827) :
+18.6.2   Drawing indicating the seat back
+         angle, seat travel, H point, Rake
+         angle ,F dimension And steering
+         wheel position as per AIS-011
+19.0     Wind Screen Washer
+19.1     Name of Manufacture: :
+19.2     Type :
+19.3     Number of nozzles :
+19.4     Spray Area :
+19.5     Identification Number:
+20.0     Equipment for occupant's safety
+20.1     Driver Seat belt :
+20.1.1   Name of Manufacture: :
+20.1.2   Type :
+20.1.3   Number :
+20.1.4   Identification Number:
+20.2     Driver Seat belt anchorage :
+20.2.1   Name of Manufacturer :
+20.2.2   Type :
+20.2.3   Number :
+20.3     Head restraint :
+20.3.1   Name of Manufacturer :
+20.3.2   Type :
+20.4     Passenger Seat :
+20.4.1   Name of Manufacturer :
+20.4.2   Type :
+20.4.3   Frame structure Material :
+
+                                     32/44
+                                                       AIS-124
+
+20.4.4    Section size:
+21.0      Fire Extinguisher
+21.1      Number :
+21.2      Type :
+21.3      Capacity :
+21.4      Name of Manufacture: :
+22.0      First Aid Equipment
+22.1      Number :
+22.2      Contents :
+23.0      Automotive bulbs :
+23.1      Head lamp bulb (main and dip)
+23.1.1    Make and Country of origin (if imported)
+23.1.2    Designation as per AIS-034
+23.2      Parking Lamp bulb – Front
+23.2.1    Make and Country of origin (if imported)
+23.2.2    Designation as per AIS-034
+23.3      Parking Lamp bulb - Rear
+23.3.1    Make and Country of origin (if imported)
+23.3.2    Designation as per AIS-034
+23.4      Direction indicator lamp bulb -
+          front
+23.4.1    Make and Country of origin (if imported)
+23.4.2    Designation as per AIS-034
+23.5      Direction indicator lamp bulb – rear
+23.5.1    Make and Country of origin (if imported)
+23.5.2    Designation as per AIS-034
+23.6      Direction indicator lamp bulb – side
+23.6.1    Make and Country of origin (if imported)
+23.6.2    Designation as per AIS-034
+23.7      Front Position Lamp bulb
+23.7.1    Make and Country of origin ( if imported )
+23.7.2    Designation as per AIS-034
+23.8      Rear Position Lamp ( tail lamp )Bulb
+23.8.1    Make and Country of origin (if imported)
+23.8.2    Designation as per AIS-034
+23.9      Stop lamp bulb
+23.9.1    Make and Country of origin (if imported)
+23.9.2    Designation as per AIS-034
+23.10     Number plate lamp bulb
+23.10.1   Make and Country of origin (if imported)
+
+                                     33/44
+                                                     AIS-124
+
+23.10.2   Designation as per AIS-034
+23.11     End out Marker bulb
+23.11.1   Make and Country of origin (if imported)
+23.11.2   Designation as per AIS-034
+23.12     Reversing lamp bulb
+23.12.1   Make and Country of origin (if imported)
+23.12.2   Designation as per AIS-034
+23.13     Stop Lamp Bulb (S3)
+23.13.1   Make and Country of origin (if imported)
+23.13.2   Designation as per AIS-034
+23.14     Front Fog Lamp Bulb
+23.14.1   Make and Country of origin(if imported)
+23.14.2   Designation as per AIS-034
+23.15     Rear Fog Lamp Bulb
+23.15.1   Make and Country of origin (if imported)
+23.15.2   Designation as per AIS-034
+23.16     Side Marker Lamp Bulb
+23.16.1   Make and Country of origin (if imported)
+23.16.2   Designation as per AIS-034
+24.0      Head Lamp
+24.1      Name of Manufacturer :
+24.2      Type and Identification :
+24.3      Number and colour :
+25.0      Tail lamp
+25.1      Name of Manufacturer :
+25.2      Type and Identification :
+25.3      Number and colour :
+26.0      Parking lamp
+26.1      Front :
+26.1.1    Name of Manufacturer :
+26.1.2    Type and Identification :
+26.1.3    Number and color :
+26.2      Rear :
+26.2.1    Name of Manufacturer :
+26.2.2    Type and Identification :
+26.2.3    Number and colour
+27.0      Stop lamp
+27.1      Name of Manufacturer :
+27.2      Type and Identification :
+27.3      Number and colour :
+
+                                     34/44
+                                         AIS-124
+
+28.0     Reversing lamp
+28.1     Name of Manufacturer :
+28.2     Type and Identification :
+28.3     Number and colour :
+29.0     Direction indicator lamp
+29.1     Front :
+29.1.1   Name of Manufacturer :
+29.1.2   Type and Identification :
+29.1.3   Number and colour :
+29.2     Rear :
+29.2.1   Name of Manufacturer :
+29.2.2   Type and Identification :
+29.2.3   Number and colour :
+29.3     Side :
+29.3.1   Name of Manufacturer :
+29.3.2   Type and Identification :
+29.3.3   Number and colour :
+29.4     Type of flasher :
+30.0     Number Plate Lamp
+30.1     Name of Manufacturer :
+30.2     Type and Identification :
+30.3     Number and colour :
+31.0     Emergency signaling equipment
+31.1     Front :
+31.1.1   Name of Manufacturer :
+31.1.2   Type and Identification :
+31.1.3   Number and colour :
+31.2     Rear :
+31.2.1   Name of Manufacturer :
+31.2.2   Type and Identification :
+31.2.3   Number and colour :
+31.3     Side :
+31.3.1   Name of Manufacturer :
+31.3.2   Type and Identification :
+31.3.3   Number and colour
+32.0     Reflector
+32.1     Rear :
+32.1.1   Name of Manufacturer :
+32.1.2   Type and Identification :
+32.1.3   Number and colour :
+
+                                 35/44
+                                             AIS-124
+
+32.1.4   Area :
+32.2     Side :
+32.2.1   Name of Manufacturer :
+32.2.2   Type and Identification :
+32.2.3   Number and colour :
+32.2.4   Area :
+33.0     Top light
+33.1     Name of Manufacturer: :
+33.2     Type and Identification :
+33.3     Number and colour :
+34.0     Internal Lighting & Illumination
+34.1     Driver Cab lighting :
+34.1.1   Type :
+34.1.2   Name of Manufacturer :
+34.1.3   Number :
+34.1.4   illumination intensity :
+34 .2    Passenger Compartment Lighting
+34.2.1   Type :
+34.2.2   Name of Manufacturer :
+34.2.3   Number :
+34.2.4   Illumination intensity :
+34.3     Other Area Lighting
+34.3.1   Type :
+34.3.2   Name of Manufacturer :
+34.3.3   Number :
+34.3.4   Illumination intensity :
+35.0     Electrical Circuit
+35.1     Circuit Diagram (attach details):
+36.0     Electrical Cables
+36.1     Name of Manufacturer :
+36.2     Conductor Cross section :
+36.3     Insulation Class :
+37.0     Fuse
+37.1     Type & Make :
+37.2     Name of Manufacturer :
+38.0     Master switch for electrical :
+38.1     Type & Make :
+38.2     Name of Manufacturer :
+39.0     Seat
+39.1     Seat and its accessories
+
+                                  36/44
+                                            AIS-124
+
+39.1.1   Name of Manufacturer :
+39.1.2   Material Grade
+39.1.3   Material Type
+39.1.4   Component Part No. and Batch No.
+39.1.5   Identification Code
+39.1.6   Drawing No.
+39.2     Interior lining of the roof
+39.2.1   Name of Manufacturer :
+39.2.2   Material Grade
+39.2.3   Material Type
+39.2.4   Component Part No. and Batch No.
+39.2.5   Identification Code
+39.2.6   Drawing No.
+39.3     Interior lining of side walls
+39.3.1   Name of Manufacturer :
+39.3.2   Material Grade
+39.3.3   Material Type
+39.3.4   Component Part No. and Batch No.
+39.3.5   Identification Code
+39.3.6   Drawing No.
+39.4     Interior lining of rear walls
+39.4.1   Name of Manufacturer :
+39.4.2   Material Grade
+39.4.3   Material Type
+39.4.4   Component Part No. and Batch No.
+39.4.5   Identification Code
+39.4.6   Drawing No.
+39.5     Separation walls
+39.5.1   Name of Manufacturer :
+39.5.2   Material Grade
+39.5.3   Material Type
+39.5.4   Component Part No. and Batch No.
+39.5.5   Identification Code
+39.5.6   Drawing No.
+39.6     Floor
+39.6.1   Name of Manufacturer :
+39.6.2   Material Grade
+39.6.3   Material Type
+39.6.4   Component Part No. and Batch No.
+39.6.5   Identification Code
+
+                                  37/44
+                                                            AIS-124
+
+39.6.6   Drawing No.
+39.7     Luggage racks
+39.7.1   Name of Manufacturer :
+39.7.2   Material Grade
+39.7.3   Material Type
+39.7.4   Component Part No. and Batch No.
+39.7.5   Identification Code
+39.7.6   Drawing No.
+39.8     Heating and ventilation pipe
+39.8.1   Name of Manufacturer :
+39.8.2   Material Grade
+39.8.3   Material Type
+39.8.4   Component Part No. and Batch No.
+39.8.5   Identification Code
+39.8.6   Drawing No.
+39.9     Luminaries.
+39.9.1   Name of Manufacturer :
+39.9.2   Material Grade
+39.9.3   Material Type
+39.9.4   Component Part No. and Batch No.
+39.9.5   Identification Code
+39.9.6   Drawing No.
+40.0     Interior Fittings as per AIS-047, as
+         applicable
+40.1     Instrument Panel (Dash Board)
+40.2     Make
+40.3     Identification No. / Part No.
+40.4     Material
+40.5     Drawing showing the mounting details, over
+         all size and all control switches with
+         dimensions
+40.6     Additional details for interior fitting tests to
+         be given (if test is already conducted, this
+         information need not be submitted).
+         Instrument Panel Variants with photographs
+40.6.1
+         (With / without Airbag, Music system, AC )
+40.6.2   Material used for instrument Panel
+40.6.3   Drawings
+40.6.3.1 Instrument Panel mounting (With hardware
+         details)
+
+
+
+                                        38/44
+                                                          AIS-124
+
+40.6.3.2    ‘H’ point co-ordinates for each seating
+            position
+40.6.3.3    Cross sectional drawings for each
+            projection more than 3.2
+40.6.3.4    Cross sectional Drawing of Gear shift lever
+40.6.3.5    Drawing of Grab handle with cross section
+40.6.3.6    Drawing of Sunvisor with details of metal
+            wire used
+40.6.3.7    Drawing of lamp assembly mounted at roof
+            Name of manufacturer of the Interior
+40.6.4
+            fitting components
+40.6.4.1    Instrument Panel
+40.6.4.2    Sun Visor
+40.6.4.3    Roof Light
+40.6.4.4    Grab Handle
+40.6.4.5    Gear Lever
+40.6.4.6    Hand Brake Lever
+40.6.4.7    Seats (Need not be specified if done
+            already)
+40.6.4.8    Seat Belts (Need not be specified if done
+            already)
+40.6.4.9    Music System (if provided)
+40.6.4.10   Cigarette lighter (if provided)
+41.0        Battery
+41.1        Type & number
+41.2        Voltage & Capacity (Ah)
+42.0        Any other additional information the
+            Motor Caravan manufacturer / body
+            builder would like to declare
+
+
+
+
+                                      39/44
+                                                                                AIS-124
+
+                                      ANNEX-C
+                                       (See 5.2)
+
+   DETAILS OF LOCATION OF MOTOR CARAVAN IDENTIFICATION
+   NUMBER AND CODE FOR MONTH AND YEAR OF MANUFACTURE
+
+Name of the Motor Caravan Manufacturer &
+Address :
+Name of the basic model :
+Name of variants, if any :
+Place of embossing or etching the motor caravan
+identification number
+(Supporting details by drawing or pictures may be
+provided if necessary )
+Position of the code for month of production in the
+motor caravan identification number
+Position of the code for year of production in the
+motor caravan identification number
+Height of the motor caravan identification number -
+Min. 7 mm
+Illustrative example
+
+
+
+                         Code for month and year of production
+Code for month of production:                    Code for year of production:
+Month                    Code                    Year           Code
+January
+February
+March
+April
+May
+June
+July
+August
+September
+October
+November
+December
+
+
+
+                                         40/44
+                                                                                    AIS-124
+
+Example:
+
+
+Subject        Manufacture digit          Year          Month            Serial no of
+                                                                           vehicle
+example        1      2       3       4           5        6           7       8     9
+Remark        Can be WMI letter        As per           As per             As per
+                 if available        declaration      declaration       manufacture
+                                     above table      above table        production
+                                                                      vehicle per year
+
+Note:
+
+1. Wherever possible number shall be marked on a single line. The use of the
+   letters I, O and Q and dashes, asterisks and other special signs, is not permitted.
+
+2. The minimum height of the letters and numerals shall 7 mm for characters
+   marked.
+
+3. It is advised caravan manufacturer may take reference of AIS-065 while
+   deciding motor caravan identification number.
+
+
+
+
+                                          41/44
+                                                                 AIS-124
+
+                           ANNEX- D
+                            (See 8.3)
+
+Guidelines for Type Approval and Registration of Motor Caravan
+
+
+       Type approval and Registration for Motor Caravans
+
+
+
+                           Submission of
+                           Specification &
+                             Drawings
+
+
+                       Approved Test Agency
+
+
+
+                         Component Testing
+
+
+
+
+                           Performance /
+                          Compliance Tests
+
+
+                           Certificate Of
+                           Type Approval
+
+
+
+               Independent Motor Caravan Registration
+                by Transport Authorities after necessary
+                       verification of documents
+
+
+
+
+                               42/44
+                                                                                AIS-124
+
+                                  ANNEX- E
+                               (See Introduction)
+
+         COMPOSITION OF AISC PANEL ON MOTOR CARAVAN *
+           Name                                      Organization
+Convener
+Mr. P. K. Banerjee          Tata Motors Ltd. (SIAM)
+Members                     Representing
+Mr. A. S. Bhale             The Automotive Research Association of India (ARAI)
+Mr. D. P. Saste             Central Institute of Road Transport (CIRT)
+Mr. U.K. Bhat               International Centre for Automotive Technology (ICAT)
+Representative from         Indian Institute of Petroleum (IIP)
+Mr. K. Kamraj               Vehicles Research and Development Establishment (VRDE)
+Mr. K. K. Gandhi            Society of Indian Automobile Manufacturers (SIAM)
+Mr. Sanjay Tank             Mahindra & Mahindra Ltd. (SIAM)
+Mr. Sanjeev Mandpe          Mercedes-Benz India Pvt. Ltd. (SIAM)
+Mr. Sumit Sharma            Maruti Suzuki India Ltd (SIAM)
+Mr. S. Arun                 Ashok Leyland Ltd. (SIAM)
+Mr. Mansingh Jagdale        Tata Motors Ltd. (SIAM)
+Mr. T. C. Gopalan           Tractor Manufacturers Association (TMA)
+Mr. Uday S. Harite          ACMA Centre for Technology (ACMA)
+Caravan Manufacturers
+Mr. A. K. Roy               JCBL limited (SIAM)
+Mr. Daulat Deshmukh         Overlanders Specialty Vehicles Pvt. Ltd
+Mr. Raju Babbar             Babbaraju Mobile
+Mr. J. Venkataramana        Caravan Voyagers (p) Ltd.
+Mr. Mallikarjun Machnoor    M. M. Associate
+Mr. Senthil Kumar           SPACE-TECH
+
+
+  * At the time of approval of this Automotive Industry Standard (AIS)
+
+
+
+
+                                      43/44
+                                                                                        AIS-124
+
+                                           ANNEX- F
+                                       (See Introduction)
+                                 COMMITTEE COMPOSITION*
+                             Automotive Industry Standards Committee
+
+           Chairman
+Shri Shrikant R. Marathe         Director,
+                                 The Automotive Research Association of India, Pune
+           Members                                        Representing
+Representative from              Ministry of Road Transport & Highways
+                                 (Dept. of Road Transport & Highways), New Delhi
+
+Representative from              Ministry of Heavy Industries & Public Enterprises
+                                 (Department of Heavy Industry), New Delhi
+
+Shri S. M. Ahuja                 Office of the Development Commissioner, MSME
+                                 Ministry of Micro, Small & Medium Enterprises, New Delhi
+
+Shri P. C. Joshi                 Bureau of Indian Standards, New Delhi
+Director/ Shri D. P. Saste       Director , Central Institute of Road Transport, Pune
+(Alternate)
+
+Director                         Indian Institute of Petroleum, Dehra Dun
+Director                         International Centre for Automotive Technology
+Director                         Vehicles Research & Development Establishment, Ahmednagar
+Representatives from             Society of Indian Automobile Manufacturers (SIAM)
+Shri T. C. Gopalan               Tractor Manufacturers Association, New Delhi
+Mr. Uday S. Harite               Automotive Components Manufacturers Association of India,
+                                 New Delhi
+
+
+                                     Member Secretary
+                                 Mrs. Rashmi Urdhwareshe
+                                     Sr. Deputy Director
+                      The Automotive Research Association of India, Pune
+
+* At the time of approval of this Automotive Industry Standard (AIS)
+
+
+
+
+                                             44/44
+

@@ -1,0 +1,555 @@
+{
+  "id": "ashokleyland_viking_5334wb",
+  "schema": "rv-vehicle/1",
+  "display_name": "Ashok Leyland Viking (bus chassis) 5334 WB",
+  "brand": "Ashok Leyland",
+  "model": "Viking (bus chassis)",
+  "variant_name": "5334WB chassis with coach-built motorhome body (concept)",
+  "kind": "bus_chassis",
+  "body_build": "incomplete_chassis",
+  "body_family": "ashok_leyland_viking_chassis",
+  "units": "mm",
+  "sources_note": "Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (data/handover/rv_handover_part1_models_data_research/data/interior_confidence_report.md).",
+  "body": {
+    "length": {
+      "value": 10934,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Ashok Leyland, Viking specification page, 'DIMENSIONS' and 'INDICATIVE SEAT CAPACITY' blocks (web page, no page numbers), https://www.ashokleyland.com/in/buses/brands/viking/specification (read 21 Nov 2026 IST; saved copy research/oem_snapshots/ashokleyland_viking_specification.html)",
+      "note": "CONFLICT: TrucksBuses (aggregator) lists 10699 mm with FOH 2265 / ROH 3100 for the same wheelbase. OEM value used; unresolved until a drawing is obtained. See open_questions.md"
+    },
+    "width": {
+      "value": 2600,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Ashok Leyland, Viking specification page, 'DIMENSIONS' and 'INDICATIVE SEAT CAPACITY' blocks (web page, no page numbers), https://www.ashokleyland.com/in/buses/brands/viking/specification (read 21 Nov 2026 IST; saved copy research/oem_snapshots/ashokleyland_viking_specification.html)",
+      "note": "Equals the Rule 93 maximum width of 2.6 m: no margin for anything that projects"
+    },
+    "height": {
+      "value": 3400,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+      "method": "Concept body height (donors.json proposedBody, ±300 mm). No OEM body height.",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm"
+      }
+    },
+    "wheelbase": {
+      "value": 5334,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Ashok Leyland, Viking specification page, 'DIMENSIONS' and 'INDICATIVE SEAT CAPACITY' blocks (web page, no page numbers), https://www.ashokleyland.com/in/buses/brands/viking/specification (read 21 Nov 2026 IST; saved copy research/oem_snapshots/ashokleyland_viking_specification.html)",
+      "note": "Page also lists a 5639 mm wheelbase (length 11422 mm)"
+    },
+    "ground_clearance": {
+      "value": 230,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Planning value in vehicles.py; not on the OEM page.",
+      "expected_error": {
+        "minus": 40,
+        "plus": 40,
+        "text": "±40 mm"
+      }
+    },
+    "front_overhang": {
+      "value": 2400,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Ashok Leyland, Viking specification page, 'DIMENSIONS' and 'INDICATIVE SEAT CAPACITY' blocks (web page, no page numbers), https://www.ashokleyland.com/in/buses/brands/viking/specification (read 21 Nov 2026 IST; saved copy research/oem_snapshots/ashokleyland_viking_specification.html)"
+    },
+    "rear_overhang": {
+      "value": 3200,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Derived: OEM length 10934 − OEM front overhang 2400 − wheelbase 5334. Only as good as the disputed length (aggregator implies 3100).",
+      "expected_error": {
+        "minus": 100,
+        "plus": 100,
+        "text": "±100 mm"
+      }
+    },
+    "front_track": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not published on the OEM pages read for the handover"
+    },
+    "rear_track": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not published on the OEM pages read for the handover"
+    },
+    "tyre": {
+      "size": {
+        "value": "10.00 R20 class",
+        "unit": "size",
+        "confidence": "ESTIMATED",
+        "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+        "method": "Planning assumption; OEM page lists no tyre"
+      },
+      "width": {
+        "value": 254,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+        "method": "From the tyre size"
+      },
+      "aspect": {
+        "value": null,
+        "unit": "%",
+        "confidence": "UNKNOWN",
+        "source": "From the tyre size 10.00 R20 class"
+      },
+      "rim_in": {
+        "value": 20,
+        "unit": "in",
+        "confidence": "ESTIMATED",
+        "source": "From the tyre size 10.00 R20 class"
+      },
+      "diameter": {
+        "value": 1020,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+        "method": "Tyre diameter the GLB was built with; \"10.00 R20 class\" does not give it directly",
+        "expected_error": {
+          "minus": 30,
+          "plus": 30,
+          "text": "±30 mm (tyre class only)"
+        }
+      }
+    },
+    "gvw_kg": {
+      "value": 16200,
+      "unit": "kg",
+      "confidence": "CONFIRMED",
+      "source": "Ashok Leyland, Viking specification page, 'DIMENSIONS' and 'INDICATIVE SEAT CAPACITY' blocks (web page, no page numbers), https://www.ashokleyland.com/in/buses/brands/viking/specification (read 21 Nov 2026 IST; saved copy research/oem_snapshots/ashokleyland_viking_specification.html)"
+    },
+    "rear_wheels": {
+      "value": "dual",
+      "unit": "layout",
+      "confidence": "CONFIRMED",
+      "source": "Handover vehicles.json external.rear_wheels: \"dual rear\""
+    },
+    "axles": {
+      "value": 2,
+      "unit": "count",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/data/vehicles.json",
+      "method": "One wheelbase is published per variant, so two axles"
+    }
+  },
+  "seating_as_sold": {
+    "value": "Indicative 37+D to 58+D depending on layout",
+    "unit": "seats",
+    "confidence": "CONFIRMED",
+    "source": "Ashok Leyland, Viking specification page, 'DIMENSIONS' and 'INDICATIVE SEAT CAPACITY' blocks (web page, no page numbers), https://www.ashokleyland.com/in/buses/brands/viking/specification (read 21 Nov 2026 IST; saved copy research/oem_snapshots/ashokleyland_viking_specification.html)",
+    "note": "Indicative seat capacities for built buses: 53/58+D 3x2 HHR, 42/46+D 2x2 SR, 37/41+D 2x2 PB"
+  },
+  "seats_as_sold_max": {
+    "value": 58,
+    "unit": "seats excl. driver",
+    "confidence": "CONFIRMED",
+    "source": "Ashok Leyland, Viking specification page, 'DIMENSIONS' and 'INDICATIVE SEAT CAPACITY' blocks (web page, no page numbers), https://www.ashokleyland.com/in/buses/brands/viking/specification (read 21 Nov 2026 IST; saved copy research/oem_snapshots/ashokleyland_viking_specification.html)",
+    "method": "Largest option in \"Indicative 37+D to 58+D depending on layout\""
+  },
+  "category_as_sold": {
+    "value": "Incomplete bus chassis (as sold). A completed passenger bus above 5 t GVW would be M3.",
+    "unit": "M/N category (AIS-053)",
+    "confidence": "ESTIMATED",
+    "source": "AIS-053 cl. 3.1.1.2 / 3.1.1.3 and IS 14272:2011 cl. 3.1.1 (rules/official_pdfs/) applied to the GVW above",
+    "method": "Rule applied by the packager; not an OEM category label"
+  },
+  "emission_standard": {
+    "value": null,
+    "unit": "emission standard",
+    "confidence": "UNKNOWN",
+    "source": "Not stated on the saved Ashok Leyland Viking specification page"
+  },
+  "availability": {
+    "value": "current",
+    "unit": "status",
+    "confidence": "CONFIRMED",
+    "source": "Listed on the OEM site as read for the handover (21 Nov 2026)"
+  },
+  "base_price_ex_showroom": {
+    "value": null,
+    "unit": "INR",
+    "confidence": "UNKNOWN",
+    "source": "No OEM ex-showroom price found.",
+    "leads": [
+      {
+        "value": 2783000,
+        "unit": "INR",
+        "confidence": "ESTIMATED",
+        "source": "TrucksBuses Ashok Leyland Viking price band (aggregator), https://www.trucksbuses.com/buses/inter-city/ashok-leyland-viking/specifications, via donors.json (read 8 Oct 2026)",
+        "method": "Aggregator indicative band; chassis path"
+      }
+    ]
+  },
+  "interior": {
+    "living_x0_from_rear": {
+      "value": 60,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+      "method": "Living area starts 40 mm wall + 20 mm inside the rear face (xr = xB + t + 0.02)",
+      "expected_error": {
+        "minus": 30,
+        "plus": 60,
+        "text": "−30/+60 mm"
+      }
+    },
+    "usable_length": {
+      "value": 8224,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026); models/source/build_camper.py",
+      "method": "GLB living length: from 60 mm inside the rear wall to 360 mm behind the cab-seat backs (cab length estimated: vans 1650–1800 ±250 mm, buses 2100–2600 ±300 mm). Not a measurement.",
+      "expected_error": {
+        "minus": 535,
+        "plus": 300,
+        "text": "±300 mm plus up to −235 mm from the length conflict"
+      }
+    },
+    "usable_width": {
+      "value": 2520,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Exterior width 2600 − 2 × 40 mm assumed wall (donors.json shellWallEachSideMm 40 ±15). No taper, trim or tumblehome allowed for.",
+      "expected_error": {
+        "minus": 60,
+        "plus": 60,
+        "text": "±60 mm (flat-sided coach body assumed)"
+      }
+    },
+    "standing_height": {
+      "value": 2340,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "GLB living-area clear height = overall height 3400 − estimated floor 1000 − 40 mm roof skin − 20 mm (build_camper.py: zc = H − t − 0.02)",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm"
+      }
+    },
+    "floor_height": {
+      "value": 1000,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Not published. Planning default from donors.json (vans 560 ±100 mm, Wider Body 580) / concept floor for bus bodies (LP 410 900 ±150, Eicher 950 ±150, Viking 1000 ±200)",
+      "expected_error": {
+        "minus": 200,
+        "plus": 200,
+        "text": "±150–200 mm"
+      }
+    },
+    "wheel_arch": {
+      "note": "Interior intrusion is NOT modelled in the GLB layouts (the arches are cut only in the body side walls). Values below are donors.json planning defaults, not measurements.",
+      "intrusion_from_each_side_wall": {
+        "value": 200,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchIntrusionMm (tyre size known, housing not)",
+        "expected_error": {
+          "minus": 80,
+          "plus": 80,
+          "text": "±80 mm (larger for dual rear wheels)"
+        }
+      },
+      "height_above_floor": {
+        "value": 340,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchHeightAboveFloorMm",
+        "expected_error": {
+          "minus": 80,
+          "plus": 80,
+          "text": "±80 mm"
+        }
+      },
+      "length_along_vehicle": {
+        "value": 900,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchLengthMm",
+        "expected_error": {
+          "minus": 150,
+          "plus": 150,
+          "text": "±150 mm"
+        }
+      }
+    },
+    "entry_door": {
+      "side": {
+        "value": "left",
+        "unit": "side",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Kerb (left) side, as modelled in the GLB"
+      },
+      "from_front": {
+        "value": 250,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Converted from the handover x-from-front-axle: front overhang − x",
+        "expected_error": {
+          "minus": 300,
+          "plus": 300,
+          "text": "±300 mm"
+        }
+      },
+      "to_front": {
+        "value": 950,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Converted from the handover x-from-front-axle: front overhang − x",
+        "expected_error": {
+          "minus": 300,
+          "plus": 300,
+          "text": "±300 mm"
+        }
+      },
+      "width": {
+        "value": 700,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "models/source/build_camper.py",
+        "method": "GLB placeholder door width",
+        "expected_error": {
+          "minus": 200,
+          "plus": 200,
+          "text": "±200 mm"
+        }
+      },
+      "height": {
+        "value": 2670,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "models/source/build_camper.py",
+        "method": "GLB placeholder: from sill to 150 mm below roof",
+        "expected_error": {
+          "minus": 200,
+          "plus": 200,
+          "text": "±200 mm"
+        }
+      },
+      "oem_door_size": {
+        "value": null,
+        "unit": "mm",
+        "confidence": "UNKNOWN",
+        "source": "OEM door opening sizes are not published on the pages read"
+      }
+    }
+  },
+  "exterior_profile": {
+    "body_bottom_height": {
+      "value": 530,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "hood_length": {
+      "value": 0,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "bumper_top_height": {
+      "value": 1080,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "hood_height": {
+      "value": 1080,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "nose_length": {
+      "value": 0,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_base_from_front": {
+      "value": 0,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_base_height": {
+      "value": 1080,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_top_from_front": {
+      "value": 120,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_top_height": {
+      "value": 3120,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "roof_start_from_front": {
+      "value": 380,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "rear_roof_corner_radius": {
+      "value": 100,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "window_sill_height": {
+      "value": 1850,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "window_top_height": {
+      "value": 3100,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cladding_bottom_height": {
+      "value": 1690,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cladding_top_height": {
+      "value": 1770,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cab_door": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not modelled; the coach body does not exist yet"
+    },
+    "sliding_door": {
+      "value": {
+        "from_front": 250,
+        "to_front": 950,
+        "side": "left"
+      },
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "GLB placeholder entry door at the front of the coach body (x 0.25–0.95 m behind the nose)",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm position, ±200 mm size"
+      }
+    },
+    "cab_window": {
+      "value": {
+        "from_front": 250,
+        "to_front": 2500
+      },
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "side_windows_from_front": {
+      "value": [
+        [
+          2750,
+          4100
+        ],
+        [
+          4240,
+          5590
+        ],
+        [
+          5730,
+          7080
+        ],
+        [
+          7220,
+          8570
+        ],
+        [
+          8710,
+          10060
+        ]
+      ],
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "wheel_arch_clearance": {
+      "value": 60,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    }
+  },
+  "glb": {
+    "file": "assets/models/ashokleyland_viking_5334wb.glb",
+    "handover_file": "data/handover/rv_handover_part1_models_data_research/models/ashokleyland_viking_5334wb.glb",
+    "original": "ashok_leyland_viking_5334_motorhome.glb",
+    "sha256": "97e1bd1a68069f9fea73048acae96ec21ba590b16b4fc858a38a6c95d504eb9f",
+    "units": "metres",
+    "up_axis": "+Y",
+    "forward_axis": "+X (nose)",
+    "kerb_side": "−Z (left)",
+    "origin": "Mid-length of the body, on the centreline, at ground level. NOT the front axle and NOT the repo origin (rear bumper). Repo x (mm from rear bumper) = (glb_x_m + L/2) × 1000.",
+    "front_axle_x_in_glb_m": 3.067,
+    "rear_axle_x_in_glb_m": -2.267,
+    "built_with": {
+      "front_overhang_mm": 2400,
+      "ground_clearance_mm": 230,
+      "floor_mm": 1000,
+      "cab_mm": 2600
+    },
+    "layout_as_built": "fixed rear transverse double bed 2520x2000 mm over a storage garage; wet room with cassette toilet, shower tray and washbasin; kitchenette 2000 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); lounge sofa; overhead lockers; water tank 630 L, 4 x 100 Ah LiFePO4 batteries + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+  }
+}

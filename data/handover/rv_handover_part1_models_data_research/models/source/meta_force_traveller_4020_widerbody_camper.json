@@ -1,0 +1,20 @@
+{
+ "id": "force_traveller_4020_widerbody_camper",
+ "name": "Force Traveller N Wider Body 4020WB",
+ "kind": "van",
+ "L": 6.965,
+ "W": 2.245,
+ "H": 2.85,
+ "WB": 4.02,
+ "FOH": 0.9,
+ "ROH": 2.045,
+ "tyre": "235/65 R16, 6+1 = dual rear (OEM page)",
+ "tyre_d": 0.712,
+ "floor": 0.58,
+ "cab": 1.7,
+ "living_len": 4.945,
+ "living_w": 2.165,
+ "living_h": 2.21,
+ "src": "6965x2245x2850, WB 4020, GC 180, GVW 6000: forcemotors.com/vehicles/traveller-wider-body-4020wb/ (OEM). Overhang/floor/cab estimated",
+ "layout": "fixed rear transverse double bed 2165x1400 mm over a storage garage; wet room with cassette toilet, shower tray and washbasin; kitchenette 1300 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); tall wardrobe; overhead lockers; water tank 173 L, 1 x 100 Ah LiFePO4 battery + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+}

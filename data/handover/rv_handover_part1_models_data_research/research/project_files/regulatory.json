@@ -1,0 +1,567 @@
+{
+  "meta": {
+    "seedVersion": "2026-10-08",
+    "sourceDocument": "docs/rv-india-regulations-2026-10-08.md",
+    "prepared": "2026-10-08",
+    "isolation": "This file is the only regulatory seed. Update it in place when later research is merged. Do not copy rule rows into donor or component files.",
+    "aiBoundary": "Code must not promote a record to VERIFIED. Status is data. Reprint-only and unverified items stay below VERIFIED.",
+    "reprintCutoff": "Annotated CMVR reprint (Commercial Law Publishers) amended up to G.S.R. 337(E) dated 28 Apr 2023. Amendments after that date are not in this seed.",
+    "accessCaveat": "morth.nic.in, morth.gov.in, egazette.gov.in and indiacode.nic.in were not readable in the research pass. Statutory text taken from the annotated reprint is secondary as a copy, even where the substance is official.",
+    "corrections": [
+      "Weight and axle limits come from S.O. 3467(E) dated 16 Jul 2018 under Motor Vehicles Act section 58. They do not come from CMVR Rules 95 or 96. Rule 95 is tyres. Rule 96 is brakes.",
+      "The bus body code is AIS-052 (CMVR Rule 125C) for buses with 13 or more passengers excluding the driver. AIS-093 is the truck cabin and body code (Rule 125C(3)), not the bus body code."
+    ],
+    "openQuestions": [
+      "AIS-124 Amendment No. 1 (12 Jan 2021) full text: does it keep the 3-year base-vehicle age limit, confirm a 12-seat cap, or change conversion scope?",
+      "Gazette verification of G.S.R. 868(E) (8 Sep 2016), G.S.R. 596(E) (26 Aug 2021), G.S.R. 240(E) (31 Mar 2021, Rule 112) and G.S.R. 414(E) (26 Jun 2020, Rule 93), plus every CMVR amendment after Apr 2023.",
+      "Status of the draft trailer-caravan AIS reported in April 2026: AIS number, whether it has been notified, and whether it covers car-towed T1/T2 caravans.",
+      "N-category goods donor to M-category motor caravan: RTO practice, and whether the Rule 112 chassis-type proviso blocks the class change.",
+      "Camper van defined as M1 in S.O. 1248(E) versus motor caravan as any category M in Rule 2(za): how M2/M3 motorhomes are recorded, and whether S.O. 436(E) of 1989 is still operative.",
+      "State tax treatment of self-propelled motorhomes. The Maharashtra tax-exemption order was not found. Karnataka exemption details are unverified.",
+      "Commercial self-drive caravan rental: no central scheme was found.",
+      "Whether a central caravan body-builder accreditation scheme exists. None was found.",
+      "Ministry of Tourism national caravan guidelines: the official document and date were not located.",
+      "How fuel conversion (CNG/EV) interacts with the AIS-124 clause 0.1 ban on changing the fuel system."
+    ]
+  },
+  "conflicts": [
+    {
+      "id": "conflict-m1-vs-category-m",
+      "subject": "Whether a camper van / motor caravan must be category M1 or may be any category M",
+      "resolution": "unresolved",
+      "note": "S.O. 1248(E) defines a camper van as a special purpose M1 vehicle. CMVR Rule 2(za) and AIS-124 define a motor caravan as category M, which includes M2 and M3. Do not pick one.",
+      "recordIds": ["IN-C-SO1248-2004", "IN-C-CMVR-2ZA", "IN-T-AIS124-2.2"]
+    }
+  ],
+  "dimensionLimits": {
+    "ruleId": "IN-C-CMVR-93",
+    "overhangRuleId": "IN-C-CMVR-93-2",
+    "status": "CONDITIONAL",
+    "evidenceClass": "official_statutory_via_reprint",
+    "researchStatusLabel": "VERIFIED in substance (text via reprint). Not promoted to VERIFIED in this database.",
+    "verify": [
+      "Gazette text of G.S.R. 414(E) dated 26 Jun 2020 was not retrieved",
+      "Later provisos G.S.R. 435(E) of 18 Jun 2021, G.S.R. 161(E) of 25 Feb 2022 and G.S.R. 200(E) of 14 Mar 2022 were not retrieved",
+      "Amendments after 28 Apr 2023 are not captured"
+    ],
+    "heightExcludesAcOnM": true,
+    "overhangFractionOfWheelbase": 0.6,
+    "categories": {
+      "M1": { "widthM": 2.6, "lengthM": 12.0, "heightM": 4.0 },
+      "M2": { "widthM": 2.6, "lengthM": 12.0, "heightM": 4.0 },
+      "M3_2axle": { "widthM": 2.6, "lengthM": 13.5, "heightM": 4.0 },
+      "M3_3axle": { "widthM": 2.6, "lengthM": 15.0, "heightM": 4.0 },
+      "N1": { "widthM": 2.6, "lengthM": 6.5, "heightM": 3.0 },
+      "N2": { "widthM": 2.6, "lengthM": 12.0, "heightM": 4.0 },
+      "N3": { "widthM": 2.6, "lengthM": 12.0, "heightM": 4.0 }
+    },
+    "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page137.html"
+  },
+  "axleLimits": {
+    "ruleId": "IN-C-SO3467-2018",
+    "status": "CONDITIONAL",
+    "evidenceClass": "official_statutory_via_reprint",
+    "researchStatusLabel": "VERIFIED in substance (text via reprint). Not promoted to VERIFIED in this database.",
+    "appliesTo": "transport vehicles other than motor cabs",
+    "notRules": ["CMVR Rule 95 (tyres)", "CMVR Rule 96 (brakes)"],
+    "verify": [
+      "Gazette text of S.O. 3467(E) dated 16 Jul 2018 was not retrieved",
+      "Private non-transport motorhomes are outside the notification's stated frame; the binding figure is then the manufacturer GVW, which is itself often unpublished here"
+    ],
+    "singleAxleSingleTyreT": 3.0,
+    "singleAxleTwoTyresT": 7.5,
+    "singleAxleFourTyresT": 11.5,
+    "tandemT": 21,
+    "triAxleT": 27,
+    "pneumaticExtraPerAxleT": 1,
+    "rigidGvwCapT": 49,
+    "articulatedGvwCapT": 55,
+    "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page929.html"
+  },
+  "records": [
+    {
+      "id": "IN-C-CMVR-2ZA",
+      "layer": "central_rule",
+      "title": "CMVR Rule 2(za) — Motor Caravan",
+      "statement": "A Motor Caravan is a special purpose category M vehicle with living accommodation containing, rigidly fixed: seats and a table, sleeping accommodation which may be converted from the seats, cooking facilities, and storage. Only the table may be removable.",
+      "insertedBy": "G.S.R. 868(E), 8 Sep 2016",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "VERIFIED in substance; Gazette copy not retrieved",
+      "status": "CONDITIONAL",
+      "verify": [
+        "Gazette text of G.S.R. 868(E) was not retrieved (mirror snippet only)",
+        "Amendments after 28 Apr 2023 are not captured"
+      ],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page37.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-T-AIS124-2.2",
+      "layer": "technical",
+      "title": "AIS-124:2014 clause 2.2 — motor caravan definition",
+      "statement": "Motor caravan means a special purpose vehicle of category M with the same four minimum facilities (seats and table, sleeping, cooking, storage).",
+      "evidenceClass": "official_technical",
+      "researchStatusLabel": "VERIFIED, base text read",
+      "status": "VERIFIED",
+      "verify": [],
+      "sourceUrl": "https://law.resource.org/pub/in/bis/ais/arai.in.ais.124.2014.pdf",
+      "date": "2014-07-06"
+    },
+    {
+      "id": "IN-C-CMVR-125G",
+      "layer": "central_rule",
+      "title": "CMVR Rule 125G — type approval of motor caravans",
+      "statement": "Motor caravans manufactured on or after 1 Apr 2018 must comply with AIS-124:2014. Conversions permitted under AIS-124 clause 0.0(b) must also comply. From six months after 27 Aug 2021, motor vehicles modified as Motor Caravans must comply with AIS-124. The exact calendar date of that six-month mark was not confirmed.",
+      "insertedBy": "G.S.R. 868(E), 8 Sep 2016; sub-rule (3) by G.S.R. 596(E), 26 Aug 2021",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "VERIFIED in substance (text via annotated reprint)",
+      "status": "CONDITIONAL",
+      "verify": [
+        "Gazette copies of G.S.R. 868(E) and G.S.R. 596(E) were not retrieved",
+        "Amendments after 28 Apr 2023 are not captured"
+      ],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page332.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-T-AIS124-0.0b",
+      "layer": "technical",
+      "title": "AIS-124:2014 clause 0.0(b) — conversion age",
+      "statement": "The standard applies to a motor caravan built by a motor caravan body builder on a registered vehicle which is not older than 3 years. It does not cover trailer caravans. This sentence is from the 2014 text that was read.",
+      "evidenceClass": "official_technical",
+      "researchStatusLabel": "VERIFIED (2014 text); Amendment 1 UNKNOWN",
+      "status": "VERIFIED",
+      "verify": [
+        "AIS-124 Amendment No. 1 dated 12 Jan 2021 was not read. Whether it keeps the 3-year limit is UNKNOWN."
+      ],
+      "sourceUrl": "https://law.resource.org/pub/in/bis/ais/arai.in.ais.124.2014.pdf",
+      "date": "2014-07-06"
+    },
+    {
+      "id": "IN-T-AIS124-AMD1-SEATCAP",
+      "layer": "technical",
+      "title": "AIS-124 Amendment 1 — reported 12-seat cap",
+      "statement": "Amendment No. 1 of 12 Jan 2021 reportedly limits scope to 12 seats excluding the driver (previously 13) and updates fire-extinguisher references. The amendment text was not read.",
+      "evidenceClass": "secondary",
+      "researchStatusLabel": "Secondary; UNKNOWN",
+      "status": "UNKNOWN",
+      "verify": [
+        "Obtain the amendment from ARAI or MoRTH before using a 12-seat figure."
+      ],
+      "sourceUrl": "https://www.selectregs.com/catalogue/index/IND-1242014/IND-N-01",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-T-AIS124-0.1",
+      "layer": "technical",
+      "title": "AIS-124:2014 clause 0.1 — prohibited alterations",
+      "statement": "While building a motor caravan, do not alter the already type-approved chassis, suspension, brakes, fuel system or engine. Permitted exceptions in the notes: re-route or lengthen the filler and move the approved tank inboard; extend the exhaust after the last silencer by up to 2 m.",
+      "evidenceClass": "official_technical",
+      "researchStatusLabel": "VERIFIED",
+      "status": "VERIFIED",
+      "verify": [],
+      "sourceUrl": "https://law.resource.org/pub/in/bis/ais/arai.in.ais.124.2014.pdf",
+      "date": "2014-07-06"
+    },
+    {
+      "id": "IN-T-AIS124-3.4",
+      "layer": "technical",
+      "title": "AIS-124 fire extinguishers",
+      "statement": "Two fire extinguishers of at least 2 kg each, one near the driver. No halogenated agents.",
+      "evidenceClass": "official_technical",
+      "researchStatusLabel": "VERIFIED",
+      "status": "VERIFIED",
+      "verify": ["Amendment 1 reportedly updates extinguisher references. That amendment was not read."],
+      "sourceUrl": "https://law.resource.org/pub/in/bis/ais/arai.in.ais.124.2014.pdf",
+      "date": "2014-07-06"
+    },
+    {
+      "id": "IN-T-AIS124-3.5",
+      "layer": "technical",
+      "title": "AIS-124 wiring and in-motion occupancy",
+      "statement": "Wiring to IS 2465 with looms and clips. Nobody may occupy the living area while the vehicle is moving except in designated seats with at least lap belts.",
+      "evidenceClass": "official_technical",
+      "researchStatusLabel": "VERIFIED",
+      "status": "VERIFIED",
+      "verify": [],
+      "sourceUrl": "https://law.resource.org/pub/in/bis/ais/arai.in.ais.124.2014.pdf",
+      "date": "2014-07-06"
+    },
+    {
+      "id": "IN-T-AIS124-4",
+      "layer": "technical",
+      "title": "AIS-124 fixed equipment, tanks and power",
+      "statement": "Seats, table, beds, kitchen and storage must be permanently fixed. Separate grey tank. Separate black tank if a fixed toilet is fitted. Generator or battery backup of at least 24 hours, a 230 V external input, and fused appliances. Cooking may be inside or outside.",
+      "evidenceClass": "official_technical",
+      "researchStatusLabel": "VERIFIED",
+      "status": "VERIFIED",
+      "verify": [
+        "Whether a cassette toilet's internal waste container counts as the separate black tank was not answered by the research. Treat that point as professional verification."
+      ],
+      "sourceUrl": "https://law.resource.org/pub/in/bis/ais/arai.in.ais.124.2014.pdf",
+      "date": "2014-07-06"
+    },
+    {
+      "id": "IN-T-AIS124-NOTE-G",
+      "layer": "technical",
+      "title": "AIS-124 Table 2 Note G — base vehicle M or N",
+      "statement": "The base vehicle may be category M or N, complete or incomplete. The completed motor caravan is category M. How an RTO records an N-to-M class change was not verified.",
+      "evidenceClass": "official_technical",
+      "researchStatusLabel": "Official technical; practice CONDITIONAL / PROFESSIONAL VERIFICATION REQUIRED",
+      "status": "CONDITIONAL",
+      "verify": [
+        "RTO practice on goods-to-passenger reclassification is unverified",
+        "Interaction with the Rule 112 chassis-type proviso is PROFESSIONAL VERIFICATION REQUIRED"
+      ],
+      "sourceUrl": "https://law.resource.org/pub/in/bis/ais/arai.in.ais.124.2014.pdf",
+      "date": "2014-07-06"
+    },
+    {
+      "id": "IN-C-CMVR-93",
+      "layer": "central_rule",
+      "title": "CMVR Rule 93 — overall dimensions",
+      "statement": "See dimensionLimits in this file. Substituted by G.S.R. 414(E), 26 Jun 2020, as reproduced in the annotated reprint. For M category, overall height excludes the air-conditioning unit.",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "VERIFIED in substance (text via reprint)",
+      "status": "CONDITIONAL",
+      "verify": ["Gazette text not retrieved", "Amendments after 28 Apr 2023 are not captured"],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page137.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-C-CMVR-93-2",
+      "layer": "central_rule",
+      "title": "CMVR Rule 93(2) — overhang",
+      "statement": "Overhang shall not exceed 60 percent of the wheelbase, other than for a tractor, construction equipment vehicle or combine harvester.",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "VERIFIED in substance (text via reprint)",
+      "status": "CONDITIONAL",
+      "verify": ["Gazette text not retrieved"],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page137.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-C-CMVR-112",
+      "layer": "central_rule",
+      "title": "CMVR Rule 112 — who may alter a vehicle",
+      "statement": "An alteration under section 52, including a modification of body structure, must follow Central Government conditions and be done by the OEM, an OEM dealer, or a State-authorised workshop or service station. Compliance is tested by a Rule 126 agency or self-certified in Form 22F. Chassis replacement is only from the same manufacturer and the same type. The reprint footnote attributes the substitution to G.S.R. 240(E), 31 Mar 2021. Sub-rule (8) points motor caravans at AIS-124.",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "CONDITIONAL (notification number to verify)",
+      "status": "CONDITIONAL",
+      "verify": [
+        "Verify G.S.R. 240(E) against the Gazette",
+        "Whether the chassis-type proviso blocks goods-to-passenger conversion is PROFESSIONAL VERIFICATION REQUIRED"
+      ],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page175.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-C-MVA-52",
+      "layer": "central_statute",
+      "title": "Motor Vehicles Act 1988 section 52 — alteration",
+      "statement": "The owner shall not alter the vehicle so that the particulars in the certificate of registration differ from those originally specified by the manufacturer, except as the provisos allow. An alteration must be reported for endorsement. The Explanation limits alteration to a structural change of a basic feature. The 2019 amendment lets the Centre prescribe conditions for alteration.",
+      "evidenceClass": "secondary",
+      "researchStatusLabel": "VERIFIED in substance (secondary bare-act copy)",
+      "status": "CONDITIONAL",
+      "verify": [
+        "Official India Code text was not loaded in the research pass",
+        "Do not treat the secondary bare-act copy as gazette-verified"
+      ],
+      "sourceUrl": "https://courtbook.in/search/section/section-52-alteration-in-motor-vehicle-66829fa328263b967f090825",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-J-SC-2019-JAYACHANDRA",
+      "layer": "judicial",
+      "title": "RTO v. K. Jayachandra (Supreme Court, 9 Jan 2019)",
+      "statement": "No vehicle can be altered so that registration particulars vary from those originally specified by the manufacturer. Rules cannot be read to permit what section 52(1) prohibits. The judgment interprets section 52 before the 2019 amendment. Whether the later Rule 112 and Rule 125G route is the prescribed path for a motor caravan has not been judicially tested in this research.",
+      "evidenceClass": "official_judicial",
+      "researchStatusLabel": "VERIFIED (read)",
+      "status": "VERIFIED",
+      "verify": [
+        "The inference that an authorised AIS-124 conversion is now a prescribed section 52 route is PROFESSIONAL VERIFICATION REQUIRED. It is not part of the judgment."
+      ],
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2013/6343/6343_2013_Judgement_09-Jan-2019.pdf",
+      "date": "2019-01-09"
+    },
+    {
+      "id": "IN-C-SO1248-2004",
+      "layer": "central_notification",
+      "title": "S.O. 1248(E), 5 Nov 2004 — registration types",
+      "statement": "Non-transport: Camper van or trailer for private use. Transport: Camper vans or trailers. The notification's own definition says M1. See the unresolved conflict with Rule 2(za).",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "VERIFIED in substance; check for later supersession",
+      "status": "CONDITIONAL",
+      "verify": [
+        "Gazette copy not retrieved",
+        "Later supersession was not fully checked",
+        "M1 versus any-M conflict is unresolved"
+      ],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page925.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-C-SO436-1989",
+      "layer": "central_notification",
+      "title": "S.O. 436(E), 12 Jun 1989 — campers van and camping trailer",
+      "statement": "An older notification lists Campers van and Camping trailer / House trailer. Whether it is still operative beside S.O. 1248(E) is unknown. S.O. 1248(E) expressly supersedes S.O. 451(E) of 1992, not this one.",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "UNKNOWN whether still operative",
+      "status": "UNKNOWN",
+      "verify": ["Relationship to S.O. 1248(E) is unclear"],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page777.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-C-SO3467-2018",
+      "layer": "central_notification",
+      "title": "S.O. 3467(E), 16 Jul 2018 — axle and GVW limits",
+      "statement": "Maximum safe axle weight and gross vehicle weight for transport vehicles other than motor cabs. This is not CMVR Rule 95 or Rule 96. Private motorhomes are not clearly inside this notification; use the manufacturer GVW and do not claim an axle pass from this order.",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "VERIFIED in substance (text via reprint)",
+      "status": "CONDITIONAL",
+      "verify": ["Gazette text not retrieved"],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page929.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-C-AITP-2023",
+      "layer": "central_rule",
+      "title": "All India Tourist Vehicles (Permit) Rules, 2023",
+      "statement": "G.S.R. 302(E), 18 Apr 2023, in force 1 May 2023. Annual fees by seats excluding driver. Not granted after 12 years from first registration. The rules do not mention caravans. Whether a camper is a tourist vehicle under section 2(43) is unknown. Rule 128 tourist-coach specifications exclude campers and house trailers.",
+      "evidenceClass": "official_statutory",
+      "researchStatusLabel": "VERIFIED (Gazette copy read via Jharkhand Transport Department mirror)",
+      "status": "VERIFIED",
+      "verify": [
+        "Whether a motor caravan qualifies as a tourist vehicle is UNKNOWN",
+        "The copy read was the Jharkhand Transport Department mirror, not egazette.gov.in"
+      ],
+      "sourceUrl": "https://transport.jharkhand.gov.in/pdf/All-India-Tourist-Vehicles-(Permit)-Rules-2023.pdf",
+      "date": "2023-04-18"
+    },
+    {
+      "id": "IN-C-CMVR-47-1c",
+      "layer": "central_rule",
+      "title": "CMVR Rule 47(1)(c) — trailer design approval",
+      "statement": "Registration of a trailer other than a category T vehicle must include State Transport Authority or Transport Commissioner design approval.",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "VERIFIED in substance (text via reprint)",
+      "status": "CONDITIONAL",
+      "verify": ["Gazette text not retrieved"],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page87.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-C-CMVR-47-1g",
+      "layer": "central_rule",
+      "title": "CMVR Rule 47(1)(g) — incomplete vehicle",
+      "statement": "An incomplete vehicle such as a drive-away chassis is registered with Form 22 from the chassis maker and Form 22A Part II from the body builder, including the body type-approval certificate number.",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "Described from the annotated reprint and from AIS-124 clause 8, which was read",
+      "status": "CONDITIONAL",
+      "verify": ["Rule 47 gazette text was not re-read as a current consolidation"],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page87.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-C-CMVR-125C",
+      "layer": "central_rule",
+      "title": "CMVR Rule 125C — bus body code is AIS-052",
+      "statement": "Body building of buses with 13 or more passengers excluding the driver must follow AIS-052 (Revision 1). AIS-093 is the truck cabin and body code for N2/N3 goods vehicles. It is not the bus body code.",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "Official statutory via reprint",
+      "status": "CONDITIONAL",
+      "verify": [
+        "Gazette text not retrieved",
+        "The reported AIS-124 Amendment 1 cap of 12 seats is secondary and remains UNKNOWN"
+      ],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page324.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-C-CMVR-126",
+      "layer": "central_rule",
+      "title": "CMVR Rule 126 — test agencies",
+      "statement": "Prototype and alteration testing is by agencies notified under Rule 126. The research names VRDE Ahmednagar, ARAI Pune, CFMTTI Budni, IIP Dehradun, CIRT Pune, ICAT Manesar, NRFMTTI Hisar (combines only), GARC Chennai, NATRAX Indore, and others the Centre specifies. This list is not a claim that it is exhaustive or current.",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "Named from the annotated reprint",
+      "status": "CONDITIONAL",
+      "verify": ["Current notified list was not re-checked against a gazette after Apr 2023"],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page334.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-C-RENTACAB-1989",
+      "layer": "central_scheme",
+      "title": "Rent-a-Cab Scheme, 1989",
+      "statement": "The scheme, as described from the reprint, applies to motor cabs with tourist permits. It is not a demonstrated route for self-drive caravan rental.",
+      "evidenceClass": "official_statutory_via_reprint",
+      "researchStatusLabel": "UNSUPPORTED / UNKNOWN as a caravan route",
+      "status": "UNKNOWN",
+      "verify": ["Confirm whether any State has a separate self-drive caravan scheme"],
+      "sourceUrl": "https://ebook.commerciallawpublishers.com/fa/cmvr/files/basic-html/page766.html",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-T-TRAILER-CARAVAN-AIS-DRAFT",
+      "layer": "technical_draft",
+      "title": "Draft trailer-caravan AIS reported April 2026",
+      "statement": "News reports in April 2026 said draft standards for trailer caravans had been finalised. No AIS number was published in those reports. Not confirmed as notified on 8 Oct 2026. AIS-124 does not cover trailer caravans. AIS-113 covers goods trailers towed by N2/N3.",
+      "evidenceClass": "secondary",
+      "researchStatusLabel": "UNKNOWN",
+      "status": "UNKNOWN",
+      "verify": ["Confirm notification status, AIS number and scope against the Gazette"],
+      "sourceUrl": "https://economictimes.indiatimes.com/industry/services/travel/boost-for-tourism-draft-rules-finalised-for-trailer-caravans/articleshow/130538259.cms",
+      "date": "2026-04-27"
+    },
+    {
+      "id": "IN-J-SC-2024-RAMBHA",
+      "layer": "judicial",
+      "title": "Bajaj Allianz v. Rambha Devi (2024 INSC 840)",
+      "statement": "Search summaries say the Supreme Court held that an LMV licence holder may drive a transport vehicle with GVW up to 7,500 kg. The judgment PDF was not read in the research pass.",
+      "evidenceClass": "official_judicial",
+      "researchStatusLabel": "Holding via search summary; full text not read",
+      "status": "PROFESSIONAL_VERIFICATION_REQUIRED",
+      "verify": ["Read the judgment before relying on the licence holding"],
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2017/29686/29686_2017_1_1501_57018_Judgement_06-Nov-2024.pdf",
+      "date": "2024-11-06"
+    },
+    {
+      "id": "IN-C-MOT-GUIDELINES",
+      "layer": "central_policy",
+      "title": "Ministry of Tourism caravan guidelines",
+      "statement": "No Ministry of Tourism caravan guidelines document was located on an official site in this research. Vehicle construction law is MoRTH's, not the tourism ministry's.",
+      "evidenceClass": "secondary",
+      "researchStatusLabel": "UNKNOWN",
+      "status": "UNKNOWN",
+      "verify": ["Locate the official document and date, if it exists"],
+      "sourceUrl": "https://goatourism.gov.in/caravan-tourism-policy/",
+      "date": "2026-10-08"
+    }
+  ],
+  "stateOverlays": [
+    {
+      "id": "IN-S-KL-POLICY-2021",
+      "stateUt": "Kerala",
+      "instrument": "Caravan Tourism Policy, G.O. No. 18/2021/Tourism, 08-10-2021 (Keravan Kerala)",
+      "statement": "Covers rigid and towed caravans. CMVR type approval to AIS-124 must be obtained by the OEM or caravan builder from Rule 126 agencies. Lists minimum tourism features (sofa-bed for two, kitchenette with fridge and microwave, toilet with shower, partition, AC, dining table, and others) and a subsidy schedule for tourism use.",
+      "evidenceClass": "official_procedural",
+      "researchStatusLabel": "VERIFIED (read)",
+      "status": "VERIFIED",
+      "verify": [],
+      "sourceUrl": "https://www.keralatourism.org/latestfromkeralatourism/caravan__tourism_policy_.pdf",
+      "date": "2021-10-08"
+    },
+    {
+      "id": "IN-S-KL-TAX-11iii",
+      "stateUt": "Kerala",
+      "instrument": "Kerala Motor Vehicles Taxation Act Schedule, item 11(iii), and Finance Act 2022 proviso",
+      "statement": "Caravan/Camping Trailer: Rs 1,000 per square metre of floor area per quarter. The 2022 Finance Act halves that rate for rental and contract caravans of the Tourism Department, on conditions the Government specifies. It is unclear whether a self-propelled motorhome falls under item 11(iii) or is taxed by seats.",
+      "evidenceClass": "official_procedural",
+      "researchStatusLabel": "VERIFIED (text read); applicability to self-propelled motorhomes UNKNOWN",
+      "status": "VERIFIED",
+      "applicabilityStatus": "UNKNOWN",
+      "verify": ["Do not compute Kerala motorhome tax as if item 11(iii) certainly applies to a self-propelled van conversion"],
+      "sourceUrl": "https://mvd.kerala.gov.in/sites/default/files/inline-files/Tax%20SCHEDULE.pdf",
+      "date": "2026-10-08"
+    },
+    {
+      "id": "IN-S-MH-GR-2021",
+      "stateUt": "Maharashtra",
+      "instrument": "Caravan Tourism Policy, GR No. TDS 2021/02/Sr. No. 501/Tourism, 15 Mar 2021",
+      "statement": "Commercial caravans must register with the Tourism Directorate. Private-use caravans are exempt from that tourism registration. The Transport Department was to issue a vehicle-tax exemption for caravans registered as tourist entities. That order was not located.",
+      "evidenceClass": "official_procedural",
+      "researchStatusLabel": "VERIFIED (policy read); tax exemption order UNKNOWN",
+      "status": "VERIFIED",
+      "taxExemptionOrderStatus": "UNKNOWN",
+      "verify": ["The promised vehicle-tax exemption order was not found"],
+      "sourceUrl": "https://maharashtratourism.gov.in/wp-content/uploads/2024/06/Caravan-Tourism-Policy.pdf",
+      "date": "2021-03-15"
+    },
+    {
+      "id": "IN-S-GA-POLICY",
+      "stateUt": "Goa",
+      "instrument": "Goa Caravan Tourism Policy (PDF dated Dec 2023 on goa-tourism.com; Gazette notification date not confirmed)",
+      "statement": "Caravans operating in Goa must be registered at a Goa RTO, comply with CMVR and AIS-124/AIS-113, and use a chassis not older than 3 years at first tourism registration. Motorised caravans: BS-VI. Partial motor-vehicle tax reimbursement for the first 50 tourism registrations.",
+      "evidenceClass": "official_procedural",
+      "researchStatusLabel": "VERIFIED (read); notification date UNKNOWN",
+      "status": "VERIFIED",
+      "verify": ["Date of the Gazette notification was not confirmed", "Policy validity was stated as 3 years from notification"],
+      "sourceUrl": "https://goa-tourism.com/wp-content/uploads/2023/12/Caravan-Tourism-Policy.pdf",
+      "date": "2023-12-01"
+    },
+    {
+      "id": "IN-S-KA-POLICY",
+      "stateUt": "Karnataka",
+      "instrument": "Karnataka Tourism investment presentation, March 2025",
+      "statement": "The deck lists a motor-vehicle tax exemption for caravan vehicles and caravan park projects. A search summary said the 2024–29 policy limits this to the first 200 registered caravans. That limit was not verified from the policy text.",
+      "evidenceClass": "official_procedural",
+      "researchStatusLabel": "CONDITIONAL",
+      "status": "CONDITIONAL",
+      "verify": ["Exemption scope, the 200-vehicle cap, and the operative government order were not verified"],
+      "sourceUrl": "https://karnatakatourism.org/wp-content/uploads/2025/03/Karnataka-Tourism-Investment-PPT.pdf",
+      "date": "2025-03-01"
+    },
+    {
+      "id": "IN-S-MP",
+      "stateUt": "Madhya Pradesh",
+      "instrument": "No official caravan policy text found",
+      "statement": "News reports describe caravan tourism plans. No official Madhya Pradesh caravan policy text was found in the 8 Oct 2026 research.",
+      "evidenceClass": "secondary",
+      "researchStatusLabel": "UNKNOWN",
+      "status": "UNKNOWN",
+      "verify": ["Obtain an official tourism or transport order before stating any Madhya Pradesh rule"],
+      "sourceUrl": "https://www.etvbharat.com/hi/!bharat/madhya-pradesh-government-start-caravan-tourism-luxury-bus-with-sleeping-seats-kitchen-and-toilet-facilities-mpn24062603566",
+      "date": "2026-10-08"
+    }
+  ],
+  "unresearchedStateNote": {
+    "status": "UNKNOWN",
+    "evidenceClass": "unknown",
+    "statement": "No State or Union Territory overlay for this jurisdiction was included in the 8 Oct 2026 research pack. Central CMVR still applies. Local tax, permit practice and tourism registration are UNKNOWN until a source is added to this file."
+  },
+  "scenarios": [
+    {
+      "id": "convert-registered-van",
+      "title": "Convert a registered van (M1 or N1)",
+      "status": "CONDITIONAL",
+      "evidenceClass": "official_technical",
+      "conditions": ["Base vehicle not older than 3 years", "Motor caravan body builder and Rule 112 authorised entity", "No change to chassis, suspension, brakes, fuel system or engine", "Rule 126 test agency certificate", "RC endorsement under section 52"]
+    },
+    {
+      "id": "convert-bus",
+      "title": "Convert a bus (M2 or M3)",
+      "status": "CONDITIONAL",
+      "evidenceClass": "official_technical",
+      "conditions": ["Same conversion conditions as a van", "13 or more passenger seats may bring in AIS-052 / Rule 125C", "The reported 12-seat Amendment 1 cap is secondary and UNKNOWN"]
+    },
+    {
+      "id": "build-on-n-chassis",
+      "title": "Build on a truck or bus chassis (N or incomplete)",
+      "status": "PROFESSIONAL_VERIFICATION_REQUIRED",
+      "evidenceClass": "official_technical",
+      "conditions": ["AIS-124 Note G allows M or N base vehicles", "Completed vehicle is category M", "RTO class change is unverified", "Rule 112 proviso may or may not block a type change"]
+    },
+    {
+      "id": "older-than-3-years",
+      "title": "Convert a registered vehicle older than 3 years",
+      "status": "UNSUPPORTED",
+      "evidenceClass": "official_technical",
+      "conditions": ["AIS-124 clause 0.0(b) as published in 2014 does not cover it", "Amendment 1 was not read, so a later change to the age limit is UNKNOWN", "No other certification route was found"]
+    },
+    {
+      "id": "prohibited-mechanical-change",
+      "title": "Change chassis, wheelbase, suspension, brakes, engine or fuel system",
+      "status": "NON_COMPLIANT",
+      "evidenceClass": "official_technical",
+      "conditions": ["AIS-124 clause 0.1, which was read", "Section 52 and Jayachandra remain relevant", "Filler re-route, inboard tank move, and exhaust extension up to 2 m are the stated exceptions"]
+    },
+    {
+      "id": "diy-without-approval",
+      "title": "DIY or unauthorised workshop conversion without type approval",
+      "status": "NON_COMPLIANT",
+      "evidenceClass": "official_statutory_via_reprint",
+      "conditions": ["Rule 112 text is via reprint, so this database status on the rule itself stays CONDITIONAL", "The research scenario is still recorded as not allowed", "Do not treat the app as the authority that convicts a build"]
+    }
+  ]
+}

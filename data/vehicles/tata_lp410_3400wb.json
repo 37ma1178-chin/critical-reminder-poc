@@ -1,0 +1,534 @@
+{
+  "id": "tata_lp410_3400wb",
+  "schema": "rv-vehicle/1",
+  "display_name": "Tata Motors LP 410 (face-cowl bus chassis) 3400 WB",
+  "brand": "Tata Motors",
+  "model": "LP 410 (face-cowl bus chassis)",
+  "variant_name": "3400WB chassis with coach-built motorhome body (concept)",
+  "kind": "bus_chassis",
+  "body_build": "incomplete_chassis",
+  "body_family": "tata_lp410_chassis",
+  "units": "mm",
+  "sources_note": "Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (data/handover/rv_handover_part1_models_data_research/data/interior_confidence_report.md).",
+  "body": {
+    "length": {
+      "value": 6615,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "BusesDekho (aggregator) Tata LP 410 specifications, https://buses.cardekho.com/buses/tata/lp-410/specifications (captured 8 Oct 2026 in donors.json 'tata-lp410-3400'; not an OEM source)",
+      "method": "Aggregator: 1275 + 3400 + 1940 = 6615"
+    },
+    "width": {
+      "value": 2140,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "BusesDekho (aggregator) Tata LP 410 specifications, https://buses.cardekho.com/buses/tata/lp-410/specifications (captured 8 Oct 2026 in donors.json 'tata-lp410-3400'; not an OEM source)",
+      "method": "Aggregator chassis width"
+    },
+    "height": {
+      "value": 2800,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+      "method": "Concept body height (donors.json proposedBody, ±300 mm). No OEM body exists; chassis height is not the body height.",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm"
+      }
+    },
+    "wheelbase": {
+      "value": 3400,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "BusesDekho (aggregator) Tata LP 410 specifications, https://buses.cardekho.com/buses/tata/lp-410/specifications (captured 8 Oct 2026 in donors.json 'tata-lp410-3400'; not an OEM source)",
+      "method": "Aggregator figure only. Tata OEM chassis pages found on 21 Nov 2026 are LP 410/31, /33, /36 (search results suggest about 3100/3300/3500 mm wheelbases); no OEM 3400 mm card was found. See open_questions.md"
+    },
+    "ground_clearance": {
+      "value": 210,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "BusesDekho (aggregator) Tata LP 410 specifications, https://buses.cardekho.com/buses/tata/lp-410/specifications (captured 8 Oct 2026 in donors.json 'tata-lp410-3400'; not an OEM source)",
+      "method": "Aggregator"
+    },
+    "front_overhang": {
+      "value": 1275,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "BusesDekho (aggregator) Tata LP 410 specifications, https://buses.cardekho.com/buses/tata/lp-410/specifications (captured 8 Oct 2026 in donors.json 'tata-lp410-3400'; not an OEM source)",
+      "method": "Aggregator"
+    },
+    "rear_overhang": {
+      "value": 1940,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "BusesDekho (aggregator) Tata LP 410 specifications, https://buses.cardekho.com/buses/tata/lp-410/specifications (captured 8 Oct 2026 in donors.json 'tata-lp410-3400'; not an OEM source)",
+      "method": "Aggregator"
+    },
+    "front_track": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not published on the OEM pages read for the handover"
+    },
+    "rear_track": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not published on the OEM pages read for the handover"
+    },
+    "tyre": {
+      "size": {
+        "value": "7.50 R16 class",
+        "unit": "size",
+        "confidence": "ESTIMATED",
+        "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+        "method": "Planning assumption; aggregator tyre lines disagree"
+      },
+      "width": {
+        "value": 191,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+        "method": "From the tyre size"
+      },
+      "aspect": {
+        "value": null,
+        "unit": "%",
+        "confidence": "UNKNOWN",
+        "source": "From the tyre size 7.50 R16 class"
+      },
+      "rim_in": {
+        "value": 16,
+        "unit": "in",
+        "confidence": "ESTIMATED",
+        "source": "From the tyre size 7.50 R16 class"
+      },
+      "diameter": {
+        "value": 800,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+        "method": "Tyre diameter the GLB was built with; \"7.50 R16 class\" does not give it directly",
+        "expected_error": {
+          "minus": 30,
+          "plus": 30,
+          "text": "±30 mm (tyre class only)"
+        }
+      }
+    },
+    "gvw_kg": {
+      "value": 6520,
+      "unit": "kg",
+      "confidence": "ESTIMATED",
+      "source": "BusesDekho (aggregator) Tata LP 410 specifications, https://buses.cardekho.com/buses/tata/lp-410/specifications (captured 8 Oct 2026 in donors.json 'tata-lp410-3400'; not an OEM source); also TrucksBuses https://www.trucksbuses.com/buses/chassis/school-staff/tata-lp-410/specifications",
+      "method": "Aggregator figure"
+    },
+    "rear_wheels": {
+      "value": "dual",
+      "unit": "layout",
+      "confidence": "CONFIRMED",
+      "source": "Handover vehicles.json external.rear_wheels: \"dual rear\""
+    },
+    "axles": {
+      "value": 2,
+      "unit": "count",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/data/vehicles.json",
+      "method": "One wheelbase is published per variant, so two axles"
+    }
+  },
+  "seating_as_sold": {
+    "value": "Driver only (cowl chassis)",
+    "unit": "seats",
+    "confidence": "ESTIMATED",
+    "source": "BusesDekho (aggregator) Tata LP 410 specifications, https://buses.cardekho.com/buses/tata/lp-410/specifications (captured 8 Oct 2026 in donors.json 'tata-lp410-3400'; not an OEM source)",
+    "method": "Aggregator cowl configuration"
+  },
+  "seats_as_sold_max": {
+    "value": null,
+    "unit": "seats excl. driver",
+    "confidence": "UNKNOWN",
+    "source": "Incomplete chassis: seating depends on the body builder"
+  },
+  "category_as_sold": {
+    "value": "Incomplete bus chassis (as sold). A completed passenger bus above 5 t GVW would be M3.",
+    "unit": "M/N category (AIS-053)",
+    "confidence": "ESTIMATED",
+    "source": "AIS-053 cl. 3.1.1.2 / 3.1.1.3 and IS 14272:2011 cl. 3.1.1 (rules/official_pdfs/) applied to the GVW above",
+    "method": "Rule applied by the packager; not an OEM category label"
+  },
+  "emission_standard": {
+    "value": null,
+    "unit": "emission standard",
+    "confidence": "UNKNOWN",
+    "source": "No OEM card for the 3400 mm wheelbase; one aggregator listing reportedly says BS-III (handover open question 15)"
+  },
+  "availability": {
+    "value": "uncertain",
+    "unit": "status",
+    "confidence": "ESTIMATED",
+    "source": "Handover open question 15: Tata lists LP 410/31, /33, /36 chassis; the 3400 mm wheelbase card was not found and may not be current"
+  },
+  "base_price_ex_showroom": {
+    "value": null,
+    "unit": "INR",
+    "confidence": "UNKNOWN",
+    "source": "No OEM ex-showroom price found.",
+    "leads": [
+      {
+        "value": 1370000,
+        "unit": "INR",
+        "confidence": "ESTIMATED",
+        "source": "TrucksBuses Tata LP 410 price band (aggregator), https://www.trucksbuses.com/buses/chassis/school-staff/tata-lp-410/price, via donors.json (read 8 Oct 2026)",
+        "method": "Aggregator indicative band; chassis only"
+      }
+    ]
+  },
+  "interior": {
+    "living_x0_from_rear": {
+      "value": 60,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+      "method": "Living area starts 40 mm wall + 20 mm inside the rear face (xr = xB + t + 0.02)",
+      "expected_error": {
+        "minus": 30,
+        "plus": 60,
+        "text": "−30/+60 mm"
+      }
+    },
+    "usable_length": {
+      "value": 4405,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026); models/source/build_camper.py",
+      "method": "GLB living length: from 60 mm inside the rear wall to 360 mm behind the cab-seat backs (cab length estimated: vans 1650–1800 ±250 mm, buses 2100–2600 ±300 mm). Not a measurement.",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm"
+      }
+    },
+    "usable_width": {
+      "value": 2060,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Exterior width 2140 − 2 × 40 mm assumed wall (donors.json shellWallEachSideMm 40 ±15). No taper, trim or tumblehome allowed for.",
+      "expected_error": {
+        "minus": 60,
+        "plus": 60,
+        "text": "±60 mm (flat-sided coach body assumed)"
+      }
+    },
+    "standing_height": {
+      "value": 1840,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "GLB living-area clear height = overall height 2800 − estimated floor 900 − 40 mm roof skin − 20 mm (build_camper.py: zc = H − t − 0.02)",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm"
+      }
+    },
+    "floor_height": {
+      "value": 900,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Not published. Planning default from donors.json (vans 560 ±100 mm, Wider Body 580) / concept floor for bus bodies (LP 410 900 ±150, Eicher 950 ±150, Viking 1000 ±200)",
+      "expected_error": {
+        "minus": 200,
+        "plus": 200,
+        "text": "±150–200 mm"
+      }
+    },
+    "wheel_arch": {
+      "note": "Interior intrusion is NOT modelled in the GLB layouts (the arches are cut only in the body side walls). Values below are donors.json planning defaults, not measurements.",
+      "intrusion_from_each_side_wall": {
+        "value": 200,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchIntrusionMm (tyre size known, housing not)",
+        "expected_error": {
+          "minus": 80,
+          "plus": 80,
+          "text": "±80 mm (larger for dual rear wheels)"
+        }
+      },
+      "height_above_floor": {
+        "value": 340,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchHeightAboveFloorMm",
+        "expected_error": {
+          "minus": 80,
+          "plus": 80,
+          "text": "±80 mm"
+        }
+      },
+      "length_along_vehicle": {
+        "value": 900,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchLengthMm",
+        "expected_error": {
+          "minus": 150,
+          "plus": 150,
+          "text": "±150 mm"
+        }
+      }
+    },
+    "entry_door": {
+      "side": {
+        "value": "left",
+        "unit": "side",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Kerb (left) side, as modelled in the GLB"
+      },
+      "from_front": {
+        "value": 250,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Converted from the handover x-from-front-axle: front overhang − x",
+        "expected_error": {
+          "minus": 300,
+          "plus": 300,
+          "text": "±300 mm"
+        }
+      },
+      "to_front": {
+        "value": 950,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Converted from the handover x-from-front-axle: front overhang − x",
+        "expected_error": {
+          "minus": 300,
+          "plus": 300,
+          "text": "±300 mm"
+        }
+      },
+      "width": {
+        "value": 700,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "models/source/build_camper.py",
+        "method": "GLB placeholder door width",
+        "expected_error": {
+          "minus": 200,
+          "plus": 200,
+          "text": "±200 mm"
+        }
+      },
+      "height": {
+        "value": 2090,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "models/source/build_camper.py",
+        "method": "GLB placeholder: from sill to 150 mm below roof",
+        "expected_error": {
+          "minus": 200,
+          "plus": 200,
+          "text": "±200 mm"
+        }
+      },
+      "oem_door_size": {
+        "value": null,
+        "unit": "mm",
+        "confidence": "UNKNOWN",
+        "source": "OEM door opening sizes are not published on the pages read"
+      }
+    }
+  },
+  "exterior_profile": {
+    "body_bottom_height": {
+      "value": 510,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "hood_length": {
+      "value": 0,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "bumper_top_height": {
+      "value": 1060,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "hood_height": {
+      "value": 1060,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "nose_length": {
+      "value": 0,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_base_from_front": {
+      "value": 0,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_base_height": {
+      "value": 1060,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_top_from_front": {
+      "value": 120,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_top_height": {
+      "value": 2520,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "roof_start_from_front": {
+      "value": 380,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "rear_roof_corner_radius": {
+      "value": 100,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "window_sill_height": {
+      "value": 1750,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "window_top_height": {
+      "value": 2500,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cladding_bottom_height": {
+      "value": 1590,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cladding_top_height": {
+      "value": 1670,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cab_door": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not modelled; the coach body does not exist yet"
+    },
+    "sliding_door": {
+      "value": {
+        "from_front": 250,
+        "to_front": 950,
+        "side": "left"
+      },
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "GLB placeholder entry door at the front of the coach body (x 0.25–0.95 m behind the nose)",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm position, ±200 mm size"
+      }
+    },
+    "cab_window": {
+      "value": {
+        "from_front": 250,
+        "to_front": 2000
+      },
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "side_windows_from_front": {
+      "value": [
+        [
+          2250,
+          3600
+        ],
+        [
+          3740,
+          5090
+        ]
+      ],
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "wheel_arch_clearance": {
+      "value": 60,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    }
+  },
+  "glb": {
+    "file": "assets/models/tata_lp410_3400wb.glb",
+    "handover_file": "data/handover/rv_handover_part1_models_data_research/models/tata_lp410_3400wb.glb",
+    "original": "tata_lp410_3400_motorhome.glb",
+    "sha256": "fc70046ab7289cb60da047554b3ddc206c82dbaea58586d2e134da1b2c555753",
+    "units": "metres",
+    "up_axis": "+Y",
+    "forward_axis": "+X (nose)",
+    "kerb_side": "−Z (left)",
+    "origin": "Mid-length of the body, on the centreline, at ground level. NOT the front axle and NOT the repo origin (rear bumper). Repo x (mm from rear bumper) = (glb_x_m + L/2) × 1000.",
+    "front_axle_x_in_glb_m": 2.033,
+    "rear_axle_x_in_glb_m": -1.367,
+    "built_with": {
+      "front_overhang_mm": 1275,
+      "ground_clearance_mm": 210,
+      "floor_mm": 900,
+      "cab_mm": 2100
+    },
+    "layout_as_built": "fixed rear transverse double bed 2060x1400 mm over a storage garage; wet room with cassette toilet, shower tray and washbasin; kitchenette 1300 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); tall wardrobe; overhead lockers; water tank 173 L, 1 x 100 Ah LiFePO4 battery + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+  }
+}

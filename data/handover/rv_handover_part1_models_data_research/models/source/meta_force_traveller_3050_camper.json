@@ -1,0 +1,20 @@
+{
+ "id": "force_traveller_3050_camper",
+ "name": "Force Traveller N 3050WB",
+ "kind": "van",
+ "L": 5.1,
+ "W": 1.925,
+ "H": 2.615,
+ "WB": 3.05,
+ "FOH": 0.9,
+ "ROH": 1.15,
+ "tyre": "215/75 R15 (OEM page)",
+ "tyre_d": 0.704,
+ "floor": 0.56,
+ "cab": 1.7,
+ "living_len": 3.08,
+ "living_w": 1.845,
+ "living_h": 1.995,
+ "src": "L/W/H/WB/GC/GVW 5100x1925x2615, WB 3050, GC 200, GVW 3675: Force Motors page forcemotors.com/vehicles/traveller-3050wb/ (OEM). Front overhang 900, floor 560, cab 1700 estimated (donors.json interior block)",
+ "layout": "fixed rear transverse double bed 1845x1250 mm over a storage garage; kitchenette 1100 mm with 2-burner cooktop and sink; dinette 1500x1195 mm (2 facing benches + removable table, converts to a 2nd bed); overhead lockers; water tank 173 L, 1 x 100 Ah LiFePO4 battery + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+}

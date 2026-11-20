@@ -1,8 +1,11 @@
-// Shared vehicle model for every view (3D viewer, 2D top view, later the side profile).
+// Shared vehicle model for every view (3D viewer, 2D top view, side profile) and the
+// eligibility engine.
 //
-// Loads data/urbania-17.json and derives all shared geometry from it ONCE, so the
-// views can never disagree with each other. Nothing in here invents a dimension:
-// every number comes from the JSON. Views only convert units and draw.
+// Loads one vehicle file, data/vehicles/<id>.json, and derives all shared geometry from it
+// ONCE, so the views can never disagree with each other. Nothing in here invents a dimension:
+// every number comes from the file. Each number there is { value, unit, confidence, source };
+// toSpec() unwraps them into plain numbers for the geometry and keeps the provenance in
+// spec.provenance[path], so a view can say which numbers are estimates.
 //
 // Vehicle frame (all millimetres):
 //   x: 0 at the rear bumper, increasing toward the front (0 .. body.length)
@@ -11,21 +14,72 @@
 //
 // Usage (plain script, no bundler):
 //   <script src="js/vehicle.js"></script>
-//   const V = await Vehicle.load();   // { spec, layout }
+//   const V = await Vehicle.load('force_traveller_3350wb');   // { spec, layout, components, camper }
+//   Vehicle.load() with no id loads DEFAULT_ID (the Urbania 4400 the 3D viewer is built for).
 (function (global) {
   'use strict';
 
-  const DATA_URL = 'data/urbania-17.json';
+  const DEFAULT_ID = 'force_urbania_4400wb';
+  const INDEX_URL = 'data/vehicles/index.json';
+  const vehicleUrl = id => `data/vehicles/${encodeURIComponent(id)}.json`;
   const COMPONENTS_URL = 'data/components.json';
 
   function warn(msg) { console.warn('[vehicle] ' + msg); }
+
+  // { value, unit, confidence, source } → value, recursively; provenance kept by dotted path.
+  function unwrap(node, path, prov) {
+    if (node && typeof node === 'object' && !Array.isArray(node)) {
+      if ('value' in node && 'confidence' in node) { prov[path] = node; return node.value; }
+      const out = {};
+      Object.keys(node).forEach(k => { out[k] = unwrap(node[k], path ? path + '.' + k : k, prov); });
+      return out;
+    }
+    return node;
+  }
+
+  // Vehicle file → the plain-number spec every view and layout() use.
+  function toSpec(file) {
+    const prov = {};
+    const body = unwrap(file.body, 'body', prov);
+    const interior = unwrap(file.interior, 'interior', prov);
+    const ep = unwrap(file.exterior_profile, 'exterior_profile', prov);
+    const x0 = interior.living_x0_from_rear;
+    const arch = interior.wheel_arch;
+    const profile = Object.assign({}, ep);
+    delete profile.body_bottom_height; delete profile.hood_length;
+    return {
+      id: file.id, vehicle: file.display_name, kind: file.kind, body_build: file.body_build, body_family: file.body_family,
+      body, interior,
+      assumptions: {
+        cab_depth: body.length - x0 - interior.usable_length,
+        rear_wall_thickness: x0,
+        interior_wall_thickness: (body.width - interior.usable_width) / 2,
+        hood_length: ep.hood_length,
+        body_bottom_height: ep.body_bottom_height,
+        floor_height: interior.floor_height,
+        wheel_housing: { length: arch.length_along_vehicle, width: arch.intrusion_from_each_side_wall, height: arch.height_above_floor },
+        profile,
+      },
+      stock_seating: file.stock_seating || null,
+      seats_as_sold_max: file.seats_as_sold_max ? file.seats_as_sold_max.value : null,
+      gvw_kg: body.gvw_kg,
+      emission_standard: file.emission_standard ? file.emission_standard.value : null,
+      provenance: prov,
+      raw: file,
+    };
+  }
+
+  // Provenance of a dotted path, e.g. confidence(spec, 'body.front_overhang') → 'ESTIMATED'
+  function provenance(spec, path) { return spec.provenance[path] || null; }
+  function confidence(spec, path) { const p = provenance(spec, path); return p ? p.confidence : null; }
 
   // Sanity checks on the data itself. These only warn — the drawing must still come up.
   function validate(spec) {
     const b = spec.body;
     const sumL = b.front_overhang + b.wheelbase + b.rear_overhang;
-    if (sumL !== b.length) warn(`front_overhang + wheelbase + rear_overhang = ${sumL}, but body.length = ${b.length}`);
+    if (sumL !== b.length) warn(`${spec.id}: front_overhang + wheelbase + rear_overhang = ${sumL}, but body.length = ${b.length}`);
     const s = spec.stock_seating;
+    if (!s) return;
     const skipped = (s.rows_without_left_seat || []).length;
     const counted = s.front_seats + s.middle_rows * (s.seats_per_row_left + s.seats_per_row_right) - skipped * s.seats_per_row_left + s.rear_bench_seats;
     if (counted !== s.total) warn(`stock_seating adds up to ${counted} seats, but total = ${s.total}`);
@@ -53,48 +107,53 @@
     cab.length = cab.x1 - cab.x0;
     cab.area_m2 = Math.round(cab.length * cab.width / 1e4) / 100;
 
-    // Wheels: size from the tyre code (rim + 2 × sidewall), position from the track (centre to centre)
+    // Wheels: size from the tyre code (rim + 2 × sidewall; the file carries the result), position
+    // from the track (centre to centre). Track is UNKNOWN for most variants: then the wheels are
+    // drawn with their outer face on the body side, a drawing convention flagged by trackKnown.
     const t = b.tyre;
-    const tyreDiameter = Math.round(t.rim_in * 25.4 + 2 * t.width * t.aspect / 100);
+    const tyreDiameter = t.diameter || Math.round(t.rim_in * 25.4 + 2 * t.width * t.aspect / 100);
+    const trackKnown = b.front_track != null && b.rear_track != null;
     const wheels = [];
     [[frontAxleX, b.front_track], [rearAxleX, b.rear_track]].forEach(([x, track]) => [-1, 1].forEach(side => wheels.push({
-      x, y: side * track / 2, diameter: tyreDiameter, width: t.width, side,
+      x, y: side * (track != null ? track / 2 : W / 2 - t.width / 2), diameter: tyreDiameter, width: t.width, side,
     })));
 
-    // ---- Stock seating ----
+    // ---- Stock seating (only where a seat layout was matched to an OEM drawing) ----
     // Every seat is a rectangle centred at (cx, cy): `depth` runs along x (front–rear),
     // `width` runs along y (left–right). All seats face the front.
     const seats = [];
-    const groupWidth = n => n * s.seat_width + (n - 1) * s.paired_seat_gap;
+    if (s) {
+      const groupWidth = n => n * s.seat_width + (n - 1) * s.paired_seat_gap;
 
-    // Cab: driver (right, RHD) and co-driver (left)
-    const cabX = L - s.cab_seat_center_from_front;
-    seats.push({ kind: 'driver', cx: cabX, cy: +s.cab_seat_lateral_offset, depth: s.cab_seat_depth, width: s.cab_seat_width, count: 1 });
-    seats.push({ kind: 'codriver', cx: cabX, cy: -s.cab_seat_lateral_offset, depth: s.cab_seat_depth, width: s.cab_seat_width, count: 1 });
+      // Cab: driver (right, RHD) and co-driver (left)
+      const cabX = L - s.cab_seat_center_from_front;
+      seats.push({ kind: 'driver', cx: cabX, cy: +s.cab_seat_lateral_offset, depth: s.cab_seat_depth, width: s.cab_seat_width, count: 1 });
+      seats.push({ kind: 'codriver', cx: cabX, cy: -s.cab_seat_lateral_offset, depth: s.cab_seat_depth, width: s.cab_seat_width, count: 1 });
 
-    // Middle rows: a group on each side of the aisle. The aisle can be off-centre
-    // (aisle_center_offset), a row can have no left seat (sliding door), and the left
-    // seats can sit further back than the right ones (left_row_offset).
-    const aisleC = s.aisle_center_offset || 0;
-    const skip = new Set(s.rows_without_left_seat || []);
-    const wLeft = groupWidth(s.seats_per_row_left), wRight = groupWidth(s.seats_per_row_right);
-    for (let r = 0; r < s.middle_rows; r++) {
-      const cx = interior.x1 - s.first_row_setback - r * s.row_pitch;
-      if (s.seats_per_row_left > 0 && !skip.has(r + 1)) {
-        seats.push({ kind: 'row', side: 'left', row: r, cx: cx - (s.left_row_offset || 0), cy: aisleC - (s.aisle_width / 2 + wLeft / 2), depth: s.seat_depth, width: wLeft, count: s.seats_per_row_left });
+      // Middle rows: a group on each side of the aisle. The aisle can be off-centre
+      // (aisle_center_offset), a row can have no left seat (sliding door), and the left
+      // seats can sit further back than the right ones (left_row_offset).
+      const aisleC = s.aisle_center_offset || 0;
+      const skip = new Set(s.rows_without_left_seat || []);
+      const wLeft = groupWidth(s.seats_per_row_left), wRight = groupWidth(s.seats_per_row_right);
+      for (let r = 0; r < s.middle_rows; r++) {
+        const cx = interior.x1 - s.first_row_setback - r * s.row_pitch;
+        if (s.seats_per_row_left > 0 && !skip.has(r + 1)) {
+          seats.push({ kind: 'row', side: 'left', row: r, cx: cx - (s.left_row_offset || 0), cy: aisleC - (s.aisle_width / 2 + wLeft / 2), depth: s.seat_depth, width: wLeft, count: s.seats_per_row_left });
+        }
+        if (s.seats_per_row_right > 0) {
+          seats.push({ kind: 'row', side: 'right', row: r, cx, cy: aisleC + (s.aisle_width / 2 + wRight / 2), depth: s.seat_depth, width: wRight, count: s.seats_per_row_right });
+        }
       }
-      if (s.seats_per_row_right > 0) {
-        seats.push({ kind: 'row', side: 'right', row: r, cx, cy: aisleC + (s.aisle_width / 2 + wRight / 2), depth: s.seat_depth, width: wRight, count: s.seats_per_row_right });
-      }
-    }
 
-    // Rear bench spans from the left seats' outer edge to the right seats' outer edge, set back from the rear wall
-    const yLeftOuter = aisleC - s.aisle_width / 2 - wLeft, yRightOuter = aisleC + s.aisle_width / 2 + wRight;
-    seats.push({
-      kind: 'bench',
-      cx: interior.x0 + s.rear_bench_setback + s.rear_bench_depth / 2, cy: (yLeftOuter + yRightOuter) / 2,
-      depth: s.rear_bench_depth, width: yRightOuter - yLeftOuter, count: s.rear_bench_seats,
-    });
+      // Rear bench spans from the left seats' outer edge to the right seats' outer edge, set back from the rear wall
+      const yLeftOuter = aisleC - s.aisle_width / 2 - wLeft, yRightOuter = aisleC + s.aisle_width / 2 + wRight;
+      seats.push({
+        kind: 'bench',
+        cx: interior.x0 + s.rear_bench_setback + s.rear_bench_depth / 2, cy: (yLeftOuter + yRightOuter) / 2,
+        depth: s.rear_bench_depth, width: yRightOuter - yLeftOuter, count: s.rear_bench_seats,
+      });
+    } // stock seating
 
     const seatCount = seats.reduce((n, seat) => n + seat.count, 0);
 
@@ -109,7 +168,7 @@
       axle: w.x === frontAxleX ? 'front' : 'rear',
     })).filter(h => h.x1 > interior.x0 && h.x0 < interior.x1); // only those inside the passenger cabin
 
-    return { frontAxleX, rearAxleX, partitionX, interior, cab, wheels, tyreDiameter, wheelHousings, seats, seatCount };
+    return { frontAxleX, rearAxleX, partitionX, interior, cab, wheels, tyreDiameter, trackKnown, wheelHousings, seats, seatCount };
   }
 
   // ---- Exterior side profile (vehicle frame: x from the rear bumper, z above ground), all mm ----
@@ -148,13 +207,15 @@
     const windshield = [
       [wb[0] - 90, wb[1] + 60], [wt[0] - 90, wt[1] - 70], [wt[0] - 400, wt[1] - 70], [wb[0] - 400, wb[1] + 60],
     ];
-    const cabDoor = { x0: fx(pr.cab_door.to_front), x1: fx(pr.cab_door.from_front) };
+    // Cab door: only where an OEM side render gives it (Urbania); otherwise null and not drawn.
+    const cabDoor = pr.cab_door ? { x0: fx(pr.cab_door.to_front), x1: fx(pr.cab_door.from_front) } : null;
     const slidingDoor = { x0: fx(pr.sliding_door.to_front), x1: fx(pr.sliding_door.from_front), side: pr.sliding_door.side };
     const windows = [
-      { id: 'cab_door', x0: cabDoor.x0 + 60, x1: cabDoor.x1 - 120, z0: pr.window_sill_height, z1: pr.window_top_height - 60 },
+      cabDoor ? { id: 'cab_door', x0: cabDoor.x0 + 60, x1: cabDoor.x1 - 120, z0: pr.window_sill_height, z1: pr.window_top_height - 60 }
+        : pr.cab_window ? { id: 'cab', x0: fx(pr.cab_window.to_front), x1: fx(pr.cab_window.from_front), z0: pr.window_sill_height, z1: pr.window_top_height } : null,
       { id: 'sliding_door', x0: slidingDoor.x0 + 50, x1: slidingDoor.x1 - 50, z0: pr.window_sill_height, z1: pr.window_top_height },
       ...pr.side_windows_from_front.map(([f0, f1], i) => ({ id: 'side_' + (i + 1), x0: fx(f1), x1: fx(f0), z0: pr.window_sill_height, z1: pr.window_top_height })),
-    ];
+    ].filter(Boolean);
     const cladding = { x0: 0, x1: L, z0: pr.cladding_bottom_height, z1: pr.cladding_top_height };
     const wheels = [lay.frontAxleX, lay.rearAxleX].map(x => ({ x, z: tyreR, r: tyreR, hubR: tyreR * 0.48 }));
     return { outline, windshield, cabDoor, slidingDoor, windows, cladding, wheels, floor: a.floor_height, groundClearance: b.ground_clearance, tyreR };
@@ -237,10 +298,17 @@
     });
     sel.layout = q.get('layout') || null;
     sel.view = q.get('view') || null;     // 3D camera preset (cutaway / topdown / full), used by index.html
+    sel.vehicle = q.get('vehicle') || null; // data/vehicles/<id>.json; null = DEFAULT_ID
     return sel;
+  }
+  // Vehicle id from the page URL (?vehicle=...), or the default
+  function vehicleFromUrl(search) {
+    const q = new URLSearchParams(search === undefined ? location.search : search);
+    return q.get('vehicle') || DEFAULT_ID;
   }
   function selectionQuery(sel, extra) {
     const q = new URLSearchParams();
+    if (sel.vehicle) q.set('vehicle', sel.vehicle);
     if (sel.layout) q.set('layout', sel.layout);
     if (sel.view) q.set('view', sel.view);
     q.set('modules', sel.modules.join(','));
@@ -317,8 +385,9 @@
     return res.json();
   }
 
-  async function load(url) {
-    const spec = await fetchJson(url || DATA_URL);
+  async function load(id) {
+    const vid = id || DEFAULT_ID;
+    const spec = toSpec(await fetchJson(vehicleUrl(vid)));
     validate(spec);
     let components = null;
     try { components = await fetchJson(COMPONENTS_URL); }
@@ -326,18 +395,52 @@
     return { spec, layout: layout(spec), components, camper: components ? camperZones(spec, components) : null };
   }
 
-  // Human-readable spec lines shared by the info panels of every view.
+  // [{ id, display_name, kind, body_family, wheelbase, ... }] for a vehicle picker
+  async function list() {
+    const idx = await fetchJson(INDEX_URL);
+    return idx.vehicles;
+  }
+
+  // Fill a <select> with every vehicle; picking one reloads the page with ?vehicle=<id>,
+  // keeping the rest of the selection (layout, modules) in the URL.
+  async function mountPicker(selectEl, currentId, selection) {
+    const vehicles = await list();
+    const group = { van: 'Vans (complete vehicles)', bus_chassis: 'Bus chassis (coach body to be built)' };
+    Object.keys(group).forEach(kind => {
+      const og = document.createElement('optgroup');
+      og.label = group[kind];
+      vehicles.filter(v => v.kind === kind).forEach(v => {
+        const o = document.createElement('option');
+        o.value = v.id; o.textContent = v.display_name; o.selected = v.id === currentId;
+        og.appendChild(o);
+      });
+      selectEl.appendChild(og);
+    });
+    selectEl.addEventListener('change', () => {
+      location.search = selectionQuery(Object.assign({ modules: [], variants: {} }, selection, { vehicle: selectEl.value }));
+    });
+  }
+
+  // Human-readable spec lines shared by the info panels of every view. "(est.)" marks an
+  // ESTIMATED number, "unknown" an UNKNOWN one.
   function specLines(spec) {
     const b = spec.body, s = spec.stock_seating;
+    const v = (path, val, unit) => {
+      const c = confidence(spec, path);
+      if (val == null) return 'unknown';
+      return `${val}${unit || ''}${c === 'ESTIMATED' ? ' (est.)' : ''}`;
+    };
     return {
-      size: `Length ${b.length}mm · Width ${b.width}mm · Height ${b.height}mm`,
-      chassis: `Wheelbase ${b.wheelbase}mm · Track ${b.front_track}mm · Ground clearance ${b.ground_clearance}mm · Tyres ${b.tyre.size} · GVW ${b.gvw_kg} kg`,
-      overhang: `Front overhang ${b.front_overhang}mm · Rear overhang ${b.rear_overhang}mm`,
-      seating: `Stock layout: ${s.pattern} = ${s.total}`,
+      size: `Length ${v('body.length', b.length, 'mm')} · Width ${v('body.width', b.width, 'mm')} · Height ${v('body.height', b.height, 'mm')}`,
+      chassis: `Wheelbase ${v('body.wheelbase', b.wheelbase, 'mm')} · Track ${v('body.front_track', b.front_track, 'mm')} · Ground clearance ${v('body.ground_clearance', b.ground_clearance, 'mm')} · Tyres ${b.tyre.size} · GVW ${v('body.gvw_kg', b.gvw_kg, ' kg')}`,
+      overhang: `Front overhang ${v('body.front_overhang', b.front_overhang, 'mm')} · Rear overhang ${v('body.rear_overhang', b.rear_overhang, 'mm')}`,
+      seating: s ? `Stock layout: ${s.pattern} = ${s.total}` : 'Stock seat layout: not available (no OEM layout drawing in the data)',
       oneLine: `L ${b.length}mm · W ${b.width}mm · H ${b.height}mm · Wheelbase ${b.wheelbase}mm · F/R overhang ${b.front_overhang}/${b.rear_overhang}mm`,
     };
   }
 
-  global.Vehicle = { load, layout, validate, specLines, sideProfile, camperZones, camperPlacements, priceRange, componentPrice, variantOf,
-    defaultSelection, readSelection, selectionQuery, writeSelection, DATA_URL, COMPONENTS_URL };
-})(window);
+  const api = { load, list, mountPicker, toSpec, layout, validate, specLines, sideProfile, camperZones, camperPlacements, priceRange, componentPrice, variantOf,
+    defaultSelection, readSelection, selectionQuery, writeSelection, vehicleFromUrl, provenance, confidence, DEFAULT_ID, INDEX_URL, COMPONENTS_URL };
+  global.Vehicle = api;
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);

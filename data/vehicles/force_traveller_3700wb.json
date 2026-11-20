@@ -1,0 +1,523 @@
+{
+  "id": "force_traveller_3700wb",
+  "schema": "rv-vehicle/1",
+  "display_name": "Force Motors Traveller N 3700 WB",
+  "brand": "Force Motors",
+  "model": "Traveller N",
+  "variant_name": "3700WB passenger",
+  "kind": "van",
+  "body_build": "oem_monocoque",
+  "body_family": "force_traveller_n_standard",
+  "units": "mm",
+  "sources_note": "Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (data/handover/rv_handover_part1_models_data_research/data/interior_confidence_report.md).",
+  "body": {
+    "length": {
+      "value": 6235,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Force Motors, Traveller N 3700WB product page, 'Specifications' tab, 'Dimensions (mm)' / 'Weight (kg)' / 'Wheels & Tyres' blocks (web page, no page numbers), https://www.forcemotors.com/vehicles/traveller-3700wb/ (read 21 Nov 2026 IST; saved copy research/oem_snapshots/forcemotors_traveller-3700wb.html)"
+    },
+    "width": {
+      "value": 1925,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Force Motors, Traveller N 3700WB product page, 'Specifications' tab, 'Dimensions (mm)' / 'Weight (kg)' / 'Wheels & Tyres' blocks (web page, no page numbers), https://www.forcemotors.com/vehicles/traveller-3700wb/ (read 21 Nov 2026 IST; saved copy research/oem_snapshots/forcemotors_traveller-3700wb.html)"
+    },
+    "height": {
+      "value": 2640,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Force Motors, Traveller N 3700WB product page, 'Specifications' tab, 'Dimensions (mm)' / 'Weight (kg)' / 'Wheels & Tyres' blocks (web page, no page numbers), https://www.forcemotors.com/vehicles/traveller-3700wb/ (read 21 Nov 2026 IST; saved copy research/oem_snapshots/forcemotors_traveller-3700wb.html)"
+    },
+    "wheelbase": {
+      "value": 3700,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Force Motors, Traveller N 3700WB product page, 'Specifications' tab, 'Dimensions (mm)' / 'Weight (kg)' / 'Wheels & Tyres' blocks (web page, no page numbers), https://www.forcemotors.com/vehicles/traveller-3700wb/ (read 21 Nov 2026 IST; saved copy research/oem_snapshots/forcemotors_traveller-3700wb.html)"
+    },
+    "ground_clearance": {
+      "value": 200,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Force Motors, Traveller N 3700WB product page, 'Specifications' tab, 'Dimensions (mm)' / 'Weight (kg)' / 'Wheels & Tyres' blocks (web page, no page numbers), https://www.forcemotors.com/vehicles/traveller-3700wb/ (read 21 Nov 2026 IST; saved copy research/oem_snapshots/forcemotors_traveller-3700wb.html)"
+    },
+    "front_overhang": {
+      "value": 900,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Front overhang not published for Traveller N. 900 mm taken from the older BS-IV Traveller 3350 Super brochure (via donors.json 'force-traveller-n-3350' interior.frontOverhangMm) and applied to all Traveller N wheelbases",
+      "expected_error": {
+        "minus": 150,
+        "plus": 150,
+        "text": "±150 mm"
+      }
+    },
+    "rear_overhang": {
+      "value": 1635,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Derived: overall length 6235 − wheelbase 3700 − estimated front overhang 900",
+      "expected_error": {
+        "minus": 150,
+        "plus": 150,
+        "text": "±150 mm"
+      }
+    },
+    "front_track": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not published on the OEM pages read for the handover"
+    },
+    "rear_track": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not published on the OEM pages read for the handover"
+    },
+    "tyre": {
+      "size": {
+        "value": "215/75 R15",
+        "unit": "size",
+        "confidence": "CONFIRMED",
+        "source": "Force Motors, Traveller N 3700WB product page, 'Specifications' tab, 'Dimensions (mm)' / 'Weight (kg)' / 'Wheels & Tyres' blocks (web page, no page numbers), https://www.forcemotors.com/vehicles/traveller-3700wb/ (read 21 Nov 2026 IST; saved copy research/oem_snapshots/forcemotors_traveller-3700wb.html)"
+      },
+      "width": {
+        "value": 215,
+        "unit": "mm",
+        "confidence": "CONFIRMED",
+        "source": "Section width read from the tyre size 215/75 R15",
+        "method": "From the tyre size"
+      },
+      "aspect": {
+        "value": 75,
+        "unit": "%",
+        "confidence": "CONFIRMED",
+        "source": "From the tyre size 215/75 R15"
+      },
+      "rim_in": {
+        "value": 15,
+        "unit": "in",
+        "confidence": "CONFIRMED",
+        "source": "From the tyre size 215/75 R15"
+      },
+      "diameter": {
+        "value": 704,
+        "unit": "mm",
+        "confidence": "CONFIRMED",
+        "source": "Derived from the tyre size 215/75 R15",
+        "method": "rim × 25.4 + 2 × width × aspect"
+      }
+    },
+    "gvw_kg": {
+      "value": 4400,
+      "unit": "kg",
+      "confidence": "CONFIRMED",
+      "source": "Force Motors, Traveller N 3700WB product page, 'Specifications' tab, 'Dimensions (mm)' / 'Weight (kg)' / 'Wheels & Tyres' blocks (web page, no page numbers), https://www.forcemotors.com/vehicles/traveller-3700wb/ (read 21 Nov 2026 IST; saved copy research/oem_snapshots/forcemotors_traveller-3700wb.html)"
+    },
+    "rear_wheels": {
+      "value": "single",
+      "unit": "layout",
+      "confidence": "CONFIRMED",
+      "source": "Handover vehicles.json external.rear_wheels: \"single rear (4+1 tyres)\""
+    },
+    "axles": {
+      "value": 2,
+      "unit": "count",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/data/vehicles.json",
+      "method": "One wheelbase is published per variant, so two axles"
+    }
+  },
+  "seating_as_sold": {
+    "value": "12/17+D",
+    "unit": "seats (+D = plus driver)",
+    "confidence": "CONFIRMED",
+    "source": "Force Motors, Traveller N 3700WB product page, 'Specifications' tab, 'Dimensions (mm)' / 'Weight (kg)' / 'Wheels & Tyres' blocks (web page, no page numbers), https://www.forcemotors.com/vehicles/traveller-3700wb/ (read 21 Nov 2026 IST; saved copy research/oem_snapshots/forcemotors_traveller-3700wb.html)"
+  },
+  "seats_as_sold_max": {
+    "value": 17,
+    "unit": "seats excl. driver",
+    "confidence": "CONFIRMED",
+    "source": "Force Motors, Traveller N 3700WB product page, 'Specifications' tab, 'Dimensions (mm)' / 'Weight (kg)' / 'Wheels & Tyres' blocks (web page, no page numbers), https://www.forcemotors.com/vehicles/traveller-3700wb/ (read 21 Nov 2026 IST; saved copy research/oem_snapshots/forcemotors_traveller-3700wb.html)",
+    "method": "Largest option in \"12/17+D\""
+  },
+  "category_as_sold": {
+    "value": "M2 (as a seated passenger van)",
+    "unit": "M/N category (AIS-053)",
+    "confidence": "ESTIMATED",
+    "source": "AIS-053 cl. 3.1.1.2 / 3.1.1.3 and IS 14272:2011 cl. 3.1.1 (rules/official_pdfs/) applied to the published seats and GVW",
+    "method": "More than 8 passenger seats plus driver and GVW not above 5 t. Not an OEM label."
+  },
+  "emission_standard": {
+    "value": "BS-VI Stage 2",
+    "unit": "emission standard",
+    "confidence": "CONFIRMED",
+    "source": "Force Motors Traveller 3700WB page; data/handover/rv_handover_part1_models_data_research/research/oem_snapshots/forcemotors_traveller-3700wb.html"
+  },
+  "availability": {
+    "value": "current",
+    "unit": "status",
+    "confidence": "CONFIRMED",
+    "source": "Listed on the OEM site as read for the handover (21 Nov 2026)"
+  },
+  "base_price_ex_showroom": {
+    "value": 2008000,
+    "unit": "INR",
+    "confidence": "CONFIRMED",
+    "source": "Force Motors, Traveller N 3700WB product page header 'Price Starts at ... Lakh*'; footnote on the same page: '* Indicates Ex-showroom price'. https://www.forcemotors.com/vehicles/traveller-3700wb/ (read 21 Nov 2026 IST; saved copy research/oem_snapshots/forcemotors_traveller-3700wb.html). City and seating option not stated.",
+    "note": "Starting ex-showroom price Rs 20.08 lakh for the seated passenger van; not a camper price"
+  },
+  "interior": {
+    "living_x0_from_rear": {
+      "value": 60,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+      "method": "Living area starts 40 mm wall + 20 mm inside the rear face (xr = xB + t + 0.02)",
+      "expected_error": {
+        "minus": 30,
+        "plus": 60,
+        "text": "−30/+60 mm"
+      }
+    },
+    "usable_length": {
+      "value": 4215,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026); models/source/build_camper.py",
+      "method": "GLB living length: from 60 mm inside the rear wall to 360 mm behind the cab-seat backs (cab length estimated: vans 1650–1800 ±250 mm, buses 2100–2600 ±300 mm). Not a measurement.",
+      "expected_error": {
+        "minus": 250,
+        "plus": 250,
+        "text": "±250 mm"
+      }
+    },
+    "usable_width": {
+      "value": 1845,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Exterior width 1925 − 2 × 40 mm assumed wall (donors.json shellWallEachSideMm 40 ±15). No taper, trim or tumblehome allowed for.",
+      "expected_error": {
+        "minus": 200,
+        "plus": 30,
+        "text": "−200/+30 mm (Force delivery-van leaflet shows 1680 mm cargo width on the 1925 mm Traveller body, i.e. up to ~165 mm less than this estimate)"
+      }
+    },
+    "standing_height": {
+      "value": 2020,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "GLB living-area clear height = overall height 2640 − estimated floor 560 − 40 mm roof skin − 20 mm (build_camper.py: zc = H − t − 0.02)",
+      "expected_error": {
+        "minus": 100,
+        "plus": 100,
+        "text": "±100 mm"
+      }
+    },
+    "floor_height": {
+      "value": 560,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Not published. Planning default from donors.json (vans 560 ±100 mm, Wider Body 580) / concept floor for bus bodies (LP 410 900 ±150, Eicher 950 ±150, Viking 1000 ±200)",
+      "expected_error": {
+        "minus": 100,
+        "plus": 100,
+        "text": "±100 mm"
+      }
+    },
+    "wheel_arch": {
+      "note": "Interior intrusion is NOT modelled in the GLB layouts (the arches are cut only in the body side walls). Values below are donors.json planning defaults, not measurements.",
+      "intrusion_from_each_side_wall": {
+        "value": 200,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchIntrusionMm (tyre size known, housing not)",
+        "expected_error": {
+          "minus": 80,
+          "plus": 80,
+          "text": "±80 mm (larger for dual rear wheels)"
+        }
+      },
+      "height_above_floor": {
+        "value": 340,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchHeightAboveFloorMm",
+        "expected_error": {
+          "minus": 80,
+          "plus": 80,
+          "text": "±80 mm"
+        }
+      },
+      "length_along_vehicle": {
+        "value": 900,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchLengthMm",
+        "expected_error": {
+          "minus": 150,
+          "plus": 150,
+          "text": "±150 mm"
+        }
+      }
+    },
+    "entry_door": {
+      "side": {
+        "value": "left",
+        "unit": "side",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Kerb (left) side, as modelled in the GLB"
+      },
+      "from_front": {
+        "value": 1750,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Converted from the handover x-from-front-axle: front overhang − x",
+        "expected_error": {
+          "minus": 300,
+          "plus": 300,
+          "text": "±300 mm"
+        }
+      },
+      "to_front": {
+        "value": 2650,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Converted from the handover x-from-front-axle: front overhang − x",
+        "expected_error": {
+          "minus": 300,
+          "plus": 300,
+          "text": "±300 mm"
+        }
+      },
+      "width": {
+        "value": 900,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "models/source/build_camper.py",
+        "method": "GLB placeholder door width",
+        "expected_error": {
+          "minus": 200,
+          "plus": 200,
+          "text": "±200 mm"
+        }
+      },
+      "height": {
+        "value": 2120,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "models/source/build_camper.py",
+        "method": "GLB placeholder: from sill to 150 mm below roof",
+        "expected_error": {
+          "minus": 200,
+          "plus": 200,
+          "text": "±200 mm"
+        }
+      },
+      "oem_door_size": {
+        "value": null,
+        "unit": "mm",
+        "confidence": "UNKNOWN",
+        "source": "OEM door opening sizes are not published on the pages read"
+      }
+    }
+  },
+  "exterior_profile": {
+    "body_bottom_height": {
+      "value": 320,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "hood_length": {
+      "value": 850,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "bumper_top_height": {
+      "value": 1100,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "hood_height": {
+      "value": 1250,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "nose_length": {
+      "value": 850,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_base_from_front": {
+      "value": 850,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_base_height": {
+      "value": 1250,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_top_from_front": {
+      "value": 1450,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_top_height": {
+      "value": 2590,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "roof_start_from_front": {
+      "value": 1700,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "rear_roof_corner_radius": {
+      "value": 80,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "window_sill_height": {
+      "value": 1300,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "window_top_height": {
+      "value": 2340,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cladding_bottom_height": {
+      "value": 1140,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cladding_top_height": {
+      "value": 1220,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cab_door": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Cab doors are not modelled in the GLB and not published"
+    },
+    "sliding_door": {
+      "value": {
+        "from_front": 2010,
+        "to_front": 2910,
+        "side": "left"
+      },
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "GLB placeholder kerb-side entry door, 50–950 mm behind the estimated cab boundary",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm position, ±200 mm size (interior_confidence_report.md)"
+      }
+    },
+    "cab_window": {
+      "value": {
+        "from_front": 1210,
+        "to_front": 1810
+      },
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "side_windows_from_front": {
+      "value": [
+        [
+          2060,
+          3110
+        ],
+        [
+          3250,
+          4300
+        ],
+        [
+          4440,
+          5490
+        ]
+      ],
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "wheel_arch_clearance": {
+      "value": 60,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    }
+  },
+  "glb": {
+    "file": "assets/models/force_traveller_3700wb.glb",
+    "handover_file": "data/handover/rv_handover_part1_models_data_research/models/force_traveller_3700wb.glb",
+    "original": "force_traveller_3700_camper.glb",
+    "sha256": "aaa1f78e8e41f5beead0e9d82ededf2cadbd152b2237024413a156ee6763b8c0",
+    "units": "metres",
+    "up_axis": "+Y",
+    "forward_axis": "+X (nose)",
+    "kerb_side": "−Z (left)",
+    "origin": "Mid-length of the body, on the centreline, at ground level. NOT the front axle and NOT the repo origin (rear bumper). Repo x (mm from rear bumper) = (glb_x_m + L/2) × 1000.",
+    "front_axle_x_in_glb_m": 2.217,
+    "rear_axle_x_in_glb_m": -1.482,
+    "built_with": {
+      "front_overhang_mm": 900,
+      "ground_clearance_mm": 200,
+      "floor_mm": 560,
+      "cab_mm": 1700
+    },
+    "layout_as_built": "fixed rear transverse double bed 1845x1400 mm over a storage garage; kitchenette 1300 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1195 mm (2 facing benches + removable table, converts to a 2nd bed); tall wardrobe; overhead lockers; water tank 173 L, 1 x 100 Ah LiFePO4 battery + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+  }
+}

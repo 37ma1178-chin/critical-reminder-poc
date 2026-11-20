@@ -1,0 +1,544 @@
+{
+  "id": "eicher_pro3010l_5260wb",
+  "schema": "rv-vehicle/1",
+  "display_name": "Eicher (VE Commercial Vehicles) Pro 3010 L (bus chassis) 5260 WB",
+  "brand": "Eicher (VE Commercial Vehicles)",
+  "model": "Pro 3010 L (bus chassis)",
+  "variant_name": "5260WB chassis with coach-built motorhome body (concept)",
+  "kind": "bus_chassis",
+  "body_build": "incomplete_chassis",
+  "body_family": "eicher_pro3010l_chassis",
+  "units": "mm",
+  "sources_note": "Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (data/handover/rv_handover_part1_models_data_research/data/interior_confidence_report.md).",
+  "body": {
+    "length": {
+      "value": 10159,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Eicher Trucks and Buses, Pro 3010 L chassis page, 'Specifications' table (web page, no page numbers), https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis (read 21 Nov 2026 IST; saved copy research/oem_snapshots/eicher_pro-3010-l-chassis.html)",
+      "note": "Chassis overall length; 1918 + 5260 + 2981 = 10159"
+    },
+    "width": {
+      "value": 2226,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Eicher Trucks and Buses, Pro 3010 L chassis page, 'Specifications' table (web page, no page numbers), https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis (read 21 Nov 2026 IST; saved copy research/oem_snapshots/eicher_pro-3010-l-chassis.html)",
+      "note": "Chassis overall width"
+    },
+    "height": {
+      "value": 3200,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); Eicher Trucks and Buses, Pro 3010 L chassis page, 'Specifications' table (web page, no page numbers), https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis (read 21 Nov 2026 IST; saved copy research/oem_snapshots/eicher_pro-3010-l-chassis.html)",
+      "method": "Concept body height (donors.json proposedBody, ±300 mm). OEM chassis height is 2470 mm (CONFIRMED, not a body height).",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm"
+      }
+    },
+    "wheelbase": {
+      "value": 5260,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Eicher Trucks and Buses, Pro 3010 L chassis page, 'Specifications' table (web page, no page numbers), https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis (read 21 Nov 2026 IST; saved copy research/oem_snapshots/eicher_pro-3010-l-chassis.html)"
+    },
+    "ground_clearance": {
+      "value": 185,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Eicher Trucks and Buses, Pro 3010 L chassis page, 'Specifications' table (web page, no page numbers), https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis (read 21 Nov 2026 IST; saved copy research/oem_snapshots/eicher_pro-3010-l-chassis.html)"
+    },
+    "front_overhang": {
+      "value": 1918,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Eicher Trucks and Buses, Pro 3010 L chassis page, 'Specifications' table (web page, no page numbers), https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis (read 21 Nov 2026 IST; saved copy research/oem_snapshots/eicher_pro-3010-l-chassis.html)"
+    },
+    "rear_overhang": {
+      "value": 2981,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Eicher Trucks and Buses, Pro 3010 L chassis page, 'Specifications' table (web page, no page numbers), https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis (read 21 Nov 2026 IST; saved copy research/oem_snapshots/eicher_pro-3010-l-chassis.html)"
+    },
+    "front_track": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not published on the OEM pages read for the handover"
+    },
+    "rear_track": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not published on the OEM pages read for the handover"
+    },
+    "tyre": {
+      "size": {
+        "value": "235/75 R17.5 - 14PR",
+        "unit": "size",
+        "confidence": "CONFIRMED",
+        "source": "Eicher Trucks and Buses, Pro 3010 L chassis page, 'Specifications' table (web page, no page numbers), https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis (read 21 Nov 2026 IST; saved copy research/oem_snapshots/eicher_pro-3010-l-chassis.html)"
+      },
+      "width": {
+        "value": 235,
+        "unit": "mm",
+        "confidence": "CONFIRMED",
+        "source": "Section width read from the tyre size 235/75 R17.5 - 14PR",
+        "method": "From the tyre size"
+      },
+      "aspect": {
+        "value": 75,
+        "unit": "%",
+        "confidence": "CONFIRMED",
+        "source": "From the tyre size 235/75 R17.5 - 14PR"
+      },
+      "rim_in": {
+        "value": 17.5,
+        "unit": "in",
+        "confidence": "CONFIRMED",
+        "source": "From the tyre size 235/75 R17.5 - 14PR"
+      },
+      "diameter": {
+        "value": 797,
+        "unit": "mm",
+        "confidence": "CONFIRMED",
+        "source": "Derived from the tyre size 235/75 R17.5 - 14PR",
+        "method": "rim × 25.4 + 2 × width × aspect"
+      }
+    },
+    "gvw_kg": {
+      "value": 10700,
+      "unit": "kg",
+      "confidence": "CONFIRMED",
+      "source": "Eicher Trucks and Buses, Pro 3010 L chassis page, 'Specifications' table (web page, no page numbers), https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis (read 21 Nov 2026 IST; saved copy research/oem_snapshots/eicher_pro-3010-l-chassis.html) ('GVW 10.7 t')",
+      "note": "Aggregator TrucksBuses lists 10625 kg; OEM figure used, conflict noted in open_questions.md"
+    },
+    "rear_wheels": {
+      "value": "dual",
+      "unit": "layout",
+      "confidence": "CONFIRMED",
+      "source": "Handover vehicles.json external.rear_wheels: \"dual rear\""
+    },
+    "axles": {
+      "value": 2,
+      "unit": "count",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/data/vehicles.json",
+      "method": "One wheelbase is published per variant, so two axles"
+    },
+    "chassis_height": {
+      "value": 2470,
+      "unit": "mm",
+      "confidence": "CONFIRMED",
+      "source": "Eicher Trucks and Buses, Pro 3010 L chassis page, 'Specifications' table (web page, no page numbers), https://www.eichertrucksandbuses.com/buses/bus-chassis/pro-3000-series-chassis/pro-3010-l-chassis (read 21 Nov 2026 IST; saved copy research/oem_snapshots/eicher_pro-3010-l-chassis.html)"
+    }
+  },
+  "seating_as_sold": {
+    "value": null,
+    "unit": "seats",
+    "confidence": "UNKNOWN",
+    "source": "Chassis page does not fix a seat count (a finished body would)."
+  },
+  "seats_as_sold_max": {
+    "value": null,
+    "unit": "seats excl. driver",
+    "confidence": "UNKNOWN",
+    "source": "Incomplete chassis: seating depends on the body builder"
+  },
+  "category_as_sold": {
+    "value": "Incomplete bus chassis (as sold). A completed passenger bus above 5 t GVW would be M3.",
+    "unit": "M/N category (AIS-053)",
+    "confidence": "ESTIMATED",
+    "source": "AIS-053 cl. 3.1.1.2 / 3.1.1.3 and IS 14272:2011 cl. 3.1.1 (rules/official_pdfs/) applied to the GVW above",
+    "method": "Rule applied by the packager; not an OEM category label"
+  },
+  "emission_standard": {
+    "value": "BS-VI",
+    "unit": "emission standard",
+    "confidence": "CONFIRMED",
+    "source": "Eicher Pro 3010 L chassis page (\"BSVI\"); data/handover/rv_handover_part1_models_data_research/research/oem_snapshots/eicher_pro-3010-l-chassis.html"
+  },
+  "availability": {
+    "value": "current",
+    "unit": "status",
+    "confidence": "CONFIRMED",
+    "source": "Listed on the OEM site as read for the handover (21 Nov 2026)"
+  },
+  "base_price_ex_showroom": {
+    "value": null,
+    "unit": "INR",
+    "confidence": "UNKNOWN",
+    "source": "OEM page shows only 'Get Price'.",
+    "leads": [
+      {
+        "value": [
+          2801000,
+          3531000
+        ],
+        "unit": "INR (range)",
+        "confidence": "ESTIMATED",
+        "source": "CarDekho search snippet for a fully built Skyline Pro 3010 L bus, about Rs 28.01–35.31 lakh (via donors.json, 8 Oct 2026)",
+        "method": "Built-bus band, not a chassis price; not used"
+      }
+    ]
+  },
+  "interior": {
+    "living_x0_from_rear": {
+      "value": 60,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+      "method": "Living area starts 40 mm wall + 20 mm inside the rear face (xr = xB + t + 0.02)",
+      "expected_error": {
+        "minus": 30,
+        "plus": 60,
+        "text": "−30/+60 mm"
+      }
+    },
+    "usable_length": {
+      "value": 7749,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026); models/source/build_camper.py",
+      "method": "GLB living length: from 60 mm inside the rear wall to 360 mm behind the cab-seat backs (cab length estimated: vans 1650–1800 ±250 mm, buses 2100–2600 ±300 mm). Not a measurement.",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm"
+      }
+    },
+    "usable_width": {
+      "value": 2146,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Exterior width 2226 − 2 × 40 mm assumed wall (donors.json shellWallEachSideMm 40 ±15). No taper, trim or tumblehome allowed for.",
+      "expected_error": {
+        "minus": 60,
+        "plus": 60,
+        "text": "±60 mm (flat-sided coach body assumed)"
+      }
+    },
+    "standing_height": {
+      "value": 2190,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "GLB living-area clear height = overall height 3200 − estimated floor 950 − 40 mm roof skin − 20 mm (build_camper.py: zc = H − t − 0.02)",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm"
+      }
+    },
+    "floor_height": {
+      "value": 950,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+      "method": "Not published. Planning default from donors.json (vans 560 ±100 mm, Wider Body 580) / concept floor for bus bodies (LP 410 900 ±150, Eicher 950 ±150, Viking 1000 ±200)",
+      "expected_error": {
+        "minus": 200,
+        "plus": 200,
+        "text": "±150–200 mm"
+      }
+    },
+    "wheel_arch": {
+      "note": "Interior intrusion is NOT modelled in the GLB layouts (the arches are cut only in the body side walls). Values below are donors.json planning defaults, not measurements.",
+      "intrusion_from_each_side_wall": {
+        "value": 200,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchIntrusionMm (tyre size known, housing not)",
+        "expected_error": {
+          "minus": 80,
+          "plus": 80,
+          "text": "±80 mm (larger for dual rear wheels)"
+        }
+      },
+      "height_above_floor": {
+        "value": 340,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchHeightAboveFloorMm",
+        "expected_error": {
+          "minus": 80,
+          "plus": 80,
+          "text": "±80 mm"
+        }
+      },
+      "length_along_vehicle": {
+        "value": 900,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08)",
+        "method": "donors.json planning default interior.wheelArchLengthMm",
+        "expected_error": {
+          "minus": 150,
+          "plus": 150,
+          "text": "±150 mm"
+        }
+      }
+    },
+    "entry_door": {
+      "side": {
+        "value": "left",
+        "unit": "side",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Kerb (left) side, as modelled in the GLB"
+      },
+      "from_front": {
+        "value": 250,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Converted from the handover x-from-front-axle: front overhang − x",
+        "expected_error": {
+          "minus": 300,
+          "plus": 300,
+          "text": "±300 mm"
+        }
+      },
+      "to_front": {
+        "value": 950,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules)",
+        "method": "Converted from the handover x-from-front-axle: front overhang − x",
+        "expected_error": {
+          "minus": 300,
+          "plus": 300,
+          "text": "±300 mm"
+        }
+      },
+      "width": {
+        "value": 700,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "models/source/build_camper.py",
+        "method": "GLB placeholder door width",
+        "expected_error": {
+          "minus": 200,
+          "plus": 200,
+          "text": "±200 mm"
+        }
+      },
+      "height": {
+        "value": 2515,
+        "unit": "mm",
+        "confidence": "ESTIMATED",
+        "source": "models/source/build_camper.py",
+        "method": "GLB placeholder: from sill to 150 mm below roof",
+        "expected_error": {
+          "minus": 200,
+          "plus": 200,
+          "text": "±200 mm"
+        }
+      },
+      "oem_door_size": {
+        "value": null,
+        "unit": "mm",
+        "confidence": "UNKNOWN",
+        "source": "OEM door opening sizes are not published on the pages read"
+      }
+    }
+  },
+  "exterior_profile": {
+    "body_bottom_height": {
+      "value": 485,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "hood_length": {
+      "value": 0,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "bumper_top_height": {
+      "value": 1035,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "hood_height": {
+      "value": 1035,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "nose_length": {
+      "value": 0,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_base_from_front": {
+      "value": 0,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_base_height": {
+      "value": 1035,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_top_from_front": {
+      "value": 120,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "windshield_top_height": {
+      "value": 2920,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "roof_start_from_front": {
+      "value": 380,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "rear_roof_corner_radius": {
+      "value": 100,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "window_sill_height": {
+      "value": 1800,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "window_top_height": {
+      "value": 2900,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cladding_bottom_height": {
+      "value": 1640,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cladding_top_height": {
+      "value": 1720,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "cab_door": {
+      "value": null,
+      "unit": "mm",
+      "confidence": "UNKNOWN",
+      "source": "Not modelled; the coach body does not exist yet"
+    },
+    "sliding_door": {
+      "value": {
+        "from_front": 250,
+        "to_front": 950,
+        "side": "left"
+      },
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "GLB placeholder entry door at the front of the coach body (x 0.25–0.95 m behind the nose)",
+      "expected_error": {
+        "minus": 300,
+        "plus": 300,
+        "text": "±300 mm position, ±200 mm size"
+      }
+    },
+    "cab_window": {
+      "value": {
+        "from_front": 250,
+        "to_front": 2200
+      },
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "side_windows_from_front": {
+      "value": [
+        [
+          2450,
+          3800
+        ],
+        [
+          3940,
+          5290
+        ],
+        [
+          5430,
+          6780
+        ],
+        [
+          6920,
+          8270
+        ],
+        [
+          8410,
+          9760
+        ]
+      ],
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    },
+    "wheel_arch_clearance": {
+      "value": 60,
+      "unit": "mm",
+      "confidence": "ESTIMATED",
+      "source": "data/handover/rv_handover_part1_models_data_research/models/source/build_camper.py (GLB build rules) and data/handover/rv_handover_part1_models_data_research/models/source/vehicles.py (GLB build inputs, 19 Nov 2026)",
+      "method": "Shape rule the handover GLB was built with; a drawing aid, not a measurement"
+    }
+  },
+  "glb": {
+    "file": "assets/models/eicher_pro3010l_5260wb.glb",
+    "handover_file": "data/handover/rv_handover_part1_models_data_research/models/eicher_pro3010l_5260wb.glb",
+    "original": "eicher_pro_3010l_motorhome.glb",
+    "sha256": "9bb6f5a574a8688e9476e072d081b719c1fe13a2d9e1bc4067b1ef726e74bb23",
+    "units": "metres",
+    "up_axis": "+Y",
+    "forward_axis": "+X (nose)",
+    "kerb_side": "−Z (left)",
+    "origin": "Mid-length of the body, on the centreline, at ground level. NOT the front axle and NOT the repo origin (rear bumper). Repo x (mm from rear bumper) = (glb_x_m + L/2) × 1000.",
+    "front_axle_x_in_glb_m": 3.161,
+    "rear_axle_x_in_glb_m": -2.099,
+    "built_with": {
+      "front_overhang_mm": 1918,
+      "ground_clearance_mm": 185,
+      "floor_mm": 950,
+      "cab_mm": 2300
+    },
+    "layout_as_built": "fixed rear transverse double bed 2146x2000 mm over a storage garage; wet room with cassette toilet, shower tray and washbasin; kitchenette 2000 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); lounge sofa; overhead lockers; water tank 630 L, 4 x 100 Ah LiFePO4 batteries + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)"
+  }
+}
