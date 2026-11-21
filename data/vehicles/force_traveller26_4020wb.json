@@ -9,7 +9,7 @@
   "body_build": "oem_monocoque",
   "body_family": "force_traveller_26_legacy",
   "units": "mm",
-  "sources_note": "Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (data/handover/rv_handover_part1_models_data_research/data/interior_confidence_report.md).",
+  "sources_note": "Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; BUILDER_MEASURED = measured by a body builder on a built vehicle (dimensioned layout drawing), between CONFIRMED and ESTIMATED; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (data/handover/rv_handover_part1_models_data_research/data/interior_confidence_report.md).",
   "body": {
     "length": {
       "value": 6770,
@@ -185,16 +185,32 @@
       }
     },
     "usable_width": {
-      "value": 2145,
+      "value": 1753,
       "unit": "mm",
       "confidence": "ESTIMATED",
-      "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
-      "method": "Exterior width 2225 − 2 × 40 mm assumed wall (donors.json shellWallEachSideMm 40 ±15). No taper, trim or tumblehome allowed for.",
+      "source": "Azad Automotive Customs, \"Voyager VIP on Force Urbania\" (WB 4400), dimensioned top-view layouts, PDF pages 2–3, Oct 2026; data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf",
+      "method": "Revised default: exterior width 2225 × 78.8 %, the finished-width ratio measured by Azad Automotive Customs on the Urbania 4400 (1651 / 2095). Not measured on this vehicle.",
       "expected_error": {
-        "minus": 200,
-        "plus": 30,
-        "text": "−200/+30 mm (Force delivery-van leaflet shows 1680 mm cargo width on the 1925 mm Traveller body, i.e. up to ~165 mm less than this estimate)"
-      }
+        "minus": 50,
+        "plus": 150,
+        "text": "−50/+150 mm (ratio from one Urbania build; bare-panel widths can be about 150 mm more, e.g. the Force Traveller cargo leaflet gives 1680 mm on a 1925 mm body)"
+      },
+      "alt_estimates": [
+        {
+          "value": 2145,
+          "unit": "mm",
+          "confidence": "ESTIMATED",
+          "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+          "method": "Exterior width 2225 − 2 × 40 mm assumed wall (donors.json shellWallEachSideMm 40 ±15). No taper, trim or tumblehome allowed for.",
+          "expected_error": {
+            "minus": 200,
+            "plus": 30,
+            "text": "−200/+30 mm (Force delivery-van leaflet shows 1680 mm cargo width on the 1925 mm Traveller body, i.e. up to ~165 mm less than this estimate)"
+          },
+          "superseded": true,
+          "why_not_primary": "Handover planning default (outside width − 80 mm)."
+        }
+      ]
     },
     "standing_height": {
       "value": 2250,

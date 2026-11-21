@@ -1,0 +1,236 @@
+{
+  "schema": "rv-builder/1",
+  "builder": "Azad Automotive Customs",
+  "address": "D-31, Sector A2, Tronica City, Loni, Ghaziabad 201102",
+  "website": "www.azadautomotivecustoms.com",
+  "documents": [
+    {
+      "file": "data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf",
+      "title": "The Voyager Royale: VIP luxury on wheels (Force Urbania)",
+      "dated": "Aug 2026",
+      "pages": 12,
+      "content": "Features, standard configuration and base price, priced options, terms."
+    },
+    {
+      "file": "data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf",
+      "title": "Voyager VIP on Force Urbania, WB 4400 mm",
+      "dated": "Oct 2026",
+      "pages": 20,
+      "content": "Two dimensioned top-view layouts (inches), seat product sheet, sofa, washroom, pantry, entertainment, air suspension, awning, colour themes."
+    }
+  ],
+  "build_type": "VIP seating van (executive transport), NOT a motor caravan. It has seats, a washroom and a pantry but no fixed sleeping accommodation in layout 1, so AIS-124 does not apply to it as built. The second layout adds a 1-person sofa-cum-bed.",
+  "measurements": {
+    "note": "From the dimensioned top views (Oct 2026 deck p.2–3). Drawings are schematic, dimensions in whole inches. Used in data/vehicles/force_urbania_4400wb.json as BUILDER_MEASURED.",
+    "living_length_behind_partition": {
+      "value": 4191,
+      "unit": "mm",
+      "as_drawn": "165 in",
+      "confidence": "BUILDER_MEASURED",
+      "page": "p.2–3"
+    },
+    "internal_width": {
+      "value": 1651,
+      "unit": "mm",
+      "as_drawn": "65 in (internal)",
+      "confidence": "BUILDER_MEASURED",
+      "page": "p.2–3"
+    },
+    "aisle_between_recliners": {
+      "value": 330,
+      "unit": "mm",
+      "as_drawn": "13 in",
+      "confidence": "BUILDER_MEASURED",
+      "page": "p.2–3",
+      "note": "Seated-passenger aisle between recliner pairs; inside the D-AISLE-MIN WARNING band (300–400 mm)."
+    },
+    "recliner_footprint_on_layout": {
+      "value": [
+        660,
+        635
+      ],
+      "unit": "mm",
+      "as_drawn": "26 in along × 25 in across",
+      "page": "p.2–3"
+    },
+    "row_gap_layout_2": {
+      "value": 457,
+      "unit": "mm",
+      "as_drawn": "18 in",
+      "page": "p.3"
+    },
+    "washroom_length": {
+      "value": 760,
+      "unit": "mm",
+      "as_drawn": "30 in",
+      "page": "p.2"
+    },
+    "sofa_at_partition_depth": {
+      "value": [
+        380,
+        508
+      ],
+      "unit": "mm",
+      "as_drawn": "15 in (layout 1), 20 in (layout 2)",
+      "page": "p.2–3, p.7"
+    },
+    "rear_sofa_cum_bed_depth": {
+      "value": [
+        915,
+        610
+      ],
+      "unit": "mm",
+      "as_drawn": "36 in as a bed, 24 in as a sofa",
+      "page": "p.3"
+    }
+  },
+  "components": {
+    "vip_recliner_business_class_a": {
+      "size_mm": {
+        "width": 640,
+        "depth": 640,
+        "height": 1035,
+        "reclined_length": 1500,
+        "seat_height": 365
+      },
+      "features": [
+        "electric recline, base-back-calf all moves",
+        "massager",
+        "ventilation",
+        "3-point seat belt",
+        "USB and phone charging",
+        "meal table in the armrest",
+        "360° swivel option (layout 1, front pair)"
+      ],
+      "power": "needed",
+      "confidence": "BUILDER_SPEC",
+      "source": "data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.5–6",
+      "catalog": "design_catalog.json seat_tiers.massage_recliner"
+    },
+    "sofa_2_seat_partition": {
+      "size_mm": {
+        "depth_along_vehicle": [
+          380,
+          508
+        ]
+      },
+      "features": [
+        "electrically operated",
+        "safe locker and storage"
+      ],
+      "confidence": "BUILDER_SPEC",
+      "source": "data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.7; data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.9",
+      "catalog": "design_catalog.json modules.sofa_2_partition"
+    },
+    "sofa_cum_bed_3_seat": {
+      "size_mm": {
+        "depth_bed": 915,
+        "depth_sofa": 610,
+        "length": "full internal width"
+      },
+      "sleeps": 1,
+      "confidence": "BUILDER_SPEC",
+      "source": "data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.3",
+      "catalog": "design_catalog.json modules.sofa_cum_bed_transverse"
+    },
+    "washroom": {
+      "size_mm": {
+        "length": 760,
+        "width": "about half the internal width"
+      },
+      "features": [
+        "Vetus electric WC (a fixed toilet: AIS-124 cl. 4.5.2(c) black-water storage applies)",
+        "washbasin",
+        "manual door",
+        "waste and fresh-water tanks underneath",
+        "Jaquar fittings"
+      ],
+      "confidence": "BUILDER_SPEC",
+      "source": "data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.2, p.11–12; data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.6",
+      "catalog": "design_catalog.json modules.washroom_builder"
+    },
+    "pantry": {
+      "features": [
+        "50 L compressor fridge (25 L top-opening in the base configuration)",
+        "microwave",
+        "kettle drawer and slide-out tray",
+        "small storage on top",
+        "induction (layout 1 label)"
+      ],
+      "confidence": "BUILDER_SPEC",
+      "source": "data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.2, p.15; data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.6",
+      "catalog": "design_catalog.json modules.pantry_builder"
+    },
+    "rear_air_suspension": {
+      "product": "BharatAutoSolution air suspension kit, installed at the rear",
+      "confidence": "BUILDER_SPEC",
+      "source": "data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.7; data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.16",
+      "compliance_note": "A suspension change. Fine for this VIP van only if it meets the alteration rules that apply to it (not checked here). As part of a motor caravan conversion it breaches AIS-124 cl. 0.1: see rules.json C-NO-MECHANICAL-CHANGES examples."
+    },
+    "awning": {
+      "size_mm": {
+        "length": 3000,
+        "projection": 2500
+      },
+      "operation": "manual",
+      "note": "Shown on a Force Traveller T2 camper build, with a folding table and 4 chairs. Deployed it projects sideways: Rule 93(1)(B)(ii) and (3) apply while driving (stowed).",
+      "source": "data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.17; data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.8"
+    }
+  },
+  "prices": {
+    "note": "Builder's published prices in the Aug 2026 deck. Conversion only: the customer supplies the base vehicle (50 % advance 'with the vehicle'). GST 18 % extra. Excludes logistics and vehicle registration. Quotation validity 60 days, so these figures lapsed around Oct 2026: re-quote before use.",
+    "confidence_meaning": "builder_quoted = a builder's own published price for its standard package; stronger than an estimate, weaker than a quote for a specific build.",
+    "base_configuration": {
+      "value": 2700000,
+      "unit": "INR",
+      "confidence": "builder_quoted",
+      "item": "Base configuration: 4 VIP electric recliners (faux leather), 2-seat manual sofa with safe locker and storage, armrest meal tables, electric honeycomb curtains, Vetus electric washroom, laminated wooden flooring, insulated driver partition, 25 L fridge and kettle pantry, FRP and wood trims, concealed mood lighting, leatherette wall cushioning, factory AC rear ducting",
+      "source": "data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.9",
+      "gst_percent": 18,
+      "gst_included": false,
+      "total_with_gst": 3186000
+    },
+    "options": [
+      {
+        "value": 180000,
+        "unit": "INR",
+        "confidence": "builder_quoted",
+        "item": "JTAC Astro 215 roof air-conditioner with ducting",
+        "source": "data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.10"
+      },
+      {
+        "value": 55000,
+        "unit": "INR",
+        "confidence": "builder_quoted",
+        "item": "Smart automation (master control for lights, curtains, power)",
+        "source": "data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.10"
+      },
+      {
+        "value": 48000,
+        "unit": "INR",
+        "confidence": "builder_quoted",
+        "item": "Sensor-based electric entry step",
+        "source": "data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.10"
+      },
+      {
+        "value": 20000,
+        "unit": "INR",
+        "confidence": "builder_quoted",
+        "item": "Front-view camera integrated with the smart TV",
+        "source": "data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.10"
+      }
+    ],
+    "priced_on_request": [
+      "FRP roof carrier with back ladder",
+      "42 in LED smart TV and hands-free telecom",
+      "upgraded driver cabin trims and seating",
+      "onboard inverter and battery systems"
+    ],
+    "terms": {
+      "build_days": "100–110 from purchase order, advance or base vehicle, whichever is later",
+      "payment": "50 % advance with the vehicle, balance on delivery; suspension upgrades 100 % advance with the vehicle",
+      "quotation_validity_days": 60,
+      "source": "data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.11"
+    }
+  }
+}

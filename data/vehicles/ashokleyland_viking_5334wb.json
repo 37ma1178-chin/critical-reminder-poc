@@ -9,7 +9,7 @@
   "body_build": "incomplete_chassis",
   "body_family": "ashok_leyland_viking_chassis",
   "units": "mm",
-  "sources_note": "Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (data/handover/rv_handover_part1_models_data_research/data/interior_confidence_report.md).",
+  "sources_note": "Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; BUILDER_MEASURED = measured by a body builder on a built vehicle (dimensioned layout drawing), between CONFIRMED and ESTIMATED; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (data/handover/rv_handover_part1_models_data_research/data/interior_confidence_report.md).",
   "body": {
     "length": {
       "value": 10934,

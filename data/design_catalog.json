@@ -1,12 +1,12 @@
 {
   "schema": "rv-design-catalog/1",
   "as_of": "2026-11-21",
-  "note": "Floor footprints the eligibility engine uses to test physical fit. DESIGN STANDARD values (rules.json D-MODULE-SIZES): they decide whether requested items fit, never whether a build is legal. 'length' runs along the vehicle (along a wall), 'depth' runs across it from the wall. kind: wall = stands against one side wall; seat = one travel seat against a side (pairs face each other across the aisle); zero_floor = no floor area of its own (overhead, under furniture, roof or wall mounted). 'source' says where each size comes from: CATALOG = data/components.json (with its own sources and confidence), RENDER = scaled off Force's Urbania 16+D render, HANDOVER-GLB = the handover's GLB build rule, DESIGN DEFAULT = ObjectWeave planning default with no product drawing behind it yet (replace with the supplier's drawing).",
+  "note": "Floor footprints the eligibility engine uses to test physical fit. DESIGN STANDARD values (rules.json D-MODULE-SIZES): they decide whether requested items fit, never whether a build is legal. 'length' runs along the vehicle (along a wall), 'depth' runs across it from the wall. kind: wall = stands against one side wall; seat = one travel seat against a side (pairs face each other across the aisle); zero_floor = no floor area of its own (overhead, under furniture, roof or wall mounted). 'source' says where each size comes from: CATALOG = data/components.json (with its own sources and confidence), RENDER = scaled off Force's Urbania 16+D render, HANDOVER-GLB = the handover's GLB build rule, DESIGN DEFAULT = ObjectWeave planning default with no product drawing behind it yet (replace with the supplier's drawing). BUILDER_SPEC = taken from a body builder's product sheet or dimensioned layout (data/builders/).",
   "defaults": {
     "cab_passenger_seats": {
       "value": 1,
       "source": "HANDOVER-GLB and RENDER",
-      "basis": "The handover GLBs and Force's Urbania render both have a driver and one co-driver seat in the cab."
+      "basis": "The handover GLBs and Force's Urbania render both have a driver and one co-driver seat in the cab. One of the two Azad Urbania layouts shows a 2-seat co-driver sofa in the cab (data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.2); 1 is kept as the conservative default."
     },
     "occupant_mass_kg": {
       "value": 68,
@@ -34,10 +34,19 @@
       "basis": "Reclining seat with leg room for the reclined position. Replace with the supplier's drawing."
     },
     "massage_recliner": {
-      "width": 620,
-      "pitch": 1100,
-      "source": "DESIGN DEFAULT",
-      "basis": "Wider powered recliner with massage unit and full recline. Replace with the supplier's drawing."
+      "width": 640,
+      "pitch": 1118,
+      "depth": 640,
+      "height": 1035,
+      "reclined_length": 1500,
+      "source": "BUILDER_SPEC",
+      "basis": "Azad Automotive Customs 'VIP electric recliner, Business Class A' (massager, ventilation, 3-point belt, calf support; 360° swivel option): 64 cm wide × 64 cm deep × 103.5 cm high, 150 cm fully reclined (data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.5). Pitch 1118 mm = 26 in seat + 18 in gap between rows on the builder's layout (p.3). Powered: counts as a living-electrics load.",
+      "replaced": {
+        "width": 620,
+        "pitch": 1100,
+        "source": "DESIGN DEFAULT"
+      },
+      "builder_ref": "data/builders/azad_automotive_customs.json#components.vip_recliner_business_class_a"
     }
   },
   "modules": {
@@ -134,10 +143,11 @@
         "food_storage"
       ],
       "hosts": [
-        "microwave"
+        "microwave",
+        "fridge_small"
       ],
       "source": "DESIGN DEFAULT",
-      "basis": "Tall cupboard; AIS-124 cl. 4.4(d) wants food stored apart from cooking vessels."
+      "basis": "Tall cupboard; AIS-124 cl. 4.4(d) wants food stored apart from cooking vessels. Holds the fridge and microwave like the Azad pantry station (data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.15)."
     },
     "fridge_small": {
       "label": "Small 12 V fridge",
@@ -294,6 +304,68 @@
       "kind": "zero_floor",
       "source": "DESIGN DEFAULT",
       "basis": "GPS, charging ports, driver–passenger intercom, barbecue points, net connectivity, monitoring unit: no floor area."
+    },
+    "sofa_cum_bed_transverse": {
+      "label": "3-seat sofa-cum-bed across the rear (sleeps 1)",
+      "kind": "full_width",
+      "length": 915,
+      "day_length": 610,
+      "sleeps": 1,
+      "arch_tolerant": true,
+      "provides": [
+        "sleeping",
+        "table_seating",
+        "under_seat_storage"
+      ],
+      "hosts": [
+        "fresh_water_tank"
+      ],
+      "source": "BUILDER_SPEC",
+      "basis": "Azad layout: '3 Str Sofa cum Bed for 1 pax', 36 in deep made up as a bed, 24 in as a sofa, across the full width (data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.3). Berth length = living width."
+    },
+    "sofa_2_partition": {
+      "label": "2-seat sofa at the partition (electric)",
+      "kind": "wall",
+      "length": 380,
+      "depth": 900,
+      "arch_tolerant": true,
+      "provides": [
+        "table_seating",
+        "storage"
+      ],
+      "source": "BUILDER_SPEC",
+      "basis": "Azad: 2-seater sofa next to the partition wall, approx. 15 in (p.7; 20 in on the second layout, p.3), with safe locker and storage (data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.9). Depth across the vehicle is not dimensioned: about 900 mm scaled off the drawing (ESTIMATED)."
+    },
+    "washroom_builder": {
+      "label": "Washroom, Azad (electric WC, basin)",
+      "kind": "wall",
+      "length": 760,
+      "depth": 825,
+      "arch_tolerant": false,
+      "hosts": [
+        "fresh_water_tank",
+        "grey_tank",
+        "black_tank"
+      ],
+      "source": "BUILDER_SPEC",
+      "basis": "Azad: washroom 30 in long at the rear, about half the width, waste and fresh-water tanks underneath, manual door; Vetus electric WC and washbasin (data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.2, p.11; data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.6). Depth 825 mm = half of the 1651 mm internal width (ESTIMATED from 'about half')."
+    },
+    "pantry_builder": {
+      "label": "Pantry station, Azad (fridge, microwave, kettle, storage)",
+      "kind": "wall",
+      "length": 585,
+      "depth": 510,
+      "arch_tolerant": true,
+      "provides": [
+        "storage",
+        "food_storage"
+      ],
+      "hosts": [
+        "fridge_small",
+        "microwave"
+      ],
+      "source": "BUILDER_SPEC",
+      "basis": "Azad pantry: 50 L (or 25 L top-opening) compressor fridge, microwave, kettle drawer, small storage on top (data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.15; data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.6). Footprint not dimensioned: about 23 × 20 in scaled off the layout (p.2), ESTIMATED."
     }
   },
   "amenity_map": {
@@ -431,6 +503,15 @@
     ],
     "power_wheel_mover": [
       "zero_floor_misc"
+    ],
+    "washroom_builder": [
+      "washroom_builder"
+    ],
+    "pantry_builder": [
+      "pantry_builder"
+    ],
+    "sofa_2_partition": [
+      "sofa_2_partition"
     ]
   },
   "law_minimum_fill": {
@@ -462,7 +543,8 @@
   "amenity_variants": {
     "note": "A generic request the engine may meet with any of these modules; it keeps whichever fits best.",
     "sofa_cum_bed": [
-      "sofa_cum_bed_2"
+      "sofa_cum_bed_2",
+      "sofa_cum_bed_transverse"
     ]
   }
 }

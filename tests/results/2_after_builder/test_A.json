@@ -1,0 +1,833 @@
+{
+  "questionnaire": "test_A",
+  "results": [
+    {
+      "id": "force_traveller26_4020wb",
+      "name": "Force Motors Traveller 26 (legacy BS-IV) 4020 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "UNDECIDED",
+          "fit": "UNDECIDED",
+          "need": 3965,
+          "rejected": [],
+          "undecided": [
+            "base vehicle: legacy BS-IV model (2018 brochure); whether any unit can be ≤ 3 years old is not known [P-LEGACY-T26]",
+            "FIT: fits on the estimate but not at the unfavourable end (needs 3965 mm); depends on the combination of living length, width and door position at their unfavourable ends"
+          ],
+          "design": [
+            "best arrangement leaves a 333 mm aisle (WARNING band, D-AISLE-MIN)",
+            "transverse sofa-cum-bed: berth length = living width 1753 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "UNDECIDED",
+          "fit": "UNDECIDED",
+          "need": 4415,
+          "rejected": [],
+          "undecided": [
+            "base vehicle: legacy BS-IV model (2018 brochure); whether any unit can be ≤ 3 years old is not known [P-LEGACY-T26]",
+            "FIT: does not fit on the estimate, only at the favourable end (needs 4415 mm); depends on living width 1753 mm (ESTIMATED, −50/+150 mm; range 1703–1903)"
+          ],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1753 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "UNDECIDED",
+          "fit": "UNDECIDED",
+          "need": 4751,
+          "rejected": [],
+          "undecided": [
+            "base vehicle: legacy BS-IV model (2018 brochure); whether any unit can be ≤ 3 years old is not known [P-LEGACY-T26]",
+            "FIT: does not fit on the estimate, only at the favourable end (needs 4751 mm); depends on living length 4750 mm (ESTIMATED, ±250 mm; range 4500–5000); living width 1753 mm (ESTIMATED, −50/+150 mm; range 1703–1903)"
+          ],
+          "design": [
+            "best arrangement leaves a 363 mm aisle (WARNING band, D-AISLE-MIN)",
+            "transverse sofa-cum-bed: berth length = living width 1753 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        }
+      ],
+      "conditions": [
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO",
+        "P-LEGACY-T26"
+      ]
+    },
+    {
+      "id": "force_traveller_3050wb",
+      "name": "Force Motors Traveller N 3050 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 4565,
+          "rejected": [
+            "FIT: needs 4565 mm of living length; at most 3330 mm even at the long end of the estimate (sizes from data/design_catalog.json, captain seats 520 × 850 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5015,
+          "rejected": [
+            "FIT: needs 5015 mm of living length; at most 3330 mm even at the long end of the estimate (sizes from data/design_catalog.json, recliner seats 560 × 1000 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5369,
+          "rejected": [
+            "FIT: needs 5369 mm of living length; at most 3330 mm even at the long end of the estimate (sizes from data/design_catalog.json, massage_recliner seats 640 × 1118 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO"
+      ]
+    },
+    {
+      "id": "force_traveller_3350wb",
+      "name": "Force Motors Traveller N 3350 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 4565,
+          "rejected": [
+            "FIT: needs 4565 mm of living length; at most 3815 mm even at the long end of the estimate (sizes from data/design_catalog.json, captain seats 520 × 850 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5015,
+          "rejected": [
+            "FIT: needs 5015 mm of living length; at most 3815 mm even at the long end of the estimate (sizes from data/design_catalog.json, recliner seats 560 × 1000 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5369,
+          "rejected": [
+            "FIT: needs 5369 mm of living length; at most 3815 mm even at the long end of the estimate (sizes from data/design_catalog.json, massage_recliner seats 640 × 1118 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO"
+      ]
+    },
+    {
+      "id": "force_traveller_3700wb",
+      "name": "Force Motors Traveller N 3700 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 4565,
+          "rejected": [
+            "FIT: needs 4565 mm of living length; at most 4465 mm even at the long end of the estimate (sizes from data/design_catalog.json, captain seats 520 × 850 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5015,
+          "rejected": [
+            "FIT: needs 5015 mm of living length; at most 4465 mm even at the long end of the estimate (sizes from data/design_catalog.json, recliner seats 560 × 1000 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5369,
+          "rejected": [
+            "FIT: needs 5369 mm of living length; at most 4465 mm even at the long end of the estimate (sizes from data/design_catalog.json, massage_recliner seats 640 × 1118 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO"
+      ]
+    },
+    {
+      "id": "force_traveller_4020wb",
+      "name": "Force Motors Traveller N 4020 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "ELIGIBLE",
+          "fit": "PASS",
+          "need": 4565,
+          "rejected": [],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "UNDECIDED",
+          "fit": "UNDECIDED",
+          "need": 5015,
+          "rejected": [],
+          "undecided": [
+            "FIT: does not fit on the estimate, only at the favourable end (needs 5015 mm); depends on living length 4915 mm (ESTIMATED, ±250 mm; range 4665–5165)"
+          ],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5369,
+          "rejected": [
+            "FIT: needs 5369 mm of living length; at most 5165 mm even at the long end of the estimate (sizes from data/design_catalog.json, massage_recliner seats 640 × 1118 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1517 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO"
+      ]
+    },
+    {
+      "id": "force_traveller-widerbody_3350wb",
+      "name": "Force Motors Traveller N Wider Body 3350 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "UNDECIDED",
+          "fit": "UNDECIDED",
+          "need": 3715,
+          "rejected": [],
+          "undecided": [
+            "FIT: does not fit on the estimate, only at the favourable end (needs 3715 mm); depends on living length 3595 mm (ESTIMATED, ±250 mm; range 3345–3845); living width 1769 mm (ESTIMATED, −50/+150 mm; range 1719–1919)"
+          ],
+          "design": [
+            "best arrangement leaves a 319 mm aisle (WARNING band, D-AISLE-MIN)",
+            "transverse sofa-cum-bed: berth length = living width 1769 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 4415,
+          "rejected": [
+            "FIT: needs 4415 mm of living length; at most 3845 mm even at the long end of the estimate (sizes from data/design_catalog.json, recliner seats 560 × 1000 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1769 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 4751,
+          "rejected": [
+            "FIT: needs 4751 mm of living length; at most 3845 mm even at the long end of the estimate (sizes from data/design_catalog.json, massage_recliner seats 640 × 1118 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1769 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO"
+      ]
+    },
+    {
+      "id": "force_traveller-widerbody_4020wb",
+      "name": "Force Motors Traveller N Wider Body 4020 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "ELIGIBLE",
+          "fit": "PASS",
+          "need": 4565,
+          "rejected": [],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1769 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "UNDECIDED",
+          "fit": "UNDECIDED",
+          "need": 4415,
+          "rejected": [],
+          "undecided": [
+            "FIT: fits on the estimate but not at the unfavourable end (needs 4415 mm); depends on living width 1769 mm (ESTIMATED, −50/+150 mm; range 1719–1919)"
+          ],
+          "design": [
+            "best arrangement leaves a 309 mm aisle (WARNING band, D-AISLE-MIN)",
+            "transverse sofa-cum-bed: berth length = living width 1769 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "UNDECIDED",
+          "fit": "UNDECIDED",
+          "need": 4751,
+          "rejected": [],
+          "undecided": [
+            "FIT: does not fit on the estimate, only at the favourable end (needs 4751 mm); depends on living length 4945 mm (ESTIMATED, ±250 mm; range 4695–5195); living width 1769 mm (ESTIMATED, −50/+150 mm; range 1719–1919)"
+          ],
+          "design": [
+            "best arrangement leaves a 379 mm aisle (WARNING band, D-AISLE-MIN)",
+            "transverse sofa-cum-bed: berth length = living width 1769 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO"
+      ]
+    },
+    {
+      "id": "force_urbania_3350wb",
+      "name": "Force Motors Urbania 3350 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 4565,
+          "rejected": [
+            "FIT: needs 4565 mm of living length; at most 3191 mm even at the long end of the estimate (sizes from data/design_catalog.json, captain seats 520 × 850 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1651 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5015,
+          "rejected": [
+            "FIT: needs 5015 mm of living length; at most 3191 mm even at the long end of the estimate (sizes from data/design_catalog.json, recliner seats 560 × 1000 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1651 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5369,
+          "rejected": [
+            "FIT: needs 5369 mm of living length; at most 3191 mm even at the long end of the estimate (sizes from data/design_catalog.json, massage_recliner seats 640 × 1118 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1651 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": [
+        "P-BUILDER-WIDTH-HEIGHT"
+      ]
+    },
+    {
+      "id": "force_urbania_3615wb",
+      "name": "Force Motors Urbania 3615 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 4565,
+          "rejected": [
+            "FIT: needs 4565 mm of living length; at most 3456 mm even at the long end of the estimate (sizes from data/design_catalog.json, captain seats 520 × 850 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1651 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5015,
+          "rejected": [
+            "FIT: needs 5015 mm of living length; at most 3456 mm even at the long end of the estimate (sizes from data/design_catalog.json, recliner seats 560 × 1000 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1651 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5369,
+          "rejected": [
+            "FIT: needs 5369 mm of living length; at most 3456 mm even at the long end of the estimate (sizes from data/design_catalog.json, massage_recliner seats 640 × 1118 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1651 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": [
+        "P-BUILDER-WIDTH-HEIGHT"
+      ]
+    },
+    {
+      "id": "force_urbania_4400wb",
+      "name": "Force Motors Urbania 4400 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 4565,
+          "rejected": [
+            "FIT: needs 4565 mm of living length; at most 4216 mm even at the long end of the estimate (sizes from data/design_catalog.json, captain seats 520 × 850 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1651 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5015,
+          "rejected": [
+            "FIT: needs 5015 mm of living length; at most 4216 mm even at the long end of the estimate (sizes from data/design_catalog.json, recliner seats 560 × 1000 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1651 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5369,
+          "rejected": [
+            "FIT: needs 5369 mm of living length; at most 4216 mm even at the long end of the estimate (sizes from data/design_catalog.json, massage_recliner seats 640 × 1118 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1651 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": [
+        "P-BUILDER-WIDTH-HEIGHT"
+      ]
+    },
+    {
+      "id": "tata_winger-highroof_3488wb",
+      "name": "Tata Motors Winger (high roof) 3488 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 4565,
+          "rejected": [
+            "FIT: needs 4565 mm of living length; at most 3948 mm even at the long end of the estimate (sizes from data/design_catalog.json, captain seats 520 × 850 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1501 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5015,
+          "rejected": [
+            "FIT: needs 5015 mm of living length; at most 3948 mm even at the long end of the estimate (sizes from data/design_catalog.json, recliner seats 560 × 1000 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1501 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 5369,
+          "rejected": [
+            "FIT: needs 5369 mm of living length; at most 3948 mm even at the long end of the estimate (sizes from data/design_catalog.json, massage_recliner seats 640 × 1118 mm, aisle ≥ 300 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": [
+            "transverse sofa-cum-bed: berth length = living width 1501 mm < 1850 mm (D-BERTH-SIZE) and it sleeps 1"
+          ]
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO"
+      ]
+    },
+    {
+      "id": "ashokleyland_viking_5334wb",
+      "name": "Ashok Leyland Viking (bus chassis) 5334 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "UNDECIDED",
+          "fit": "PASS",
+          "need": 3050,
+          "rejected": [],
+          "undecided": [
+            "rear overhang 60 % of wheelbase (ESTIMATED, ±100 mm; range 58–62) may exceed 60 % of wheelbase (L-R93-OVERHANG)"
+          ],
+          "design": [
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "UNDECIDED",
+          "fit": "PASS",
+          "need": 3350,
+          "rejected": [],
+          "undecided": [
+            "rear overhang 60 % of wheelbase (ESTIMATED, ±100 mm; range 58–62) may exceed 60 % of wheelbase (L-R93-OVERHANG)"
+          ],
+          "design": [
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "UNDECIDED",
+          "fit": "PASS",
+          "need": 4086,
+          "rejected": [],
+          "undecided": [
+            "rear overhang 60 % of wheelbase (ESTIMATED, ±100 mm; range 58–62) may exceed 60 % of wheelbase (L-R93-OVERHANG)"
+          ],
+          "design": [
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        }
+      ],
+      "conditions": [
+        "type approval of the new body by a Rule 126 agency, registration under Rule 47(g) (C-NEW-BUILD-TYPE-APPROVAL: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": [
+        "P-OQ-13"
+      ]
+    },
+    {
+      "id": "eicher_pro3010l_5260wb",
+      "name": "Eicher (VE Commercial Vehicles) Pro 3010 L (bus chassis) 5260 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "ELIGIBLE",
+          "fit": "PASS",
+          "need": 3715,
+          "rejected": [],
+          "undecided": [],
+          "design": [
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "ELIGIBLE",
+          "fit": "PASS",
+          "need": 4015,
+          "rejected": [],
+          "undecided": [],
+          "design": [
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "ELIGIBLE",
+          "fit": "PASS",
+          "need": 4568,
+          "rejected": [],
+          "undecided": [],
+          "design": [
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        }
+      ],
+      "conditions": [
+        "type approval of the new body by a Rule 126 agency, registration under Rule 47(g) (C-NEW-BUILD-TYPE-APPROVAL: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": []
+    },
+    {
+      "id": "tata_lp410_3400wb",
+      "name": "Tata Motors LP 410 (face-cowl bus chassis) 3400 WB",
+      "route": "motor_caravan",
+      "category": "M1",
+      "tiers": [
+        {
+          "tier": "captain",
+          "verdict": "ELIGIBLE",
+          "fit": "PASS",
+          "need": 3715,
+          "rejected": [],
+          "undecided": [],
+          "design": [
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "recliner",
+          "verdict": "ELIGIBLE",
+          "fit": "PASS",
+          "need": 4015,
+          "rejected": [],
+          "undecided": [],
+          "design": [
+            "aisle 340 mm: in the 300–400 mm WARNING band (D-AISLE-MIN)",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        },
+        {
+          "tier": "massage_recliner",
+          "verdict": "UNDECIDED",
+          "fit": "UNDECIDED",
+          "need": 4269,
+          "rejected": [],
+          "undecided": [
+            "FIT: does not fit on the estimate, only at the favourable end (needs 4269 mm); depends on living length 4405 mm (ESTIMATED, ±300 mm; range 4105–4705); living width 2060 mm (ESTIMATED, ±60 mm; range 2000–2120)"
+          ],
+          "design": [
+            "best arrangement leaves a 300 mm aisle (WARNING band, D-AISLE-MIN)",
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        }
+      ],
+      "conditions": [
+        "type approval of the new body by a Rule 126 agency, registration under Rule 47(g) (C-NEW-BUILD-TYPE-APPROVAL: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": []
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+test_B: Commercial caravan, 25 seats, Maharashtra
+Use commercial, maharashtra · 25 passenger seats excl. driver (1 in the cab, 24 in the living area) · seat tiers: standard
+
+SUMMARY
+  Force Motors Traveller 26 (legacy BS-IV) 4020 WB                  standard: REJECTED
+  Force Motors Traveller N 3050 WB                                  standard: REJECTED
+  Force Motors Traveller N 3350 WB                                  standard: REJECTED
+  Force Motors Traveller N 3700 WB                                  standard: REJECTED
+  Force Motors Traveller N 4020 WB                                  standard: REJECTED
+  Force Motors Traveller N Wider Body 3350 WB                       standard: REJECTED
+  Force Motors Traveller N Wider Body 4020 WB                       standard: REJECTED
+  Force Motors Urbania 3350 WB                                      standard: REJECTED
+  Force Motors Urbania 3615 WB                                      standard: REJECTED
+  Force Motors Urbania 4400 WB                                      standard: REJECTED
+  Tata Motors Winger (high roof) 3488 WB                            standard: REJECTED
+  Ashok Leyland Viking (bus chassis) 5334 WB                        [bus route] standard: UNDECIDED
+  Eicher (VE Commercial Vehicles) Pro 3010 L (bus chassis) 5260 WB  [bus route] standard: UNDECIDED
+  Tata Motors LP 410 (face-cowl bus chassis) 3400 WB                [bus route] standard: REJECTED
+  standard: 0 eligible, 2 undecided, 12 rejected
+
+Items in the space check, as resolved for the first vehicle (each line below names any variant chosen):
+  - Sofa-cum-bed for 2 (1850 × 600 mm): Maharashtra policy: Sofa-cum-bed for sleeping, enough for 2 people (1)
+  - Small 12 V fridge (inside kitchenette): Maharashtra policy: Facility for cold drinks and snacks (2)
+  - Roof air-conditioner (no floor area): Maharashtra policy: Air-conditioning system (3)
+  - Small fittings (no floor area): Maharashtra policy: External barbecue points (4); Maharashtra policy: Toe-touch stabilisers (5); Maharashtra policy: Mobile charging ports (6); Maharashtra policy: GPS system (7); Maharashtra policy: Power wheel mover for parking, integrated or clip-on (10); Maharashtra policy: Separate driver–passenger communication system (11)
+  - Electrical cabinet (inverter, LiFePO4 battery, fuses, 230 V inlet) (no floor area): Maharashtra policy: Battery or external hook-ups for electricity (8); L-LIVING-ELECTRICS (24 h back-up, fuses, 230 V inlet)
+  - Water heater (no floor area): Maharashtra policy: Water heater, gas or electric (9)
+  - Removable / folding table (no floor area): L-MC-MIN-EQUIP: table
+  - Kitchenette counter (1000 × 500 mm): L-MC-MIN-EQUIP: cooking facility
+  - Hob (no floor area): L-MC-MIN-EQUIP: cooking facility
+  - Grey-water tank (no floor area): L-GREY-TANK
+
+== Force Motors Traveller 26 (legacy BS-IV) 4020 WB  [force_traveller26_4020wb]  van, category M3
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: Maharashtra: "Vehicle in line with the latest Indian vehicle standards (5.4)" — vehicle is BS-IV (MAHA-2021 Part 2 'Caravan': 3 'Basic Mandatory Criteria' and 'Mandatory/Basic Amenities' 1–11; 4 'Optional Criteria' 1–9; 5 'General Guidelines')
+      REJECTED BY: FIT: needs 8090 mm of living length; at most 5000 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 2225 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2870 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M3 limit) 6770 mm ≤ 13500 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 46 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    caveat: living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]
+    caveat: living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-VAN-CAB-LENGTH, P-WIDTH-RATIO, P-LEGACY-T26, P-MAHA-CHASSIS, P-OQ-06
+
+== Force Motors Traveller N 3050 WB  [force_traveller_3050wb]  van, category M2
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: FIT: needs 11210 mm of living length; at most 3330 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 1925 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2615 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M2 limit) 5100 mm ≤ 12000 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 43 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    state ok: Vehicle in line with the latest Indian vehicle standards (5.4): BS-VI Stage 2
+    caveat: living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]
+    caveat: living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]
+    to confirm: base vehicle ≤ 3 years old (C-BASE-AGE: not answered)
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-VAN-CAB-LENGTH, P-WIDTH-RATIO, P-MAHA-CHASSIS, P-OQ-06
+
+== Force Motors Traveller N 3350 WB  [force_traveller_3350wb]  van, category M2
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: FIT: needs 11210 mm of living length; at most 3815 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 1925 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2615 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M2 limit) 5585 mm ≤ 12000 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 44 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    state ok: Vehicle in line with the latest Indian vehicle standards (5.4): BS-VI Stage 2
+    caveat: living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]
+    caveat: living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]
+    to confirm: base vehicle ≤ 3 years old (C-BASE-AGE: not answered)
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-VAN-CAB-LENGTH, P-WIDTH-RATIO, P-MAHA-CHASSIS, P-OQ-06
+
+== Force Motors Traveller N 3700 WB  [force_traveller_3700wb]  van, category M2
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: FIT: needs 11210 mm of living length; at most 4465 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 1925 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2640 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M2 limit) 6235 mm ≤ 12000 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 48 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    state ok: Vehicle in line with the latest Indian vehicle standards (5.4): BS-VI Stage 2
+    caveat: living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]
+    caveat: living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]
+    to confirm: base vehicle ≤ 3 years old (C-BASE-AGE: not answered)
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-VAN-CAB-LENGTH, P-WIDTH-RATIO, P-MAHA-CHASSIS, P-OQ-06
+
+== Force Motors Traveller N 4020 WB  [force_traveller_4020wb]  van, category M2
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: FIT: needs 11210 mm of living length; at most 5165 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 1925 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2760 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M2 limit) 6935 mm ≤ 12000 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 54 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    state ok: Vehicle in line with the latest Indian vehicle standards (5.4): BS-VI Stage 2
+    caveat: living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]
+    caveat: living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]
+    to confirm: base vehicle ≤ 3 years old (C-BASE-AGE: not answered)
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-VAN-CAB-LENGTH, P-WIDTH-RATIO, P-MAHA-CHASSIS, P-OQ-06
+
+== Force Motors Traveller N Wider Body 3350 WB  [force_traveller-widerbody_3350wb]  van, category M2
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: FIT: needs 8090 mm of living length; at most 3845 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 2245 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2720 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M2 limit) 5615 mm ≤ 12000 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 45 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    state ok: Vehicle in line with the latest Indian vehicle standards (5.4): BS-VI Stage 2
+    caveat: living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]
+    caveat: living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]
+    to confirm: base vehicle ≤ 3 years old (C-BASE-AGE: not answered)
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-VAN-CAB-LENGTH, P-WIDTH-RATIO, P-MAHA-CHASSIS, P-OQ-06
+
+== Force Motors Traveller N Wider Body 4020 WB  [force_traveller-widerbody_4020wb]  van, category M3
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: FIT: needs 8090 mm of living length; at most 5195 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 2245 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2850 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M3 limit) 6965 mm ≤ 13500 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 55 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    state ok: Vehicle in line with the latest Indian vehicle standards (5.4): BS-VI Stage 2
+    caveat: living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]
+    caveat: living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]
+    to confirm: base vehicle ≤ 3 years old (C-BASE-AGE: not answered)
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-VAN-CAB-LENGTH, P-WIDTH-RATIO, P-MAHA-CHASSIS, P-OQ-06
+
+== Force Motors Urbania 3350 WB  [force_urbania_3350wb]  van, category M2
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: FIT: needs 11210 mm of living length; at most 3191 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 2095 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2550 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M2 limit) 5440 mm ≤ 12000 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 37 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    state ok: Vehicle in line with the latest Indian vehicle standards (5.4): BS-VI
+    to confirm: base vehicle ≤ 3 years old (C-BASE-AGE: not answered)
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-BUILDER-WIDTH-HEIGHT, P-MAHA-CHASSIS, P-OQ-06
+
+== Force Motors Urbania 3615 WB  [force_urbania_3615wb]  van, category M2
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: FIT: needs 11210 mm of living length; at most 3456 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 2095 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2550 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M2 limit) 6225 mm ≤ 12000 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 49 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    state ok: Vehicle in line with the latest Indian vehicle standards (5.4): BS-VI
+    to confirm: base vehicle ≤ 3 years old (C-BASE-AGE: not answered)
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-BUILDER-WIDTH-HEIGHT, P-MAHA-CHASSIS, P-OQ-06
+
+== Force Motors Urbania 4400 WB  [force_urbania_4400wb]  van, category M2
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: FIT: needs 11210 mm of living length; at most 4216 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 2095 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2550 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M2 limit) 7010 mm ≤ 12000 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 40 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    state ok: Vehicle in line with the latest Indian vehicle standards (5.4): BS-VI
+    to confirm: base vehicle ≤ 3 years old (C-BASE-AGE: not answered)
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-BUILDER-WIDTH-HEIGHT, P-MAHA-CHASSIS, P-OQ-06
+
+== Tata Motors Winger (high roof) 3488 WB  [tata_winger-highroof_3488wb]  van, category M2
+  standard          REJECTED  does not fit
+      REJECTED BY: 25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.
+      REJECTED BY: FIT: needs 11210 mm of living length; at most 3948 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    legal ok: overall width 1905 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 2670 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M2 limit) 5458 mm ≤ 12000 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 34 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    caveat: living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]
+    caveat: living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]
+    to confirm: base vehicle ≤ 3 years old (C-BASE-AGE: not answered)
+    to confirm: RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-VAN-CAB-LENGTH, P-WIDTH-RATIO, P-MAHA-CHASSIS, P-OQ-06
+
+== Ashok Leyland Viking (bus chassis) 5334 WB  [ashokleyland_viking_5334wb]  bus_chassis, category M3, bus-body route
+  standard          UNDECIDED fits: needs 6240 mm, min aisle 700 mm at the unfavourable end
+      UNDECIDED: bus body code AIS-052 is not in the rulebook (document missing), so the bus-route requirements cannot be checked [P-AIS052]
+      UNDECIDED: rear overhang 60 % of wheelbase (ESTIMATED, ±100 mm; range 58–62) may exceed 60 % of wheelbase (L-R93-OVERHANG)
+      UNDECIDED: Maharashtra: "Vehicle in line with the latest Indian vehicle standards (5.4)" — emission standard UNKNOWN for this vehicle
+      design warning: rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)
+    route: not a motor caravan: 25 seats > 12 (and > 13 before Amd 1), L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). Route: coach body on this chassis under the bus body code, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard).
+    legal ok: overall width 2600 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 3700 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M3 limit) 10934 mm ≤ 13500 mm at the high end (L-R93-LENGTH)
+    to confirm: type approval of the new body by a Rule 126 agency, registration under Rule 47(g) (C-NEW-BUILD-TYPE-APPROVAL: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-AIS052, P-OQ-13, P-MAHA-CHASSIS, P-OQ-06
+
+== Eicher (VE Commercial Vehicles) Pro 3010 L (bus chassis) 5260 WB  [eicher_pro3010l_5260wb]  bus_chassis, category M3, bus-body route
+  standard          UNDECIDED fit undecided
+      UNDECIDED: bus body code AIS-052 is not in the rulebook (document missing), so the bus-route requirements cannot be checked [P-AIS052]
+      UNDECIDED: FIT: does not fit on the estimate, only at the favourable end (needs 6240 mm); depends on the combination of living length, width and door position at their unfavourable ends
+      design warning: rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)
+    route: not a motor caravan: 25 seats > 12 (and > 13 before Amd 1), L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). Route: coach body on this chassis under the bus body code, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard).
+    legal ok: overall width 2226 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 3500 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M3 limit) 10159 mm ≤ 13500 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 57 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    state ok: Vehicle in line with the latest Indian vehicle standards (5.4): BS-VI
+    to confirm: type approval of the new body by a Rule 126 agency, registration under Rule 47(g) (C-NEW-BUILD-TYPE-APPROVAL: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-AIS052, P-MAHA-CHASSIS, P-OQ-06
+
+== Tata Motors LP 410 (face-cowl bus chassis) 3400 WB  [tata_lp410_3400wb]  bus_chassis, category M3, bus-body route
+  standard          REJECTED  does not fit
+      REJECTED BY: FIT: needs 8020 mm of living length; at most 4705 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)
+    route: not a motor caravan: 25 seats > 12 (and > 13 before Amd 1), L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). Route: coach body on this chassis under the bus body code, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard).
+    legal ok: overall width 2140 mm ≤ 2600 mm at the high end (L-R93-WIDTH)
+    legal ok: overall height (roof AC excluded for M) 3100 mm ≤ 4000 mm at the high end (L-R93-HEIGHT)
+    legal ok: overall length (M3 limit) 6615 mm ≤ 13500 mm at the high end (L-R93-LENGTH)
+    legal ok: rear overhang 57 % of wheelbase ≤ 60 % of wheelbase at the high end (L-R93-OVERHANG)
+    to confirm: type approval of the new body by a Rule 126 agency, registration under Rule 47(g) (C-NEW-BUILD-TYPE-APPROVAL: not answered)
+    to confirm: work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)
+    to confirm: Form 22F compliance certificate (C-FORM-22F: not answered)
+    design warning: standing height 1840 mm (ESTIMATED, ±300 mm; range 1540–2140) may be below 1800 mm (D-STANDING-HEIGHT, DESIGN STANDARD)
+    design warning: kerb mass UNKNOWN: weigh the base vehicle before freezing the design (D-PAYLOAD)
+    pending: P-AIS052, P-MAHA-CHASSIS, P-OQ-06
+
+Build requirements for every eligible vehicle (from the first result):
+  - 2 × 2 kg fire extinguishers, one by the driver (L-EXTINGUISHERS)
+  - 1 warning triangle, 1 wheel chock, spare wheel, tool kit, first-aid kit (L-R138-EQUIPMENT, GVW 5750 kg)
+  - All living equipment bolted, riveted, screwed or welded (L-MC-FIXING); wiring to IS 2465 (L-WIRING); lap belts at least on every travel seat (L-TRAVEL-SEATS)
+  - M3 body: emergency exits, rear underrun protection (L-M3-BODY-EXTRAS, earlier report)
+  - Transport registration: fitness certificate, speed limiter, VLTD with panic button, FASTag, tourist permit across states (L-TRANSPORT-REGISTRATION, partly earlier report)

@@ -30,6 +30,6 @@ const out = opt('--json');
 if (out) {
   const slim = report.results.map(r => ({ id: r.id, name: r.name, route: r.route, category: r.category,
     tiers: r.tiers.map(t => ({ tier: t.tier, verdict: t.verdict, fit: t.fit.status, need: t.fit.need && Math.round(t.fit.need), rejected: t.rejected, undecided: t.undecided, design: t.design })),
-    conditions: r.conditions, pending: r.pending }));
+    conditions: r.conditions, caveats: r.caveats, pending: r.pending }));
   fs.writeFileSync(out, JSON.stringify({ questionnaire: q.id, results: slim }, null, 2) + '\n');
 }

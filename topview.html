@@ -49,7 +49,7 @@
   <header>
     <div>
       <h1 id="title">Top view</h1>
-      <p>Dimensioned scale drawing · 1 unit = 1mm · every dimension comes from <code id="datafile">data/vehicles/</code> · <span class="est">(est.)</span> = estimate, not an OEM figure</p>
+      <p>Dimensioned scale drawing · 1 unit = 1mm · every dimension comes from <code id="datafile">data/vehicles/</code> · <span class="est">(est.)</span> = estimate, <span class="est">(builder)</span> = measured by a body builder</p>
     </div>
     <nav><a href="index.html" id="nav-3d">3D</a><a href="topview.html" class="here">Top view</a><a href="sideview.html" id="nav-side">Side profile</a></nav>
   </header>
@@ -116,7 +116,7 @@ Vehicle.mountPicker(document.getElementById('vehicle-picker'), spec.id, selectio
 const lines = Vehicle.specLines(spec);
 document.getElementById('specbox').innerHTML =
   `<b>${spec.vehicle}</b><br>${lines.size}<br>${lines.chassis}<br>${lines.overhang}` +
-  `<br><i>Estimated living area:</i> ${LAY.interior.length} × ${LAY.interior.width} mm ≈ ${LAY.interior.area_m2} m² behind the cab` +
+  `<br><i>${Vehicle.confidence(spec, 'interior.usable_length') === 'BUILDER_MEASURED' ? 'Living area, measured by a body builder' : 'Estimated living area'}:</i> ${LAY.interior.length} × ${LAY.interior.width} mm ≈ ${LAY.interior.area_m2} m² behind the cab` +
   ` <span class="est">(length${errText('interior.usable_length')}, width${errText('interior.usable_width')})</span>`;
 const flags = [];
 if (!LAY.trackKnown) flags.push('Track width is not published: wheels are drawn with their outer face on the body side (drawing convention, not a dimension).');
@@ -307,6 +307,14 @@ const svg = `
 </svg>`;
 
 document.getElementById('drawing-frame').innerHTML = svg;
+// Things that do not fit inside the living area as drawn
+const hw = LAY.interior.halfWidth;
+if (mode === 'rows' && seating) {
+  const over = Math.max(0, ...LAY.seats.filter(st => st.kind !== 'driver' && st.kind !== 'codriver').map(st => Math.max(st.cy + st.width / 2 - hw, -hw - (st.cy - st.width / 2))));
+  if (over > 1) flags.push(`<b>Stock seats overlap the living-area line by up to ${Math.round(over)} mm.</b> They are matched to Force's OEM interior (render). The living area is ${Vehicle.confidence(spec, 'interior.usable_width') === 'BUILDER_MEASURED' ? 'the width a body builder measured inside their own conversion trims' : 'an estimate'}, so a conversion loses that much.`);
+}
+if (P) P.placements.filter(pl => pl.y0 < -hw - 1 || pl.y1 > hw + 1).forEach(pl =>
+  flags.push(`<b>${pl.component.name}</b> is ${Math.round(pl.y1 - pl.y0)} mm wide; the living area is ${Math.round(LAY.interior.width)} mm.`));
 const fl = document.getElementById('data-flags');
 fl.hidden = !flags.length;
 fl.innerHTML = `<b>Data limits for this variant</b><ul>${flags.map(f => `<li>${f}</li>`).join('')}</ul>`;

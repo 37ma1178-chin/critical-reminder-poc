@@ -22,4 +22,8 @@ const A = E.evaluate(read('data/questionnaires/test_A.json'), files, rules, cat)
 expect(A.every(r => r.category.startsWith('M1')), 'test A: 6 seats + driver is M1 for every vehicle');
 expect(A.every(r => r.tiers.every(t => t.mods.some(m => m.id === 'grey_tank') && t.mods.some(m => m.id === 'black_tank'))), 'test A: grey tank always, black tank with the cassette toilet');
 expect(A.every(r => r.tiers.every(t => t.verdict !== 'ELIGIBLE' || t.fit.status === 'PASS')), 'test A: nothing is ELIGIBLE unless it fits at the unfavourable end of every band');
+// rules.json C-NO-MECHANICAL-CHANGES example: the Azad Urbania build's rear air suspension, done as a motor caravan conversion
+const qAir = Object.assign({}, read('data/questionnaires/test_A.json'), { conversion: Object.assign({}, read('data/questionnaires/test_A.json').conversion, { mechanical_changes: ['rear air suspension (BharatAutoSolution kit)'] }) });
+const air = E.evaluate(qAir, files.filter(f => f.id === 'force_urbania_4400wb'), rules, cat).results[0];
+expect(air.tiers.every(t => t.verdict === 'REJECTED' && t.rejected.some(x => x.includes('C-NO-MECHANICAL-CHANGES') && x.includes('cl. 0.1'))), 'air-suspension example: a motor caravan conversion with a suspension change is REJECTED under AIS-124 cl. 0.1');
 process.exit(failed ? 1 : 0);

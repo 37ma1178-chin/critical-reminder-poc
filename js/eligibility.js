@@ -286,6 +286,15 @@
     const seats = q.seats_excluding_driver;
     const out = { id: v.id, name: v.name, kind: v.kind, legal: [], conversion: [], state: [], design: [], requirements: [], pending: new Set(), rejected: [], undecided: [], conditions: [] };
     const reject = (why) => out.rejected.push(why);
+    // Interior figures that are known to be shaky: say so on every result that leans on them
+    out.caveats = [];
+    const iw = file.interior.usable_width, il = file.interior.usable_length;
+    if (v.kind === 'van' && il.confidence === 'ESTIMATED' && v.family !== 'force_urbania') {
+      out.caveats.push('living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]');
+      out.pending.add('P-VAN-CAB-LENGTH');
+    }
+    if (v.kind === 'van' && /Revised default/.test(iw.method || '')) { out.caveats.push('living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]'); out.pending.add('P-WIDTH-RATIO'); }
+    if (v.family === 'force_urbania') out.pending.add('P-BUILDER-WIDTH-HEIGHT');
     const undecide = (why) => out.undecided.push(why);
 
     // Route: motor caravan (AIS-124) or bus body (Rule 125C)
@@ -446,6 +455,7 @@
       if (r.routeNote) L.push(`    route: ${r.routeNote}`);
       r.legal.forEach(x => L.push(`    legal ok: ${x}`));
       r.state.forEach(x => L.push(`    state ok: ${x}`));
+      (r.caveats || []).forEach(x => L.push(`    caveat: ${x}`));
       r.conditions.forEach(x => L.push(`    to confirm: ${x}`));
       r.design.forEach(x => L.push(`    design warning: ${x}`));
       if (r.pending.length) L.push(`    pending: ${r.pending.join(', ')}`);

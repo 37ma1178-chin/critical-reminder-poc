@@ -422,13 +422,13 @@
   }
 
   // Human-readable spec lines shared by the info panels of every view. "(est.)" marks an
-  // ESTIMATED number, "unknown" an UNKNOWN one.
+  // ESTIMATED number, "(builder)" a BUILDER_MEASURED one, "unknown" an UNKNOWN one.
   function specLines(spec) {
     const b = spec.body, s = spec.stock_seating;
     const v = (path, val, unit) => {
       const c = confidence(spec, path);
       if (val == null) return 'unknown';
-      return `${val}${unit || ''}${c === 'ESTIMATED' ? ' (est.)' : ''}`;
+      return `${val}${unit || ''}${c === 'ESTIMATED' ? ' (est.)' : c === 'BUILDER_MEASURED' ? ' (builder)' : ''}`;
     };
     return {
       size: `Length ${v('body.length', b.length, 'mm')} · Width ${v('body.width', b.width, 'mm')} · Height ${v('body.height', b.height, 'mm')}`,

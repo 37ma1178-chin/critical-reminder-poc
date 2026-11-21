@@ -30,7 +30,18 @@ const SRC = {
   build_py: HO + '/models/source/build_camper.py (GLB build rules)',
   handover_vj: HO + '/data/vehicles.json',
   conf_report: HO + '/data/interior_confidence_report.md',
+  builder_oct: 'Azad Automotive Customs, "Voyager VIP on Force Urbania" (WB 4400), dimensioned top-view layouts, PDF pages 2–3, Oct 2026; data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf',
 };
+
+// Body builder measurements (BUILDER_MEASURED: measured by a body builder on a built vehicle, shown on
+// their dimensioned layout drawing; between CONFIRMED and ESTIMATED). Inches on the drawing.
+const BUILDER = {
+  urbania_living_length: 4191,   // 165 in, behind the driver partition
+  urbania_living_width: 1651,    // 65 in "(internal)"
+  urbania_wb: 4400,
+  urbania_body_width: 2095,
+};
+const WIDTH_RATIO = BUILDER.urbania_living_width / BUILDER.urbania_body_width;   // 0.788
 
 // Shape inputs the GLBs were built with (models/source/vehicles.py: nose, hood, windscreen run).
 // Only used to draw an estimated side profile for variants without an OEM side render.
@@ -251,7 +262,7 @@ function convert(v) {
     brand: v.brand, model: v.model, variant_name: v.variant_name,
     kind, body_build: isBus ? 'incomplete_chassis' : 'oem_monocoque', body_family: FAMILY[id],
     units: 'mm',
-    sources_note: 'Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (' + SRC.conf_report + ').',
+    sources_note: 'Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; BUILDER_MEASURED = measured by a body builder on a built vehicle (dimensioned layout drawing), between CONFIRMED and ESTIMATED; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (' + SRC.conf_report + ').',
     body,
     seating_as_sold: from(v.seating_as_sold),
     seats_as_sold_max: maxSeats(v),
@@ -275,7 +286,42 @@ function convert(v) {
   };
 
   if (isUrbania) urbaniaIndia(out, WB);
+  applyBuilder(out, WB, isUrbania);
   return out;
+}
+
+// Azad Automotive Customs (Oct 2026) measured the Urbania 4400 interior. It supersedes the render
+// scaling and the handover planning defaults for the Urbania; the Urbania 3350 / 3615 are derived
+// from it; the width-loss ratio becomes the revised default for the other vans. Bus chassis are
+// unchanged (their coach body does not exist yet).
+function applyBuilder(out, WB, isUrbania) {
+  const it = out.interior;
+  const supersede = (f, why) => Object.assign({}, f, { superseded: true, why_not_primary: why });
+  const keepAlts = f => (f.alt_estimates || []).map(a => supersede(a, (a.why_not_primary || '') + ' Superseded by the builder measurement.'));
+  if (out.kind !== 'van') return;
+  if (isUrbania && WB === BUILDER.urbania_wb) {
+    it.usable_length = P(BUILDER.urbania_living_length, 'mm', 'BUILDER_MEASURED', SRC.builder_oct,
+      { method: '165 in: living length behind the driver partition, on the builder\'s dimensioned top view', expected_error: { minus: 25, plus: 25, text: '±25 mm (drawing in whole inches; schematic, not to scale)' },
+        alt_estimates: [supersede(it.usable_length, 'Render-scaled estimate.'), ...keepAlts(it.usable_length)] });
+    it.usable_width = P(BUILDER.urbania_living_width, 'mm', 'BUILDER_MEASURED', SRC.builder_oct,
+      { method: '65 in "(internal)": finished width inside the builder\'s FRP and wood side trims. The height it was taken at is not stated.', expected_error: { minus: 25, plus: 25, text: '±25 mm (drawing in whole inches)' },
+        alt_estimates: [supersede(it.usable_width, 'Render-scaled estimate.'), ...keepAlts(it.usable_width)] });
+    return;
+  }
+  if (isUrbania) {
+    const len = BUILDER.urbania_living_length - (BUILDER.urbania_wb - WB);
+    it.usable_length = est(len, 'mm', SRC.builder_oct, `Derived: builder-measured 4400WB living length ${BUILDER.urbania_living_length} − wheelbase difference ${BUILDER.urbania_wb - WB}. Assumes the cab and rear body are the same on every wheelbase.`,
+      { minus: 50, plus: 50, text: '±50 mm (builder figure ±25 plus the same-cab assumption)' },
+      { alt_estimates: [supersede(it.usable_length, 'Render-derived estimate.'), ...keepAlts(it.usable_length)] });
+    it.usable_width = est(BUILDER.urbania_living_width, 'mm', SRC.builder_oct, 'Same body cross-section as the builder-measured 4400WB (65 in internal).',
+      { minus: 25, plus: 25, text: '±25 mm' },
+      { alt_estimates: [supersede(it.usable_width, 'Render-scaled estimate.'), ...keepAlts(it.usable_width)] });
+    return;
+  }
+  const W = out.body.width.value, wid = Math.round(W * WIDTH_RATIO);
+  it.usable_width = est(wid, 'mm', SRC.builder_oct, `Revised default: exterior width ${W} × ${(WIDTH_RATIO * 100).toFixed(1)} %, the finished-width ratio measured by Azad Automotive Customs on the Urbania 4400 (1651 / 2095). Not measured on this vehicle.`,
+    { minus: 50, plus: 150, text: '−50/+150 mm (ratio from one Urbania build; bare-panel widths can be about 150 mm more, e.g. the Force Traveller cargo leaflet gives 1680 mm on a 1925 mm body)' },
+    { alt_estimates: [supersede(it.usable_width, 'Handover planning default (outside width − 80 mm).')] });
 }
 
 // India brochure wins for India; better-evidenced interior values win; every replaced

@@ -9,7 +9,7 @@
   "body_build": "oem_monocoque",
   "body_family": "force_urbania",
   "units": "mm",
-  "sources_note": "Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (data/handover/rv_handover_part1_models_data_research/data/interior_confidence_report.md).",
+  "sources_note": "Imported from the research handover by tools/import_handover.js. CONFIRMED = official OEM or government document; BUILDER_MEASURED = measured by a body builder on a built vehicle (dimensioned layout drawing), between CONFIRMED and ESTIMATED; ESTIMATED = planning value, derived figure or non-official source; UNKNOWN = not found (value null). Interior dimensions are design estimates, not measurements (data/handover/rv_handover_part1_models_data_research/data/interior_confidence_report.md).",
   "body": {
     "length": {
       "value": 6225,
@@ -246,17 +246,46 @@
       ]
     },
     "usable_length": {
-      "value": 3525,
+      "value": 3406,
       "unit": "mm",
       "confidence": "ESTIMATED",
-      "source": "Force Motors Urbania 4400WB 16+D top-view render, pixel-measured; data/reference/force-urbania-4400wb-16d-topview.jpg and topview-measurement-annotated.png (repo task 2)",
-      "method": "Overall length 6225 − cab boundary 2600 mm from the front (behind the cab seat backs) − rear wall 100. Applied to this wheelbase because the Urbania cab and body cross-section are common to all three wheelbases.",
+      "source": "Azad Automotive Customs, \"Voyager VIP on Force Urbania\" (WB 4400), dimensioned top-view layouts, PDF pages 2–3, Oct 2026; data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf",
+      "method": "Derived: builder-measured 4400WB living length 4191 − wheelbase difference 785. Assumes the cab and rear body are the same on every wheelbase.",
       "expected_error": {
         "minus": 50,
         "plus": 50,
-        "text": "±50 mm (render scale)"
+        "text": "±50 mm (builder figure ±25 plus the same-cab assumption)"
       },
       "alt_estimates": [
+        {
+          "value": 3525,
+          "unit": "mm",
+          "confidence": "ESTIMATED",
+          "source": "Force Motors Urbania 4400WB 16+D top-view render, pixel-measured; data/reference/force-urbania-4400wb-16d-topview.jpg and topview-measurement-annotated.png (repo task 2)",
+          "method": "Overall length 6225 − cab boundary 2600 mm from the front (behind the cab seat backs) − rear wall 100. Applied to this wheelbase because the Urbania cab and body cross-section are common to all three wheelbases.",
+          "expected_error": {
+            "minus": 50,
+            "plus": 50,
+            "text": "±50 mm (render scale)"
+          },
+          "alt_estimates": [
+            {
+              "value": 4305,
+              "unit": "mm",
+              "confidence": "ESTIMATED",
+              "source": "models/source/vehicles.py (GLB build input, 19 Nov 2026); models/source/build_camper.py",
+              "method": "GLB living length: from 60 mm inside the rear wall to 360 mm behind the cab-seat backs (cab length estimated: vans 1650–1800 ±250 mm, buses 2100–2600 ±300 mm). Not a measurement.",
+              "expected_error": {
+                "minus": 250,
+                "plus": 250,
+                "text": "±250 mm"
+              },
+              "why_not_primary": "Handover planning default. It starts the living area about 1860 mm from the front, which puts the cab seats about 800 mm further forward than Force's render shows"
+            }
+          ],
+          "superseded": true,
+          "why_not_primary": "Render-derived estimate."
+        },
         {
           "value": 4305,
           "unit": "mm",
@@ -268,22 +297,52 @@
             "plus": 250,
             "text": "±250 mm"
           },
-          "why_not_primary": "Handover planning default. It starts the living area about 1860 mm from the front, which puts the cab seats about 800 mm further forward than Force's render shows"
+          "why_not_primary": "Handover planning default. It starts the living area about 1860 mm from the front, which puts the cab seats about 800 mm further forward than Force's render shows Superseded by the builder measurement.",
+          "superseded": true
         }
       ]
     },
     "usable_width": {
-      "value": 1795,
+      "value": 1651,
       "unit": "mm",
       "confidence": "ESTIMATED",
-      "source": "Force Motors Urbania 4400WB 16+D top-view render, pixel-measured; data/reference/force-urbania-4400wb-16d-topview.jpg and topview-measurement-annotated.png (repo task 2)",
-      "method": "Width 2095 − 2 × 150 mm wall scaled off the render. Applied to this wheelbase because the Urbania cab and body cross-section are common to all three wheelbases.",
+      "source": "Azad Automotive Customs, \"Voyager VIP on Force Urbania\" (WB 4400), dimensioned top-view layouts, PDF pages 2–3, Oct 2026; data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf",
+      "method": "Same body cross-section as the builder-measured 4400WB (65 in internal).",
       "expected_error": {
-        "minus": 50,
-        "plus": 50,
-        "text": "±50 mm (render scale)"
+        "minus": 25,
+        "plus": 25,
+        "text": "±25 mm"
       },
       "alt_estimates": [
+        {
+          "value": 1795,
+          "unit": "mm",
+          "confidence": "ESTIMATED",
+          "source": "Force Motors Urbania 4400WB 16+D top-view render, pixel-measured; data/reference/force-urbania-4400wb-16d-topview.jpg and topview-measurement-annotated.png (repo task 2)",
+          "method": "Width 2095 − 2 × 150 mm wall scaled off the render. Applied to this wheelbase because the Urbania cab and body cross-section are common to all three wheelbases.",
+          "expected_error": {
+            "minus": 50,
+            "plus": 50,
+            "text": "±50 mm (render scale)"
+          },
+          "alt_estimates": [
+            {
+              "value": 2015,
+              "unit": "mm",
+              "confidence": "ESTIMATED",
+              "source": "research/project_files/donors.json (ObjectWeave seed 2026-10-08); models/source/vehicles.py (GLB build input, 19 Nov 2026)",
+              "method": "Exterior width 2095 − 2 × 40 mm assumed wall (donors.json shellWallEachSideMm 40 ±15). No taper, trim or tumblehome allowed for.",
+              "expected_error": {
+                "minus": 200,
+                "plus": 30,
+                "text": "−200/+30 mm (Force delivery-van leaflet shows 1680 mm cargo width on the 1925 mm Traveller body, i.e. up to ~165 mm less than this estimate)"
+              },
+              "why_not_primary": "Handover planning default (outside width − 80 mm), which its own report says may be up to 200 mm too wide"
+            }
+          ],
+          "superseded": true,
+          "why_not_primary": "Render-scaled estimate."
+        },
         {
           "value": 2015,
           "unit": "mm",
@@ -295,7 +354,8 @@
             "plus": 30,
             "text": "−200/+30 mm (Force delivery-van leaflet shows 1680 mm cargo width on the 1925 mm Traveller body, i.e. up to ~165 mm less than this estimate)"
           },
-          "why_not_primary": "Handover planning default (outside width − 80 mm), which its own report says may be up to 200 mm too wide"
+          "why_not_primary": "Handover planning default (outside width − 80 mm), which its own report says may be up to 200 mm too wide Superseded by the builder measurement.",
+          "superseded": true
         }
       ]
     },

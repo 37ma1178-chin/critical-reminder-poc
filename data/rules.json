@@ -98,6 +98,16 @@
       "title": "Earlier ObjectWeave regulatory seed (8 Oct 2026)",
       "file": "data/handover/rv_handover_part1_models_data_research/research/project_files/regulatory.json",
       "status": "Project file from earlier research"
+    },
+    "AZAD-OCT-2026": {
+      "title": "Azad Automotive Customs, Voyager VIP on Force Urbania (WB 4400), Oct 2026 (dimensioned layouts)",
+      "file": "data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf",
+      "status": "Body builder's sales deck: BUILDER_MEASURED / BUILDER_SPEC, not an official document"
+    },
+    "AZAD-AUG-2026": {
+      "title": "Azad Automotive Customs, The Voyager Royale, Aug 2026 (configuration and prices)",
+      "file": "data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf",
+      "status": "Body builder's sales deck; prices builder_quoted, 60-day validity"
     }
   },
   "layers": {
@@ -657,6 +667,14 @@
         ],
         "pending": [
           "P-MAHA-CHASSIS"
+        ],
+        "examples": [
+          {
+            "build": "Azad Automotive Customs Voyager VIP / Voyager Royale on Force Urbania 4400 WB",
+            "change": "BharatAutoSolution air-suspension kit installed at the rear",
+            "source": "data/reference/builders/azad_voyager-royale_urbania-4400_aug-2026.pdf p.7; data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.16",
+            "reading": "That build is a VIP seating van, not a motor caravan, so AIS-124 does not govern it as built. The same suspension change made as part of a motor caravan conversion breaches AIS-124 cl. 0.1 (no alteration to suspension): the engine REJECTS a questionnaire with mechanical_changes ['rear air suspension']. Whether the kit is a lawful retrofit on the VIP van under Rule 112 is a separate question, not checked here."
+          }
         ]
       },
       {
@@ -786,13 +804,17 @@
         "id": "D-AISLE-MIN",
         "title": "Walkable aisle",
         "standard": "DESIGN STANDARD (not law: AIS-124 and CMVR set no aisle width for motor caravans)",
-        "rule": "Clear width between furniture that faces across the aisle, at floor level: at least 400 mm (warn below), 500 mm or more recommended. A narrower gap is not a walkway.",
+        "rule": "Clear width between furniture that faces across the aisle, at floor level. 400 mm or more: OK. 300–400 mm: WARNING. Below 300 mm: FAIL (a design fail, never a legal one: the layout is not walkable). 500 mm or more recommended.",
         "values": {
+          "fail_below_mm": 300,
+          "warn_below_mm": 400,
           "min_mm": 400,
           "recommended_mm": 500
         },
         "basis": "ObjectWeave design default, to be confirmed at the design review. Chosen so one adult can walk past facing furniture. For comparison, the passenger aisle between seat cushions on Force's own Urbania 16+D layout is 350 mm, but that is a seated-bus aisle, not a living-area walkway.",
-        "law": "not specified (rules_summary.md 4.12)"
+        "law": "not specified (rules_summary.md 4.12)",
+        "field_evidence": "A real builder ships 330 mm: Azad Automotive Customs leaves 13 in between VIP recliner pairs on the Force Urbania 4400 (data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.2–3). That is a seated-passenger aisle in a VIP van, inside the WARNING band. The 50 mm dinette gap in four handover GLB layouts is a FAIL.",
+        "changed": "2026-11-21: WARNING / FAIL bands added on the project owner's instruction (was a single 400 mm minimum)."
       },
       {
         "id": "D-BERTH-SIZE",
@@ -1646,9 +1668,10 @@
       "resolution": null,
       "id": "P-VAN-CAB-LENGTH",
       "source": "Found while reconciling the Urbania (data/vehicles/URBANIA_RECONCILIATION.md)",
-      "question": "How long is the usable living area of each van, really? For the Urbania 4400 the handover's 5090 mm is 780 mm longer than Force's own top-view render shows (cab boundary 2600 mm from the front), three times the handover's stated ±250 mm error. The same planning rule set every other van's living length.",
+      "question": "How long is the usable living area of each van, really? For the Urbania 4400 the handover's 5090 mm is 780 mm longer than Force's own top-view render shows (cab boundary 2600 mm from the front), three times the handover's stated ±250 mm error. The same planning rule set every other van's living length. (Urbania 4400 now builder-measured; the other vans are not.)",
       "detail": [
-        "Only the Urbania has independent evidence, so only its values were replaced. Treat every other van's living length as possibly too long by a similar amount until measured."
+        "Only the Urbania has independent evidence, so only its values were replaced. Treat every other van's living length as possibly too long by a similar amount until measured.",
+        "21 Nov 2026: Azad Automotive Customs measured the Urbania 4400 living length as 4191 mm (165 in, data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf p.2–3). The handover's 5090 mm was 899 mm too long, the render-scaled 4310 mm was 119 mm too long. The other vans still use the handover's planning lengths, so their fit results are likely optimistic."
       ],
       "close_by": "Measure the cab bulkhead / seat-back position on one vehicle per body family (Traveller N, Traveller Wider Body, Winger HR).",
       "affects": {
@@ -1657,6 +1680,47 @@
         ],
         "vehicles": [
           "vans"
+        ]
+      }
+    },
+    {
+      "id": "P-WIDTH-RATIO",
+      "status": "PENDING",
+      "resolution": null,
+      "source": "Found while applying the Azad builder data (21 Nov 2026)",
+      "question": "Does the Urbania's finished-width ratio (1651 / 2095 = 78.8 %) hold for the Traveller N, Traveller Wider Body, Traveller 26 and Winger bodies?",
+      "detail": [
+        "Applied as the revised default interior width for those vans (ESTIMATED, −50/+150 mm), on the project owner's instruction.",
+        "The Urbania has curved sides; flatter-sided bodies may lose less. Force's Traveller delivery-van leaflet gives a 1680 mm bare cargo width on the 1925 mm body (87 %)."
+      ],
+      "close_by": "Measure the finished width of one built vehicle per body family, or get a builder drawing like Azad's.",
+      "affects": {
+        "dims": [
+          "interior.usable_width"
+        ],
+        "vehicles": [
+          "vans"
+        ]
+      }
+    },
+    {
+      "id": "P-BUILDER-WIDTH-HEIGHT",
+      "status": "PENDING",
+      "resolution": null,
+      "source": "Found while applying the Azad builder data (21 Nov 2026)",
+      "question": "At what height is Azad's 65 in internal width measured: floor, seat cushion or shoulder?",
+      "detail": [
+        "The engine treats it as the clear width available to floor-standing furniture. If it is the width at shoulder height, the floor width may differ (side trims, tumblehome, wheel arches)."
+      ],
+      "close_by": "Ask Azad Automotive Customs.",
+      "affects": {
+        "dims": [
+          "interior.usable_width"
+        ],
+        "vehicles": [
+          "force_urbania_3350wb",
+          "force_urbania_3615wb",
+          "force_urbania_4400wb"
         ]
       }
     }

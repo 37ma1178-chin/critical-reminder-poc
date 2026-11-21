@@ -1,5 +1,7 @@
 # Urbania: India brochure vs handover
 
+**Update 21 Nov 2026: builder measurement.** Azad Automotive Customs' dimensioned layout of a built Urbania 4400 (`data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf`, p.2–3) gives a living length of 165 in = **4191 mm** and an internal width of 65 in = **1651 mm** (BUILDER_MEASURED, ±25 mm). These replace both the render-scaled values (4310 × 1795) and the handover values (5090 × 2015) below, which stay in the vehicle file as superseded alternates. The 3350 and 3615 are derived from it: living length 4191 − the wheelbase difference = 3141 and 3406 mm, width 1651 mm (ESTIMATED). The render's 1795 mm was the OEM interior at seat level; Azad's 1651 mm is inside their own conversion trims, about 72 mm less per side.
+
 Checked 21 Nov 2026. Rule: the India brochure wins for India. Where neither brochure has the number, the better-evidenced estimate wins and the other is kept in `alt_estimates` in the vehicle file.
 
 Sources compared:

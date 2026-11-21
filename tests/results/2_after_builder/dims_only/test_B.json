@@ -1,0 +1,495 @@
+{
+  "questionnaire": "test_B",
+  "results": [
+    {
+      "id": "force_traveller26_4020wb",
+      "name": "Force Motors Traveller 26 (legacy BS-IV) 4020 WB",
+      "route": "motor_caravan",
+      "category": "M3",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 8090,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "Maharashtra: \"Vehicle in line with the latest Indian vehicle standards (5.4)\" — vehicle is BS-IV (MAHA-2021 Part 2 'Caravan': 3 'Basic Mandatory Criteria' and 'Mandatory/Basic Amenities' 1–11; 4 'Optional Criteria' 1–9; 5 'General Guidelines')",
+            "FIT: needs 8090 mm of living length; at most 5000 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [
+            "base vehicle: legacy BS-IV model (2018 brochure); whether any unit can be ≤ 3 years old is not known [P-LEGACY-T26]"
+          ],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO",
+        "P-LEGACY-T26",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "force_traveller_3050wb",
+      "name": "Force Motors Traveller N 3050 WB",
+      "route": "motor_caravan",
+      "category": "M2",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 11210,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "FIT: needs 11210 mm of living length; at most 3330 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "force_traveller_3350wb",
+      "name": "Force Motors Traveller N 3350 WB",
+      "route": "motor_caravan",
+      "category": "M2",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 11210,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "FIT: needs 11210 mm of living length; at most 3815 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "force_traveller_3700wb",
+      "name": "Force Motors Traveller N 3700 WB",
+      "route": "motor_caravan",
+      "category": "M2",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 11210,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "FIT: needs 11210 mm of living length; at most 4465 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "force_traveller_4020wb",
+      "name": "Force Motors Traveller N 4020 WB",
+      "route": "motor_caravan",
+      "category": "M2",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 11210,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "FIT: needs 11210 mm of living length; at most 5165 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "force_traveller-widerbody_3350wb",
+      "name": "Force Motors Traveller N Wider Body 3350 WB",
+      "route": "motor_caravan",
+      "category": "M2",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 8090,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "FIT: needs 8090 mm of living length; at most 3845 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "force_traveller-widerbody_4020wb",
+      "name": "Force Motors Traveller N Wider Body 4020 WB",
+      "route": "motor_caravan",
+      "category": "M3",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 8090,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "FIT: needs 8090 mm of living length; at most 5195 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "force_urbania_3350wb",
+      "name": "Force Motors Urbania 3350 WB",
+      "route": "motor_caravan",
+      "category": "M2",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 11210,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "FIT: needs 11210 mm of living length; at most 3191 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": [
+        "P-BUILDER-WIDTH-HEIGHT",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "force_urbania_3615wb",
+      "name": "Force Motors Urbania 3615 WB",
+      "route": "motor_caravan",
+      "category": "M2",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 11210,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "FIT: needs 11210 mm of living length; at most 3456 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": [
+        "P-BUILDER-WIDTH-HEIGHT",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "force_urbania_4400wb",
+      "name": "Force Motors Urbania 4400 WB",
+      "route": "motor_caravan",
+      "category": "M2",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 11210,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "FIT: needs 11210 mm of living length; at most 4216 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": [
+        "P-BUILDER-WIDTH-HEIGHT",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "tata_winger-highroof_3488wb",
+      "name": "Tata Motors Winger (high roof) 3488 WB",
+      "route": "motor_caravan",
+      "category": "M2",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 11210,
+          "rejected": [
+            "25 passenger seats is above the motor caravan cap of 12 excluding the driver (13 before Amd 1): L-MC-SEAT-CAP (CMVR-TSC-60 Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a; REG-REPORT section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)). The alternative for 13+ passengers is a bus body built on a chassis, L-BUS-BODY-CODE (CMVR Rule 125C(1); AIS-052 whole standard); this is a complete van, so that route needs a bus chassis instead.",
+            "FIT: needs 11210 mm of living length; at most 3948 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [
+            "Maharashtra: \"Vehicle in line with the latest Indian vehicle standards (5.4)\" — emission standard UNKNOWN for this vehicle"
+          ],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "base vehicle ≤ 3 years old (C-BASE-AGE: not answered)",
+        "RC endorsement applied for within 14 days (C-RTO-14-DAYS: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [
+        "living length is the handover planning value, not measured; the one van measured so far (Urbania 4400) came out 899 mm shorter than its handover value [P-VAN-CAB-LENGTH]",
+        "living width is the Urbania width ratio applied to this body, not measured [P-WIDTH-RATIO]"
+      ],
+      "pending": [
+        "P-VAN-CAB-LENGTH",
+        "P-WIDTH-RATIO",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "ashokleyland_viking_5334wb",
+      "name": "Ashok Leyland Viking (bus chassis) 5334 WB",
+      "route": "bus_body",
+      "category": "M3",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "UNDECIDED",
+          "fit": "PASS",
+          "need": 6240,
+          "rejected": [],
+          "undecided": [
+            "bus body code AIS-052 is not in the rulebook (document missing), so the bus-route requirements cannot be checked [P-AIS052]",
+            "rear overhang 60 % of wheelbase (ESTIMATED, ±100 mm; range 58–62) may exceed 60 % of wheelbase (L-R93-OVERHANG)",
+            "Maharashtra: \"Vehicle in line with the latest Indian vehicle standards (5.4)\" — emission standard UNKNOWN for this vehicle"
+          ],
+          "design": [
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        }
+      ],
+      "conditions": [
+        "type approval of the new body by a Rule 126 agency, registration under Rule 47(g) (C-NEW-BUILD-TYPE-APPROVAL: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": [
+        "P-AIS052",
+        "P-OQ-13",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "eicher_pro3010l_5260wb",
+      "name": "Eicher (VE Commercial Vehicles) Pro 3010 L (bus chassis) 5260 WB",
+      "route": "bus_body",
+      "category": "M3",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "UNDECIDED",
+          "fit": "UNDECIDED",
+          "need": 6240,
+          "rejected": [],
+          "undecided": [
+            "bus body code AIS-052 is not in the rulebook (document missing), so the bus-route requirements cannot be checked [P-AIS052]",
+            "FIT: does not fit on the estimate, only at the favourable end (needs 6240 mm); depends on the combination of living length, width and door position at their unfavourable ends"
+          ],
+          "design": [
+            "rear wheel arch (est. 900 mm long, 200 mm in from each wall) sits inside the living area: only bed bases, benches or cabinets over it; seats need a plinth (D-WHEEL-ARCH)"
+          ]
+        }
+      ],
+      "conditions": [
+        "type approval of the new body by a Rule 126 agency, registration under Rule 47(g) (C-NEW-BUILD-TYPE-APPROVAL: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": [
+        "P-AIS052",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    },
+    {
+      "id": "tata_lp410_3400wb",
+      "name": "Tata Motors LP 410 (face-cowl bus chassis) 3400 WB",
+      "route": "bus_body",
+      "category": "M3",
+      "tiers": [
+        {
+          "tier": "standard",
+          "verdict": "REJECTED",
+          "fit": "FAIL",
+          "need": 8020,
+          "rejected": [
+            "FIT: needs 8020 mm of living length; at most 4705 mm even at the long end of the estimate (sizes from data/design_catalog.json, standard seats 420 × 780 mm, aisle ≥ 400 mm: D-AISLE-MIN)"
+          ],
+          "undecided": [
+            "bus body code AIS-052 is not in the rulebook (document missing), so the bus-route requirements cannot be checked [P-AIS052]",
+            "Maharashtra: \"Vehicle in line with the latest Indian vehicle standards (5.4)\" — emission standard UNKNOWN for this vehicle"
+          ],
+          "design": []
+        }
+      ],
+      "conditions": [
+        "type approval of the new body by a Rule 126 agency, registration under Rule 47(g) (C-NEW-BUILD-TYPE-APPROVAL: not answered)",
+        "work by the OEM, its dealer or a State-authorised workshop (C-WORKSHOP: not answered)",
+        "Form 22F compliance certificate (C-FORM-22F: not answered)"
+      ],
+      "caveats": [],
+      "pending": [
+        "P-AIS052",
+        "P-MAHA-CHASSIS",
+        "P-OQ-06"
+      ]
+    }
+  ]
+}
