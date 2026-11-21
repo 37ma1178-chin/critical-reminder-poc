@@ -3,65 +3,466 @@
   "as_of": "2026-11-21",
   "note": "Floor footprints the eligibility engine uses to test physical fit. DESIGN STANDARD values (rules.json D-MODULE-SIZES): they decide whether requested items fit, never whether a build is legal. 'length' runs along the vehicle (along a wall), 'depth' runs across it from the wall. kind: wall = stands against one side wall; seat = one travel seat against a side (pairs face each other across the aisle); zero_floor = no floor area of its own (overhead, under furniture, roof or wall mounted). 'source' says where each size comes from: CATALOG = data/components.json (with its own sources and confidence), RENDER = scaled off Force's Urbania 16+D render, HANDOVER-GLB = the handover's GLB build rule, DESIGN DEFAULT = ObjectWeave planning default with no product drawing behind it yet (replace with the supplier's drawing).",
   "defaults": {
-    "cab_passenger_seats": { "value": 1, "source": "HANDOVER-GLB and RENDER", "basis": "The handover GLBs and Force's Urbania render both have a driver and one co-driver seat in the cab." },
-    "occupant_mass_kg": { "value": 68, "source": "DESIGN DEFAULT", "basis": "Standard passenger mass used for payload notes only." }
+    "cab_passenger_seats": {
+      "value": 1,
+      "source": "HANDOVER-GLB and RENDER",
+      "basis": "The handover GLBs and Force's Urbania render both have a driver and one co-driver seat in the cab."
+    },
+    "occupant_mass_kg": {
+      "value": 68,
+      "source": "DESIGN DEFAULT",
+      "basis": "Standard passenger mass used for payload notes only."
+    }
   },
   "seat_tiers": {
-    "standard": { "width": 420, "pitch": 780, "source": "RENDER", "basis": "Seat width 420 mm and row pitch 780 mm measured on the Force Urbania 16+D render (±50 mm)." },
-    "captain": { "width": 520, "pitch": 850, "source": "DESIGN DEFAULT", "basis": "Larger than the Urbania cab seat on the render (480 wide × 710 deep) plus legroom. Replace with the supplier's drawing." },
-    "recliner": { "width": 560, "pitch": 1000, "source": "DESIGN DEFAULT", "basis": "Reclining seat with leg room for the reclined position. Replace with the supplier's drawing." },
-    "massage_recliner": { "width": 620, "pitch": 1100, "source": "DESIGN DEFAULT", "basis": "Wider powered recliner with massage unit and full recline. Replace with the supplier's drawing." }
+    "standard": {
+      "width": 420,
+      "pitch": 780,
+      "source": "RENDER",
+      "basis": "Seat width 420 mm and row pitch 780 mm measured on the Force Urbania 16+D render (±50 mm)."
+    },
+    "captain": {
+      "width": 520,
+      "pitch": 850,
+      "source": "DESIGN DEFAULT",
+      "basis": "Larger than the Urbania cab seat on the render (480 wide × 710 deep) plus legroom. Replace with the supplier's drawing."
+    },
+    "recliner": {
+      "width": 560,
+      "pitch": 1000,
+      "source": "DESIGN DEFAULT",
+      "basis": "Reclining seat with leg room for the reclined position. Replace with the supplier's drawing."
+    },
+    "massage_recliner": {
+      "width": 620,
+      "pitch": 1100,
+      "source": "DESIGN DEFAULT",
+      "basis": "Wider powered recliner with massage unit and full recline. Replace with the supplier's drawing."
+    }
   },
   "modules": {
-    "sofa_cum_bed_2": { "label": "Sofa-cum-bed for 2", "kind": "wall", "length": 1850, "depth": 600, "night_depth": 1200, "arch_tolerant": true, "provides": ["sleeping", "table_seating", "under_seat_storage"], "hosts": ["fresh_water_tank"], "source": "DESIGN DEFAULT", "basis": "Bed length and deployed width = the double-berth minimum (rules.json D-BERTH-SIZE); 600 mm sofa depth. Deployed, it may take the aisle, not the furniture opposite." },
-    "fixed_double_bed": { "label": "Fixed double bed (lengthwise)", "kind": "wall", "length": 1850, "depth": 1200, "arch_tolerant": true, "provides": ["sleeping", "under_seat_storage"], "hosts": ["fresh_water_tank"], "source": "DESIGN DEFAULT", "basis": "Double-berth minimum (D-BERTH-SIZE)." },
-    "bunk_pair": { "label": "Bunk pair (two singles stacked)", "kind": "wall", "length": 1850, "depth": 650, "arch_tolerant": true, "provides": ["sleeping"], "source": "DESIGN DEFAULT", "basis": "Single-berth minimum (D-BERTH-SIZE)." },
-    "washroom_compact": { "label": "Washroom, compact (toilet, basin, hand shower)", "kind": "wall", "length": 900, "depth": 780, "arch_tolerant": false, "source": "CATALOG", "basis": "data/components.json toilet_cubicle footprint (web_quoted module)." },
-    "washroom_spacious": { "label": "Washroom, spacious (toilet, basin, shower tray)", "kind": "wall", "length": 1100, "depth": 900, "arch_tolerant": false, "source": "DESIGN DEFAULT", "basis": "Compact cubicle enlarged for a separate shower tray." },
-    "kitchenette": { "label": "Kitchenette counter", "kind": "wall", "length": 1000, "depth": 500, "arch_tolerant": true, "provides": ["cooking_surface", "storage"], "hosts": ["fridge_small", "microwave", "hob"], "source": "CATALOG", "basis": "data/components.json kitchenette footprint (estimated_from_import); fridge under the counter as in the catalog; microwave in the locker above." },
-    "pantry_small": { "label": "Small pantry (tall food cupboard)", "kind": "wall", "length": 500, "depth": 500, "arch_tolerant": true, "provides": ["storage", "food_storage"], "hosts": ["microwave"], "source": "DESIGN DEFAULT", "basis": "Tall cupboard; AIS-124 cl. 4.4(d) wants food stored apart from cooking vessels." },
-    "fridge_small": { "label": "Small 12 V fridge", "kind": "wall", "length": 400, "depth": 500, "arch_tolerant": false, "host_with": ["kitchenette"], "source": "CATALOG", "basis": "data/components.json fridge (Dometic CRX 50, 380 × 500); free-standing size used only when there is no counter to put it under." },
-    "microwave": { "label": "Microwave", "kind": "wall", "length": 500, "depth": 450, "arch_tolerant": true, "host_with": ["kitchenette", "pantry_small"], "provides": ["cooking"], "source": "DESIGN DEFAULT", "basis": "Built into the pantry or the locker over the counter; its own cabinet only when neither exists." },
-    "hob": { "label": "Hob", "kind": "zero_floor", "host_with": ["kitchenette"], "provides": ["cooking"], "source": "CATALOG", "basis": "On the kitchenette counter." },
-    "wardrobe": { "label": "Wardrobe", "kind": "wall", "length": 600, "depth": 550, "arch_tolerant": true, "provides": ["storage"], "source": "HANDOVER-GLB", "basis": "Storage_Wardrobe_Tall, 600 × 550 mm, in the handover build_camper.py." },
-    "removable_table": { "label": "Removable / folding table", "kind": "zero_floor", "needs_any": ["sofa_cum_bed_2", "seat_pair"], "provides": ["table"], "source": "DESIGN DEFAULT", "basis": "Permanent floor or wall mount at the sofa; the table itself may detach or fold (AIS-124 cl. 4.1(c)). Uses the aisle only when set up." },
-    "overhead_lockers": { "label": "Overhead lockers", "kind": "zero_floor", "provides": ["storage"], "source": "DESIGN DEFAULT", "basis": "Above furniture along the walls; reduces headroom over that furniture only." },
-    "under_seat_storage": { "label": "Under-seat / under-floor storage", "kind": "zero_floor", "provides": ["storage"], "source": "DESIGN DEFAULT", "basis": "Inside the sofa, bed or bench bases." },
-    "fresh_water_tank": { "label": "Fresh-water tank, 100 L", "kind": "wall", "length": 750, "depth": 400, "arch_tolerant": true, "host_with": ["sofa_cum_bed_2", "fixed_double_bed"], "source": "CATALOG", "basis": "data/components.json water_tank; fits inside a sofa or bed base." },
-    "grey_tank": { "label": "Grey-water tank", "kind": "zero_floor", "source": "DESIGN DEFAULT", "basis": "Underslung. Space under the floor and its effect on ground clearance are not checked (no chassis drawing)." },
-    "black_tank": { "label": "Black-water storage", "kind": "zero_floor", "source": "DESIGN DEFAULT", "basis": "Underslung tank, or the toilet's own cassette." },
-    "electrical_cabinet": { "label": "Electrical cabinet (inverter, LiFePO4 battery, fuses, 230 V inlet)", "kind": "zero_floor", "source": "CATALOG", "basis": "data/components.json electrical_panel, 400 × 200 mm, wall-mounted above other furniture." },
-    "partition_behind_driver": { "label": "Partition behind the driver", "kind": "full_width", "length": 50, "arch_tolerant": true, "source": "CATALOG", "basis": "data/components.json partition (50 mm)." },
-    "infotainment_unit": { "label": "Infotainment unit (screen)", "kind": "zero_floor", "provides": ["audio_video"], "source": "CATALOG", "basis": "Wall or partition mounted (data/components.json tv)." },
-    "seat_back_tablets": { "label": "Seat-back tablets", "kind": "zero_floor", "needs": "forward_rows", "source": "DESIGN DEFAULT", "basis": "On the backs of forward-facing seats." },
-    "roof_ac": { "label": "Roof air-conditioner", "kind": "zero_floor", "source": "DESIGN DEFAULT", "basis": "Roof unit; excluded from overall height for M-category vehicles (CMVR Rule 93, Explanation III)." },
-    "water_heater": { "label": "Water heater", "kind": "zero_floor", "source": "DESIGN DEFAULT", "basis": "Inside the washroom or under the counter." },
-    "zero_floor_misc": { "label": "Small fittings", "kind": "zero_floor", "source": "DESIGN DEFAULT", "basis": "GPS, charging ports, driver–passenger intercom, barbecue points, net connectivity, monitoring unit: no floor area." }
+    "sofa_cum_bed_2": {
+      "label": "Sofa-cum-bed for 2",
+      "kind": "wall",
+      "length": 1850,
+      "depth": 600,
+      "night_depth": 1200,
+      "arch_tolerant": true,
+      "provides": [
+        "sleeping",
+        "table_seating",
+        "under_seat_storage"
+      ],
+      "hosts": [
+        "fresh_water_tank"
+      ],
+      "source": "DESIGN DEFAULT",
+      "basis": "Bed length and deployed width = the double-berth minimum (rules.json D-BERTH-SIZE); 600 mm sofa depth. Deployed, it may take the aisle, not the furniture opposite."
+    },
+    "fixed_double_bed": {
+      "label": "Fixed double bed (lengthwise)",
+      "kind": "wall",
+      "length": 1850,
+      "depth": 1200,
+      "arch_tolerant": true,
+      "provides": [
+        "sleeping",
+        "under_seat_storage"
+      ],
+      "hosts": [
+        "fresh_water_tank"
+      ],
+      "source": "DESIGN DEFAULT",
+      "basis": "Double-berth minimum (D-BERTH-SIZE)."
+    },
+    "bunk_pair": {
+      "label": "Bunk pair (two singles stacked)",
+      "kind": "wall",
+      "length": 1850,
+      "depth": 650,
+      "arch_tolerant": true,
+      "provides": [
+        "sleeping"
+      ],
+      "source": "DESIGN DEFAULT",
+      "basis": "Single-berth minimum (D-BERTH-SIZE)."
+    },
+    "washroom_compact": {
+      "label": "Washroom, compact (toilet, basin, hand shower)",
+      "kind": "wall",
+      "length": 900,
+      "depth": 780,
+      "arch_tolerant": false,
+      "source": "CATALOG",
+      "basis": "data/components.json toilet_cubicle footprint (web_quoted module)."
+    },
+    "washroom_spacious": {
+      "label": "Washroom, spacious (toilet, basin, shower tray)",
+      "kind": "wall",
+      "length": 1100,
+      "depth": 900,
+      "arch_tolerant": false,
+      "source": "DESIGN DEFAULT",
+      "basis": "Compact cubicle enlarged for a separate shower tray."
+    },
+    "kitchenette": {
+      "label": "Kitchenette counter",
+      "kind": "wall",
+      "length": 1000,
+      "depth": 500,
+      "arch_tolerant": true,
+      "provides": [
+        "cooking_surface",
+        "storage"
+      ],
+      "hosts": [
+        "fridge_small",
+        "microwave",
+        "hob"
+      ],
+      "source": "CATALOG",
+      "basis": "data/components.json kitchenette footprint (estimated_from_import); fridge under the counter as in the catalog; microwave in the locker above."
+    },
+    "pantry_small": {
+      "label": "Small pantry (tall food cupboard)",
+      "kind": "wall",
+      "length": 500,
+      "depth": 500,
+      "arch_tolerant": true,
+      "provides": [
+        "storage",
+        "food_storage"
+      ],
+      "hosts": [
+        "microwave"
+      ],
+      "source": "DESIGN DEFAULT",
+      "basis": "Tall cupboard; AIS-124 cl. 4.4(d) wants food stored apart from cooking vessels."
+    },
+    "fridge_small": {
+      "label": "Small 12 V fridge",
+      "kind": "wall",
+      "length": 400,
+      "depth": 500,
+      "arch_tolerant": false,
+      "host_with": [
+        "kitchenette"
+      ],
+      "source": "CATALOG",
+      "basis": "data/components.json fridge (Dometic CRX 50, 380 × 500); free-standing size used only when there is no counter to put it under."
+    },
+    "microwave": {
+      "label": "Microwave",
+      "kind": "wall",
+      "length": 500,
+      "depth": 450,
+      "arch_tolerant": true,
+      "host_with": [
+        "kitchenette",
+        "pantry_small"
+      ],
+      "provides": [
+        "cooking"
+      ],
+      "source": "DESIGN DEFAULT",
+      "basis": "Built into the pantry or the locker over the counter; its own cabinet only when neither exists."
+    },
+    "hob": {
+      "label": "Hob",
+      "kind": "zero_floor",
+      "host_with": [
+        "kitchenette"
+      ],
+      "provides": [
+        "cooking"
+      ],
+      "source": "CATALOG",
+      "basis": "On the kitchenette counter."
+    },
+    "wardrobe": {
+      "label": "Wardrobe",
+      "kind": "wall",
+      "length": 600,
+      "depth": 550,
+      "arch_tolerant": true,
+      "provides": [
+        "storage"
+      ],
+      "source": "HANDOVER-GLB",
+      "basis": "Storage_Wardrobe_Tall, 600 × 550 mm, in the handover build_camper.py."
+    },
+    "removable_table": {
+      "label": "Removable / folding table",
+      "kind": "zero_floor",
+      "needs_any": [
+        "sofa_cum_bed_2",
+        "seat_pair"
+      ],
+      "provides": [
+        "table"
+      ],
+      "source": "DESIGN DEFAULT",
+      "basis": "Permanent floor or wall mount at the sofa; the table itself may detach or fold (AIS-124 cl. 4.1(c)). Uses the aisle only when set up."
+    },
+    "overhead_lockers": {
+      "label": "Overhead lockers",
+      "kind": "zero_floor",
+      "provides": [
+        "storage"
+      ],
+      "source": "DESIGN DEFAULT",
+      "basis": "Above furniture along the walls; reduces headroom over that furniture only."
+    },
+    "under_seat_storage": {
+      "label": "Under-seat / under-floor storage",
+      "kind": "zero_floor",
+      "provides": [
+        "storage"
+      ],
+      "source": "DESIGN DEFAULT",
+      "basis": "Inside the sofa, bed or bench bases."
+    },
+    "fresh_water_tank": {
+      "label": "Fresh-water tank, 100 L",
+      "kind": "wall",
+      "length": 750,
+      "depth": 400,
+      "arch_tolerant": true,
+      "host_with": [
+        "sofa_cum_bed_2",
+        "fixed_double_bed"
+      ],
+      "source": "CATALOG",
+      "basis": "data/components.json water_tank; fits inside a sofa or bed base."
+    },
+    "grey_tank": {
+      "label": "Grey-water tank",
+      "kind": "zero_floor",
+      "source": "DESIGN DEFAULT",
+      "basis": "Underslung. Space under the floor and its effect on ground clearance are not checked (no chassis drawing)."
+    },
+    "black_tank": {
+      "label": "Black-water storage",
+      "kind": "zero_floor",
+      "source": "DESIGN DEFAULT",
+      "basis": "Underslung tank, or the toilet's own cassette."
+    },
+    "electrical_cabinet": {
+      "label": "Electrical cabinet (inverter, LiFePO4 battery, fuses, 230 V inlet)",
+      "kind": "zero_floor",
+      "source": "CATALOG",
+      "basis": "data/components.json electrical_panel, 400 × 200 mm, wall-mounted above other furniture."
+    },
+    "partition_behind_driver": {
+      "label": "Partition behind the driver",
+      "kind": "full_width",
+      "length": 50,
+      "arch_tolerant": true,
+      "source": "CATALOG",
+      "basis": "data/components.json partition (50 mm)."
+    },
+    "infotainment_unit": {
+      "label": "Infotainment unit (screen)",
+      "kind": "zero_floor",
+      "provides": [
+        "audio_video"
+      ],
+      "source": "CATALOG",
+      "basis": "Wall or partition mounted (data/components.json tv)."
+    },
+    "seat_back_tablets": {
+      "label": "Seat-back tablets",
+      "kind": "zero_floor",
+      "needs": "forward_rows",
+      "source": "DESIGN DEFAULT",
+      "basis": "On the backs of forward-facing seats."
+    },
+    "roof_ac": {
+      "label": "Roof air-conditioner",
+      "kind": "zero_floor",
+      "source": "DESIGN DEFAULT",
+      "basis": "Roof unit; excluded from overall height for M-category vehicles (CMVR Rule 93, Explanation III)."
+    },
+    "water_heater": {
+      "label": "Water heater",
+      "kind": "zero_floor",
+      "source": "DESIGN DEFAULT",
+      "basis": "Inside the washroom or under the counter."
+    },
+    "zero_floor_misc": {
+      "label": "Small fittings",
+      "kind": "zero_floor",
+      "source": "DESIGN DEFAULT",
+      "basis": "GPS, charging ports, driver–passenger intercom, barbecue points, net connectivity, monitoring unit: no floor area."
+    }
   },
   "amenity_map": {
     "note": "Questionnaire and state-overlay ids → catalog modules. A list means all of them.",
-    "sofa_cum_bed_2": ["sofa_cum_bed_2"], "sofa_and_bed_2": ["sofa_cum_bed_2"],
-    "washroom_compact": ["washroom_compact"], "washroom_spacious": ["washroom_spacious"],
-    "toilet_cubicle_hand_shower_fresh_water": ["washroom_compact", "fresh_water_tank"],
-    "toilet_cubicle_hand_shower_fresh_waste_water": ["washroom_compact", "fresh_water_tank", "grey_tank"],
-    "kitchenette": ["kitchenette"], "pantry_small": ["pantry_small"], "fridge_small": ["fridge_small"], "microwave": ["microwave"], "hob": ["kitchenette", "hob"],
-    "kitchenette_fridge_microwave": ["kitchenette", "fridge_small", "microwave"],
-    "kitchenette_cooking_fridge_microwave": ["kitchenette", "fridge_small", "microwave"],
-    "cold_drinks_snacks": ["fridge_small"],
-    "dining_table": ["removable_table"], "table": ["removable_table"],
-    "overhead_lockers": ["overhead_lockers"], "under_seat_storage": ["under_seat_storage"], "wardrobe": ["wardrobe"],
-    "fresh_water_tank": ["fresh_water_tank"], "grey_tank": ["grey_tank"], "black_tank": ["black_tank"],
-    "partition_behind_driver": ["partition_behind_driver"],
-    "infotainment_unit": ["infotainment_unit"], "audio_video": ["infotainment_unit"], "seat_back_tablets": ["seat_back_tablets"],
-    "air_conditioning": ["roof_ac"], "water_heater": ["water_heater"],
-    "power_230v_ups_external": ["electrical_cabinet"], "battery_or_hookup": ["electrical_cabinet"], "charging_internal_external": ["electrical_cabinet"],
-    "gps": ["zero_floor_misc"], "mobile_charging": ["zero_floor_misc"], "driver_passenger_communication": ["zero_floor_misc"], "external_bbq_points": ["zero_floor_misc"],
-    "net_connectivity": ["zero_floor_misc"], "realtime_monitoring": ["zero_floor_misc"], "eco_waste_treatment": ["zero_floor_misc"], "hygiene_safety_eco": ["zero_floor_misc"], "cmvr_ais124": ["zero_floor_misc"],
-    "toe_touch_stabilisers": ["zero_floor_misc"], "power_wheel_mover": ["zero_floor_misc"]
+    "sofa_cum_bed_2": [
+      "sofa_cum_bed_2"
+    ],
+    "sofa_and_bed_2": [
+      "sofa_cum_bed_2"
+    ],
+    "washroom_compact": [
+      "washroom_compact"
+    ],
+    "washroom_spacious": [
+      "washroom_spacious"
+    ],
+    "toilet_cubicle_hand_shower_fresh_water": [
+      "washroom_compact",
+      "fresh_water_tank"
+    ],
+    "toilet_cubicle_hand_shower_fresh_waste_water": [
+      "washroom_compact",
+      "fresh_water_tank",
+      "grey_tank"
+    ],
+    "kitchenette": [
+      "kitchenette"
+    ],
+    "pantry_small": [
+      "pantry_small"
+    ],
+    "fridge_small": [
+      "fridge_small"
+    ],
+    "microwave": [
+      "microwave"
+    ],
+    "hob": [
+      "kitchenette",
+      "hob"
+    ],
+    "kitchenette_fridge_microwave": [
+      "kitchenette",
+      "fridge_small",
+      "microwave"
+    ],
+    "kitchenette_cooking_fridge_microwave": [
+      "kitchenette",
+      "fridge_small",
+      "microwave"
+    ],
+    "cold_drinks_snacks": [
+      "fridge_small"
+    ],
+    "dining_table": [
+      "removable_table"
+    ],
+    "table": [
+      "removable_table"
+    ],
+    "overhead_lockers": [
+      "overhead_lockers"
+    ],
+    "under_seat_storage": [
+      "under_seat_storage"
+    ],
+    "wardrobe": [
+      "wardrobe"
+    ],
+    "fresh_water_tank": [
+      "fresh_water_tank"
+    ],
+    "grey_tank": [
+      "grey_tank"
+    ],
+    "black_tank": [
+      "black_tank"
+    ],
+    "partition_behind_driver": [
+      "partition_behind_driver"
+    ],
+    "infotainment_unit": [
+      "infotainment_unit"
+    ],
+    "audio_video": [
+      "infotainment_unit"
+    ],
+    "seat_back_tablets": [
+      "seat_back_tablets"
+    ],
+    "air_conditioning": [
+      "roof_ac"
+    ],
+    "water_heater": [
+      "water_heater"
+    ],
+    "power_230v_ups_external": [
+      "electrical_cabinet"
+    ],
+    "battery_or_hookup": [
+      "electrical_cabinet"
+    ],
+    "charging_internal_external": [
+      "electrical_cabinet"
+    ],
+    "gps": [
+      "zero_floor_misc"
+    ],
+    "mobile_charging": [
+      "zero_floor_misc"
+    ],
+    "driver_passenger_communication": [
+      "zero_floor_misc"
+    ],
+    "external_bbq_points": [
+      "zero_floor_misc"
+    ],
+    "net_connectivity": [
+      "zero_floor_misc"
+    ],
+    "realtime_monitoring": [
+      "zero_floor_misc"
+    ],
+    "eco_waste_treatment": [
+      "zero_floor_misc"
+    ],
+    "hygiene_safety_eco": [
+      "zero_floor_misc"
+    ],
+    "cmvr_ais124": [
+      "zero_floor_misc"
+    ],
+    "toe_touch_stabilisers": [
+      "zero_floor_misc"
+    ],
+    "power_wheel_mover": [
+      "zero_floor_misc"
+    ]
   },
   "law_minimum_fill": {
     "note": "Smallest module the engine adds when a legal minimum item (rules.json L-MC-MIN-EQUIP) is missing from the request.",
-    "seats": null, "table": ["removable_table"], "sleeping": ["sofa_cum_bed_2"], "cooking": ["kitchenette", "hob"], "storage": ["overhead_lockers"]
+    "seats": null,
+    "table": [
+      "removable_table"
+    ],
+    "sleeping": [
+      "sofa_cum_bed_2"
+    ],
+    "cooking": [
+      "kitchenette",
+      "hob"
+    ],
+    "storage": [
+      "overhead_lockers"
+    ]
   },
-  "living_electrics_triggers": ["fridge_small", "microwave", "infotainment_unit", "seat_back_tablets", "roof_ac", "water_heater", "electrical_cabinet"]
+  "living_electrics_triggers": [
+    "fridge_small",
+    "microwave",
+    "infotainment_unit",
+    "seat_back_tablets",
+    "roof_ac",
+    "water_heater",
+    "electrical_cabinet"
+  ],
+  "amenity_variants": {
+    "note": "A generic request the engine may meet with any of these modules; it keeps whichever fits best.",
+    "sofa_cum_bed": [
+      "sofa_cum_bed_2"
+    ]
+  }
 }

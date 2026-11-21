@@ -1,0 +1,15 @@
+{
+  "id": "test_A",
+  "title": "Private camper, 6 seats, sofa-cum-bed, spacious washroom, pantry, comfort seat tiers",
+  "spec": "Private, 6 seats, sofa-cum-bed, spacious washroom with grey + black + cassette tanks, small pantry, small fridge, microwave, overhead + under-seat/floor storage, one infotainment unit, seat-back tablets, captain/recliner/massage-recliner seat options.",
+  "interpretation": "6 seats = 6 passenger seats excluding the driver (the OEM '+D' convention, the same one test B uses); one of them is the cab co-driver seat. The sofa-cum-bed is living furniture, not a designated travel seat. Each seat tier is checked separately. Base-vehicle age and the other conversion answers were not given, so they stay unanswered.",
+  "use": "private",
+  "state": null,
+  "seats_excluding_driver": 6,
+  "seat_tiers": ["captain", "recliner", "massage_recliner"],
+  "amenities": ["sofa_cum_bed", "washroom_spacious", "pantry_small", "fridge_small", "microwave", "overhead_lockers", "under_seat_storage", "grey_tank", "black_tank"],
+  "toilet": "cassette",
+  "add_ons": ["infotainment_unit", "seat_back_tablets"],
+  "expansions": [],
+  "conversion": { "base_vehicle_age_years": null, "mechanical_changes": [], "workshop": null, "will_obtain_form_22f": null, "will_endorse_rc_within_14_days": null, "will_obtain_type_approval": null }
+}

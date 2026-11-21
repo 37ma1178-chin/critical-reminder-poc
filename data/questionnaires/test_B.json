@@ -1,0 +1,15 @@
+{
+  "id": "test_B",
+  "title": "Commercial caravan, 25 seats, Maharashtra",
+  "spec": "Commercial, 25 seats, Maharashtra. Must reject all vans and point to bus chassis.",
+  "interpretation": "25 passenger seats excluding the driver; standard seats (no tier given). No amenities given: the engine adds the legal minimums and the Maharashtra mandatory list. Conversion answers not given.",
+  "use": "commercial",
+  "state": "maharashtra",
+  "seats_excluding_driver": 25,
+  "seat_tiers": ["standard"],
+  "amenities": [],
+  "toilet": null,
+  "add_ons": [],
+  "expansions": [],
+  "conversion": { "base_vehicle_age_years": null, "mechanical_changes": [], "workshop": null, "will_obtain_form_22f": null, "will_endorse_rc_within_14_days": null, "will_obtain_type_approval": null }
+}
