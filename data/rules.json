@@ -3,290 +3,794 @@
   "as_of": "2026-11-21",
   "note": "Indian motor caravan rules as checks for the configurator. Not legal advice. Four layers: LEGAL (pass/fail, from official documents), CONVERSION (questionnaire gates for converting a vehicle), DESIGN (warnings only, never a legal fail: used where the law is silent), STATE (tourism-scheme overlays, only for commercial use in that state). Every rule cites a document id from `documents` and a clause. `checked` says how the clause text was verified: 're-read' = clause text read for this file from the document or its text extract; 'earlier report' = taken from the handover research report and not re-read; 'secondary' = only a committee paper, catalogue or non-official copy. Rules marked 'not specified' in the law are never LEGAL here.",
   "documents": {
-    "AIS-124": { "title": "AIS-124:2014 Procedure for Type Approval and Certification of Motor Caravans", "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/AIS-124_2014_motor_caravans.pdf", "text": "data/handover/rv_handover_part2_rules/rules/text_extracts/ais124.txt", "status": "Official standard text, public.resource.org mirror (MoRTH page returned HTTP 500)" },
-    "CMVR": { "title": "Central Motor Vehicles Rules 1989, annotated reprint (Commercial Law Publishers), amended to G.S.R. 337(E) of 28 Apr 2023", "file": "data/handover/rv_handover_part2_rules/rules/text_extracts/cmvr_clp.txt", "status": "Secondary copy of statutory text; the official consolidated CMVR could not be downloaded. Amendments after Apr 2023 are not captured. 'p.' = printed page of the reprint." },
-    "GSR-414E": { "title": "G.S.R. 414(E), 26 Jun 2020, substitutes Rule 93 (dimensions)", "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/GSR-414E_2020-06-26_Rule93_dimensions_Rajasthan-circulated-scan.pdf", "status": "Official notification, Rajasthan Transport Dept scan (no text layer)" },
-    "GSR-240E": { "title": "G.S.R. 240(E), 31 Mar 2021, substitutes Rule 112 (alterations), Forms 22D / 22F", "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/GSR-240E_2021-03-31_CMV_amendment_Rule112_alterations.pdf", "status": "Official Gazette PDF, Kerala MVD host" },
-    "GSR-596E": { "title": "G.S.R. 596(E), 26 Aug 2021, CMV (18th Amendment) Rules: Rule 112(8), 125-G(3) motor caravans", "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/GSR-596E_2021-08-26_CMV_18th_Amendment_motor_caravans.pdf", "status": "Official Gazette PDF, third-party host" },
-    "FORM-22F": { "title": "Form 22F, compliance report for alteration / retrofitment", "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/Form-22F_Parivahan.pdf", "status": "Official (MoRTH Parivahan)" },
-    "AIS-053": { "title": "AIS-053 Automotive vehicles: types and terminology", "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/AIS-053_vehicle_types_terminology.pdf", "status": "Official standard text, mirror host" },
-    "IS-14272": { "title": "IS 14272:2011 Automotive vehicles: types and terminology", "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/IS-14272_2011_vehicle_types_terminology.pdf", "status": "Official BIS standard, mirror host" },
-    "AIS-022": { "title": "AIS-022/2001 Advance warning triangles, with Amendment 5", "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/AIS-022_2001_with_Amd5_warning_triangles.pdf", "status": "Official standard text, mirror host" },
-    "SO-1248E": { "title": "S.O. 1248(E), 5 Nov 2004, transport and non-transport vehicle types", "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/SO-1248E_2004-11-05_vehicle_types_compilation_mirror.pdf", "status": "Official text on a NON-official host: treat as a lead" },
-    "CMVR-TSC-60": { "title": "CMVR Technical Standing Committee, 60th meeting, annexures (Annexure VI: AIS amendments for adoption)", "file": "data/handover/rv_handover_part2_rules/rules/other_official/CMVR-TSC_60th_meeting_annexure_ACMA-hosted.pdf", "status": "Government committee paper on an industry-association host. Lists amendments proposed for adoption; it is not the published amendment." },
-    "AITP-2023": { "title": "All India Tourist Vehicles (Authorisation or Permit) Rules 2023, Gazette CG-DL-E-20042023-245256", "file": "data/handover/rv_handover_part2_rules/rules/other_official/All_India_Tourist_Permit_Rules_2023_gazette.pdf", "status": "Official Gazette PDF; not summarised clause by clause" },
-    "KERALA-2021": { "title": "Kerala Caravan Tourism Policy, G.O. 18/2021/Tourism, 8 Oct 2021", "file": "data/handover/rv_handover_part2_rules/rules/state_policies/Kerala_Caravan_Tourism_Policy_GO-18-2021-Tourism_2021-10-08.pdf", "status": "Official (Kerala Tourism)" },
-    "MAHA-2021": { "title": "Maharashtra Caravan Tourism Policy, GR TDS 2021/02/Sr. No. 501/Tourism, 15 Mar 2021 (English)", "file": "data/handover/rv_handover_part2_rules/rules/state_policies/Maharashtra_Caravan_Tourism_Policy_GR-TDS-2021-02-501_2021-03-15_English.pdf", "status": "Official (Maharashtra Tourism)" },
-    "GOA-2023": { "title": "Goa Caravan Tourism Policy 2023, valid 3 years from notification", "file": "data/handover/rv_handover_part2_rules/rules/state_policies/Goa_Caravan_Tourism_Policy_2023.pdf", "status": "Official (Goa Tourism host)" },
-    "KARNATAKA-2024": { "title": "Karnataka Tourism Policy 2024-29", "file": null, "status": "MISSING from the handover (MANIFEST lists it, the zip does not contain it). Only the 2025 investment presentation is included. Incentives only; no build specification found." },
-    "AIS-052": { "title": "AIS-052 (Rev 1) Code of practice for bus body design and approval", "file": null, "status": "MISSING: not in the handover. Required by CMVR Rule 125C(1) for new bus bodies with 13 or more passengers excluding the driver." },
-    "REG-REPORT": { "title": "Handover research report: RV India regulations, 8 Oct 2026", "file": "data/handover/rv_handover_part1_models_data_research/research/reports/rv-india-regulations_2026-10-08.md", "status": "Research report; clauses taken from it are marked 'earlier report'" },
-    "ROUTES-SEED": { "title": "Earlier ObjectWeave regulatory seed (8 Oct 2026)", "file": "data/handover/rv_handover_part1_models_data_research/research/project_files/regulatory.json", "status": "Project file from earlier research" }
+    "AIS-124": {
+      "title": "AIS-124:2014 Procedure for Type Approval and Certification of Motor Caravans",
+      "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/AIS-124_2014_motor_caravans.pdf",
+      "text": "data/handover/rv_handover_part2_rules/rules/text_extracts/ais124.txt",
+      "status": "Official standard text, public.resource.org mirror (MoRTH page returned HTTP 500)"
+    },
+    "CMVR": {
+      "title": "Central Motor Vehicles Rules 1989, annotated reprint (Commercial Law Publishers), amended to G.S.R. 337(E) of 28 Apr 2023",
+      "file": "data/handover/rv_handover_part2_rules/rules/text_extracts/cmvr_clp.txt",
+      "status": "Secondary copy of statutory text; the official consolidated CMVR could not be downloaded. Amendments after Apr 2023 are not captured. 'p.' = printed page of the reprint."
+    },
+    "GSR-414E": {
+      "title": "G.S.R. 414(E), 26 Jun 2020, substitutes Rule 93 (dimensions)",
+      "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/GSR-414E_2020-06-26_Rule93_dimensions_Rajasthan-circulated-scan.pdf",
+      "status": "Official notification, Rajasthan Transport Dept scan (no text layer)"
+    },
+    "GSR-240E": {
+      "title": "G.S.R. 240(E), 31 Mar 2021, substitutes Rule 112 (alterations), Forms 22D / 22F",
+      "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/GSR-240E_2021-03-31_CMV_amendment_Rule112_alterations.pdf",
+      "status": "Official Gazette PDF, Kerala MVD host"
+    },
+    "GSR-596E": {
+      "title": "G.S.R. 596(E), 26 Aug 2021, CMV (18th Amendment) Rules: Rule 112(8), 125-G(3) motor caravans",
+      "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/GSR-596E_2021-08-26_CMV_18th_Amendment_motor_caravans.pdf",
+      "status": "Official Gazette PDF, third-party host"
+    },
+    "FORM-22F": {
+      "title": "Form 22F, compliance report for alteration / retrofitment",
+      "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/Form-22F_Parivahan.pdf",
+      "status": "Official (MoRTH Parivahan)"
+    },
+    "AIS-053": {
+      "title": "AIS-053 Automotive vehicles: types and terminology",
+      "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/AIS-053_vehicle_types_terminology.pdf",
+      "status": "Official standard text, mirror host"
+    },
+    "IS-14272": {
+      "title": "IS 14272:2011 Automotive vehicles: types and terminology",
+      "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/IS-14272_2011_vehicle_types_terminology.pdf",
+      "status": "Official BIS standard, mirror host"
+    },
+    "AIS-022": {
+      "title": "AIS-022/2001 Advance warning triangles, with Amendment 5",
+      "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/AIS-022_2001_with_Amd5_warning_triangles.pdf",
+      "status": "Official standard text, mirror host"
+    },
+    "SO-1248E": {
+      "title": "S.O. 1248(E), 5 Nov 2004, transport and non-transport vehicle types",
+      "file": "data/handover/rv_handover_part2_rules/rules/official_pdfs/SO-1248E_2004-11-05_vehicle_types_compilation_mirror.pdf",
+      "status": "Official text on a NON-official host: treat as a lead"
+    },
+    "CMVR-TSC-60": {
+      "title": "CMVR Technical Standing Committee, 60th meeting, annexures (Annexure VI: AIS amendments for adoption)",
+      "file": "data/handover/rv_handover_part2_rules/rules/other_official/CMVR-TSC_60th_meeting_annexure_ACMA-hosted.pdf",
+      "status": "Government committee paper on an industry-association host. Lists amendments proposed for adoption; it is not the published amendment."
+    },
+    "AITP-2023": {
+      "title": "All India Tourist Vehicles (Authorisation or Permit) Rules 2023, Gazette CG-DL-E-20042023-245256",
+      "file": "data/handover/rv_handover_part2_rules/rules/other_official/All_India_Tourist_Permit_Rules_2023_gazette.pdf",
+      "status": "Official Gazette PDF; not summarised clause by clause"
+    },
+    "KERALA-2021": {
+      "title": "Kerala Caravan Tourism Policy, G.O. 18/2021/Tourism, 8 Oct 2021",
+      "file": "data/handover/rv_handover_part2_rules/rules/state_policies/Kerala_Caravan_Tourism_Policy_GO-18-2021-Tourism_2021-10-08.pdf",
+      "status": "Official (Kerala Tourism)"
+    },
+    "MAHA-2021": {
+      "title": "Maharashtra Caravan Tourism Policy, GR TDS 2021/02/Sr. No. 501/Tourism, 15 Mar 2021 (English)",
+      "file": "data/handover/rv_handover_part2_rules/rules/state_policies/Maharashtra_Caravan_Tourism_Policy_GR-TDS-2021-02-501_2021-03-15_English.pdf",
+      "status": "Official (Maharashtra Tourism)"
+    },
+    "GOA-2023": {
+      "title": "Goa Caravan Tourism Policy 2023, valid 3 years from notification",
+      "file": "data/handover/rv_handover_part2_rules/rules/state_policies/Goa_Caravan_Tourism_Policy_2023.pdf",
+      "status": "Official (Goa Tourism host)"
+    },
+    "KARNATAKA-2024": {
+      "title": "Karnataka Tourism Policy 2024-29",
+      "file": null,
+      "status": "MISSING from the handover (MANIFEST lists it, the zip does not contain it). Only the 2025 investment presentation is included. Incentives only; no build specification found."
+    },
+    "AIS-052": {
+      "title": "AIS-052 (Rev 1) Code of practice for bus body design and approval",
+      "file": null,
+      "status": "MISSING: not in the handover. Required by CMVR Rule 125C(1) for new bus bodies with 13 or more passengers excluding the driver."
+    },
+    "REG-REPORT": {
+      "title": "Handover research report: RV India regulations, 8 Oct 2026",
+      "file": "data/handover/rv_handover_part1_models_data_research/research/reports/rv-india-regulations_2026-10-08.md",
+      "status": "Research report; clauses taken from it are marked 'earlier report'"
+    },
+    "ROUTES-SEED": {
+      "title": "Earlier ObjectWeave regulatory seed (8 Oct 2026)",
+      "file": "data/handover/rv_handover_part1_models_data_research/research/project_files/regulatory.json",
+      "status": "Project file from earlier research"
+    }
   },
-
   "layers": {
     "LEGAL": [
       {
         "id": "L-MC-MIN-EQUIP",
         "title": "Minimum living equipment of a motor caravan",
         "rule": "The living area must contain, as a minimum: (i) seats and a table, (ii) sleeping accommodation (may be converted from the seats), (iii) cooking facilities, (iv) storage facilities. All rigidly fixed to the living compartment; only the table may be easily removable.",
-        "check": { "type": "required_items", "items": ["seats", "table", "sleeping", "cooking", "storage"] },
+        "check": {
+          "type": "required_items",
+          "items": [
+            "seats",
+            "table",
+            "sleeping",
+            "cooking",
+            "storage"
+          ]
+        },
         "engine": "Missing items are added to the build list (and to the space check) with the note 'added: required by law'.",
         "cite": [
-          { "doc": "CMVR", "clause": "Rule 2(za), inserted by G.S.R. 868(E) of 8 Sep 2016", "page": "reprint p.9", "checked": "re-read" },
-          { "doc": "AIS-124", "clause": "cl. 2.2 and 2.11", "page": "PDF p.4", "checked": "re-read" }
+          {
+            "doc": "CMVR",
+            "clause": "Rule 2(za), inserted by G.S.R. 868(E) of 8 Sep 2016",
+            "page": "reprint p.9",
+            "checked": "re-read"
+          },
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 2.2 and 2.11",
+            "page": "PDF p.4",
+            "checked": "re-read"
+          }
         ]
       },
       {
         "id": "L-MC-FIXING",
         "title": "How the living equipment must be fitted",
         "rule": "Seats and table are part of the living area and mounted independently; table mount permanent (bolted, riveted, screwed or welded) though the table may detach or fold; permanently secured seating at the table; seats fixed to floor or wall. Beds part of the living area, base structure fixed (over-cab and upper bunks may be fixed, sliding or removable). Cooking inside or outside; if inside, fixed to floor or wall. Storage by cupboard, locker or drawers, a permanent feature; cooking vessels and food stored separately.",
-        "check": { "type": "requirement" },
-        "cite": [ { "doc": "AIS-124", "clause": "cl. 4.1(a)–(f), 4.2(a)–(d), 4.3(a)–(b), 4.4(a)–(d)", "page": "PDF p.17–18", "checked": "re-read" } ]
+        "check": {
+          "type": "requirement"
+        },
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 4.1(a)–(f), 4.2(a)–(d), 4.3(a)–(b), 4.4(a)–(d)",
+            "page": "PDF p.17–18",
+            "checked": "re-read"
+          }
+        ]
       },
       {
         "id": "L-MC-SEAT-CAP",
         "title": "Seating capacity within the motor caravan standard",
         "rule": "AIS-124 Amendment 1 changes the scope of the standard to a seating capacity of 12 excluding the driver, in place of 13 excluding the driver. A vehicle with more seats is outside the motor caravan standard; 13 or more passengers excluding the driver is the bus body-code threshold (Rule 125C).",
-        "check": { "type": "max_seats", "max": 12, "max_before_amendment": 13, "seats": "seats_excluding_driver" },
+        "check": {
+          "type": "max_seats",
+          "max": 12,
+          "max_before_amendment": 13,
+          "seats": "seats_excluding_driver"
+        },
         "engine": "seats > 13: FAIL under both versions. seats = 13: UNDECIDED, depends on pending item P-AMD1. seats ≤ 12: pass.",
         "evidence": "secondary",
         "cite": [
-          { "doc": "CMVR-TSC-60", "clause": "Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a", "page": "PDF p.13", "checked": "re-read (committee paper; the published amendment text was not read)" },
-          { "doc": "REG-REPORT", "clause": "section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)", "page": "line 109", "checked": "earlier report" }
+          {
+            "doc": "CMVR-TSC-60",
+            "clause": "Annexure VI (Agenda 4(a), amendments for adoption), item 23 'Amd 1 to AIS 124', part a",
+            "page": "PDF p.13",
+            "checked": "re-read (committee paper; the published amendment text was not read)"
+          },
+          {
+            "doc": "REG-REPORT",
+            "clause": "section on AIS-124 Amendment No. 1, 12 Jan 2021 (SelectRegs catalogue)",
+            "page": "line 109",
+            "checked": "earlier report"
+          }
         ],
-        "pending": ["P-AMD1"]
+        "pending": [
+          "P-AMD1"
+        ]
       },
       {
         "id": "L-GREY-TANK",
         "title": "Grey-water tank",
         "rule": "A separate grey-water tank (used water from shower and wash basin) must be provided.",
-        "check": { "type": "required_if", "when": "always", "item": "grey_tank" },
+        "check": {
+          "type": "required_if",
+          "when": "always",
+          "item": "grey_tank"
+        },
         "interpretation": "Clause 4.5 is headed 'Some or all of the following facilities may be provided', but 4.5.2(b) itself says the grey tank is 'to be provided'. Applied as always required, per the project brief (decision recorded 21 Nov 2026).",
-        "cite": [ { "doc": "AIS-124", "clause": "cl. 4.5.2(b)", "page": "PDF p.19", "checked": "re-read" } ]
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 4.5.2(b)",
+            "page": "PDF p.19",
+            "checked": "re-read"
+          }
+        ]
       },
       {
         "id": "L-BLACK-TANK",
         "title": "Black-water storage with a fixed toilet",
         "rule": "Separate black-water storage must be provided when a fixed toilet is fitted, with a flexible drain hose for emptying at the prescribed place. A cassette toilet is a fixed toilet; its cassette counts as black-water storage. A portable toilet does not trigger this rule.",
-        "check": { "type": "required_if", "when": "fixed_toilet", "item": "black_tank" },
-        "cite": [ { "doc": "AIS-124", "clause": "cl. 4.5.2(c), 4.5.1(a)", "page": "PDF p.18–19", "checked": "re-read" } ]
+        "check": {
+          "type": "required_if",
+          "when": "fixed_toilet",
+          "item": "black_tank"
+        },
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 4.5.2(c), 4.5.1(a)",
+            "page": "PDF p.18–19",
+            "checked": "re-read"
+          }
+        ]
       },
       {
         "id": "L-LIVING-ELECTRICS",
         "title": "Living-area electrics, if fitted",
         "rule": "If the living area has electrics: a generator or battery back-up for at least 24 hours; a safety fuse on every appliance; a direct 230 V input connected to the battery system that powers the living area.",
-        "check": { "type": "required_if", "when": "living_electrics", "items": ["backup_24h", "appliance_fuses", "inlet_230v"] },
+        "check": {
+          "type": "required_if",
+          "when": "living_electrics",
+          "items": [
+            "backup_24h",
+            "appliance_fuses",
+            "inlet_230v"
+          ]
+        },
         "engine": "Battery size for 24 h is not computed (appliance loads are not in the data); the output says it must be sized.",
-        "cite": [ { "doc": "AIS-124", "clause": "cl. 4.5.3(a)–(c)", "page": "PDF p.19", "checked": "re-read" } ]
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 4.5.3(a)–(c)",
+            "page": "PDF p.19",
+            "checked": "re-read"
+          }
+        ]
       },
       {
         "id": "L-WIRING",
         "title": "Wiring",
         "rule": "All wiring properly installed, taped, clipped or in a loom along its length, and conforming to IS 2465-1984.",
-        "check": { "type": "requirement" },
-        "cite": [ { "doc": "AIS-124", "clause": "cl. 3.5.1–3.5.2", "page": "PDF p.17", "checked": "re-read" } ]
+        "check": {
+          "type": "requirement"
+        },
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 3.5.1–3.5.2",
+            "page": "PDF p.17",
+            "checked": "re-read"
+          }
+        ]
       },
       {
         "id": "L-EXTINGUISHERS",
         "title": "Fire extinguishers",
         "rule": "Two extinguishers of 2 kg each (4 kg total) for every class (M1 ≤ 2500 kg, M1 > 2500 kg, M2, M3), one near the driver's seat; IS 13849 or IS 2171; no halogenated hydrocarbon; secured against tampering in a locker or behind breakable glass; location clearly marked.",
-        "check": { "type": "equipment", "items": [ { "item": "fire_extinguisher_2kg", "count": 2 } ] },
-        "cite": [ { "doc": "AIS-124", "clause": "cl. 3.4.1–3.4.3 and 3.5.4", "page": "PDF p.17", "checked": "re-read" } ]
+        "check": {
+          "type": "equipment",
+          "items": [
+            {
+              "item": "fire_extinguisher_2kg",
+              "count": 2
+            }
+          ]
+        },
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 3.4.1–3.4.3 and 3.5.4",
+            "page": "PDF p.17",
+            "checked": "re-read"
+          }
+        ]
       },
       {
         "id": "L-TRAVEL-SEATS",
         "title": "Who may sit where while driving",
         "rule": "The living area may not be occupied while travelling except in designated seats. Designated travel seats need at least lap belts and anchorages in all rear positions; seats not for travel must be marked by pictogram or sign. A sofa counts as travel seating only if it is a designated, belted seat.",
-        "check": { "type": "requirement" },
-        "cite": [ { "doc": "AIS-124", "clause": "cl. 3.5.3; Table 2 items 60–61 with notes D, L, M", "page": "PDF p.17 and Table 2", "checked": "re-read" } ]
+        "check": {
+          "type": "requirement"
+        },
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 3.5.3; Table 2 items 60–61 with notes D, L, M",
+            "page": "PDF p.17 and Table 2",
+            "checked": "re-read"
+          }
+        ]
       },
       {
         "id": "L-CATEGORY",
         "title": "Vehicle category after conversion",
         "rule": "M1: not more than 8 seats in addition to the driver (no GVW limit). M2: 9 or more seats in addition to the driver, GVW ≤ 5 t. M3: 9 or more, GVW > 5 t. A motor caravan is a special purpose vehicle of category M. The category follows the seats kept in the camper.",
-        "check": { "type": "category", "m1_max_seats": 8, "m2_max_gvw_kg": 5000 },
+        "check": {
+          "type": "category",
+          "m1_max_seats": 8,
+          "m2_max_gvw_kg": 5000
+        },
         "cite": [
-          { "doc": "AIS-053", "clause": "cl. 3.1.1.1–3.1.1.3", "page": "PDF p.7", "checked": "re-read" },
-          { "doc": "IS-14272", "clause": "cl. 3.1.1, 3.1.6.1", "page": "–", "checked": "earlier report (rules_summary.md section 9)" },
-          { "doc": "AIS-124", "clause": "cl. 2.2", "page": "PDF p.4", "checked": "re-read" }
+          {
+            "doc": "AIS-053",
+            "clause": "cl. 3.1.1.1–3.1.1.3",
+            "page": "PDF p.7",
+            "checked": "re-read"
+          },
+          {
+            "doc": "IS-14272",
+            "clause": "cl. 3.1.1, 3.1.6.1",
+            "page": "–",
+            "checked": "earlier report (rules_summary.md section 9)"
+          },
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 2.2",
+            "page": "PDF p.4",
+            "checked": "re-read"
+          }
         ],
-        "pending": ["P-OQ-06", "P-OQ-07"]
+        "pending": [
+          "P-OQ-06",
+          "P-OQ-07"
+        ]
       },
       {
         "id": "L-R93-WIDTH",
         "title": "Overall width",
         "rule": "Overall width ≤ 2.6 m for M1, M2 and M3. Rear-view mirrors, rub-rails up to 20 mm each side and side foot-steps are not counted.",
-        "check": { "type": "dimension_limit", "quantity": "width", "limit_mm": { "M1": 2600, "M2": 2600, "M3": 2600 } },
+        "check": {
+          "type": "dimension_limit",
+          "quantity": "width",
+          "limit_mm": {
+            "M1": 2600,
+            "M2": 2600,
+            "M3": 2600
+          }
+        },
         "cite": [
-          { "doc": "CMVR", "clause": "Rule 93(1)(A)(V) table, Rule 93(1)(B)(i), Explanation I", "page": "reprint p.110, 113–114", "checked": "re-read" },
-          { "doc": "GSR-414E", "clause": "substituted Rule 93", "page": "scan", "checked": "re-read via reprint" }
+          {
+            "doc": "CMVR",
+            "clause": "Rule 93(1)(A)(V) table, Rule 93(1)(B)(i), Explanation I",
+            "page": "reprint p.110, 113–114",
+            "checked": "re-read"
+          },
+          {
+            "doc": "GSR-414E",
+            "clause": "substituted Rule 93",
+            "page": "scan",
+            "checked": "re-read via reprint"
+          }
         ]
       },
       {
         "id": "L-R93-HEIGHT",
         "title": "Overall height",
         "rule": "Overall height ≤ 4.0 m for M1, M2 and M3, measured from the surface the vehicle rests on. For M-category vehicles the height of the air-conditioning unit is excluded.",
-        "check": { "type": "dimension_limit", "quantity": "height", "limit_mm": { "M1": 4000, "M2": 4000, "M3": 4000 }, "excludes": ["roof_ac"] },
-        "cite": [ { "doc": "CMVR", "clause": "Rule 93(1)(A)(V) table and Explanation III", "page": "reprint p.110, 114", "checked": "re-read" } ],
-        "pending": ["P-OQ-02"]
+        "check": {
+          "type": "dimension_limit",
+          "quantity": "height",
+          "limit_mm": {
+            "M1": 4000,
+            "M2": 4000,
+            "M3": 4000
+          },
+          "excludes": [
+            "roof_ac"
+          ]
+        },
+        "cite": [
+          {
+            "doc": "CMVR",
+            "clause": "Rule 93(1)(A)(V) table and Explanation III",
+            "page": "reprint p.110, 114",
+            "checked": "re-read"
+          }
+        ],
+        "pending": [
+          "P-OQ-02"
+        ]
       },
       {
         "id": "L-R93-LENGTH",
         "title": "Overall length",
         "rule": "Overall length ≤ 12.0 m for M1 and M2; ≤ 13.5 m for M3 with 2 axles; ≤ 15.0 m for M3 with 3 axles.",
-        "check": { "type": "dimension_limit", "quantity": "length", "limit_mm": { "M1": 12000, "M2": 12000, "M3": 13500, "M3_3axle": 15000 } },
-        "cite": [ { "doc": "CMVR", "clause": "Rule 93(1)(A)(V) table, Explanation II", "page": "reprint p.110, 114", "checked": "re-read" } ],
-        "pending": ["P-OQ-07", "P-OQ-13"]
+        "check": {
+          "type": "dimension_limit",
+          "quantity": "length",
+          "limit_mm": {
+            "M1": 12000,
+            "M2": 12000,
+            "M3": 13500,
+            "M3_3axle": 15000
+          }
+        },
+        "cite": [
+          {
+            "doc": "CMVR",
+            "clause": "Rule 93(1)(A)(V) table, Explanation II",
+            "page": "reprint p.110, 114",
+            "checked": "re-read"
+          }
+        ],
+        "pending": [
+          "P-OQ-07",
+          "P-OQ-13"
+        ]
       },
       {
         "id": "L-R93-OVERHANG",
         "title": "Rear overhang",
         "rule": "Rear overhang ≤ 60 % of the wheelbase.",
-        "check": { "type": "dimension_limit", "quantity": "rear_overhang_ratio", "limit": 0.60 },
-        "cite": [ { "doc": "CMVR", "clause": "Rule 93(2)", "page": "reprint p.116", "checked": "re-read" } ],
-        "pending": ["P-OQ-13"]
+        "check": {
+          "type": "dimension_limit",
+          "quantity": "rear_overhang_ratio",
+          "limit": 0.6
+        },
+        "cite": [
+          {
+            "doc": "CMVR",
+            "clause": "Rule 93(2)",
+            "page": "reprint p.116",
+            "checked": "re-read"
+          }
+        ],
+        "pending": [
+          "P-OQ-13"
+        ]
       },
       {
         "id": "L-R93-SIDE-PROJECTION",
         "title": "Side projection",
         "rule": "No part other than a working direction indicator or a mirror may project more than 355 mm beyond the centreline of the rear wheels (single rear wheels) or 152 mm beyond the outer tyre (dual rear wheels). Checked only when an add-on adds width (awning, slide-out, external locker).",
-        "check": { "type": "requirement", "when": "adds_width" },
-        "cite": [ { "doc": "CMVR", "clause": "Rule 93(3)", "page": "reprint p.116", "checked": "re-read" } ]
+        "check": {
+          "type": "requirement",
+          "when": "adds_width"
+        },
+        "cite": [
+          {
+            "doc": "CMVR",
+            "clause": "Rule 93(3)",
+            "page": "reprint p.116",
+            "checked": "re-read"
+          }
+        ]
       },
       {
         "id": "L-R93-NO-PROJECTION",
         "title": "Nothing sticks out while driving",
         "rule": "No load or part may extend sideways beyond the body, ahead of the front or behind the rear, or above the height limit while the vehicle is on the road. Slide-outs, awnings and pop-tops must be stowed within the limits for travel.",
-        "check": { "type": "requirement", "when": "expansions" },
-        "cite": [ { "doc": "CMVR", "clause": "Rule 93(1)(B)(ii)", "page": "reprint p.113", "checked": "re-read" } ],
-        "pending": ["P-OQ-01", "P-OQ-02"]
+        "check": {
+          "type": "requirement",
+          "when": "expansions"
+        },
+        "cite": [
+          {
+            "doc": "CMVR",
+            "clause": "Rule 93(1)(B)(ii)",
+            "page": "reprint p.113",
+            "checked": "re-read"
+          }
+        ],
+        "pending": [
+          "P-OQ-01",
+          "P-OQ-02"
+        ]
       },
       {
         "id": "L-R138-EQUIPMENT",
         "title": "Equipment carried in the vehicle",
         "rule": "Ready-to-use spare wheel (M1 with tubeless tyres and a repair kit, or run-flats, may omit it); OEM tool kit; 150 mm red reflective triangles to AIS-022: one if GVW ≤ 7.5 t, two if more; first-aid kit (0.5 % cetrimide antiseptic cream, sterile dressings, plasters, gauze, bandage); wheel chocks: one if GVW is over 4 t and under 7.5 t, two if over 7.5 t.",
-        "check": { "type": "equipment_by_gvw", "triangles": [ { "max_gvw_kg": 7500, "count": 1 }, { "count": 2 } ], "chocks": [ { "max_gvw_kg": 4000, "count": 0 }, { "max_gvw_kg": 7500, "count": 1 }, { "count": 2 } ] },
+        "check": {
+          "type": "equipment_by_gvw",
+          "triangles": [
+            {
+              "max_gvw_kg": 7500,
+              "count": 1
+            },
+            {
+              "count": 2
+            }
+          ],
+          "chocks": [
+            {
+              "max_gvw_kg": 4000,
+              "count": 0
+            },
+            {
+              "max_gvw_kg": 7500,
+              "count": 1
+            },
+            {
+              "count": 2
+            }
+          ]
+        },
         "cite": [
-          { "doc": "CMVR", "clause": "Rule 138(4)(a)–(e)", "page": "reprint p.412–413", "checked": "re-read" },
-          { "doc": "AIS-022", "clause": "warning triangle specification", "page": "–", "checked": "document included, not re-read" }
+          {
+            "doc": "CMVR",
+            "clause": "Rule 138(4)(a)–(e)",
+            "page": "reprint p.412–413",
+            "checked": "re-read"
+          },
+          {
+            "doc": "AIS-022",
+            "clause": "warning triangle specification",
+            "page": "–",
+            "checked": "document included, not re-read"
+          }
         ]
       },
       {
         "id": "L-MC-STANDARD",
         "title": "AIS-124 applies to every motor caravan",
         "rule": "Motor caravans made on or after 1 Apr 2018, motor caravans built on existing vehicles (AIS-124 cl. 0.0(b)), and vehicles modified as motor caravans from six months after 27 Aug 2021 must meet AIS-124:2014 until a BIS standard is notified.",
-        "check": { "type": "requirement" },
+        "check": {
+          "type": "requirement"
+        },
         "cite": [
-          { "doc": "CMVR", "clause": "Rule 125G(1)–(3); Rule 112(8)", "page": "reprint p.147–148, 331–332", "checked": "re-read" },
-          { "doc": "GSR-596E", "clause": "paras 3–4", "page": "PDF p.3", "checked": "earlier report (rules_summary.md 1.3)" }
+          {
+            "doc": "CMVR",
+            "clause": "Rule 125G(1)–(3); Rule 112(8)",
+            "page": "reprint p.147–148, 331–332",
+            "checked": "re-read"
+          },
+          {
+            "doc": "GSR-596E",
+            "clause": "paras 3–4",
+            "page": "PDF p.3",
+            "checked": "earlier report (rules_summary.md 1.3)"
+          }
         ]
       },
       {
         "id": "L-BUS-BODY-CODE",
         "title": "Bus body code for 13 or more passengers",
         "rule": "Testing and approval of the body of new bus models with a seating capacity of 13 or more passengers excluding the driver must follow AIS-052 (Rev 1). With the motor caravan seat cap (L-MC-SEAT-CAP), a layout with 13 or more passenger seats is a bus-body route, built on a bus chassis by a body builder, not a van conversion.",
-        "check": { "type": "route", "min_seats": 13, "requires_body_build": "incomplete_chassis" },
+        "check": {
+          "type": "route",
+          "min_seats": 13,
+          "requires_body_build": "incomplete_chassis"
+        },
         "engine": "AIS-052 is not in the handover, so its requirements cannot be checked: bus-route verdicts stay UNDECIDED on that point.",
         "cite": [
-          { "doc": "CMVR", "clause": "Rule 125C(1)", "page": "reprint p.296", "checked": "re-read" },
-          { "doc": "AIS-052", "clause": "whole standard", "page": "–", "checked": "MISSING" }
+          {
+            "doc": "CMVR",
+            "clause": "Rule 125C(1)",
+            "page": "reprint p.296",
+            "checked": "re-read"
+          },
+          {
+            "doc": "AIS-052",
+            "clause": "whole standard",
+            "page": "–",
+            "checked": "MISSING"
+          }
         ],
-        "pending": ["P-AIS052"]
+        "pending": [
+          "P-AIS052"
+        ]
       },
       {
         "id": "L-TRANSPORT-REGISTRATION",
         "title": "Commercial (transport) use",
         "rule": "Camper vans are listed both as non-transport ('for private use') and as transport vehicles. Run commercially, the vehicle is a transport vehicle: fitness certificate every 2 years up to 8 years old, then yearly; speed limiting device; vehicle location tracking device with panic button; FASTag; a tourist permit or authorisation to run across states.",
-        "check": { "type": "requirement", "when": "commercial" },
+        "check": {
+          "type": "requirement",
+          "when": "commercial"
+        },
         "cite": [
-          { "doc": "SO-1248E", "clause": "Table (camper vans, private: non-transport; camper vans: transport)", "page": "mirror PDF p.1–2", "checked": "re-read (non-official host)" },
-          { "doc": "REG-REPORT", "clause": "Rule 62 fitness; Rule 118 speed limiter; Rule 125H VLTD and panic button; Rule 138A FASTag", "page": "–", "checked": "earlier report" },
-          { "doc": "AITP-2023", "clause": "whole rules", "page": "–", "checked": "document included, not summarised" }
+          {
+            "doc": "SO-1248E",
+            "clause": "Table (camper vans, private: non-transport; camper vans: transport)",
+            "page": "mirror PDF p.1–2",
+            "checked": "re-read (non-official host)"
+          },
+          {
+            "doc": "REG-REPORT",
+            "clause": "Rule 62 fitness; Rule 118 speed limiter; Rule 125H VLTD and panic button; Rule 138A FASTag",
+            "page": "–",
+            "checked": "earlier report"
+          },
+          {
+            "doc": "AITP-2023",
+            "clause": "whole rules",
+            "page": "–",
+            "checked": "document included, not summarised"
+          }
         ],
-        "pending": ["P-OQ-06", "P-OQ-10"]
+        "pending": [
+          "P-OQ-06",
+          "P-OQ-10"
+        ]
       },
       {
         "id": "L-M3-BODY-EXTRAS",
         "title": "Larger M2 / M3 bodies",
         "rule": "Emergency exits are required on M3 bus bodies; rear underrun protection applies to larger M2 and M3 bodies.",
-        "check": { "type": "requirement", "when": "category_M3" },
-        "cite": [ { "doc": "REG-REPORT", "clause": "Rule 128A (bus body code); CMVR rear underrun protection", "page": "–", "checked": "earlier report" } ],
-        "pending": ["P-OQ-10"]
+        "check": {
+          "type": "requirement",
+          "when": "category_M3"
+        },
+        "cite": [
+          {
+            "doc": "REG-REPORT",
+            "clause": "Rule 128A (bus body code); CMVR rear underrun protection",
+            "page": "–",
+            "checked": "earlier report"
+          }
+        ],
+        "pending": [
+          "P-OQ-10"
+        ]
       }
     ],
-
     "CONVERSION": [
       {
         "id": "C-BASE-AGE",
         "title": "Base vehicle age",
         "rule": "A motor caravan built by a body builder on a registered vehicle: the vehicle may be at most 3 years old.",
-        "gate": { "question": "base_vehicle_age_years", "pass_if": "<= 3", "applies_to": "oem_monocoque" },
-        "cite": [ { "doc": "AIS-124", "clause": "cl. 0.0(b)", "page": "PDF p.4", "checked": "re-read" } ],
-        "pending": ["P-AMD1", "P-LEGACY-T26"]
+        "gate": {
+          "question": "base_vehicle_age_years",
+          "pass_if": "<= 3",
+          "applies_to": "oem_monocoque"
+        },
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 0.0(b)",
+            "page": "PDF p.4",
+            "checked": "re-read"
+          }
+        ],
+        "pending": [
+          "P-AMD1",
+          "P-LEGACY-T26"
+        ]
       },
       {
         "id": "C-NO-MECHANICAL-CHANGES",
         "title": "No changes to the base vehicle's systems",
         "rule": "No alteration to the type-approved vehicle's chassis, suspension, brakes, fuel system or engine. Exceptions in AIS-124 Table 2: re-routing the filler duct and moving the approved tank inboard (note F); exhaust extended by up to 2 m after the last silencer (notes H, Q).",
-        "gate": { "question": "mechanical_changes", "pass_if": "empty" },
-        "cite": [ { "doc": "AIS-124", "clause": "cl. 0.1; Table 2 notes F, H, Q", "page": "PDF p.4, Table 2", "checked": "re-read" } ],
-        "pending": ["P-MAHA-CHASSIS"]
+        "gate": {
+          "question": "mechanical_changes",
+          "pass_if": "empty"
+        },
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 0.1; Table 2 notes F, H, Q",
+            "page": "PDF p.4, Table 2",
+            "checked": "re-read"
+          }
+        ],
+        "pending": [
+          "P-MAHA-CHASSIS"
+        ]
       },
       {
         "id": "C-WORKSHOP",
         "title": "Who may do the conversion",
         "rule": "Only the vehicle manufacturer, its dealer, a State-authorised workshop or a State-authorised service station.",
-        "gate": { "question": "workshop", "pass_if": "in", "allowed": ["oem", "oem_dealer", "state_authorised_workshop", "state_authorised_service_station"] },
+        "gate": {
+          "question": "workshop",
+          "pass_if": "in",
+          "allowed": [
+            "oem",
+            "oem_dealer",
+            "state_authorised_workshop",
+            "state_authorised_service_station"
+          ]
+        },
         "cite": [
-          { "doc": "CMVR", "clause": "Rule 112(1) as substituted by G.S.R. 240(E)", "page": "reprint p.147", "checked": "re-read" },
-          { "doc": "GSR-240E", "clause": "Rule 112(1)", "page": "PDF p.46", "checked": "earlier report (rules_summary.md 2.3)" }
+          {
+            "doc": "CMVR",
+            "clause": "Rule 112(1) as substituted by G.S.R. 240(E)",
+            "page": "reprint p.147",
+            "checked": "re-read"
+          },
+          {
+            "doc": "GSR-240E",
+            "clause": "Rule 112(1)",
+            "page": "PDF p.46",
+            "checked": "earlier report (rules_summary.md 2.3)"
+          }
         ]
       },
       {
         "id": "C-FORM-22F",
         "title": "Compliance certificate",
         "rule": "The alteration is tested by a Rule 126 agency or self-certified by the authorised workshop, which issues Form 22F (on the portal or on paper).",
-        "gate": { "question": "will_obtain_form_22f", "pass_if": "true" },
+        "gate": {
+          "question": "will_obtain_form_22f",
+          "pass_if": "true"
+        },
         "cite": [
-          { "doc": "CMVR", "clause": "Rule 112(3)", "page": "reprint p.147", "checked": "re-read" },
-          { "doc": "FORM-22F", "clause": "form", "page": "–", "checked": "document included" }
+          {
+            "doc": "CMVR",
+            "clause": "Rule 112(3)",
+            "page": "reprint p.147",
+            "checked": "re-read"
+          },
+          {
+            "doc": "FORM-22F",
+            "clause": "form",
+            "page": "–",
+            "checked": "document included"
+          }
         ]
       },
       {
         "id": "C-RTO-14-DAYS",
         "title": "Registration endorsement",
         "rule": "The owner applies to the registering authority within 14 days of the alteration for endorsement on the registration certificate (place, date and alteration certificate number). The body builder must also ensure this.",
-        "gate": { "question": "will_endorse_rc_within_14_days", "pass_if": "true", "applies_to": "oem_monocoque" },
+        "gate": {
+          "question": "will_endorse_rc_within_14_days",
+          "pass_if": "true",
+          "applies_to": "oem_monocoque"
+        },
         "cite": [
-          { "doc": "AIS-124", "clause": "cl. 8.2 (restates MV Act s.52)", "page": "PDF p.24", "checked": "re-read" },
-          { "doc": "REG-REPORT", "clause": "MV Act 1988 s.52", "page": "–", "checked": "earlier report" }
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 8.2 (restates MV Act s.52)",
+            "page": "PDF p.24",
+            "checked": "re-read"
+          },
+          {
+            "doc": "REG-REPORT",
+            "clause": "MV Act 1988 s.52",
+            "page": "–",
+            "checked": "earlier report"
+          }
         ]
       },
       {
         "id": "C-NEW-BUILD-TYPE-APPROVAL",
         "title": "New build on an incomplete chassis",
         "rule": "A motor caravan body built on a type-approved incomplete vehicle (bus or truck chassis) needs type approval under Rule 125G and AIS-124 from a Rule 126 agency (ARAI, ICAT etc.); registration under Rule 47(g).",
-        "gate": { "question": "will_obtain_type_approval", "pass_if": "true", "applies_to": "incomplete_chassis" },
-        "cite": [ { "doc": "AIS-124", "clause": "cl. 5.0–5.4 (technical information from the maker or body builder), 8.1 (registration of a caravan built on an incomplete vehicle under Rule 47(g))", "page": "PDF p.23–24", "checked": "re-read" } ]
+        "gate": {
+          "question": "will_obtain_type_approval",
+          "pass_if": "true",
+          "applies_to": "incomplete_chassis"
+        },
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "cl. 5.0–5.4 (technical information from the maker or body builder), 8.1 (registration of a caravan built on an incomplete vehicle under Rule 47(g))",
+            "page": "PDF p.23–24",
+            "checked": "re-read"
+          }
+        ]
       },
       {
         "id": "C-DIMENSION-CHANGE",
         "title": "Changed overall dimensions are tested",
         "rule": "Any change in overall dimensions (pop-top, roof pod, rear box, slide-out) must be tested by the agency (T for every class).",
-        "gate": { "question": "changes_overall_dimensions", "pass_if": "acknowledged", "triggered_by": ["pop_top", "slide_out", "rear_box", "roof_pod"] },
-        "cite": [ { "doc": "AIS-124", "clause": "Table 2, item 2", "page": "PDF p.10", "checked": "re-read" } ],
-        "pending": ["P-OQ-01", "P-OQ-02"]
+        "gate": {
+          "question": "changes_overall_dimensions",
+          "pass_if": "acknowledged",
+          "triggered_by": [
+            "pop_top",
+            "slide_out",
+            "rear_box",
+            "roof_pod"
+          ]
+        },
+        "cite": [
+          {
+            "doc": "AIS-124",
+            "clause": "Table 2, item 2",
+            "page": "PDF p.10",
+            "checked": "re-read"
+          }
+        ],
+        "pending": [
+          "P-OQ-01",
+          "P-OQ-02"
+        ]
       }
     ],
-
     "DESIGN": [
       {
         "id": "D-AISLE-MIN",
         "title": "Walkable aisle",
         "standard": "DESIGN STANDARD (not law: AIS-124 and CMVR set no aisle width for motor caravans)",
         "rule": "Clear width between furniture that faces across the aisle, at floor level: at least 400 mm (warn below), 500 mm or more recommended. A narrower gap is not a walkway.",
-        "values": { "min_mm": 400, "recommended_mm": 500 },
+        "values": {
+          "min_mm": 400,
+          "recommended_mm": 500
+        },
         "basis": "ObjectWeave design default, to be confirmed at the design review. Chosen so one adult can walk past facing furniture. For comparison, the passenger aisle between seat cushions on Force's own Urbania 16+D layout is 350 mm, but that is a seated-bus aisle, not a living-area walkway.",
         "law": "not specified (rules_summary.md 4.12)"
       },
@@ -295,7 +799,24 @@
         "title": "Berth size",
         "standard": "DESIGN STANDARD (law: not specified)",
         "rule": "Single berth at least 1850 × 650 mm; double at least 1850 × 1200 mm (warn below). Recommended 1900 × 700 and 1900 × 1300.",
-        "values": { "single_min": [1850, 650], "double_min": [1850, 1200], "single_recommended": [1900, 700], "double_recommended": [1900, 1300] },
+        "values": {
+          "single_min": [
+            1850,
+            650
+          ],
+          "double_min": [
+            1850,
+            1200
+          ],
+          "single_recommended": [
+            1900,
+            700
+          ],
+          "double_recommended": [
+            1900,
+            1300
+          ]
+        },
         "basis": "ObjectWeave design default, to be confirmed at the design review.",
         "law": "not specified (rules_summary.md 4.3)"
       },
@@ -304,7 +825,10 @@
         "title": "Standing height in the living area",
         "standard": "DESIGN STANDARD (law: not specified)",
         "rule": "Clear height over the walkway at least 1800 mm (warn below); 1900 mm or more recommended.",
-        "values": { "min_mm": 1800, "recommended_mm": 1900 },
+        "values": {
+          "min_mm": 1800,
+          "recommended_mm": 1900
+        },
         "basis": "ObjectWeave design default. The Tata Winger's published internal height is 1900 mm; the handover already flags it as below comfortable for many adults.",
         "law": "not specified (rules_summary.md 4.13)"
       },
@@ -356,76 +880,786 @@
         "law": "not specified"
       }
     ],
-
     "STATE": {
       "applies_when": "Only when use = commercial (tourism) and the state matches. Private campers are not under these schemes.",
       "kerala": {
         "doc": "KERALA-2021",
-        "cite": { "clause": "section 1 'The Tourism Caravan', minimum features i–xiv; 1.1 approval", "page": "PDF p.3", "checked": "re-read" },
+        "cite": {
+          "clause": "section 1 'The Tourism Caravan', minimum features i–xiv; 1.1 approval",
+          "page": "PDF p.3",
+          "checked": "re-read"
+        },
         "required": [
-          { "id": "sofa_cum_bed_2", "text": "Sofa-cum-bed for at least two persons (i)" },
-          { "id": "kitchenette_fridge_microwave", "text": "Kitchenette with fridge and microwave oven (ii)" },
-          { "id": "toilet_cubicle_hand_shower_fresh_water", "text": "Toilet cubicle with hand shower and sufficient fresh-water storage (iii)" },
-          { "id": "partition_behind_driver", "text": "Partition behind the driver (iv)" },
-          { "id": "driver_passenger_communication", "text": "Communication between passengers and driver (v)" },
-          { "id": "air_conditioning", "text": "Air-conditioning (vi)" },
-          { "id": "dining_table", "text": "Dining table (vii)" },
-          { "id": "audio_video", "text": "Audio / video facility (viii)" },
-          { "id": "net_connectivity", "text": "Net connectivity (ix)" },
-          { "id": "charging_internal_external", "text": "Complete charging system, external and internal (x)" },
-          { "id": "eco_waste_treatment", "text": "Eco-friendly waste treatment mechanism (xiii)" },
-          { "id": "realtime_monitoring", "text": "IT-enabled real-time monitoring system (xiv)" }
+          {
+            "id": "sofa_cum_bed_2",
+            "text": "Sofa-cum-bed for at least two persons (i)"
+          },
+          {
+            "id": "kitchenette_fridge_microwave",
+            "text": "Kitchenette with fridge and microwave oven (ii)"
+          },
+          {
+            "id": "toilet_cubicle_hand_shower_fresh_water",
+            "text": "Toilet cubicle with hand shower and sufficient fresh-water storage (iii)"
+          },
+          {
+            "id": "partition_behind_driver",
+            "text": "Partition behind the driver (iv)"
+          },
+          {
+            "id": "driver_passenger_communication",
+            "text": "Communication between passengers and driver (v)"
+          },
+          {
+            "id": "air_conditioning",
+            "text": "Air-conditioning (vi)"
+          },
+          {
+            "id": "dining_table",
+            "text": "Dining table (vii)"
+          },
+          {
+            "id": "audio_video",
+            "text": "Audio / video facility (viii)"
+          },
+          {
+            "id": "net_connectivity",
+            "text": "Net connectivity (ix)"
+          },
+          {
+            "id": "charging_internal_external",
+            "text": "Complete charging system, external and internal (x)"
+          },
+          {
+            "id": "eco_waste_treatment",
+            "text": "Eco-friendly waste treatment mechanism (xiii)"
+          },
+          {
+            "id": "realtime_monitoring",
+            "text": "IT-enabled real-time monitoring system (xiv)"
+          }
         ],
-        "desirable": [ { "id": "gps", "text": "GPS (xi, desirable)" }, { "id": "bs_vi", "text": "Preferably Bharat Stage VI compliant (xii)" } ],
-        "notes": [ "'The ideal length for the Caravan shall be about 8.5 m': guidance, not a limit.", "Approval procedure set by the Kerala Motor Vehicles Department; AIS-124 type approval from a Rule 126 agency (1.1)." ]
+        "desirable": [
+          {
+            "id": "gps",
+            "text": "GPS (xi, desirable)"
+          },
+          {
+            "id": "bs_vi",
+            "text": "Preferably Bharat Stage VI compliant (xii)"
+          }
+        ],
+        "notes": [
+          "'The ideal length for the Caravan shall be about 8.5 m': guidance, not a limit.",
+          "Approval procedure set by the Kerala Motor Vehicles Department; AIS-124 type approval from a Rule 126 agency (1.1)."
+        ]
       },
       "maharashtra": {
         "doc": "MAHA-2021",
-        "cite": { "clause": "Part 2 'Caravan': 3 'Basic Mandatory Criteria' and 'Mandatory/Basic Amenities' 1–11; 4 'Optional Criteria' 1–9; 5 'General Guidelines'", "page": "PDF p.9–10", "checked": "re-read from the PDF" },
+        "cite": {
+          "clause": "Part 2 'Caravan': 3 'Basic Mandatory Criteria' and 'Mandatory/Basic Amenities' 1–11; 4 'Optional Criteria' 1–9; 5 'General Guidelines'",
+          "page": "PDF p.9–10",
+          "checked": "re-read from the PDF"
+        },
         "correction": "rules_summary.md in the handover lists fridge, microwave, kitchen, shower, dining table, separate grey and black tanks and wheelchair facility as mandatory. In the PDF they are items 5–9 of '4. Optional Criteria' (the list continues across the page break). Encoded here as optional.",
         "required": [
-          { "id": "sofa_cum_bed_2", "text": "Sofa-cum-bed for sleeping, enough for 2 people (1)" },
-          { "id": "cold_drinks_snacks", "text": "Facility for cold drinks and snacks (2)" },
-          { "id": "air_conditioning", "text": "Air-conditioning system (3)" },
-          { "id": "external_bbq_points", "text": "External barbecue points (4)" },
-          { "id": "toe_touch_stabilisers", "text": "Toe-touch stabilisers (5)", "pending": "P-MAHA-CHASSIS" },
-          { "id": "mobile_charging", "text": "Mobile charging ports (6)" },
-          { "id": "gps", "text": "GPS system (7)" },
-          { "id": "battery_or_hookup", "text": "Battery or external hook-ups for electricity (8)" },
-          { "id": "water_heater", "text": "Water heater, gas or electric (9)" },
-          { "id": "power_wheel_mover", "text": "Power wheel mover for parking, integrated or clip-on (10)", "pending": "P-MAHA-CHASSIS" },
-          { "id": "driver_passenger_communication", "text": "Separate driver–passenger communication system (11)" }
+          {
+            "id": "sofa_cum_bed_2",
+            "text": "Sofa-cum-bed for sleeping, enough for 2 people (1)"
+          },
+          {
+            "id": "cold_drinks_snacks",
+            "text": "Facility for cold drinks and snacks (2)"
+          },
+          {
+            "id": "air_conditioning",
+            "text": "Air-conditioning system (3)"
+          },
+          {
+            "id": "external_bbq_points",
+            "text": "External barbecue points (4)"
+          },
+          {
+            "id": "toe_touch_stabilisers",
+            "text": "Toe-touch stabilisers (5)",
+            "pending": "P-MAHA-CHASSIS"
+          },
+          {
+            "id": "mobile_charging",
+            "text": "Mobile charging ports (6)"
+          },
+          {
+            "id": "gps",
+            "text": "GPS system (7)"
+          },
+          {
+            "id": "battery_or_hookup",
+            "text": "Battery or external hook-ups for electricity (8)"
+          },
+          {
+            "id": "water_heater",
+            "text": "Water heater, gas or electric (9)"
+          },
+          {
+            "id": "power_wheel_mover",
+            "text": "Power wheel mover for parking, integrated or clip-on (10)",
+            "pending": "P-MAHA-CHASSIS"
+          },
+          {
+            "id": "driver_passenger_communication",
+            "text": "Separate driver–passenger communication system (11)"
+          }
         ],
-        "optional": [ "Washing machine or dryer (1)", "Bicycle space (2)", "Tent material (3)", "Audio guide (4)", "Fridge, microwave and kitchen (5)", "Water in the restroom with shower and hand shower (6)", "Dining table (7)", "Separate grey and black tanks (8)", "Wheelchair facility (9)" ],
-        "vehicle_checks": [ { "id": "latest_standards", "text": "Vehicle in line with the latest Indian vehicle standards (5.4)", "check": "emission_latest" } ],
-        "notes": [ "Register the caravan with the Collector / Transport Department (3.1).", "Policy types: 'Single Excel Conventional Caravan: 3 m and 6.5 m long, sleeping 2 to 6' and 'Twin Extra Large'. Whether this caps a rigid caravan's length is unclear (pending P-MAHA-LENGTH); not applied." ]
+        "optional": [
+          "Washing machine or dryer (1)",
+          "Bicycle space (2)",
+          "Tent material (3)",
+          "Audio guide (4)",
+          "Fridge, microwave and kitchen (5)",
+          "Water in the restroom with shower and hand shower (6)",
+          "Dining table (7)",
+          "Separate grey and black tanks (8)",
+          "Wheelchair facility (9)"
+        ],
+        "vehicle_checks": [
+          {
+            "id": "latest_standards",
+            "text": "Vehicle in line with the latest Indian vehicle standards (5.4)",
+            "check": "emission_latest"
+          }
+        ],
+        "notes": [
+          "Register the caravan with the Collector / Transport Department (3.1).",
+          "Policy types: 'Single Excel Conventional Caravan: 3 m and 6.5 m long, sleeping 2 to 6' and 'Twin Extra Large'. Whether this caps a rigid caravan's length is unclear (pending P-MAHA-LENGTH); not applied."
+        ]
       },
       "goa": {
         "doc": "GOA-2023",
-        "cite": { "clause": "II.1 'Mandatory Specifications' a–j; II.2 'Desirable' a–c", "page": "PDF p.7", "checked": "re-read from the PDF" },
+        "cite": {
+          "clause": "II.1 'Mandatory Specifications' a–j; II.2 'Desirable' a–c",
+          "page": "PDF p.7",
+          "checked": "re-read from the PDF"
+        },
         "required": [
-          { "id": "cmvr_ais124", "text": "Comply with CMVR and AIS-124 / AIS-113; at least four wheels (a)" },
-          { "id": "sofa_and_bed_2", "text": "Sofa and bed for at least two people (c)" },
-          { "id": "kitchenette_cooking_fridge_microwave", "text": "Kitchenette with cooking facility, fridge and microwave oven (d)" },
-          { "id": "toilet_cubicle_hand_shower_fresh_waste_water", "text": "Toilet cubicle with hand shower and sufficient fresh- and waste-water storage (e)" },
-          { "id": "power_230v_ups_external", "text": "230 V single-phase internal power with UPS and an external plug point (f)" },
-          { "id": "gps", "text": "GPS (h)" },
-          { "id": "hygiene_safety_eco", "text": "Hygiene, safety and environment-friendly practices (i)" }
+          {
+            "id": "cmvr_ais124",
+            "text": "Comply with CMVR and AIS-124 / AIS-113; at least four wheels (a)"
+          },
+          {
+            "id": "sofa_and_bed_2",
+            "text": "Sofa and bed for at least two people (c)"
+          },
+          {
+            "id": "kitchenette_cooking_fridge_microwave",
+            "text": "Kitchenette with cooking facility, fridge and microwave oven (d)"
+          },
+          {
+            "id": "toilet_cubicle_hand_shower_fresh_waste_water",
+            "text": "Toilet cubicle with hand shower and sufficient fresh- and waste-water storage (e)"
+          },
+          {
+            "id": "power_230v_ups_external",
+            "text": "230 V single-phase internal power with UPS and an external plug point (f)"
+          },
+          {
+            "id": "gps",
+            "text": "GPS (h)"
+          },
+          {
+            "id": "hygiene_safety_eco",
+            "text": "Hygiene, safety and environment-friendly practices (i)"
+          }
         ],
-        "desirable": [ { "id": "air_conditioning", "text": "Air-conditioning (II.2 a)" }, { "id": "audio_video", "text": "Audio / video (II.2 b)" }, { "id": "partition_behind_driver", "text": "Partition behind the driver (II.2 c)" } ],
+        "desirable": [
+          {
+            "id": "air_conditioning",
+            "text": "Air-conditioning (II.2 a)"
+          },
+          {
+            "id": "audio_video",
+            "text": "Audio / video (II.2 b)"
+          },
+          {
+            "id": "partition_behind_driver",
+            "text": "Partition behind the driver (II.2 c)"
+          }
+        ],
         "vehicle_checks": [
-          { "id": "bs_vi", "text": "Motorised caravan Bharat Stage VI compliant (g)", "check": "emission_bs_vi" },
-          { "id": "chassis_age", "text": "Old chassis not older than 3 years at first registration with Goa Tourism (b)", "check": "base_age_3" }
+          {
+            "id": "bs_vi",
+            "text": "Motorised caravan Bharat Stage VI compliant (g)",
+            "check": "emission_bs_vi"
+          },
+          {
+            "id": "chassis_age",
+            "text": "Old chassis not older than 3 years at first registration with Goa Tourism (b)",
+            "check": "base_age_3"
+          }
         ],
-        "notes": [ "Policy valid 3 years from notification (PDF p.5)." ]
+        "notes": [
+          "Policy valid 3 years from notification (PDF p.5)."
+        ]
       },
       "karnataka": {
         "doc": "KARNATAKA-2024",
         "required": [],
-        "notes": [ "Incentives only; no caravan build specification found. The policy PDF is missing from the handover and the scan was never OCR'd (pending P-OQ-09)." ]
+        "notes": [
+          "Incentives only; no caravan build specification found. The policy PDF is missing from the handover and the scan was never OCR'd (pending P-OQ-09)."
+        ]
       }
     }
   },
-
-  "pending": []
+  "pending": [
+    {
+      "id": "P-OQ-01",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 7 (item 1, section \"Legal / regulatory\")",
+      "question": "Are slide-out / expandable sections legal for bus-type conversions in India? (LP 410, Eicher Pro 3010 L, Ashok Leyland Viking, and any M3 build.)",
+      "detail": [
+        "What we know: CMVR and AIS-124 neither name nor ban slide-outs or pop-tops. Rule 93 limits (2.6 m wide, 4.0 m high, 13.5 m long for 2-axle M3) have no parked-mode exception, and AIS-124 Table 2 says any change in overall dimensions must be tested. Bus bodies also have to meet the bus body code (emergency exits etc.).",
+        "Unresolved: whether ARAI/ICAT would type-approve a body whose deployed width exceeds 2.6 m if it is stowed for travel; whether the RC records stowed or deployed size; whether deployment inside a private caravan park is outside Rule 93.",
+        "Width margin when stowed: Viking 0 mm (already 2600 mm), Eicher 374 mm, LP 410 460 mm. A slide-out on the Viking cannot add any stowed width.",
+        "Close it by: written query to ARAI / ICAT (homologation) and MoRTH; ask a coach builder that has an AIS-124 approval."
+      ],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-R93-WIDTH",
+          "L-R93-NO-PROJECTION",
+          "C-DIMENSION-CHANGE"
+        ],
+        "features": [
+          "slide_out"
+        ],
+        "vehicles": [
+          "tata_lp410_3400wb",
+          "eicher_pro3010l_5260wb",
+          "ashokleyland_viking_5334wb"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-02",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 12 (item 2, section \"Legal / regulatory\")",
+      "question": "Same question for van conversions (pop-top roofs on Traveller / Urbania / Winger). Pop-top raised height would add to 2.55–2.87 m; 4.0 m limit leaves room, but whether the raised state counts as the \"hood when down\" exclusion is only our reading.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-R93-HEIGHT",
+          "L-R93-NO-PROJECTION",
+          "C-DIMENSION-CHANGE"
+        ],
+        "features": [
+          "pop_top"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-03",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 13 (item 3, section \"Legal / regulatory\")",
+      "question": "GSR 596(E) (2021) — now found and downloaded (gazette copy, third-party host). Still to do: get the copy from egazette.gov.in / MoRTH (MoRTH URL returned HTTP 500) to have an official host.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-MC-STANDARD"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-04",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 14 (item 4, section \"Legal / regulatory\")",
+      "question": "GSR 868(E) (2016) original PDF not downloaded (India Code 504). Rule 2(za) / 125G text is from the annotated reprint.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-MC-MIN-EQUIP",
+          "L-MC-STANDARD"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-05",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 15 (item 5, section \"Legal / regulatory\")",
+      "question": "Current consolidated CMVR — reprint covers amendments only to Apr 2023. Any 2023–2026 amendment touching Rule 93, 112, 125G or 138 is not captured.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "*"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-06",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 16 (item 6, section \"Legal / regulatory\")",
+      "question": "RTO classification varies by state: whether a converted camper is registered as M1 \"motor caravan\", \"camper van (private)\" (non-transport) or a transport vehicle; whether seats removed changes the category on the RC; road-tax treatment. Close by asking 2–3 target state transport departments.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-CATEGORY",
+          "L-TRANSPORT-REGISTRATION"
+        ],
+        "features": [
+          "registration"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-07",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 17 (item 7, section \"Legal / regulatory\")",
+      "question": "M1 vs M3 for heavy campers: AIS-053/IS 14272 put any vehicle with ≤ 8 seats + driver in M1 regardless of GVW (so a 16.2 t Viking camper with 6 seats would be \"M1\"). Whether RTOs and test agencies accept that, and which Rule 93 length (12 m M1 vs 13.5 m M3) then applies, is unconfirmed. AIS-053 cl. 3.1.7.1 still says \"special purpose M1\" for motor caravans while AIS-124/Rule 2(za) say \"category M\".",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-CATEGORY",
+          "L-R93-LENGTH"
+        ],
+        "vehicles": [
+          "force_traveller-widerbody_4020wb",
+          "force_traveller26_4020wb",
+          "tata_lp410_3400wb",
+          "eicher_pro3010l_5260wb",
+          "ashokleyland_viking_5334wb"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-08",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 18 (item 8, section \"Legal / regulatory\")",
+      "question": "S.O. 1248(E) (2004) copy is on a non-Indian site; get the egazette copy.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-TRANSPORT-REGISTRATION"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-09",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 19 (item 9, section \"Legal / regulatory\")",
+      "question": "Karnataka Tourism Policy 2024-29: scanned PDF, caravan clauses not extracted (needs OCR).",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "STATE.karnataka"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-10",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 20 (item 10, section \"Legal / regulatory\")",
+      "question": "Rule 93 side projection, rear overhang 60 %, Rules 118, 125H, 128A, 138A, 62: taken from earlier reports, not re-read in this pass.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-R93-OVERHANG",
+          "L-R93-SIDE-PROJECTION",
+          "L-TRANSPORT-REGISTRATION",
+          "L-M3-BODY-EXTRAS"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-11",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 21 (item 11, section \"Legal / regulatory\")",
+      "question": "Driving Regulations 2017, reg. 35 not downloaded.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-R93-NO-PROJECTION"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-12",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 22 (item 12, section \"Legal / regulatory\")",
+      "question": "No published ARAI/ICAT approval for any Indian pop-top or slide-out camper was found; maker claims (LuxeCamper, EarthCamper, Pinnacle Finetza) unverified.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "features": [
+          "slide_out",
+          "pop_top"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-13",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 26 (item 13, section \"Vehicle data\")",
+      "question": "Ashok Leyland Viking length conflict: OEM page 10934 mm (FOH 2400) vs TrucksBuses 10699 mm (FOH 2265, ROH 3100) for the 5334 mm wheelbase. vehicles.json uses the OEM value (CONFIRMED) but the conflict is open. With OEM figures the rear overhang is 3200 mm = exactly 60.0 % of wheelbase, i.e. at the Rule 93 limit. Close by getting an Ashok Leyland chassis drawing.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-R93-LENGTH",
+          "L-R93-OVERHANG"
+        ],
+        "vehicles": [
+          "ashokleyland_viking_5334wb"
+        ],
+        "dims": [
+          "body.length",
+          "body.rear_overhang",
+          "interior.usable_length"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-14",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 27 (item 14, section \"Vehicle data\")",
+      "question": "Bus body heights are guesses: LP 410 2800, Eicher 3200, Viking 3400 mm (±300 mm). These drive standing height, roof equipment space and the 4.0 m check. Needs a coach builder's drawing.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "vehicles": [
+          "tata_lp410_3400wb",
+          "eicher_pro3010l_5260wb",
+          "ashokleyland_viking_5334wb"
+        ],
+        "dims": [
+          "body.height",
+          "interior.standing_height"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-15",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 28 (item 15, section \"Vehicle data\")",
+      "question": "Tata LP 410 3400 mm wheelbase: all LP 410 data is from aggregators; one listing says BS-III. Tata's current site lists LP 410/31, /33, /36 chassis (pages timed out), so the 3400 mm variant may not be current. Decide whether to swap to a current OEM LP 410 card.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "vehicles": [
+          "tata_lp410_3400wb"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-16",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 29 (item 16, section \"Vehicle data\")",
+      "question": "Interior widths: all estimated as outside width − 80 mm. Force's delivery-van leaflet suggests the real Traveller interior is up to ~165 mm narrower (1680 vs 1845 mm). Needs measurement of one vehicle per body family.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "dims": [
+          "interior.usable_width"
+        ],
+        "vehicles": [
+          "vans"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-17",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 30 (item 17, section \"Vehicle data\")",
+      "question": "50 mm dinette aisle: on the standard Traveller N (3050/3350/3700/4020) and the Winger the gap beside the dinette is 50 mm, not walkable. Design-review item: slimmer dinette, side-facing dinette or move it.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "D-AISLE-MIN"
+        ],
+        "vehicles": [
+          "force_traveller_3050wb",
+          "force_traveller_3350wb",
+          "force_traveller_3700wb",
+          "force_traveller_4020wb",
+          "tata_winger-highroof_3488wb"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-18",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 31 (item 18, section \"Vehicle data\")",
+      "question": "Wheel arches not modelled inside the GLBs; real intrusion unknown for every variant (planning default 200 mm × 340 mm × 900 mm).",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "D-WHEEL-ARCH"
+        ],
+        "dims": [
+          "interior.wheel_arch"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-19",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 32 (item 19, section \"Vehicle data\")",
+      "question": "Front overhangs estimated for all Traveller N (900), Urbania (1000) and Winger (950); this also sets where the front axle sits inside each GLB.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "dims": [
+          "body.front_overhang"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-20",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 33 (item 20, section \"Vehicle data\")",
+      "question": "Floor heights estimated for all except Winger (495 mm OEM).",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "dims": [
+          "interior.floor_height",
+          "interior.standing_height"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-21",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 34 (item 21, section \"Vehicle data\")",
+      "question": "Urbania: dimensions are from the Force brochure hosted on the South Africa Urbania site; confirm the India-market sheet is the same. The GLB used 190 mm ground clearance; the brochure says 200 mm min. Brochure seating (10/13/17) differs from the India site (10/13/16).",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "vehicles": [
+          "force_urbania_3350wb",
+          "force_urbania_3615wb",
+          "force_urbania_4400wb"
+        ]
+      },
+      "resolution_note": "Partly resolved 21 Nov 2026: the India brochure in data/reference/ is used for India (GVW, ground clearance 170, seating 9/10, 9/12/13, 12/13/16). See data/vehicles/URBANIA_RECONCILIATION.md. Still open: the India brochure states no emission standard."
+    },
+    {
+      "id": "P-OQ-22",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 35 (item 22, section \"Vehicle data\")",
+      "question": "Winger 12S: Tata page refused access on 21 Nov 2026, so the 8 Oct capture was not re-checked. Ground clearance 180 mm and tyre 195 R15 LT are in vehicles.py but not in the donors.json capture. Whether \"12 seater\" includes the driver is unclear.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "vehicles": [
+          "tata_winger-highroof_3488wb"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-23",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 36 (item 23, section \"Vehicle data\")",
+      "question": "Eicher GVW: OEM 10.7 t vs aggregator 10625 kg (OEM used).",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "vehicles": [
+          "eicher_pro3010l_5260wb"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-24",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 37 (item 24, section \"Vehicle data\")",
+      "question": "Prices: no OEM ex-showroom price for Urbania (only a range start of Rs 29.51 lakh), Winger 12S, LP 410, Eicher, Viking, Traveller 26. Force Traveller N prices are \"starting\" ex-showroom prices for the seated van, city not stated.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "features": [
+          "pricing"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-25",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 38 (item 25, section \"Vehicle data\")",
+      "question": "Door positions and sizes: not published by any OEM; GLB doors are placeholders.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "dims": [
+          "interior.entry_door"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-26",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 39 (item 26, section \"Vehicle data\")",
+      "question": ".blend source files do not exist; only the procedural build scripts.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "features": [
+          "3d"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-27",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 43 (item 27, section \"Process\")",
+      "question": "Research reports \"CMVR conversion citations\", \"vehicle suitability list\" and \"bus specs\" were not available to the packager (see research/reports/MISSING_reports.md).",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "rules": [
+          "L-TRANSPORT-REGISTRATION"
+        ]
+      }
+    },
+    {
+      "id": "P-OQ-28",
+      "status": "PENDING",
+      "source": "data/handover/rv_handover_part1_models_data_research/research/open_questions.md line 44 (item 28, section \"Process\")",
+      "question": "Queued next step (not started): plumbing and electrical configuration in 2D and 3D for standard and expandable designs, after Arihant's design review.",
+      "detail": [],
+      "resolution": null,
+      "affects": {
+        "features": [
+          "plumbing",
+          "electrical"
+        ]
+      }
+    },
+    {
+      "status": "PENDING",
+      "resolution": null,
+      "id": "P-AMD1",
+      "source": "Found while building rules.json (L-MC-SEAT-CAP)",
+      "question": "What does the published AIS-124 Amendment 1 say: is the scope 12 seats excluding the driver (CMVR-TSC 60th meeting, Annexure VI item 23) and does it keep the 3-year base-vehicle age limit?",
+      "detail": [
+        "Only the committee paper listing the amendment \"for adoption\" is in the handover; the amendment text itself was not read.",
+        "Decides verdicts for exactly 13 passenger seats (12 vs 13 cap). Above 13 seats both versions reject a motor caravan."
+      ],
+      "close_by": "Get Amendment 1 from ARAI / MoRTH (morth.nic.in/ais) and record it as an official document.",
+      "affects": {
+        "rules": [
+          "L-MC-SEAT-CAP",
+          "C-BASE-AGE"
+        ],
+        "seats": 13
+      }
+    },
+    {
+      "status": "PENDING",
+      "resolution": null,
+      "id": "P-AIS052",
+      "source": "Found while building rules.json (L-BUS-BODY-CODE)",
+      "question": "AIS-052 (Rev 1), the bus body code that CMVR Rule 125C(1) applies to bus bodies with 13 or more passengers, is not in the handover. What does it require of a bus body with beds and a kitchen?",
+      "detail": [
+        "Every 13+ seat (bus-route) verdict stays UNDECIDED until it is read.",
+        "Includes seat spacing, gangway, exits and body strength rules that may limit what fits."
+      ],
+      "close_by": "Download AIS-052 (Rev 1) with amendments from ARAI / MoRTH; ask an AIS-052 accredited body builder.",
+      "affects": {
+        "rules": [
+          "L-BUS-BODY-CODE"
+        ],
+        "route": "bus_body"
+      }
+    },
+    {
+      "status": "PENDING",
+      "resolution": null,
+      "id": "P-LEGACY-T26",
+      "source": "Found while importing force_traveller26_4020wb",
+      "question": "Can a Force Traveller 26 (legacy BS-IV, June 2018 brochure) base vehicle ever be 3 years old or less, as AIS-124 cl. 0.0(b) requires for a conversion?",
+      "detail": [
+        "The production and registration end date of the BS-IV Traveller 26 is not in the handover.",
+        "If no unit can be 3 years old or less, the variant can never be converted and should be dropped."
+      ],
+      "close_by": "Force Motors production end date, or the BS-IV registration cut-off from an official source.",
+      "affects": {
+        "rules": [
+          "C-BASE-AGE"
+        ],
+        "vehicles": [
+          "force_traveller26_4020wb"
+        ]
+      }
+    },
+    {
+      "status": "PENDING",
+      "resolution": null,
+      "id": "P-MAHA-CHASSIS",
+      "source": "Found while building the Maharashtra overlay",
+      "question": "Maharashtra makes toe-touch stabilisers and a power wheel mover mandatory. Does bolting these to the vehicle count as a chassis alteration that AIS-124 cl. 0.1 forbids?",
+      "detail": [
+        "Both items read as written for towed caravans; on a motor caravan they attach to the chassis or axle.",
+        "Not applied as a fail; listed on every Maharashtra commercial result."
+      ],
+      "close_by": "Ask Maharashtra Tourism / Transport and a Rule 126 test agency (ARAI or ICAT).",
+      "affects": {
+        "rules": [
+          "C-NO-MECHANICAL-CHANGES",
+          "STATE.maharashtra"
+        ],
+        "states": [
+          "maharashtra"
+        ]
+      }
+    },
+    {
+      "status": "PENDING",
+      "resolution": null,
+      "id": "P-MAHA-LENGTH",
+      "source": "Found while building the Maharashtra overlay",
+      "question": "Does the Maharashtra policy's type 1 (\"Single Excel Conventional Caravan: 3 m and 6.5 m long, sleeping for 2 to 6\") cap the length of a rigid motor caravan registered under the scheme?",
+      "detail": [
+        "Type 2 (\"Twin Extra Large\") allows a bigger caravan, so the list reads as descriptions, not limits. Not applied."
+      ],
+      "close_by": "Ask Maharashtra Tourism (Directorate of Tourism).",
+      "affects": {
+        "states": [
+          "maharashtra"
+        ],
+        "rules": [
+          "STATE.maharashtra"
+        ]
+      }
+    },
+    {
+      "status": "PENDING",
+      "resolution": null,
+      "id": "P-VAN-CAB-LENGTH",
+      "source": "Found while reconciling the Urbania (data/vehicles/URBANIA_RECONCILIATION.md)",
+      "question": "How long is the usable living area of each van, really? For the Urbania 4400 the handover's 5090 mm is 780 mm longer than Force's own top-view render shows (cab boundary 2600 mm from the front), three times the handover's stated ±250 mm error. The same planning rule set every other van's living length.",
+      "detail": [
+        "Only the Urbania has independent evidence, so only its values were replaced. Treat every other van's living length as possibly too long by a similar amount until measured."
+      ],
+      "close_by": "Measure the cab bulkhead / seat-back position on one vehicle per body family (Traveller N, Traveller Wider Body, Winger HR).",
+      "affects": {
+        "dims": [
+          "interior.usable_length"
+        ],
+        "vehicles": [
+          "vans"
+        ]
+      }
+    }
+  ],
+  "pending_note": "PENDING items are not resolved by assumption. P-OQ-01..28 are the handover's open questions copied verbatim (data/handover/rv_handover_part1_models_data_research/research/open_questions.md); the rest were found while building this file. A verdict that depends on one names it."
 }
