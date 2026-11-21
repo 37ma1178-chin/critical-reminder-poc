@@ -1,0 +1,118 @@
+{
+  "id": "force_traveller26_4020wb",
+  "source": "assets/models/force_traveller26_4020wb.glb",
+  "extracted_by": "tools/extract_glb_layouts.js",
+  "note": "Floor-standing furniture of the handover GLB layout (build_camper.py), repo frame in mm. A design proposal from the handover, not a measured interior.",
+  "layout_as_built": "fixed rear transverse double bed 2145x1400 mm over a storage garage; wet room with cassette toilet, shower tray and washbasin; kitchenette 1300 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); tall wardrobe; overhead lockers; water tank 173 L, 1 x 100 Ah LiFePO4 battery + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)",
+  "floor_height_mm": 560,
+  "living_width_in_glb_mm": 2145,
+  "furniture": [
+    {
+      "name": "Bed_Platform_Fixed_Rear",
+      "x0": 60,
+      "x1": 1460,
+      "y0": -1072,
+      "y1": 1072,
+      "height": 800
+    },
+    {
+      "name": "Dinette_Bench_Front_StorageBase",
+      "x0": 4310,
+      "x1": 4810,
+      "y0": -227,
+      "y1": 1072,
+      "height": 400
+    },
+    {
+      "name": "Dinette_Bench_Rear_StorageBase",
+      "x0": 3110,
+      "x1": 3610,
+      "y0": -227,
+      "y1": 1072,
+      "height": 400
+    },
+    {
+      "name": "Dinette_Table_Leg",
+      "x0": 3931,
+      "x1": 3989,
+      "y0": 393,
+      "y1": 453,
+      "height": 700
+    },
+    {
+      "name": "Fire_Extinguisher_2_2kg_Kitchen_Door",
+      "x0": 3375,
+      "x1": 3485,
+      "y0": -978,
+      "y1": -868,
+      "height": 390
+    },
+    {
+      "name": "Fridge_12V_Compressor",
+      "x0": 2760,
+      "x1": 3310,
+      "y0": -1072,
+      "y1": -472,
+      "height": 900
+    },
+    {
+      "name": "Kitchen_Base_Cabinets",
+      "x0": 1460,
+      "x1": 2760,
+      "y0": -1072,
+      "y1": -472,
+      "height": 860
+    },
+    {
+      "name": "Storage_Wardrobe_Tall",
+      "x0": 2330,
+      "x1": 3090,
+      "y0": 523,
+      "y1": 1072,
+      "height": 2200
+    },
+    {
+      "name": "Water_Tank_Fresh_173L",
+      "x0": 160,
+      "x1": 1060,
+      "y0": 472,
+      "y1": 1023,
+      "height": 360
+    },
+    {
+      "name": "WetRoom_Toilet_Cassette",
+      "x0": 1830,
+      "x1": 2230,
+      "y0": 673,
+      "y1": 1023,
+      "height": 450
+    },
+    {
+      "name": "WetRoom_Wall_Front",
+      "x0": 2280,
+      "x1": 2310,
+      "y0": 222,
+      "y1": 1072,
+      "height": 2250
+    },
+    {
+      "name": "WetRoom_Wall_Side",
+      "x0": 1460,
+      "x1": 2310,
+      "y0": 222,
+      "y1": 252,
+      "height": 2250
+    }
+  ],
+  "aisle_check": {
+    "min_mm": 245,
+    "where": {
+      "x0": 3110,
+      "x1": 3310,
+      "left": "Fridge_12V_Compressor",
+      "right": "Dinette_Bench_Rear_StorageBase"
+    },
+    "status": "FAIL",
+    "rule": "D-AISLE-MIN (DESIGN STANDARD): fail < 300 mm, warning 300–400 mm"
+  }
+}

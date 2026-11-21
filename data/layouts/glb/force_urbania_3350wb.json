@@ -1,0 +1,86 @@
+{
+  "id": "force_urbania_3350wb",
+  "source": "assets/models/force_urbania_3350wb.glb",
+  "extracted_by": "tools/extract_glb_layouts.js",
+  "note": "Floor-standing furniture of the handover GLB layout (build_camper.py), repo frame in mm. A design proposal from the handover, not a measured interior.",
+  "layout_as_built": "fixed rear transverse double bed 2015x1250 mm over a storage garage; kitchenette 1100 mm with 2-burner cooktop and sink; dinette 1500x1300 mm (2 facing benches + removable table, converts to a 2nd bed); tall wardrobe; overhead lockers; water tank 173 L, 1 x 100 Ah LiFePO4 battery + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)",
+  "floor_height_mm": 560,
+  "living_width_in_glb_mm": 2015,
+  "furniture": [
+    {
+      "name": "Bed_Platform_Fixed_Rear",
+      "x0": 60,
+      "x1": 1310,
+      "y0": -1008,
+      "y1": 1008,
+      "height": 550
+    },
+    {
+      "name": "Dinette_Bench_Front_StorageBase",
+      "x0": 3080,
+      "x1": 3580,
+      "y0": -292,
+      "y1": 1007,
+      "height": 400
+    },
+    {
+      "name": "Dinette_Bench_Rear_StorageBase",
+      "x0": 2080,
+      "x1": 2580,
+      "y0": -292,
+      "y1": 1007,
+      "height": 400
+    },
+    {
+      "name": "Dinette_Table_Leg",
+      "x0": 2801,
+      "x1": 2859,
+      "y0": 327,
+      "y1": 387,
+      "height": 700
+    },
+    {
+      "name": "Fire_Extinguisher_2_2kg_Kitchen_Door",
+      "x0": 2475,
+      "x1": 2585,
+      "y0": -913,
+      "y1": -803,
+      "height": 390
+    },
+    {
+      "name": "Kitchen_Base_Cabinets",
+      "x0": 1310,
+      "x1": 2410,
+      "y0": -1007,
+      "y1": -407,
+      "height": 860
+    },
+    {
+      "name": "Storage_Wardrobe_Tall",
+      "x0": 1330,
+      "x1": 2060,
+      "y0": 458,
+      "y1": 1008,
+      "height": 1880
+    },
+    {
+      "name": "Water_Tank_Fresh_173L",
+      "x0": 160,
+      "x1": 1060,
+      "y0": 407,
+      "y1": 957,
+      "height": 360
+    }
+  ],
+  "aisle_check": {
+    "min_mm": 115,
+    "where": {
+      "x0": 2080,
+      "x1": 2410,
+      "left": "Kitchen_Base_Cabinets",
+      "right": "Dinette_Bench_Rear_StorageBase"
+    },
+    "status": "FAIL",
+    "rule": "D-AISLE-MIN (DESIGN STANDARD): fail < 300 mm, warning 300–400 mm"
+  }
+}

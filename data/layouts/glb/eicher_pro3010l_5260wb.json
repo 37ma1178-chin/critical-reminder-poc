@@ -1,0 +1,126 @@
+{
+  "id": "eicher_pro3010l_5260wb",
+  "source": "assets/models/eicher_pro3010l_5260wb.glb",
+  "extracted_by": "tools/extract_glb_layouts.js",
+  "note": "Floor-standing furniture of the handover GLB layout (build_camper.py), repo frame in mm. A design proposal from the handover, not a measured interior.",
+  "layout_as_built": "fixed rear transverse double bed 2146x2000 mm over a storage garage; wet room with cassette toilet, shower tray and washbasin; kitchenette 2000 mm with 2-burner cooktop and sink, 12 V fridge; dinette 1700x1300 mm (2 facing benches + removable table, converts to a 2nd bed); lounge sofa; overhead lockers; water tank 630 L, 4 x 100 Ah LiFePO4 batteries + panel, 230 V shore inlet, 2 x 2 kg extinguishers (driver + kitchen/door)",
+  "floor_height_mm": 950,
+  "living_width_in_glb_mm": 2146,
+  "furniture": [
+    {
+      "name": "Bed_Platform_Fixed_Rear",
+      "x0": 60,
+      "x1": 2060,
+      "y0": -1073,
+      "y1": 1073,
+      "height": 950
+    },
+    {
+      "name": "Dinette_Bench_Front_StorageBase",
+      "x0": 7309,
+      "x1": 7809,
+      "y0": -227,
+      "y1": 1073,
+      "height": 400
+    },
+    {
+      "name": "Dinette_Bench_Rear_StorageBase",
+      "x0": 6109,
+      "x1": 6609,
+      "y0": -227,
+      "y1": 1073,
+      "height": 400
+    },
+    {
+      "name": "Dinette_Table_Leg",
+      "x0": 6930,
+      "x1": 6988,
+      "y0": 393,
+      "y1": 453,
+      "height": 700
+    },
+    {
+      "name": "Fire_Extinguisher_2_2kg_Kitchen_Door",
+      "x0": 4675,
+      "x1": 4785,
+      "y0": -978,
+      "y1": -868,
+      "height": 390
+    },
+    {
+      "name": "Fridge_12V_Compressor",
+      "x0": 4060,
+      "x1": 4610,
+      "y0": -1073,
+      "y1": -473,
+      "height": 1500
+    },
+    {
+      "name": "Kitchen_Base_Cabinets",
+      "x0": 2060,
+      "x1": 4060,
+      "y0": -1073,
+      "y1": -473,
+      "height": 860
+    },
+    {
+      "name": "Lounge_Sofa_Longitudinal",
+      "x0": 3260,
+      "x1": 6009,
+      "y0": 523,
+      "y1": 1073,
+      "height": 450
+    },
+    {
+      "name": "Storage_Wardrobe_Tall",
+      "x0": 4960,
+      "x1": 5560,
+      "y0": -1073,
+      "y1": -473,
+      "height": 2140
+    },
+    {
+      "name": "Water_Tank_Fresh_630L",
+      "x0": 160,
+      "x1": 1560,
+      "y0": 123,
+      "y1": 1023,
+      "height": 510
+    },
+    {
+      "name": "WetRoom_Toilet_Cassette",
+      "x0": 2680,
+      "x1": 3080,
+      "y0": 673,
+      "y1": 1023,
+      "height": 450
+    },
+    {
+      "name": "WetRoom_Wall_Front",
+      "x0": 3130,
+      "x1": 3160,
+      "y0": -27,
+      "y1": 1073,
+      "height": 2190
+    },
+    {
+      "name": "WetRoom_Wall_Side",
+      "x0": 2060,
+      "x1": 3160,
+      "y0": -27,
+      "y1": 3,
+      "height": 2190
+    }
+  ],
+  "aisle_check": {
+    "min_mm": 846,
+    "where": {
+      "x0": 6109,
+      "x1": 6609,
+      "left": "wall",
+      "right": "Dinette_Bench_Rear_StorageBase"
+    },
+    "status": "OK",
+    "rule": "D-AISLE-MIN (DESIGN STANDARD): fail < 300 mm, warning 300–400 mm"
+  }
+}

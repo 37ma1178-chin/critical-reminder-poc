@@ -415,6 +415,38 @@
     return out;
   }
 
+  // D-AISLE-MIN thresholds from the rulebook
+  function aisleRule(rules) {
+    const v = ruleById(rules, 'D-AISLE-MIN').values;
+    return { fail: v.fail_below_mm || v.min_mm, warn: v.warn_below_mm || v.min_mm, recommended: v.recommended_mm };
+  }
+  // Walkable aisle of a drawn layout: rects { name, x0, x1, y0, y1 } in the repo frame (mm, y < 0 left).
+  // An item belongs to the wall it stands against; items touching both walls (transverse beds) end the
+  // walkway and are skipped; tiny items (legs, extinguishers: under 0.05 m²) are ignored.
+  // Returns the narrowest gap and the D-AISLE-MIN status.
+  function aisleCheck(rects, livingWidth, rules) {
+    const rule = aisleRule(rules), half = livingWidth / 2, tol = 60;
+    const touchesL = r => r.y0 <= -half + tol, touchesR = r => r.y1 >= half - tol;
+    const items = rects.filter(r => (r.x1 - r.x0) * (r.y1 - r.y0) >= 50000 && !(touchesL(r) && touchesR(r)))
+      .map(r => Object.assign({}, r, { side: touchesL(r) ? 'L' : touchesR(r) ? 'R' : ((r.y0 + r.y1) / 2 < 0 ? 'L' : 'R') }));
+    const cuts = [...new Set(items.flatMap(r => [r.x0, r.x1]))].sort((a, b) => a - b);
+    let best = null;
+    for (let i = 0; i < cuts.length - 1; i++) {
+      if (cuts[i + 1] - cuts[i] < 50) continue;
+      const mid = (cuts[i] + cuts[i + 1]) / 2;
+      const here = items.filter(r => r.x0 <= mid && mid < r.x1);
+      const left = here.filter(r => r.side === 'L'), right = here.filter(r => r.side === 'R');
+      if (!left.length && !right.length) continue;
+      const li = left.length ? Math.max(...left.map(r => r.y1)) : -half, ri = right.length ? Math.min(...right.map(r => r.y0)) : half;
+      const gap = Math.round(ri - li);
+      if (!best || gap < best.min_mm) best = { min_mm: gap, where: { x0: cuts[i], x1: cuts[i + 1], left: left.map(r => r.name).join(' + ') || 'wall', right: right.map(r => r.name).join(' + ') || 'wall' } };
+    }
+    if (!best) return { status: 'OK', min_mm: null, rule: 'D-AISLE-MIN' };
+    best.status = best.min_mm < rule.fail ? 'FAIL' : best.min_mm < rule.warn ? 'WARNING' : 'OK';
+    best.rule = `D-AISLE-MIN (DESIGN STANDARD): fail < ${rule.fail} mm, warning ${rule.fail}–${rule.warn} mm`;
+    return best;
+  }
+
   function evaluate(q, vehicleFiles, rules, cat) {
     return { questionnaire: q, results: vehicleFiles.map(f => evaluateVehicle(f, q, rules, cat)) };
   }
@@ -466,7 +498,7 @@
     return L.join('\n');
   }
 
-  const api = { evaluate, evaluateVehicle, formatText, band, vehicleModel, resolveModules, pack };
+  const api = { evaluate, evaluateVehicle, formatText, band, vehicleModel, resolveModules, pack, aisleCheck, aisleRule };
   global.Eligibility = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -19,6 +19,7 @@ Proof-of-concept for a camper / motorhome configurator: requirements → eligibl
 - `sideview.html` — dimensioned 2D side-profile SVG for any of the 14 vehicles (left side, entry door), 1 unit = 1 mm, front points right. The outline, glazing, cladding, doors and wheels come from `Vehicle.sideProfile(spec)`, which uses the brochure numbers plus `assumptions.profile` (proportions scaled off the side render, ±100 mm; the render itself is not to scale, so brochure figures always win). Shows the stock seats or the selected camper modules through the body, plus wheel housings and the floor line. All three pages share a nav that carries the URL selection.
 - `assets/models/` — the 14 handover GLBs, kept for the 3D phase. **Origin is mid-body at ground level**, not the front axle (see its README).
 - `index.html` (3D) still shows only the Urbania 4400 and loads three.js from `node_modules/` (run `npm install`). Not touched in the rules/engine phase.
+- `tools/extract_glb_layouts.js` — reads the furniture boxes out of each GLB (glTF JSON only) into `data/layouts/glb/<id>.json` and checks the walkable aisle (D-AISLE-MIN).
 - `tools/import_handover.js` — regenerates `data/vehicles/` and `assets/models/` from the handover.
 - `serve.json` — turns off `serve`'s clean-URL redirect, which otherwise drops the `?vehicle=…&modules=…` query between pages.
 - `tools/screenshot.js` — Playwright script that screenshots every view and dumps the top-view SVG for exact diffing. See the header comment for usage.

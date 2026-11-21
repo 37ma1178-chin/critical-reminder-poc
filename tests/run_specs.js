@@ -26,4 +26,8 @@ expect(A.every(r => r.tiers.every(t => t.verdict !== 'ELIGIBLE' || t.fit.status 
 const qAir = Object.assign({}, read('data/questionnaires/test_A.json'), { conversion: Object.assign({}, read('data/questionnaires/test_A.json').conversion, { mechanical_changes: ['rear air suspension (BharatAutoSolution kit)'] }) });
 const air = E.evaluate(qAir, files.filter(f => f.id === 'force_urbania_4400wb'), rules, cat).results[0];
 expect(air.tiers.every(t => t.verdict === 'REJECTED' && t.rejected.some(x => x.includes('C-NO-MECHANICAL-CHANGES') && x.includes('cl. 0.1'))), 'air-suspension example: a motor caravan conversion with a suspension change is REJECTED under AIS-124 cl. 0.1');
+// Step 6: the handover GLB layouts with a ~50 mm dinette aisle must be flagged as a D-AISLE-MIN FAIL
+const glb = id => read(`data/layouts/glb/${id}.json`).aisle_check;
+['force_traveller_3050wb', 'force_traveller_3350wb', 'force_traveller_3700wb', 'tata_winger-highroof_3488wb'].forEach(id =>
+  expect(glb(id).status === 'FAIL' && glb(id).min_mm <= 60, `GLB layout ${id}: dinette aisle ${glb(id).min_mm} mm flagged FAIL (D-AISLE-MIN)`));
 process.exit(failed ? 1 : 0);
