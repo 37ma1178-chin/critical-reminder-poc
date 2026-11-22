@@ -10,9 +10,9 @@ npx serve .          # serve.json keeps the ?vehicle=… query between pages
                      # or: npx http-server . -p 8080
 ```
 
-Then open `/topview.html` or `/sideview.html` (pick a vehicle in the panel). `/index.html` (3D) still shows only the Urbania 4400.
+Then open `/topview.html` or `/sideview.html` (pick a vehicle in the panel), or `/questionnaire.html` to run the eligibility engine in the browser. `/index.html` (3D) still shows only the Urbania 4400.
 The camper module selection is kept in the URL query (`?layout=camper&modules=…`), so a link from one page opens the same configuration in the other.
-The pages fetch `data/urbania-17.json`, so they need a static server; `file://` will not work.
+The pages fetch the JSON in `data/`, so they need a static server; `file://` will not work.
 
 ## Screenshots
 

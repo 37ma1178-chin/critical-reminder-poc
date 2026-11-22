@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RV Eligibility Check</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* Layout: questionnaire column (sticky run bar) beside the results; one column on phones.
+     Light theme only (CLAUDE.md). Same tokens as topview / sideview, plus verdict colours. */
+  :root {
+    --bg:#f6f5f1; --panel:#ffffff; --line:#e6e3da; --ink:#232220; --muted:#7a776f; --accent:#3a6a72; --accent-soft:#e6eef0;
+    --ok:#2e6a43; --ok-bg:#e5f0e8; --ok-line:#bcd7c4;
+    --und:#8a5a1f; --und-bg:#fdf5e8; --und-line:#ecd9b3;
+    --rej:#9a3324; --rej-bg:#f9e8e3; --rej-line:#e8c4b9;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    color-scheme: light;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:14px; }
+  a { color:var(--accent); }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  header { background:var(--panel); border-bottom:1px solid var(--line); display:flex; align-items:baseline; gap:8px 18px; flex-wrap:wrap;
+    padding-block:16px 12px; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); }
+  header h1 { margin:0 0 3px; font-size:17px; font-weight:600; letter-spacing:-0.01em; }
+  header p { margin:0; font-size:12.5px; color:var(--muted); max-width:70ch; }
+  nav { margin-left:auto; font-size:12.5px; display:flex; flex-wrap:wrap; gap:4px 14px; }
+  nav a { text-decoration:none; }
+  nav a.here { color:var(--ink); font-weight:600; }
+  code, .mono { font-family:var(--mono); font-size:0.92em; }
+
+  .layout { display:grid; grid-template-columns:minmax(300px, 390px) minmax(0, 1fr); align-items:start; }
+  #form { background:var(--panel); border-right:1px solid var(--line); min-width:0; }
+  #results { min-width:0; padding-block:18px 40px; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); }
+  @media (min-width:861px) { #form { position:sticky; top:0; max-height:100vh; overflow-y:auto; } }
+  @media (max-width:860px) {
+    .layout { grid-template-columns:minmax(0, 1fr); }
+    #form { border-right:none; border-bottom:1px solid var(--line); }
+  }
+  .form-inner { padding-block:14px 0; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); display:flex; flex-direction:column; gap:14px; }
+
+  .jump { display:none; font-size:12.5px; padding:9px 11px; border:1px solid var(--line); border-radius:8px; background:#faf9f6; color:var(--ink); text-decoration:none; }
+  .jump b { color:var(--accent); }
+  @media (max-width:860px) { .jump { display:block; } }
+
+  .presets { display:flex; flex-wrap:wrap; gap:6px; }
+  .presets .lbl { width:100%; }
+  .btn { font:inherit; font-size:12.5px; padding:7px 11px; border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--ink); cursor:pointer; }
+  .btn:hover { border-color:var(--accent); }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600; font-size:14px; padding:10px 16px; }
+  .btn.primary:disabled { opacity:0.6; cursor:progress; }
+  .btn.small { font-size:12px; padding:5px 9px; }
+
+  fieldset { border:none; margin:0; padding:12px 0 0; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:8px; min-width:0; }
+  legend { float:left; width:100%; padding:0; margin-bottom:2px; font-size:10.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); }
+  legend + * { clear:both; }
+  .lbl { font-size:12px; color:var(--muted); }
+  .note { font-size:11.5px; color:var(--muted); line-height:1.5; margin:0; }
+  .note code { color:var(--ink); }
+  .row { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .field { display:flex; flex-direction:column; gap:4px; }
+  .field.inline { flex-direction:row; align-items:center; justify-content:space-between; gap:10px; }
+  .field.inline > span { font-size:13px; }
+  select, input[type=number], textarea { font:inherit; font-size:13px; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:7px; padding:7px 8px; }
+  select { max-width:100%; }
+  input[type=number] { width:84px; font-family:var(--mono); }
+  select:disabled { color:var(--muted); background:#f3f2ee; }
+
+  /* toggle chips: checkbox and radio */
+  .tog { position:relative; display:inline-flex; align-items:flex-start; gap:7px; padding:6px 10px 6px 8px; border:1px solid var(--line); border-radius:7px; background:#fff; cursor:pointer; font-size:12.5px; line-height:1.3; max-width:100%; }
+  .tog input { margin:1px 0 0; accent-color:var(--accent); flex:none; }
+  .tog small { display:block; color:var(--muted); font-size:10.5px; font-family:var(--mono); margin-top:1px; }
+  .tog:has(input:checked) { border-color:var(--accent); background:var(--accent-soft); }
+  .tog:has(input:disabled) { opacity:0.55; cursor:default; }
+  .tog.wide { width:100%; }
+  .grid2 { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:6px; }
+  .grid2 .tog { width:100%; }
+  .extras { font-size:11.5px; color:var(--und); background:var(--und-bg); border:1px solid var(--und-line); border-radius:7px; padding:7px 9px; }
+
+  .runbar { position:sticky; bottom:0; background:linear-gradient(to bottom, rgba(255,255,255,0), #fff 30%); padding-block:18px calc(14px + env(safe-area-inset-bottom, 0px)); display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .runbar .status { font-size:12px; color:var(--muted); flex:1 1 140px; }
+
+  /* results */
+  .res-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; margin-bottom:6px; }
+  .res-head h2 { margin:0; font-size:16px; font-weight:600; letter-spacing:-0.01em; text-wrap:balance; }
+  .res-head .qid { font-size:12px; color:var(--muted); }
+  .headline { font-size:13.5px; margin:0 0 14px; max-width:75ch; line-height:1.5; }
+  .stale { font-size:12.5px; color:var(--und); background:var(--und-bg); border:1px solid var(--und-line); border-radius:8px; padding:8px 11px; margin-bottom:12px; }
+  .error { font-size:12.5px; color:var(--rej); background:var(--rej-bg); border:1px solid var(--rej-line); border-radius:8px; padding:8px 11px; margin-bottom:12px; white-space:pre-wrap; }
+
+  .tiers { display:grid; gap:8px; margin-bottom:18px; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+  .tierrow { display:grid; grid-template-columns:minmax(110px, 160px) minmax(0, 1fr) auto; gap:12px; align-items:center; font-size:12.5px; }
+  .tierrow .name b { display:block; font-size:13px; }
+  .tierrow .name span { font-size:10.5px; color:var(--muted); font-family:var(--mono); }
+  .bar { display:flex; height:14px; border-radius:3px; overflow:hidden; background:var(--line); }
+  .bar i { display:block; height:100%; }
+  .bar i + i { border-left:1px solid #fff; }
+  .counts { font-family:var(--mono); font-size:12px; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .counts .c-ok { color:var(--ok); } .counts .c-und { color:var(--und); } .counts .c-rej { color:var(--rej); }
+  @media (max-width:520px) { .tierrow { grid-template-columns:minmax(0, 1fr); gap:4px; } .tierrow .name b { display:inline; margin-right:8px; } .tierrow .bar { order:3; } }
+
+  .chip { display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:0.05em; padding:3px 7px; border-radius:4px; border:1px solid; white-space:nowrap; text-align:center; }
+  .v-ELIGIBLE { color:var(--ok); background:var(--ok-bg); border-color:var(--ok-line); }
+  .v-UNDECIDED { color:var(--und); background:var(--und-bg); border-color:var(--und-line); }
+  .v-REJECTED { color:var(--rej); background:var(--rej-bg); border-color:var(--rej-line); }
+  .bg-ELIGIBLE { background:var(--ok); } .bg-UNDECIDED { background:#c99a4f; } .bg-REJECTED { background:#c77a6a; }
+
+  .list-head, .veh > summary { display:grid; grid-template-columns:minmax(0, 1fr) repeat(var(--nt), minmax(86px, 104px)); gap:8px; align-items:center; }
+  .list-head { font-size:10.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); padding:0 14px 6px 34px; }
+  .list-head span:not(:first-child) { text-align:center; }
+  .vehicles { display:flex; flex-direction:column; gap:6px; }
+  .veh { background:var(--panel); border:1px solid var(--line); border-radius:9px; }
+  .veh[open] { border-color:#cfd8d8; }
+  .veh > summary { list-style:none; cursor:pointer; padding:10px 14px 10px 12px; }
+  .veh > summary::-webkit-details-marker { display:none; }
+  .veh > summary .vname { display:flex; gap:9px; align-items:baseline; min-width:0; }
+  .veh > summary .vname::before { content:"▸"; color:var(--muted); font-size:11px; flex:none; width:12px; }
+  .veh[open] > summary .vname::before { content:"▾"; }
+  .veh > summary .vname b { font-weight:600; font-size:13.5px; }
+  .veh > summary .vname small { display:block; color:var(--muted); font-size:11.5px; margin-top:2px; }
+  .veh > summary .chip { justify-self:stretch; }
+  .tierlabel { display:none; }
+  @media (max-width:640px) {
+    .list-head { display:none; }
+    .veh > summary { grid-template-columns:repeat(var(--nt), minmax(0, 1fr)); }
+    .veh > summary .vname { grid-column:1 / -1; }
+    .tierlabel { display:block; font-size:9.5px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; opacity:0.8; margin-bottom:1px; }
+  }
+  .vbody { border-top:1px solid var(--line); padding:12px 14px 14px; display:flex; flex-direction:column; gap:12px; font-size:12.5px; line-height:1.5; }
+  .vbody h4 { margin:0 0 4px; font-size:10.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); }
+  .vbody ul { margin:0; padding-left:18px; display:flex; flex-direction:column; gap:3px; }
+  .vbody .links { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:12.5px; }
+  .facts { display:flex; flex-wrap:wrap; gap:4px 16px; font-size:12px; color:var(--muted); }
+  .facts b { color:var(--ink); font-weight:600; }
+  .box { border:1px solid; border-radius:8px; padding:8px 11px; }
+  .box.rej { color:#5d2318; background:var(--rej-bg); border-color:var(--rej-line); }
+  .box.und { color:#5b3c14; background:var(--und-bg); border-color:var(--und-line); }
+  .box.rej h4 { color:var(--rej); } .box.und h4 { color:var(--und); }
+  .tierblocks { display:flex; flex-direction:column; gap:8px; }
+  .tb { border:1px solid var(--line); border-radius:8px; padding:8px 11px; display:flex; flex-direction:column; gap:4px; }
+  .tb .top { display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; }
+  .tb .top b { font-size:13px; }
+  .tb .fit { color:var(--ink); }
+  .tb ul { color:var(--ink); }
+  .tb .w { color:var(--und); }
+  code.rid { font-size:10.5px; padding:0 4px; border-radius:3px; background:#efede6; color:var(--ink); white-space:nowrap; }
+  details.sub > summary { cursor:pointer; font-size:12px; color:var(--accent); }
+  details.sub > summary + * { margin-top:6px; }
+  .pending li { list-style:none; margin-left:-18px; }
+  .pending li code { margin-right:6px; }
+
+  .section { margin-top:24px; }
+  .section h3 { margin:0 0 4px; font-size:14px; font-weight:600; }
+  .section > p { margin:0 0 10px; font-size:12px; color:var(--muted); max-width:75ch; line-height:1.5; }
+  .tablewrap { overflow-x:auto; background:var(--panel); border:1px solid var(--line); border-radius:9px; }
+  table { border-collapse:collapse; width:100%; font-size:12px; }
+  th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:10.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); background:#faf9f6; }
+  tr:last-child td { border-bottom:none; }
+  td.num { font-family:var(--mono); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .src { font-family:var(--mono); font-size:10px; color:var(--muted); white-space:nowrap; }
+  .reqs { margin:0; padding-left:18px; font-size:12.5px; line-height:1.55; display:flex; flex-direction:column; gap:3px; }
+  #json-text { width:100%; min-height:220px; font-family:var(--mono); font-size:11.5px; line-height:1.45; resize:vertical; }
+  .jsonbar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:8px; font-size:12px; color:var(--muted); }
+  footer { margin-top:28px; font-size:11.5px; color:var(--muted); line-height:1.6; max-width:80ch; }
+  @media (prefers-reduced-motion:no-preference) { .veh > summary, .btn, .tog { transition:border-color .12s, background-color .12s; } }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Eligibility check</h1>
+    <p>Answer the questionnaire and the engine checks all 14 base vehicles, one verdict per seat tier. Rules come from <code>data/rules.json</code>, furniture sizes from <code>data/design_catalog.json</code>, and every vehicle dimension from <code>data/vehicles/</code>.</p>
+  </div>
+  <nav><a href="index.html">3D</a><a href="topview.html" id="nav-top">Top view</a><a href="sideview.html" id="nav-side">Side profile</a><a href="questionnaire.html" class="here">Eligibility</a></nav>
+</header>
+
+<div class="layout">
+  <form id="form" novalidate>
+    <div class="form-inner">
+      <a class="jump" id="jump" href="#results" hidden>Loading the data…</a>
+
+      <div class="presets">
+        <span class="lbl">Start from</span>
+        <button type="button" class="btn" data-preset="test_A">Test A · private, 6 seats</button>
+        <button type="button" class="btn" data-preset="test_B">Test B · commercial, 25 seats</button>
+        <button type="button" class="btn" data-preset="blank">Blank</button>
+      </div>
+
+      <fieldset>
+        <legend>Use</legend>
+        <div class="row" role="radiogroup" aria-label="Use">
+          <label class="tog"><input type="radio" name="use" id="use-private" value="private"> Private camper</label>
+          <label class="tog"><input type="radio" name="use" id="use-commercial" value="commercial"> Commercial (tourism)</label>
+        </div>
+        <label class="field" for="state"><span class="lbl">State tourism policy</span>
+          <select id="state">
+            <option value="">No state policy</option>
+            <option value="maharashtra">Maharashtra</option>
+            <option value="kerala">Kerala</option>
+            <option value="goa">Goa</option>
+            <option value="karnataka">Karnataka (policy PDF missing)</option>
+          </select>
+        </label>
+        <p class="note" id="state-note">State caravan policies apply to commercial use only.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Passengers</legend>
+        <label class="field inline" for="seats"><span>Passenger seats, excluding the driver</span>
+          <input type="number" id="seats" min="1" max="60" step="1" inputmode="numeric">
+        </label>
+        <p class="note" id="seats-note">One sits in the cab on the co-driver seat; the rest are in the living area. A motor caravan may have at most 12 (<code class="rid">L-MC-SEAT-CAP</code>).</p>
+        <span class="lbl">Seat tiers to check (each one gets its own verdict)</span>
+        <div class="grid2" id="tiers"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Sleeping and lounge</legend>
+        <div class="grid2" id="g-sleeping"></div>
+        <p class="note">If nothing here gives a bed, the engine adds a sofa-cum-bed for 2. It does the same for a table, cooking and storage (<code class="rid">L-MC-MIN-EQUIP</code>).</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Washroom</legend>
+        <div class="grid2" id="g-washroom"></div>
+        <span class="lbl">Toilet</span>
+        <div class="row" id="g-toilet"></div>
+        <p class="note">A toilet without a washroom gets the compact one, since the toilet must be enclosed. A cassette or fixed toilet adds black-water storage (<code class="rid">L-BLACK-TANK</code>).</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Water</legend>
+        <div class="grid2" id="g-water"></div>
+        <p class="note">A grey-water tank is always added (<code class="rid">L-GREY-TANK</code>).</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Kitchen</legend>
+        <div class="grid2" id="g-kitchen"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Storage</legend>
+        <div class="grid2" id="g-storage"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Add-ons</legend>
+        <div class="grid2" id="g-addons"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Roof and body changes</legend>
+        <div class="grid2" id="g-expansions"></div>
+        <p class="note">Both are open legal questions (<code class="rid">P-OQ-01</code>, <code class="rid">P-OQ-02</code>). They make every vehicle undecided.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Conversion answers</legend>
+        <p class="note">Leave a question unanswered and it is listed as a condition. A "no" rejects the vehicle.</p>
+        <label class="field" for="age"><span class="lbl">Base vehicle age (vans only, <code class="rid">C-BASE-AGE</code>)</span>
+          <select id="age">
+            <option value="">Not answered</option>
+            <option value="0">New, bought for the conversion</option>
+            <option value="1">1 year</option>
+            <option value="2">2 years</option>
+            <option value="3">3 years</option>
+            <option value="4">4 years</option>
+            <option value="5">5 years or more</option>
+          </select>
+        </label>
+        <span class="lbl">Changes to the base vehicle (<code class="rid">C-NO-MECHANICAL-CHANGES</code>)</span>
+        <div class="grid2" id="g-mech"></div>
+        <label class="field" for="workshop"><span class="lbl">Who does the conversion (<code class="rid">C-WORKSHOP</code>)</span>
+          <select id="workshop">
+            <option value="">Not answered</option>
+            <option value="oem">The manufacturer (OEM)</option>
+            <option value="oem_dealer">An OEM dealer</option>
+            <option value="state_authorised_workshop">A State-authorised workshop</option>
+            <option value="state_authorised_service_station">A State-authorised service station</option>
+            <option value="independent_builder">An independent body builder</option>
+          </select>
+        </label>
+        <label class="field" for="f22f"><span class="lbl">Form 22F compliance certificate (<code class="rid">C-FORM-22F</code>)</span>
+          <select id="f22f"><option value="">Not answered</option><option value="yes">Yes, will obtain it</option><option value="no">No</option></select>
+        </label>
+        <label class="field" for="rc14"><span class="lbl">RC endorsement within 14 days (vans, <code class="rid">C-RTO-14-DAYS</code>)</span>
+          <select id="rc14"><option value="">Not answered</option><option value="yes">Yes</option><option value="no">No</option></select>
+        </label>
+        <label class="field" for="ta"><span class="lbl">Type approval of a new body (bus chassis, <code class="rid">C-NEW-BUILD-TYPE-APPROVAL</code>)</span>
+          <select id="ta"><option value="">Not answered</option><option value="yes">Yes</option><option value="no">No</option></select>
+        </label>
+      </fieldset>
+
+      <div class="extras" id="extras" hidden></div>
+
+      <div class="runbar">
+        <button type="submit" class="btn primary" id="run">Check eligibility</button>
+        <span class="status" id="status" aria-live="polite">Loading the data…</span>
+      </div>
+    </div>
+  </form>
+
+  <main id="results">
+    <div class="res-head"><h2 id="res-title">Results</h2><span class="qid" id="res-qid"></span></div>
+    <div id="stale" class="stale" hidden>The answers have changed since this check. Press <b>Check eligibility</b> to update the results.</div>
+    <div id="error" class="error" hidden></div>
+    <p class="headline" id="headline">Loading the vehicles, the rulebook and the catalog…</p>
+    <div class="tiers" id="tier-summary" hidden></div>
+    <div class="list-head" id="list-head" hidden></div>
+    <div class="vehicles" id="vehicles"></div>
+
+    <div class="section" id="items-section" hidden>
+      <h3>Items in the space check</h3>
+      <p id="items-note"></p>
+      <div class="tablewrap"><table id="items"></table></div>
+    </div>
+
+    <div class="section">
+      <h3>Questionnaire as JSON</h3>
+      <p>The same format as <code>data/questionnaires/*.json</code>, so it runs with <code>node tools/eligibility.js</code>. You can paste a questionnaire here and load it into the form.</p>
+      <textarea id="json-text" spellcheck="false" aria-label="Questionnaire JSON"></textarea>
+      <div class="jsonbar">
+        <button type="button" class="btn small" id="json-copy">Copy</button>
+        <button type="button" class="btn small" id="json-load">Load into the form</button>
+        <span id="json-msg" aria-live="polite"></span>
+      </div>
+    </div>
+
+    <footer id="footer">How to read a verdict. <b>Eligible</b>: every rule that can be checked passes, and the furniture fits at the unfavourable end of every dimension's error band. <b>Undecided</b>: the answer depends on an estimated or unknown dimension, an open legal question, or a document that is missing. <b>Rejected</b>: a legal rule or conversion gate fails, or the items do not fit even at the favourable end. Space is a two-lane screening model, not a drawn layout.</footer>
+  </main>
+</div>
+
+<script src="js/eligibility.js"></script>
+<script>
+(function () {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  // Escape, then mark rule / pending ids (L-…, C-…, D-…, P-…) as code chips
+  const rich = s => esc(s).replace(/\b([LCDP]-[A-Z0-9]+(?:-[A-Z0-9]+)*)\b/g, '<code class="rid">$1</code>');
+  const mm = n => n == null ? '–' : Math.round(n).toLocaleString('en-IN');
+  const VERDICTS = ['ELIGIBLE', 'UNDECIDED', 'REJECTED'];
+  const VWORD = { ELIGIBLE: 'Eligible', UNDECIDED: 'Undecided', REJECTED: 'Rejected' };
+  const TIER_NAME = { standard: 'Standard', captain: 'Captain', recliner: 'Recliner', massage_recliner: 'Massage recliner' };
+  const tierName = t => TIER_NAME[t] || t;
+
+  // Form groups. Each id is a questionnaire amenity / add-on / expansion id the engine knows
+  // (design_catalog.json amenity_map, amenity_variants or a module id). Sizes are read from the catalog.
+  const GROUPS = {
+    sleeping: { list: 'amenities', items: [['sofa_cum_bed', 'Sofa-cum-bed'], ['fixed_double_bed', 'Fixed double bed'], ['bunk_pair', 'Bunk pair'], ['sofa_2_partition', '2-seat sofa at the partition (Azad)']] },
+    water: { list: 'amenities', items: [['fresh_water_tank', 'Fresh-water tank'], ['grey_tank', 'Grey-water tank'], ['black_tank', 'Black-water tank']] },
+    kitchen: { list: 'amenities', items: [['kitchenette', 'Kitchenette counter'], ['hob', 'Hob'], ['pantry_small', 'Small pantry'], ['pantry_builder', 'Pantry station (Azad)'], ['fridge_small', 'Small fridge'], ['microwave', 'Microwave'], ['dining_table', 'Table']] },
+    storage: { list: 'amenities', items: [['overhead_lockers', 'Overhead lockers'], ['under_seat_storage', 'Under-seat / floor storage'], ['wardrobe', 'Wardrobe']] },
+    addons: { list: 'add_ons', items: [['infotainment_unit', 'Infotainment unit'], ['seat_back_tablets', 'Seat-back tablets'], ['air_conditioning', 'Roof air-conditioner'], ['water_heater', 'Water heater'], ['partition_behind_driver', 'Partition behind the driver']] },
+    expansions: { list: 'expansions', items: [['pop_top', 'Pop-top roof'], ['slide_out', 'Slide-out']] },
+  };
+  const WASHROOMS = [['', 'None'], ['washroom_compact', 'Compact'], ['washroom_spacious', 'Spacious'], ['washroom_builder', 'Azad washroom']];
+  const TOILETS = [['', 'None'], ['cassette', 'Cassette'], ['fixed', 'Fixed'], ['portable', 'Portable']];
+  const MECH = [['rear air suspension', 'Rear air suspension (Azad kit)'], ['chassis or wheelbase extension', 'Chassis or wheelbase extension'], ['engine or fuel system change', 'Engine or fuel system change']];
+  const BLANK = { id: 'custom', title: 'My questionnaire', use: 'private', state: null, seats_excluding_driver: 4, seat_tiers: ['standard'], amenities: [], toilet: null, add_ons: [], expansions: [],
+    conversion: { base_vehicle_age_years: null, mechanical_changes: [], workshop: null, will_obtain_form_22f: null, will_endorse_rc_within_14_days: null, will_obtain_type_approval: null } };
+  const STORE = 'rv-eligibility-questionnaire';
+
+  let DATA = null;          // { files, rules, cat, presets }
+  let extras = { amenities: [], add_ons: [], expansions: [] }; // ids from loaded JSON that the form has no control for
+  let current = null;       // questionnaire of the last check
+  let running = false;
+
+  // ---------- catalog-driven labels ----------
+  function footprint(id) {
+    const cat = DATA.cat, mods = cat.modules;
+    const size = m => m.kind === 'zero_floor' ? 'no floor area' : m.kind === 'full_width' ? `${m.length} mm, full width` : `${m.length} × ${m.depth} mm`;
+    if (cat.amenity_variants && cat.amenity_variants[id]) return cat.amenity_variants[id].map(v => size(mods[v])).join(' or ');
+    const ids = (cat.amenity_map[id] || [id]).filter(m => mods[m]);
+    if (!ids.length) return '';
+    const sizes = ids.map(m => size(mods[m])).filter((s, i, a) => a.indexOf(s) === i);
+    return (sizes.length > 1 ? sizes.filter(s => s !== 'no floor area') : sizes).join(' + ');
+  }
+  function tog(type, name, value, label, sub, id) {
+    return `<label class="tog"><input type="${type}" name="${esc(name)}" value="${esc(value)}" id="${esc(id)}"><span>${esc(label)}${sub ? `<small>${esc(sub)}</small>` : ''}</span></label>`;
+  }
+  function buildForm() {
+    const cat = DATA.cat;
+    $('tiers').innerHTML = Object.entries(cat.seat_tiers).map(([id, t]) =>
+      tog('checkbox', 'tier', id, tierName(id), `${t.width} × ${t.pitch} mm · ${t.source}`, 'tier-' + id)).join('');
+    Object.entries(GROUPS).forEach(([g, def]) => {
+      $('g-' + g).innerHTML = def.items.map(([id, label]) => {
+        const fp = footprint(id);
+        return tog('checkbox', g, id, label, fp, `${g}-${id}`);
+      }).join('');
+    });
+    $('g-washroom').innerHTML = WASHROOMS.map(([id, label]) => tog('radio', 'washroom', id, label, id ? footprint(id) : '', 'wash-' + (id || 'none'))).join('');
+    $('g-toilet').innerHTML = TOILETS.map(([id, label]) => tog('radio', 'toilet', id, label, '', 'toilet-' + (id || 'none'))).join('');
+    $('g-mech').innerHTML = MECH.map(([v, label], i) => tog('checkbox', 'mech', v, label, '', 'mech-' + i)).join('');
+    const cap = DATA.rules.layers.LEGAL.find(r => r.id === 'L-MC-SEAT-CAP');
+    if (cap) $('seats-note').innerHTML = `One sits in the cab on the co-driver seat; the rest are in the living area. A motor caravan may have at most ${cap.check.max} (${cap.check.max_before_amendment} before Amd 1, <code class="rid">L-MC-SEAT-CAP</code>). More than that needs a bus chassis.`;
+  }
+
+  // ---------- form ⇄ questionnaire ----------
+  const checked = name => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
+  const yn = v => v === '' ? null : v === 'yes';
+  function readForm() {
+    const use = (checked('use')[0]) || 'private';
+    const amenities = [], add_ons = [], expansions = [];
+    const lists = { amenities, add_ons, expansions };
+    Object.entries(GROUPS).forEach(([g, def]) => checked(g).forEach(id => lists[def.list].push(id)));
+    const wash = checked('washroom')[0];
+    if (wash) amenities.push(wash);
+    Object.keys(extras).forEach(k => extras[k].forEach(id => { if (!lists[k].includes(id)) lists[k].push(id); }));
+    const seats = parseInt($('seats').value, 10);
+    const age = $('age').value;
+    return {
+      id: 'custom', title: 'Questionnaire from the eligibility page',
+      use, state: use === 'commercial' && $('state').value ? $('state').value : null,
+      seats_excluding_driver: Number.isFinite(seats) ? seats : null,
+      seat_tiers: checked('tier'),
+      amenities, toilet: checked('toilet')[0] || null, add_ons, expansions,
+      conversion: {
+        base_vehicle_age_years: age === '' ? null : Number(age),
+        mechanical_changes: checked('mech'),
+        workshop: $('workshop').value || null,
+        will_obtain_form_22f: yn($('f22f').value),
+        will_endorse_rc_within_14_days: yn($('rc14').value),
+        will_obtain_type_approval: yn($('ta').value),
+      },
+    };
+  }
+  function setChecked(name, values) {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(i => { i.checked = values.includes(i.value); });
+  }
+  function writeForm(q) {
+    const c = q.conversion || {};
+    setChecked('use', [q.use === 'commercial' ? 'commercial' : 'private']);
+    $('state').value = q.state || '';
+    $('seats').value = q.seats_excluding_driver != null ? q.seats_excluding_driver : '';
+    setChecked('tier', q.seat_tiers || []);
+    const all = { amenities: [...(q.amenities || [])], add_ons: [...(q.add_ons || [])], expansions: [...(q.expansions || [])] };
+    const used = new Set();
+    Object.entries(GROUPS).forEach(([g, def]) => {
+      const ids = def.items.map(x => x[0]);
+      const on = [...all.amenities, ...all.add_ons, ...all.expansions].filter(id => ids.includes(id));
+      on.forEach(id => used.add(id));
+      setChecked(g, on);
+    });
+    const washIds = WASHROOMS.map(w => w[0]).filter(Boolean);
+    const wash = [...all.amenities, ...all.add_ons].find(id => washIds.includes(id));
+    if (wash) used.add(wash);
+    setChecked('washroom', [wash || '']);
+    setChecked('toilet', [q.toilet || '']);
+    extras = { amenities: all.amenities.filter(id => !used.has(id)), add_ons: all.add_ons.filter(id => !used.has(id)), expansions: all.expansions.filter(id => !used.has(id)) };
+    const knownMech = MECH.map(m => m[0]);
+    setChecked('mech', (c.mechanical_changes || []).filter(m => knownMech.includes(m)));
+    const otherMech = (c.mechanical_changes || []).filter(m => !knownMech.includes(m));
+    if (otherMech.length) { // keep free-text changes as extra checkboxes
+      $('g-mech').insertAdjacentHTML('beforeend', otherMech.map((v, i) => tog('checkbox', 'mech', v, v, 'from the loaded JSON', 'mech-x' + Date.now() + i)).join(''));
+      setChecked('mech', c.mechanical_changes);
+    }
+    $('age').value = c.base_vehicle_age_years == null ? '' : String(Math.min(5, Math.max(0, Math.round(c.base_vehicle_age_years))));
+    $('workshop').value = c.workshop || '';
+    if (c.workshop && $('workshop').value !== c.workshop) $('workshop').insertAdjacentHTML('beforeend', `<option value="${esc(c.workshop)}">${esc(c.workshop)}</option>`), $('workshop').value = c.workshop;
+    const ynv = v => v == null ? '' : v ? 'yes' : 'no';
+    $('f22f').value = ynv(c.will_obtain_form_22f); $('rc14').value = ynv(c.will_endorse_rc_within_14_days); $('ta').value = ynv(c.will_obtain_type_approval);
+    syncForm();
+  }
+  function syncForm() {
+    const commercial = checked('use')[0] === 'commercial';
+    $('state').disabled = !commercial;
+    $('state-note').textContent = commercial
+      ? (DATA.rules.layers.STATE.applies_when || 'State policies apply to commercial use.')
+      : 'State caravan policies apply to commercial use only, so none is checked for a private camper.';
+    const n = Object.values(extras).reduce((s, l) => s + l.length, 0);
+    $('extras').hidden = !n;
+    if (n) $('extras').innerHTML = `Also requested by the loaded JSON (no control here): ${Object.values(extras).flat().map(id => `<code>${esc(id)}</code>`).join(', ')}. <button type="button" class="btn small" id="extras-clear">Remove</button>`;
+    const q = readForm();
+    $('json-text').value = JSON.stringify(q, null, 2);
+    try { localStorage.setItem(STORE, JSON.stringify(q)); } catch (e) { /* storage unavailable: the form still works */ }
+    if (current) $('stale').hidden = JSON.stringify(stripMeta(q)) === JSON.stringify(stripMeta(current));
+  }
+  const stripMeta = q => Object.assign({}, q, { id: null, title: null, spec: null, interpretation: null });
+
+  function validate(q) {
+    if (!Number.isInteger(q.seats_excluding_driver) || q.seats_excluding_driver < 1 || q.seats_excluding_driver > 60) return 'Enter the number of passenger seats, from 1 to 60, not counting the driver.';
+    return null;
+  }
+
+  // ---------- run ----------
+  async function run() {
+    if (running) return;
+    const q = readForm();
+    const err = validate(q);
+    $('error').hidden = !err; if (err) { $('error').textContent = err; $('seats').focus(); return; }
+    running = true; $('run').disabled = true;
+    const results = [];
+    try {
+      for (let i = 0; i < DATA.files.length; i++) {
+        const f = DATA.files[i];
+        $('status').textContent = `Checking ${i + 1} of ${DATA.files.length}: ${f.display_name}`;
+        await new Promise(r => setTimeout(r, 0));
+        results.push(Eligibility.evaluateVehicle(f, q, DATA.rules, DATA.cat));
+      }
+      current = q;
+      render({ questionnaire: q, results });
+      $('status').textContent = `Checked ${results.length} vehicles at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.`;
+      $('stale').hidden = true;
+    } catch (e) {
+      $('error').hidden = false;
+      $('error').textContent = 'The engine stopped: ' + e.message + '\nCheck the questionnaire JSON below for an item the catalog does not know.';
+      $('status').textContent = 'Check failed.';
+    } finally { running = false; $('run').disabled = false; }
+  }
+
+  // ---------- results ----------
+  function render(report) {
+    const q = report.questionnaire, rs = report.results;
+    const tiers = q.seat_tiers && q.seat_tiers.length ? q.seat_tiers : ['standard'];
+    const n = rs.length;
+    const rank = v => VERDICTS.indexOf(v);
+    const best = r => Math.min(...r.tiers.map(t => rank(t.verdict)));
+    const sorted = rs.map((r, i) => ({ r, i })).sort((a, b) =>
+      best(a.r) - best(b.r) || a.r.tiers.reduce((s, t) => s + rank(t.verdict), 0) - b.r.tiers.reduce((s, t) => s + rank(t.verdict), 0) || a.i - b.i).map(x => x.r);
+
+    $('res-title').textContent = `${q.use === 'commercial' ? 'Commercial' : 'Private'} · ${q.seats_excluding_driver} passenger seat${q.seats_excluding_driver === 1 ? '' : 's'}${q.state ? ' · ' + q.state[0].toUpperCase() + q.state.slice(1) : ''}`;
+    $('res-qid').textContent = q.seat_tiers && q.seat_tiers.length ? '' : 'No seat tier ticked: standard seats checked';
+    const eligAny = rs.filter(r => best(r) === 0).length, undAny = rs.filter(r => best(r) === 1).length, rejAll = rs.filter(r => best(r) === 2).length;
+    const bus = rs.filter(r => r.route === 'bus_body');
+    let head = `<b>${eligAny}</b> of ${n} vehicles are eligible for at least one seat tier, <b>${undAny}</b> more are undecided, and <b>${rejAll}</b> are rejected for every tier.`;
+    if (bus.length) head += ` ${bus.length === 1 ? 'One bus chassis takes' : bus.length + ' bus chassis take'} the bus-body route (${esc(bus.map(r => shortName(r.name)).join(', '))}), since ${q.seats_excluding_driver} seats is above the motor caravan cap.`;
+    $('headline').innerHTML = head;
+
+    // per-tier counts, bar to scale (one unit = one vehicle)
+    $('tier-summary').hidden = false;
+    $('tier-summary').innerHTML = tiers.map(t => {
+      const tc = Object.fromEntries(VERDICTS.map(v => [v, rs.filter(r => (r.tiers.find(x => x.tier === t) || {}).verdict === v).length]));
+      const spec = DATA.cat.seat_tiers[t];
+      return `<div class="tierrow"><div class="name"><b>${esc(tierName(t))}</b>${spec ? `<span>${spec.width} × ${spec.pitch} mm</span>` : ''}</div>
+        <div class="bar" role="img" aria-label="${VERDICTS.map(v => `${tc[v]} ${v.toLowerCase()}`).join(', ')}">${VERDICTS.filter(v => tc[v]).map(v => `<i class="bg-${v}" style="width:${(tc[v] / n * 100).toFixed(3)}%" title="${tc[v]} ${v.toLowerCase()}"></i>`).join('')}</div>
+        <div class="counts"><span class="c-ok">${tc.ELIGIBLE} eligible</span> · <span class="c-und">${tc.UNDECIDED} undecided</span> · <span class="c-rej">${tc.REJECTED} rejected</span></div></div>`;
+    }).join('');
+
+    const lh = $('list-head');
+    lh.hidden = false; lh.style.setProperty('--nt', tiers.length);
+    lh.innerHTML = `<span>Vehicle</span>${tiers.map(t => `<span>${esc(tierName(t))}</span>`).join('')}`;
+    $('vehicles').innerHTML = sorted.map(r => vehicleCard(r, tiers)).join('');
+
+    // jump link (phones)
+    const j = $('jump'); j.hidden = false;
+    j.innerHTML = `Last check: <b>${eligAny} eligible</b>, ${undAny} undecided, ${rejAll} rejected of ${n} vehicles. See the results ↓`;
+
+    renderItems(rs);
+  }
+  const shortName = s => s.replace(/^(Force Motors|Tata Motors|Ashok Leyland|Eicher \(VE Commercial Vehicles\))\s+/, '').replace(/\s*\((bus chassis|face-cowl bus chassis)\)/, '');
+
+  function vehicleCard(r, tiers) {
+    const byTier = Object.fromEntries(r.tiers.map(t => [t.tier, t]));
+    const kind = r.kind === 'van' ? 'Van' : 'Bus chassis';
+    const sub = [kind, `category ${r.category}`, r.route === 'bus_body' ? 'bus-body route' : 'motor caravan route'].join(' · ');
+    const chips = tiers.map(t => { const v = byTier[t] ? byTier[t].verdict : 'UNDECIDED'; return `<span class="chip v-${v}"><span class="tierlabel">${esc(tierName(t))}</span>${VWORD[v]}</span>`; }).join('');
+    return `<details class="veh" style="--nt:${tiers.length}" id="veh-${esc(r.id)}"><summary><span class="vname"><span><b>${esc(r.name)}</b><small>${esc(sub)}</small></span></span>${chips}</summary><div class="vbody">${vehicleBody(r, tiers)}</div></details>`;
+  }
+
+  function vehicleBody(r, tiers) {
+    const f = DATA.files.find(x => x.id === r.id);
+    const it = f.interior;
+    const dim = (x, unit) => x && x.value != null ? `${mm(x.value)}${unit || ' mm'}${x.confidence && x.confidence !== 'CONFIRMED' ? ` <span class="src">${esc(x.confidence)}${x.expected_error && x.expected_error.text ? ', ' + esc(x.expected_error.text.split(' (')[0]) : ''}</span>` : ''}` : 'unknown';
+    const parts = [];
+    parts.push(`<div class="facts"><span>Living length <b>${dim(it.usable_length)}</b></span><span>Living width <b>${dim(it.usable_width)}</b></span><span>Standing height <b>${dim(it.standing_height)}</b></span><span>GVW <b>${dim(f.body.gvw_kg, ' kg')}</b></span></div>`);
+    parts.push(`<div class="links"><a href="topview.html?vehicle=${encodeURIComponent(r.id)}">Top view of this vehicle →</a><a href="sideview.html?vehicle=${encodeURIComponent(r.id)}">Side profile →</a></div>`);
+    if (r.routeNote) parts.push(`<div><h4>Route</h4>${rich(r.routeNote)}</div>`);
+    if (r.rejected.length) parts.push(`<div class="box rej"><h4>Rejected for every seat tier</h4><ul>${r.rejected.map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>`);
+    else if (r.undecided.length) parts.push(`<div class="box und"><h4>Open for every seat tier</h4><ul>${r.undecided.map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>`);
+
+    const tb = tiers.map(tid => {
+      const t = r.tiers.find(x => x.tier === tid); if (!t) return '';
+      const fit = t.fit;
+      // The engine words the space check as a "FIT: …" line; show it as the tier's first line
+      const fitLine = [...t.rejected, ...t.undecided].find(x => /^FIT: /.test(x));
+      let fitHtml;
+      if (fit.status === 'PASS') fitHtml = esc(`Fits at the unfavourable end: needs ${mm(fit.need)} mm of ${mm(fit.scenarios.worst.L)} mm living length; narrowest aisle ${mm(fit.minAisle)} mm${fit.aisleWarning ? ' (warning band)' : ''}.`);
+      else fitHtml = `<b>${fit.status === 'FAIL' ? 'Does not fit' : 'Fit undecided'}:</b> ${rich(fitLine ? fitLine.replace(/^FIT: /, '') : fit.reason || '')}`;
+      const own = [...t.rejected.filter(x => !r.rejected.includes(x)), ...(t.rejected.length ? [] : t.undecided.filter(x => !r.undecided.includes(x)))]
+        .filter(x => !/^FIT: /.test(x));
+      const variant = Object.values(t.combo || {}).map(id => (DATA.cat.modules[id] || {}).label || id);
+      return `<div class="tb"><div class="top"><span class="chip v-${t.verdict}">${VWORD[t.verdict]}</span><b>${esc(tierName(tid))} seats</b></div>
+        <div class="fit">${fitHtml}</div>
+        ${own.length ? `<ul>${own.map(x => `<li>${rich(x)}</li>`).join('')}</ul>` : ''}
+        ${t.design.length ? `<ul>${t.design.map(x => `<li class="w">Design warning: ${rich(x)}</li>`).join('')}</ul>` : ''}
+        ${variant.length ? `<div class="note">Variant used: ${esc(variant.join(', '))}</div>` : ''}</div>`;
+    }).join('');
+    parts.push(`<div class="tierblocks">${tb}</div>`);
+
+    if (r.conditions.length) parts.push(`<div><h4>To confirm</h4><ul>${r.conditions.map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>`);
+    if ((r.caveats || []).length) parts.push(`<div><h4>Caveats on the data</h4><ul>${r.caveats.map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>`);
+    if (r.design.length) parts.push(`<div><h4>Design warnings</h4><ul>${r.design.map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>`);
+    if (r.pending.length) {
+      const P = Object.fromEntries(DATA.rules.pending.map(p => [p.id, p]));
+      parts.push(`<div><h4>Open questions this result depends on</h4><ul class="pending">${r.pending.map(id => `<li><code class="rid">${esc(id)}</code>${esc(P[id] ? P[id].question : '')}</li>`).join('')}</ul></div>`);
+    }
+    const passed = [...r.legal, ...r.state.map(x => 'State: ' + x), ...r.conversion];
+    if (passed.length) parts.push(`<details class="sub"><summary>Checks passed (${passed.length})</summary><ul>${passed.map(x => `<li>${rich(x)}</li>`).join('')}</ul></details>`);
+    parts.push(`<details class="sub"><summary>Build requirements (${r.requirements.length})</summary><ul>${r.requirements.map(x => `<li>${rich(x)}</li>`).join('')}</ul></details>`);
+    return parts.join('');
+  }
+
+  function renderItems(rs) {
+    const first = rs[0] && rs[0].tiers[0];
+    if (!first) return;
+    $('items-section').hidden = false;
+    const variants = new Set(Object.values(first.combo || {}));
+    $('items-note').innerHTML = `What the engine places for this questionnaire, with the reason for each item. Shown as resolved for ${esc(rs[0].name)}, ${esc(tierName(first.tier))} seats.${variants.size ? ' Items marked "variant" are picked per vehicle: the engine keeps whichever fits best.' : ''} Seats are added on top: one in the cab, the rest in the living area.`;
+    const size = m => m.kind === 'zero_floor' ? 'no floor area' : m.hostedBy ? `inside ${(DATA.cat.modules[m.hostedBy] || {}).label || m.hostedBy}` : m.kind === 'full_width' ? `${mm(m.length)} full width` : `${mm(m.length)} × ${mm(m.depth)}`;
+    $('items').innerHTML = `<thead><tr><th>Item</th><th>Floor, mm</th><th>Size from</th><th>Why it is there</th></tr></thead><tbody>${first.mods.map(m =>
+      `<tr><td>${esc(m.label || m.id)}${variants.has(m.id) ? ' <span class="src">variant</span>' : ''}</td><td class="num">${esc(size(m))}</td><td><span class="src">${esc(m.source || '')}</span></td><td>${m.why.map(rich).join('; ')}</td></tr>`).join('')}</tbody>`;
+  }
+
+  // ---------- load ----------
+  async function getJSON(p) { const r = await fetch(p); if (!r.ok) throw new Error(`${p}: HTTP ${r.status}`); return r.json(); }
+  async function init() {
+    try {
+      const [index, rules, cat, A, B] = await Promise.all(['data/vehicles/index.json', 'data/rules.json', 'data/design_catalog.json', 'data/questionnaires/test_A.json', 'data/questionnaires/test_B.json'].map(getJSON));
+      const files = await Promise.all(index.vehicles.map(v => getJSON(`data/vehicles/${v.id}.json`)));
+      DATA = { files, rules, cat, presets: { test_A: A, test_B: B, blank: BLANK } };
+    } catch (e) {
+      $('headline').textContent = 'Could not load the data: ' + e.message + '. The page has to be served over http (npx serve .), not opened as a file.';
+      $('status').textContent = 'Data not loaded.';
+      $('run').disabled = true;
+      return;
+    }
+    buildForm();
+    $('footer').insertAdjacentHTML('beforeend', ` Rulebook as of ${esc(DATA.rules.as_of || '–')}, catalog as of ${esc(DATA.cat.as_of || '–')}.`);
+    let start = null;
+    const h = location.hash.replace('#', '');
+    if (h === 'test-b') start = DATA.presets.test_B;
+    else if (h === 'test-a') start = DATA.presets.test_A;
+    else { try { const s = localStorage.getItem(STORE); if (s) start = JSON.parse(s); } catch (e) { start = null; } }
+    writeForm(start || DATA.presets.test_A);
+    $('status').textContent = 'Ready.';
+    run();
+  }
+
+  // ---------- events ----------
+  $('form').addEventListener('submit', e => { e.preventDefault(); run(); });
+  $('form').addEventListener('change', () => { if (DATA) syncForm(); });
+  $('form').addEventListener('input', e => { if (DATA && e.target.id === 'seats') syncForm(); });
+  $('form').addEventListener('click', e => {
+    const p = e.target.closest('[data-preset]');
+    if (p && DATA) { writeForm(DATA.presets[p.dataset.preset]); run(); return; }
+    if (e.target.id === 'extras-clear') { extras = { amenities: [], add_ons: [], expansions: [] }; syncForm(); }
+  });
+  $('run').addEventListener('click', () => {
+    if (window.matchMedia('(max-width: 860px)').matches) setTimeout(() => $('results').scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  });
+  $('json-copy').addEventListener('click', () => {
+    const t = $('json-text').value;
+    const done = () => { $('json-msg').textContent = 'Copied.'; };
+    const fallback = () => { $('json-text').select(); $('json-msg').textContent = 'Selected: copy it with your keyboard or the share menu.'; };
+    try { navigator.clipboard.writeText(t).then(done, fallback); } catch (e) { fallback(); }
+  });
+  $('json-load').addEventListener('click', () => {
+    let q;
+    try { q = JSON.parse($('json-text').value); } catch (e) { $('json-msg').textContent = 'That is not valid JSON: ' + e.message; return; }
+    if (!q || typeof q !== 'object') { $('json-msg').textContent = 'Expected a questionnaire object.'; return; }
+    writeForm(Object.assign({}, BLANK, q, { conversion: Object.assign({}, BLANK.conversion, q.conversion || {}) }));
+    $('json-msg').textContent = 'Loaded into the form. Press Check eligibility to run it.';
+  });
+  init();
+})();
+</script>
+</body>
+</html>
