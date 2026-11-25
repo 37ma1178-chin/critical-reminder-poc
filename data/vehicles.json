@@ -1,0 +1,182 @@
+{
+  "schema": "azad-interior-v1",
+  "as_of": "2026-11-25",
+  "title": "Internal dimensions from Azad Automotive Customs (approximate)",
+  "units": "mm",
+  "conversion": "Given in feet and inches; converted at 1 in = 25.4 mm and rounded to the nearest mm. The original figures are kept in as_given.",
+  "status": "Not merged into data/vehicles/<id>.json. Those files remain the source of truth for the eligibility engine and the drawings' living area. This file is used by js/interior.js (usable length, partition, wheel-arch keep-out) and tools/validate_azad_glb.js. Nothing here is verified.",
+  "definitions": {
+    "lengthWithPartition_mm": "Internal length measured with Azad's partition wall installed: from the partition's rear face to the inside of the rear door. As given by Azad.",
+    "bareLength_mm": "Internal length with no partition: from behind the driver seats to the inside of the rear door. = lengthWithPartition_mm + partition offset. Uses partitionOffsetDefault_mm while partitionOffset_mm is null.",
+    "partitionOffset_mm": "How much length the partition takes: from behind the driver seats to the partition's rear face. Azad: about 2 to 2.5 ft longer without it (partitionOffsetRange_mm). null = pending.",
+    "partitionOffsetDefault_mm": "686 mm (27 in, the middle of 2 to 2.5 ft). A temporary default until Azad gives the figure per vehicle.",
+    "width_mm": "Internal width as given by Azad. The height at which it was measured, and whether it is inside the trims, is not stated.",
+    "height_mm": "Internal height as given by Azad. Floor and ceiling reference surfaces not stated.",
+    "wheelArch": {
+      "height_mm": "Height of the arch box above the finished floor.",
+      "width_mm": "How far the arch box sticks out from the side wall into the cabin.",
+      "length_mm": "Length of the arch box along the vehicle.",
+      "startFromFront_mm": "From behind the driver seats (the front of the bare length) to the front edge of the arch box.",
+      "note": "One value per vehicle, applied to both sides. All null until Azad sends them."
+    }
+  },
+  "components": {
+    "partition": {
+      "placeable": true,
+      "part_of_shell": false,
+      "size_from": "data/components.json#partition (50 mm thick) and data/design_catalog.json#partition_behind_driver",
+      "position_definition": "position_mm = distance from behind the driver seats (front of the bare length) to the partition's rear face.",
+      "default_position_mm": 686,
+      "usable_length": "usable living length = bareLength_mm - position_mm. With the partition where Azad fits it (position = partitionOffset_mm) this gives lengthWithPartition_mm back. With no partition, position = 0 and the usable length is the bare length."
+    },
+    "wheel_arch_cover": {
+      "fixed_part": false,
+      "rule": "No separate arch cover is fitted. Whatever furniture is placed over an arch (seat base, cabinet, bed frame, bench) is built around it, and its cover is generated from that furniture (js/interior.js archCover). Seats need a plinth; a washroom needs a flat floor (data/rules.json D-WHEEL-ARCH).",
+      "until_data_arrives": "Furniture may not be placed over an arch zone. The keep-out zone is the estimated wheel housing already in data/vehicles/<id>.json (interior.wheel_arch, ESTIMATED, at the rear axle). Views show it as \"arch data pending\"."
+    }
+  },
+  "vehicles": [
+    {
+      "id": "azad_urbania_3350",
+      "label": "Urbania 3350",
+      "as_given": { "length": "8'4\"", "width": "6'1\"", "height": "6'1\"" },
+      "vehicleIds": ["force_urbania_3350wb"],
+      "match_basis": "Same model and wheelbase.",
+      "lengthWithPartition_mm": 2540,
+      "partitionOffset_mm": null,
+      "partitionOffsetDefault_mm": 686,
+      "partitionOffsetRange_mm": [610, 762],
+      "bareLength_mm": 3226,
+      "bareLength_basis": "2540 + 686 (temporary default; partitionOffset_mm pending)",
+      "width_mm": 1854,
+      "height_mm": 1854,
+      "source": "Azad Automotive Customs, approx, Nov 2026",
+      "verified": false,
+      "wheelArch": { "height_mm": null, "width_mm": null, "length_mm": null, "startFromFront_mm": null, "status": "pending", "source": "pending from Azad Automotive Customs" }
+    },
+    {
+      "id": "azad_urbania_3615",
+      "label": "Urbania 3615",
+      "as_given": { "length": "10'11\"", "width": "6'1\"", "height": "6'1\"" },
+      "vehicleIds": ["force_urbania_3615wb"],
+      "match_basis": "Same model and wheelbase.",
+      "lengthWithPartition_mm": 3327,
+      "partitionOffset_mm": null,
+      "partitionOffsetDefault_mm": 686,
+      "partitionOffsetRange_mm": [610, 762],
+      "bareLength_mm": 4013,
+      "bareLength_basis": "3327 + 686 (temporary default; partitionOffset_mm pending)",
+      "width_mm": 1854,
+      "height_mm": 1854,
+      "source": "Azad Automotive Customs, approx, Nov 2026",
+      "verified": false,
+      "wheelArch": { "height_mm": null, "width_mm": null, "length_mm": null, "startFromFront_mm": null, "status": "pending", "source": "pending from Azad Automotive Customs" }
+    },
+    {
+      "id": "azad_urbania_4400",
+      "label": "Urbania 4400",
+      "as_given": { "length": "13'6\"", "width": "6'1\"", "height": "6'1\"" },
+      "vehicleIds": ["force_urbania_4400wb"],
+      "match_basis": "Same model and wheelbase.",
+      "lengthWithPartition_mm": 4115,
+      "partitionOffset_mm": null,
+      "partitionOffsetDefault_mm": 686,
+      "partitionOffsetRange_mm": [610, 762],
+      "bareLength_mm": 4801,
+      "bareLength_basis": "4115 + 686 (temporary default; partitionOffset_mm pending)",
+      "width_mm": 1854,
+      "height_mm": 1854,
+      "source": "Azad Automotive Customs, approx, Nov 2026",
+      "verified": false,
+      "wheelArch": { "height_mm": null, "width_mm": null, "length_mm": null, "startFromFront_mm": null, "status": "pending", "source": "pending from Azad Automotive Customs" }
+    },
+    {
+      "id": "azad_traveller_t2_3350",
+      "label": "Traveller T2 3350",
+      "as_given": { "length": "10'10\"", "width": "6'7\"", "height": "6'2\"" },
+      "vehicleIds": ["force_traveller-widerbody_3350wb"],
+      "match_basis": "Assumed to be the Traveller N Wider Body (exterior 2245 mm). The standard Traveller N is 1925 mm wide outside, narrower than this 2007 mm inside width, so it cannot be that body. Confirm the model name with Azad.",
+      "alternateVehicleIds": [],
+      "lengthWithPartition_mm": 3302,
+      "partitionOffset_mm": null,
+      "partitionOffsetDefault_mm": 686,
+      "partitionOffsetRange_mm": [610, 762],
+      "bareLength_mm": 3988,
+      "bareLength_basis": "3302 + 686 (temporary default; partitionOffset_mm pending)",
+      "width_mm": 2007,
+      "height_mm": 1880,
+      "source": "Azad Automotive Customs, approx, Nov 2026",
+      "verified": false,
+      "wheelArch": { "height_mm": null, "width_mm": null, "length_mm": null, "startFromFront_mm": null, "status": "pending", "source": "pending from Azad Automotive Customs" }
+    },
+    {
+      "id": "azad_traveller_t2_4020_dv",
+      "label": "Traveller T2 4020 DV",
+      "as_given": { "length": "15'3\"", "width": "6'7\"", "height": "6'2\"" },
+      "vehicleIds": ["force_traveller-widerbody_4020wb"],
+      "match_basis": "DV is read as Delivery Van (Force sells a Traveller N Delivery Van, see the model list in data/handover/rv_handover_part1_models_data_research/research/oem_snapshots/). The delivery van is not one of the 14 variants, so it is matched to the passenger Wider Body 4020 shell, the only 4020 body in the data wide enough for 2007 mm inside. The Traveller 26 4020 (2225 mm outside) is kept as an alternate.",
+      "alternateVehicleIds": ["force_traveller26_4020wb"],
+      "lengthWithPartition_mm": 4648,
+      "partitionOffset_mm": null,
+      "partitionOffsetDefault_mm": 686,
+      "partitionOffsetRange_mm": [610, 762],
+      "bareLength_mm": 5334,
+      "bareLength_basis": "4648 + 686 (temporary default; partitionOffset_mm pending)",
+      "width_mm": 2007,
+      "height_mm": 1880,
+      "source": "Azad Automotive Customs, approx, Nov 2026",
+      "verified": false,
+      "wheelArch": { "height_mm": null, "width_mm": null, "length_mm": null, "startFromFront_mm": null, "status": "pending", "source": "pending from Azad Automotive Customs" }
+    }
+  ],
+  "conflicts": [
+    {
+      "vehicle": "force_urbania_4400wb",
+      "item": "living length",
+      "this_file": "lengthWithPartition_mm 4115 (13'6\")",
+      "existing": "interior.usable_length 4191 mm (165 in), BUILDER_MEASURED from Azad's own Oct 2026 layout drawing (data/reference/builders/azad_voyager-vip_urbania-4400_oct-2026.pdf)",
+      "difference_mm": -76,
+      "action": "Not resolved. Both are Azad figures for the length behind the partition."
+    },
+    {
+      "vehicle": "force_urbania_4400wb (and 3350 / 3615, which copy it)",
+      "item": "internal width",
+      "this_file": "width_mm 1854 (6'1\")",
+      "existing": "interior.usable_width 1651 mm (65 in), BUILDER_MEASURED from the same Oct 2026 drawing, read as the width inside Azad's conversion trims",
+      "difference_mm": 203,
+      "action": "Not resolved. 1854 may be wall to wall before trims; ask Azad where each was measured."
+    },
+    {
+      "vehicle": "force_urbania_3350wb",
+      "item": "living length",
+      "this_file": "lengthWithPartition_mm 2540 (8'4\")",
+      "existing": "interior.usable_length 3141 mm, ESTIMATED: 4191 minus the wheelbase difference (1050)",
+      "difference_mm": -601,
+      "action": "Not resolved. Azad's three Urbania lengths differ by 787 and 788 mm, matching the body-length steps (785 and 785), not the wheelbase steps (265 and 785). The 3350 is 1570 mm shorter overall than the 4400, so a body-length derivation gives about 2621, close to Azad's 2540."
+    },
+    {
+      "vehicle": "force_urbania_3615wb",
+      "item": "living length",
+      "this_file": "lengthWithPartition_mm 3327 (10'11\")",
+      "existing": "interior.usable_length 3406 mm, ESTIMATED: 4191 minus the wheelbase difference (785)",
+      "difference_mm": -79,
+      "action": "Not resolved."
+    },
+    {
+      "vehicle": "force_traveller-widerbody_3350wb, force_traveller-widerbody_4020wb",
+      "item": "internal width",
+      "this_file": "width_mm 2007 (6'7\")",
+      "existing": "interior.usable_width 1769 mm, ESTIMATED: 78.8 % of the 2245 mm body (the Urbania 1651 / 2095 ratio, pending P-WIDTH-RATIO)",
+      "difference_mm": 238,
+      "action": "Not resolved. Azad's new widths are 88.5 % (Urbania) and 89.4 % (Traveller) of the body width, against the 78.8 % ratio the other vans use now."
+    },
+    {
+      "vehicle": "force_traveller-widerbody_3350wb, force_traveller-widerbody_4020wb",
+      "item": "internal height",
+      "this_file": "height_mm 1880 (6'2\")",
+      "existing": "interior.standing_height 2080 (3350) and 2210 (4020) mm, ESTIMATED: body height - floor - roof (handover build rule)",
+      "difference_mm": "-200 (3350), -330 (4020)",
+      "action": "Not resolved. The delivery van may have a lower roof than the passenger 4020 body."
+    }
+  ]
+}

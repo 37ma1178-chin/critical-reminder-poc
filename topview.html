@@ -42,6 +42,7 @@
   .est { color:#8a5a1f; }
   .flag.warn { color:#7a3b1f; background:#fbefe8; border-color:#e8c9b6; }
   .flag ul { margin:4px 0 0; padding-left:16px; }
+  .blocked-tag { color:#9a3324; font-size:11px; }
 </style>
 </head>
 <body>
@@ -61,6 +62,7 @@
         <select id="vehicle-picker" class="picker" aria-label="Vehicle"></select>
       </div>
       <div class="specbox" id="specbox">Loading…</div>
+      <div class="specbox" id="azad-box" hidden></div>
       <div class="flag warn" id="data-flags" hidden></div>
       <div class="group">
         <h2>Layout</h2>
@@ -87,19 +89,24 @@
   </div>
 </div>
 <script src="js/vehicle.js"></script>
+<script src="js/interior.js"></script>
 <script>
 // ---- All values in millimetres; 1 SVG user unit = 1mm ----
 // Every vehicle dimension and seat position comes from data/vehicles/<id>.json via
 // js/vehicle.js — the same derived layout the 3D viewer draws. This file only
 // maps the vehicle frame onto the page and adds dimension lines.
 const VEHICLE_ID = Vehicle.vehicleFromUrl();
-Vehicle.load(VEHICLE_ID).then(draw).catch(err => {
+// data/vehicles.json (Azad interior, js/interior.js) is optional: without it the page draws as before
+Promise.all([Vehicle.load(VEHICLE_ID), (window.Interior ? Interior.load() : Promise.reject(new Error('js/interior.js not loaded'))).catch(e => { console.warn(e.message); return null; })]).then(([V, AZ]) => draw(V, AZ)).catch(err => {
   console.error(err);
   document.getElementById('specbox').textContent = 'Failed to load vehicle data: ' + err.message + ' (serve over http, not file://)';
 });
 
-function draw(V) {
+function draw(V, AZ) {
 const spec = V.spec, LAY = V.layout;
+// Azad's interior figures and the wheel-arch keep-out zones, for the vehicles data/vehicles.json covers
+const AZE = AZ ? Interior.entryFor(AZ, spec.id) : null;
+const AZM = AZE ? Interior.model(AZE, spec, LAY) : null;
 const b = spec.body, seating = spec.stock_seating;
 const L = b.length, W = b.width;
 const selection = V.components ? Vehicle.readSelection(V.components) : { layout: null, modules: [], variants: {} };
@@ -118,6 +125,11 @@ document.getElementById('specbox').innerHTML =
   `<b>${spec.vehicle}</b><br>${lines.size}<br>${lines.chassis}<br>${lines.overhang}` +
   `<br><i>${Vehicle.confidence(spec, 'interior.usable_length') === 'BUILDER_MEASURED' ? 'Living area, measured by a body builder' : 'Estimated living area'}:</i> ${LAY.interior.length} × ${LAY.interior.width} mm ≈ ${LAY.interior.area_m2} m² behind the cab` +
   ` <span class="est">(length${errText('interior.usable_length')}, width${errText('interior.usable_width')})</span>`;
+if (AZM) {
+  const az = document.getElementById('azad-box');
+  az.hidden = false;
+  az.innerHTML = `<b>Azad interior (approx, not verified)</b><br>` + Interior.panelLines(AZM).slice(1).join('<br>');
+}
 const flags = [];
 if (!LAY.trackKnown) flags.push('Track width is not published: wheels are drawn with their outer face on the body side (drawing convention, not a dimension).');
 if (!seating) flags.push('No stock seat layout for this variant: no OEM floor plan has been matched yet.');
@@ -184,8 +196,10 @@ LAY.seats.forEach(seat => {
 // Empty bays (a zone whose module is off) are shown as a dashed outline.
 let camperSvg = '';
 let P = null;
+let blocked = new Map();   // placement id → check, for modules over an arch zone whose data is pending
 if (mode === 'camper') {
   P = Vehicle.camperPlacements(spec, V.components, selection);
+  if (AZM) blocked = new Map(Interior.blockedPlacements(AZM, P.placements).map(r => [r.placement.id, r.check]));
   const on = new Set(P.placements.map(p => p.id));
   P.zones.forEach(z => {
     if (on.has(z.id)) return;
@@ -194,7 +208,7 @@ if (mode === 'camper') {
   });
   // Rectangles first, labels after, so a sub-module never covers its zone's label
   P.placements.forEach(p => {
-    camperSvg += `<rect x="${px(p.x0)}" y="${py(p.y0)}" width="${p.x1 - p.x0}" height="${p.y1 - p.y0}" rx="14" class="mod mod-${p.id}"/>`;
+    camperSvg += `<rect x="${px(p.x0)}" y="${py(p.y0)}" width="${p.x1 - p.x0}" height="${p.y1 - p.y0}" rx="14" class="mod mod-${p.id}${blocked.has(p.id) ? ' blocked' : ''}"/>`;
   });
   P.placements.forEach(p => {
     const cx = px((p.x0 + p.x1) / 2), cy = py((p.y0 + p.y1) / 2);
@@ -209,6 +223,24 @@ if (mode === 'camper') {
   // rear walkway
   if (P.walkway > 0) camperSvg += `<text x="${px(P.zones[P.zones.length - 1].x0 - P.walkway / 2)}" y="${py(0)}" class="baylabel" text-anchor="middle" transform="rotate(-90 ${px(P.zones[P.zones.length - 1].x0 - P.walkway / 2)} ${py(0)})">walkway ${P.walkway}</text>`;
   else flags.push(`<b>Camper modules overrun the living area by ${-P.walkway} mm.</b> The fixed zone sizes in data/components.json were set for the Urbania 4400 cabin; they are drawn as-is, past the rear wall.`);
+}
+
+// Wheel-arch zones from js/interior.js. While Azad's arch figures are pending, nothing may be placed
+// over them: the zone is hatched and labelled, and modules on it are drawn as blocked.
+let archSvg = '';
+if (AZM) {
+  AZM.archZones.forEach(z => {
+    archSvg += `<rect x="${px(z.x0)}" y="${py(z.y0)}" width="${z.x1 - z.x0}" height="${z.y1 - z.y0}" class="arch"/>`;
+  });
+  // One label under the body, below the zones (inside the cabin it would sit on the module labels)
+  const pz0 = AZM.archZones.find(z => z.status === 'pending');
+  if (pz0) archSvg += `<line x1="${px((pz0.x0 + pz0.x1) / 2)}" y1="${bodyY1 + 20}" x2="${px((pz0.x0 + pz0.x1) / 2)}" y2="${bodyY1 + 110}" stroke="#b5523b" stroke-width="${SWd * 0.6}"/>` +
+    `<text x="${px((pz0.x0 + pz0.x1) / 2)}" y="${bodyY1 + 230}" class="archlabel" text-anchor="middle">${Interior.PENDING} (both sides)</text>`;
+  if (AZM.archPending) {
+    const names = [...blocked.keys()].map(id => { const pl = P.placements.find(q => q.id === id); return pl.component.short_name || pl.component.name; });
+    flags.push(`<b>Wheel arches: ${Interior.PENDING}.</b> Azad has not sent the arch size and position, so nothing may be placed over the hatched zones (the estimated wheel housing at the high end of its error band).` +
+      (names.length ? ` Blocked here: ${names.join(', ')}.` : mode === 'camper' ? ' No module is on them in this configuration.' : ''));
+  }
 }
 
 const housingsSvg = LAY.wheelHousings.map(h =>
@@ -251,6 +283,10 @@ const svg = `
     <marker id="arrowE" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse">
       <path d="M9,1 L1,5 L9,9" fill="none" stroke="#3a6a72" stroke-width="1.6"/>
     </marker>
+    <pattern id="archHatch" width="70" height="70" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="70" height="70" fill="#ffffff" fill-opacity="0.3"/>
+      <line x1="0" y1="0" x2="0" y2="70" stroke="#c4705c" stroke-width="12" stroke-opacity="0.55"/>
+    </pattern>
   </defs>
   <style>
     .body { fill:#f7f5f0; stroke:#8f8879; stroke-width:${SWd}; }
@@ -276,6 +312,9 @@ const svg = `
     .mod-kitchenette { fill:#e6dccb; stroke:#6b5a45; }
     .modlabel { fill:#3a4a45; font-size:${FS*0.72}px; font-weight:600; font-family:inherit; }
     .modlabel.sub { font-size:${FS*0.62}px; font-weight:500; fill:#5b6b66; }
+    .mod.blocked { fill:#fbe9e4; stroke:#b5523b; stroke-dasharray:${SWd*2.4} ${SWd*1.4}; }
+    .arch { fill:url(#archHatch); stroke:#b5523b; stroke-width:${SWd*0.6}; }
+    .archlabel { fill:#8a2f22; font-size:${FS*0.56}px; font-weight:700; font-family:inherit; paint-order:stroke; stroke:#ffffff; stroke-width:${SWd*2.2}; stroke-linejoin:round; }
     .dim { stroke:#3a6a72; stroke-width:${SWd*0.65}; fill:none; }
     .dimtick { stroke:#3a6a72; stroke-width:${SWd*0.5}; }
     .dimtext { fill:#3a6a72; font-size:${FS}px; font-weight:600; font-family:inherit; }
@@ -293,6 +332,8 @@ const svg = `
   ${camperSvg}
 
   ${seatsSvg}
+
+  ${archSvg}
 
   ${wheelsSvg}
 
@@ -339,12 +380,15 @@ if (P) {
   P.placements.forEach(p => {
     const price = Vehicle.componentPrice(p.component, selection.variants[p.id]);
     const row = document.createElement('div');
-    row.innerHTML = `<span>${p.variant ? p.variant.name : p.component.name}</span><span>${inr(price.min)} – ${inr(price.max)}</span>`;
+    row.innerHTML = `<span>${p.variant ? p.variant.name : p.component.name}${blocked.has(p.id) ? ` <span class="blocked-tag">blocked: ${blocked.get(p.id).reason}</span>` : ''}</span><span>${inr(price.min)} – ${inr(price.max)}</span>`;
     list.appendChild(row);
   });
   document.getElementById('total').innerHTML = `Estimated module cost: <b>${inr(P.price.min)} – ${inr(P.price.max)}</b>`;
   document.getElementById('config-link').href = 'index.html' + Vehicle.selectionQuery(selection);
 }
+if (AZM) document.querySelector('.legend').insertAdjacentHTML('beforeend',
+  `<div><span class="swatch" style="background:repeating-linear-gradient(45deg,#c4705c 0 3px,#fff 3px 6px);border:1px solid #b5523b"></span>Wheel-arch zone: nothing placed (${Interior.PENDING})</div>` +
+  `<div><span class="swatch" style="background:#fbe9e4;border:1px dashed #b5523b"></span>Blocked module</div>`);
 } // draw
 </script>
 </body>

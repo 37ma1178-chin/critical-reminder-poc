@@ -1,0 +1,198 @@
+{
+  "generated_by": "tools/validate_azad_glb.js",
+  "tolerance_mm": 50,
+  "rows": [
+    {
+      "azad": "Urbania 3350",
+      "role": "match",
+      "vehicleId": "force_urbania_3350wb",
+      "glb": "assets/models/force_urbania_3350wb.glb",
+      "azad_mm": {
+        "bareLength": 3226,
+        "bareLengthRange": [
+          3150,
+          3302
+        ],
+        "partitionOffsetPending": true,
+        "width": 1854,
+        "height": 1854
+      },
+      "glb_mm": {
+        "bareLength": 3580,
+        "width": 2015,
+        "height": 1930
+      },
+      "diff_mm": {
+        "length": 354,
+        "width": 161,
+        "height": 76
+      },
+      "flags": [
+        "length",
+        "width",
+        "height"
+      ],
+      "lengthInsideOffsetRange": false
+    },
+    {
+      "azad": "Urbania 3615",
+      "role": "match",
+      "vehicleId": "force_urbania_3615wb",
+      "glb": "assets/models/force_urbania_3615wb.glb",
+      "azad_mm": {
+        "bareLength": 4013,
+        "bareLengthRange": [
+          3937,
+          4089
+        ],
+        "partitionOffsetPending": true,
+        "width": 1854,
+        "height": 1854
+      },
+      "glb_mm": {
+        "bareLength": 4365,
+        "width": 2015,
+        "height": 1930
+      },
+      "diff_mm": {
+        "length": 352,
+        "width": 161,
+        "height": 76
+      },
+      "flags": [
+        "length",
+        "width",
+        "height"
+      ],
+      "lengthInsideOffsetRange": false
+    },
+    {
+      "azad": "Urbania 4400",
+      "role": "match",
+      "vehicleId": "force_urbania_4400wb",
+      "glb": "assets/models/force_urbania_4400wb.glb",
+      "azad_mm": {
+        "bareLength": 4801,
+        "bareLengthRange": [
+          4725,
+          4877
+        ],
+        "partitionOffsetPending": true,
+        "width": 1854,
+        "height": 1854
+      },
+      "glb_mm": {
+        "bareLength": 5150,
+        "width": 2015,
+        "height": 1930
+      },
+      "diff_mm": {
+        "length": 349,
+        "width": 161,
+        "height": 76
+      },
+      "flags": [
+        "length",
+        "width",
+        "height"
+      ],
+      "lengthInsideOffsetRange": false
+    },
+    {
+      "azad": "Traveller T2 3350",
+      "role": "match",
+      "vehicleId": "force_traveller-widerbody_3350wb",
+      "glb": "assets/models/force_traveller-widerbody_3350wb.glb",
+      "azad_mm": {
+        "bareLength": 3988,
+        "bareLengthRange": [
+          3912,
+          4064
+        ],
+        "partitionOffsetPending": true,
+        "width": 2007,
+        "height": 1880
+      },
+      "glb_mm": {
+        "bareLength": 3655,
+        "width": 2165,
+        "height": 2080
+      },
+      "diff_mm": {
+        "length": -333,
+        "width": 158,
+        "height": 200
+      },
+      "flags": [
+        "length",
+        "width",
+        "height"
+      ],
+      "lengthInsideOffsetRange": false
+    },
+    {
+      "azad": "Traveller T2 4020 DV",
+      "role": "match",
+      "vehicleId": "force_traveller-widerbody_4020wb",
+      "glb": "assets/models/force_traveller-widerbody_4020wb.glb",
+      "azad_mm": {
+        "bareLength": 5334,
+        "bareLengthRange": [
+          5258,
+          5410
+        ],
+        "partitionOffsetPending": true,
+        "width": 2007,
+        "height": 1880
+      },
+      "glb_mm": {
+        "bareLength": 5005,
+        "width": 2165,
+        "height": 2210
+      },
+      "diff_mm": {
+        "length": -329,
+        "width": 158,
+        "height": 330
+      },
+      "flags": [
+        "length",
+        "width",
+        "height"
+      ],
+      "lengthInsideOffsetRange": false
+    },
+    {
+      "azad": "Traveller T2 4020 DV",
+      "role": "alternate",
+      "vehicleId": "force_traveller26_4020wb",
+      "glb": "assets/models/force_traveller26_4020wb.glb",
+      "azad_mm": {
+        "bareLength": 5334,
+        "bareLengthRange": [
+          5258,
+          5410
+        ],
+        "partitionOffsetPending": true,
+        "width": 2007,
+        "height": 1880
+      },
+      "glb_mm": {
+        "bareLength": 4810,
+        "width": 2145,
+        "height": 2250
+      },
+      "diff_mm": {
+        "length": -524,
+        "width": 138,
+        "height": 370
+      },
+      "flags": [
+        "length",
+        "width",
+        "height"
+      ],
+      "lengthInsideOffsetRange": false
+    }
+  ]
+}

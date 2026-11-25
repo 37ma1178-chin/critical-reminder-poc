@@ -26,6 +26,8 @@
   .specbox b { color:var(--ink); }
   .flag { font-size:11.5px; color:#8a5a1f; line-height:1.55; padding:10px 12px; background:#fdf5e8;
     border:1px solid #ecd9b3; border-radius:8px; margin-bottom:14px; }
+  .flag.warn { color:#7a3b1f; background:#fbefe8; border-color:#e8c9b6; }
+  .blocked-tag { color:#9a3324; font-size:11px; }
   .legend { font-size:12px; line-height:2; }
   .swatch { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:7px; vertical-align:-1px; }
   .group { margin-bottom:14px; }
@@ -59,6 +61,8 @@
         <select id="vehicle-picker" class="picker" aria-label="Vehicle"></select>
       </div>
       <div class="specbox" id="specbox">Loading…</div>
+      <div class="specbox" id="azad-box" hidden></div>
+      <div class="flag warn" id="arch-flag" hidden></div>
       <div class="group">
         <h2>Interior shown</h2>
         <button class="option active" data-layout="rows">Stock seating</button>
@@ -84,18 +88,23 @@
   </div>
 </div>
 <script src="js/vehicle.js"></script>
+<script src="js/interior.js"></script>
 <script>
 // ---- All values in millimetres; 1 SVG user unit = 1mm ----
 // Vehicle frame: x = 0 at the rear bumper (front points right), z = height above ground.
 // Everything comes from data/vehicles/<id>.json via js/vehicle.js (Vehicle.sideProfile / layout /
 // camperPlacements); this file only maps the frame onto the page and adds dimension lines.
-Vehicle.load(Vehicle.vehicleFromUrl()).then(draw).catch(err => {
+// data/vehicles.json (Azad interior, js/interior.js) is optional: without it the page draws as before
+Promise.all([Vehicle.load(Vehicle.vehicleFromUrl()), (window.Interior ? Interior.load() : Promise.reject(new Error('js/interior.js not loaded'))).catch(e => { console.warn(e.message); return null; })]).then(([V, AZ]) => draw(V, AZ)).catch(err => {
   console.error(err);
   document.getElementById('specbox').textContent = 'Failed to load vehicle data: ' + err.message + ' (serve over http, not file://)';
 });
 
-function draw(V) {
+function draw(V, AZ) {
 const spec = V.spec, LAY = V.layout, PR = Vehicle.sideProfile(spec);
+// Azad's interior figures and the wheel-arch keep-out zones, for the vehicles data/vehicles.json covers
+const AZE = AZ ? Interior.entryFor(AZ, spec.id) : null;
+const AZM = AZE ? Interior.model(AZE, spec, LAY) : null;
 const b = spec.body, a = spec.assumptions;
 const L = b.length, H = b.height;
 const selection = V.components ? Vehicle.readSelection(V.components) : { layout: null, modules: [], variants: {} };
@@ -133,6 +142,7 @@ LAY.wheelHousings.forEach(h => {
   interiorSvg += `<rect x="${px(h.x0)}" y="${pz(floorZ + h.height)}" width="${h.length}" height="${h.height}" class="housing"/>`;
 });
 let P = null;
+let blocked = new Map();   // placement id → check, for modules over an arch zone whose data is pending
 if (mode === 'rows') {
   const s = spec.stock_seating;
   LAY.seats.forEach(seat => {
@@ -145,8 +155,9 @@ if (mode === 'rows') {
   });
 } else {
   P = Vehicle.camperPlacements(spec, V.components, selection);
+  if (AZM) blocked = new Map(Interior.blockedPlacements(AZM, P.placements).map(r => [r.placement.id, r.check]));
   P.placements.forEach(p => {
-    interiorSvg += `<rect x="${px(p.x0)}" y="${pz(floorZ + p.z0 + p.height)}" width="${p.x1 - p.x0}" height="${p.height}" rx="14" class="mod mod-${p.id}"/>`;
+    interiorSvg += `<rect x="${px(p.x0)}" y="${pz(floorZ + p.z0 + p.height)}" width="${p.x1 - p.x0}" height="${p.height}" rx="14" class="mod mod-${p.id}${blocked.has(p.id) ? ' blocked' : ''}"/>`;
   });
   P.placements.forEach(p => {
     const short = (p.variant && p.variant.short_name) || p.component.short_name || p.id;
@@ -155,6 +166,27 @@ if (mode === 'rows') {
     const cx = px((p.x0 + p.x1) / 2), cz = isSub ? pz(floorZ + p.z0 + p.height / 2) : pz(floorZ + p.z0 + p.height) + FS * 0.9;
     if (p.x1 - p.x0 > 300 && p.height > 250) interiorSvg += `<text x="${cx}" y="${cz + FS * 0.25}" class="modlabel${isSub ? ' sub' : ''}" text-anchor="middle">${short}</text>`;
   });
+}
+
+// Wheel-arch zones from js/interior.js (both sides share x; drawn once). While Azad's arch figures are
+// pending, nothing may be placed over them: hatched, labelled, and modules on them drawn as blocked.
+if (AZM) {
+  const seen = new Set();
+  AZM.archZones.forEach(z => {
+    const k = z.x0 + ':' + z.x1; if (seen.has(k)) return; seen.add(k);
+    interiorSvg += `<rect x="${px(z.x0)}" y="${pz(floorZ + z.top)}" width="${z.x1 - z.x0}" height="${z.top}" class="arch"/>`;
+    if (z.status === 'pending') interiorSvg += `<text x="${px((z.x0 + z.x1) / 2)}" y="${pz(floorZ + z.top) - FS * 0.35}" class="archlabel" text-anchor="middle">${Interior.PENDING}</text>`;
+  });
+  const az = document.getElementById('azad-box');
+  az.hidden = false;
+  az.innerHTML = `<b>Azad interior (approx, not verified)</b><br>` + Interior.panelLines(AZM).slice(1).join('<br>');
+  if (AZM.archPending) {
+    const names = [...blocked.keys()].map(id => (c => c.short_name || c.name)(P.placements.find(q => q.id === id).component));
+    const fl = document.getElementById('arch-flag');
+    fl.hidden = false;
+    fl.innerHTML = `<b>Wheel arches: ${Interior.PENDING}.</b> Azad has not sent the arch size and position, so nothing may be placed over the hatched zone (the estimated wheel housing at the high end of its error band).` +
+      (names.length ? ` Blocked here: ${names.join(', ')}.` : mode === 'camper' ? ' No module is on it in this configuration.' : '');
+  }
 }
 
 function dimH(x1, y, x2, label) {
@@ -185,6 +217,10 @@ const svg = `
       <path d="M9,1 L1,5 L9,9" fill="none" stroke="#3a6a72" stroke-width="1.6"/>
     </marker>
     <clipPath id="bodyclip"><polygon points="${poly(PR.outline)}"/></clipPath>
+    <pattern id="archHatch" width="70" height="70" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="70" height="70" fill="#ffffff" fill-opacity="0.3"/>
+      <line x1="0" y1="0" x2="0" y2="70" stroke="#c4705c" stroke-width="12" stroke-opacity="0.55"/>
+    </pattern>
   </defs>
   <style>
     .ground { stroke:#b9b3a3; stroke-width:${SWd*0.8}; }
@@ -210,6 +246,9 @@ const svg = `
     .mod-kitchenette { fill:#e6dccb; stroke:#6b5a45; }
     .modlabel { fill:#3a4a45; font-size:${FS*0.72}px; font-weight:600; font-family:inherit; }
     .modlabel.sub { font-size:${FS*0.62}px; font-weight:500; fill:#5b6b66; }
+    .mod.blocked { fill:#fbe9e4; stroke:#b5523b; stroke-dasharray:${SWd*2.4} ${SWd*1.4}; }
+    .arch { fill:url(#archHatch); stroke:#b5523b; stroke-width:${SWd*0.6}; }
+    .archlabel { fill:#8a2f22; font-size:${FS*0.56}px; font-weight:700; font-family:inherit; paint-order:stroke; stroke:#ffffff; stroke-width:${SWd*2.2}; stroke-linejoin:round; }
     .dim { stroke:#3a6a72; stroke-width:${SWd*0.65}; fill:none; }
     .dimtick { stroke:#3a6a72; stroke-width:${SWd*0.5}; }
     .dimtext { fill:#3a6a72; font-size:${FS}px; font-weight:600; font-family:inherit; }
@@ -271,12 +310,15 @@ if (P) {
   P.placements.forEach(p => {
     const price = Vehicle.componentPrice(p.component, selection.variants[p.id]);
     const row = document.createElement('div');
-    row.innerHTML = `<span>${p.variant ? p.variant.name : p.component.name}</span><span>${inr(price.min)} – ${inr(price.max)}</span>`;
+    row.innerHTML = `<span>${p.variant ? p.variant.name : p.component.name}${blocked.has(p.id) ? ` <span class="blocked-tag">blocked: ${blocked.get(p.id).reason}</span>` : ''}</span><span>${inr(price.min)} – ${inr(price.max)}</span>`;
     list.appendChild(row);
   });
   document.getElementById('total').innerHTML = `Estimated module cost: <b>${inr(P.price.min)} – ${inr(P.price.max)}</b>`;
   document.getElementById('config-link').href = 'index.html' + q;
 }
+if (AZM) document.querySelector('.legend').insertAdjacentHTML('beforeend',
+  `<div><span class="swatch" style="background:repeating-linear-gradient(45deg,#c4705c 0 3px,#fff 3px 6px);border:1px solid #b5523b"></span>Wheel-arch zone: nothing placed (${Interior.PENDING})</div>` +
+  `<div><span class="swatch" style="background:#fbe9e4;border:1px dashed #b5523b"></span>Blocked module</div>`);
 } // draw
 </script>
 </body>
